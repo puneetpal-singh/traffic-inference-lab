@@ -2,6 +2,7 @@
 
 import json
 from pathlib import Path
+from statistics import mean
 
 root = Path("results/full-matrix")
 summary = json.loads((root / "summary.json").read_text())
@@ -74,7 +75,7 @@ for row in (r for r in rows if r["imgsz"] == 320 and r["device"] == "CUDA"):
     timing = json.loads((root / f"timing-{row['name']}.json").read_text())
     lines.append(f"| {row['name']} | " + " / ".join(f"{t['fps']:.2f}" for t in timing["trials"]) + " |")
 lines += ["", "### Optimizations that did not help", ""]
-for half in (r for r in rows if r["precision"] == 16):
+for half in (r for r in rows if r["precision"] in (8, 16)):
     full = next(
         (
             r
@@ -143,6 +144,78 @@ if pipeline_paths:
             f"| {path.parent.name} | {sum(c['decoded'] for c in cameras)} / {sum(c['processed'] for c in cameras)} | "
             f"{sum(c['queue_dropped'] for c in cameras)} | {sum(c['stride_skipped'] for c in cameras)} | "
             f"{fps:.2f} | {age:.2f} | {'PASS' if passed else 'REJECT'} |"
+        )
+    lines += ["", "### Largest tested load meeting the baseline replay gate", ""]
+    for backend, device in sorted({(r["backend"], r["device"]) for r in summary["pipelines"]}):
+        passing = [
+            r
+            for r in summary["pipelines"]
+            if r["backend"] == backend
+            and r["device"] == device
+            and r["timing_gate_passed"]
+            and r["batch"] == 1
+            and r["stride"] == 1
+            and r["tracker"] == "bytetrack"
+            and not r["render"]
+            and r["brightness_grid"] == 0
+        ]
+        result = (
+            f"{max(r['streams'] for r in passing)} camera"
+            + ("s" if max(r["streams"] for r in passing) != 1 else "")
+            if passing
+            else "none of the tested camera counts"
+        )
+        lines.append(
+            f"- {backend} {device}: **{result}** with batch one, stride one, ByteTrack and no rendering."
+        )
+    lines += [
+        "",
+        "These are the largest passing loads among the tested 1/2/4/8-camera replays, not production capacity ceilings.",
+    ]
+    lines += [
+        "",
+        "### Observability overhead experiment",
+        "",
+        "Full-frame brightness telemetry is compared with a sampled grid of at most 64×64 pixels. Only the brightness",
+        "diagnostic changes; detector input and tracker settings stay fixed. The approximation can differ from the",
+        "full-frame mean. Both runs remain visible; these short fixed-order comparisons do not isolate every source of noise.",
+        "",
+        "| Cameras | Mean telemetry ms: full / sampled | Min camera FPS: full / sampled | Worst p95 ms: full / sampled |",
+        "|---|---:|---:|---:|",
+    ]
+    regressed_counts = []
+    for tuned in (r for r in summary["pipelines"] if r["brightness_grid"] == 64):
+        original = next(
+            r
+            for r in summary["pipelines"]
+            if r["experiment"] == tuned["experiment"].removesuffix("-sampled-telemetry")
+        )
+        if (
+            original["worst_camera_p95_ms"] is not None
+            and tuned["worst_camera_p95_ms"] is not None
+            and tuned["worst_camera_p95_ms"] > original["worst_camera_p95_ms"]
+        ):
+            regressed_counts.append(tuned["streams"])
+        averages = []
+        for row in (original, tuned):
+            path = root / "pipelines" / row["experiment"] / "frames.jsonl"
+            values = [json.loads(line)["telemetry_ms"] for line in path.read_text().splitlines()]
+            averages.append(f"{mean(values):.3f}" if values else "N/A")
+        lines.append(
+            f"| {tuned['streams']} | {' / '.join(averages)} | "
+            f"{original['min_camera_fps']:.2f} / {tuned['min_camera_fps']:.2f} | "
+            f"{original['worst_camera_p95_ms']:.2f} / {tuned['worst_camera_p95_ms']:.2f} |"
+        )
+    lines += [
+        "",
+        "Reducing diagnostic overhead is not sufficient evidence of higher serving capacity. In this run, the",
+        "end-to-end gates remain separate from the local telemetry saving. Decoder lag and shared-system variability must be considered.",
+    ]
+    if regressed_counts:
+        lines.append(
+            "Sampled runs at camera counts "
+            + ", ".join(map(str, sorted(regressed_counts)))
+            + " recorded worse p95 frame age than their baseline counterparts."
         )
 else:
     lines.append(

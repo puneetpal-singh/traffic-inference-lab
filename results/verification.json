@@ -60,7 +60,7 @@
     "exit_code": 0,
     "expected_exit_code": 0,
     "passed": true,
-    "seconds": 2.951352100004442,
+    "seconds": 42.46232059999602,
     "previous_attempts": [
       {
         "name": "dashboard-smoke",
@@ -68,6 +68,13 @@
         "expected_exit_code": 0,
         "passed": false,
         "seconds": 11.106507799995597
+      },
+      {
+        "name": "dashboard-smoke",
+        "exit_code": 0,
+        "expected_exit_code": 0,
+        "passed": true,
+        "seconds": 2.951352100004442
       }
     ]
   }

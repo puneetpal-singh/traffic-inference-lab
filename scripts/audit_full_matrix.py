@@ -1,6 +1,7 @@
 """Audit full matrix coverage, matching quality evidence, device placement, and calibration separation."""
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
 
@@ -16,6 +17,7 @@ def read(name):
 
 plan = read("plan.json")
 manifest = read("dataset-manifest.json")
+manifest_digest = hashlib.sha256((root / "dataset-manifest.json").read_bytes()).hexdigest()
 errors = []
 calibration = {row["id"] for row in manifest["calibration"]}
 holdout = {row["id"] for row in manifest["holdout"]}
@@ -29,6 +31,17 @@ for spec in plan:
         continue
     completed += 1
     timing, quality = read(f"timing-{name}.json"), read(f"quality-{name}.json")
+    case = read(f"{name}.json")
+    if (
+        case["map50_95"] != quality["map50_95"]
+        or case["p95_ms"] != timing["batch_wall_ms"]["p95"]
+        or case["throughput_fps"] != timing["aggregate_fps"]
+    ):
+        errors.append(f"Case summary does not match its source measurements: {name}")
+    if quality.get("dataset_manifest_sha256") != manifest_digest:
+        errors.append(f"Evaluation dataset identity mismatch: {name}")
+    if timing["input"]["frames"] != 120 or timing["repeats"] != 5 or timing["warmup_calls"] != 20:
+        errors.append(f"Full-study timing protocol mismatch: {name}")
     if timing["model_sha256"] != quality["model_sha256"]:
         errors.append(f"Mismatched model hashes: {name}")
     if "holdout.yaml" not in quality["data"]:
@@ -85,6 +98,9 @@ if args.require_pipelines:
         expected_batches = list(range(1, min(pipeline["requested_batch"], len(pipeline["cameras"])) + 1))
         if pipeline.get("warmup") != {"zero_image_calls": 5, "real_image_batch_sizes": expected_batches}:
             errors.append(f"Serving warm-up protocol mismatch: {path.parent.name}")
+        expected_grid = 64 if path.parent.name.endswith("-sampled-telemetry") else 0
+        if pipeline.get("brightness_grid", 0) != expected_grid:
+            errors.append(f"Telemetry sampling protocol mismatch: {path.parent.name}")
         for camera in pipeline["cameras"]:
             accounted = sum(camera[k] for k in ("processed", "queue_dropped", "stride_skipped", "remaining"))
             if accounted != camera["decoded"]:
@@ -93,8 +109,8 @@ if args.require_pipelines:
                 errors.append(f"Queue bound exceeded: {path.parent.name}")
             if camera.get("decoder_threads") != 1:
                 errors.append(f"Decoder thread budget not applied: {path.parent.name}")
-    if pipeline_count < 17:
-        errors.append(f"Expected 17 serving experiments, found {pipeline_count}")
+    if pipeline_count < 24:
+        errors.append(f"Expected 24 serving experiments, found {pipeline_count}")
 report.update(passed=not errors, errors=errors, pipeline_runs=pipeline_count)
 (root / "audit.json").write_text(json.dumps(report, indent=2))
 print(json.dumps(report, indent=2))

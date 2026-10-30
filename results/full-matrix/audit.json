@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "planned": 28,
+  "completed": 28,
+  "calibration_images": 512,
+  "holdout_images": 256,
+  "errors": [],
+  "pipeline_runs": 24
+}

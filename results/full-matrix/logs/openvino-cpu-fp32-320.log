@@ -1,0 +1,29 @@
+Timing openvino-cpu-fp32-320: 120 frames x 5 trials
+Reusing completed timing artifact
+Timing complete; evaluating 256 held-out images
+Reusing completed quality artifact
+Accuracy evaluation complete; checking detection agreement
+Reusing completed parity artifact
+Inspecting actual execution placement and precision
+{
+  "kind": "full_matrix_case",
+  "spec": {
+    "name": "openvino-cpu-fp32-320",
+    "backend": "openvino",
+    "precision": 32,
+    "device": "cpu",
+    "imgsz": 320,
+    "model": "models\\full-matrix\\openvino-fp32-320\\yolo11n_openvino_model",
+    "half": false,
+    "export_key": "openvino-fp32-320",
+    "export_dir": "models\\full-matrix\\openvino-fp32-320"
+  },
+  "throughput_fps": 38.329216668893885,
+  "mean_trial_fps": 42.12862150720806,
+  "p95_ms": 46.508435026043934,
+  "p99_ms": 78.93211899267038,
+  "map50_95": 0.29968050280364805,
+  "map50": 0.4366947445948652,
+  "strict_detection_parity_passed": true,
+  "note": "Strict detection parity is diagnostic for quantized models; evaluate mAP loss separately."
+}

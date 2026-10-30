@@ -1,0 +1,22 @@
+{
+  "kind": "full_matrix_case",
+  "spec": {
+    "name": "openvino-cpu-fp16-320",
+    "backend": "openvino",
+    "precision": 16,
+    "device": "cpu",
+    "imgsz": 320,
+    "model": "models\\full-matrix\\openvino-fp16-320\\yolo11n_openvino_model",
+    "half": false,
+    "export_key": "openvino-fp16-320",
+    "export_dir": "models\\full-matrix\\openvino-fp16-320"
+  },
+  "throughput_fps": 42.00265024120784,
+  "mean_trial_fps": 44.68810709309064,
+  "p95_ms": 39.1953700047452,
+  "p99_ms": 50.124680026201496,
+  "map50_95": 0.29997243912110466,
+  "map50": 0.437269641249189,
+  "strict_detection_parity_passed": true,
+  "note": "Strict detection parity is diagnostic for quantized models; evaluate mAP loss separately."
+}

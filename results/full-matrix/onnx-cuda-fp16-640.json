@@ -1,0 +1,22 @@
+{
+  "kind": "full_matrix_case",
+  "spec": {
+    "name": "onnx-cuda-fp16-640",
+    "backend": "onnx",
+    "precision": 16,
+    "device": "0",
+    "imgsz": 640,
+    "model": "models\\full-matrix\\onnx-fp16-640\\yolo11n.onnx",
+    "half": false,
+    "export_key": "onnx-fp16-640",
+    "export_dir": "models\\full-matrix\\onnx-fp16-640"
+  },
+  "throughput_fps": 29.36242058235054,
+  "mean_trial_fps": 30.70041012832859,
+  "p95_ms": 49.85061497136484,
+  "p99_ms": 54.94294295902364,
+  "map50_95": 0.4001775670340984,
+  "map50": 0.5512223178822362,
+  "strict_detection_parity_passed": false,
+  "note": "Strict detection parity is diagnostic for quantized models; evaluate mAP loss separately."
+}

@@ -1,0 +1,1559 @@
+{
+  "model": "models\\full-matrix\\openvino-fp32-640\\yolo11n_openvino_model",
+  "device": "cpu",
+  "ir_operations": {
+    "Parameter": 1,
+    "Const": 222,
+    "Convolution": 81,
+    "Add": 104,
+    "Swish": 77,
+    "VariadicSplit": 11,
+    "Concat": 23,
+    "MaxPool": 3,
+    "Reshape": 11,
+    "Multiply": 2,
+    "MatMul": 2,
+    "SoftMax": 2,
+    "ShapeOf": 2,
+    "GroupConvolution": 7,
+    "Interpolate": 2,
+    "Transpose": 1,
+    "Gather": 3,
+    "Convert": 2,
+    "Divide": 2,
+    "Mod": 1,
+    "Greater": 1,
+    "Subtract": 2,
+    "Sigmoid": 1,
+    "Result": 1
+  },
+  "constant_types": {
+    "f32": 181,
+    "i64": 35,
+    "i32": 6
+  },
+  "execution_devices": [
+    "CPU"
+  ],
+  "openvino_inference_precision_hint": "<Type: 'float32'>",
+  "profiled_nodes": [
+    {
+      "name": "x.1",
+      "type": "Parameter",
+      "execution_type": "unknown_f32",
+      "microseconds": 0.0
+    },
+    {
+      "name": "x.1_abcd_acdb___module.model.0.conv/aten::_convolution/Convolution",
+      "type": "Reorder",
+      "execution_type": "jit_uni_f32",
+      "microseconds": 1244.0
+    },
+    {
+      "name": "__module.model.0.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 2990.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 3082.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_1",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.2.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 796.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_2",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.2/aten::split_with_sizes/VariadicSplit",
+      "type": "VariadicSplit",
+      "execution_type": "ref_f32",
+      "microseconds": 501.99999999999994
+    },
+    {
+      "name": "__module.model.2.m.0.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 810.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_3",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.2.m.0.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 885.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_4",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.2.m.0/aten::add/Add",
+      "type": "Subgraph",
+      "execution_type": "jit_avx2_f32",
+      "microseconds": 292.0
+    },
+    {
+      "name": "__module.model.2/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_f32",
+      "microseconds": 767.0
+    },
+    {
+      "name": "__module.model.2.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 2503.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_5",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.3.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 2186.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_6",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.4.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 415.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_7",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.4/aten::split_with_sizes/VariadicSplit",
+      "type": "VariadicSplit",
+      "execution_type": "ref_f32",
+      "microseconds": 111.0
+    },
+    {
+      "name": "__module.model.4.m.0.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 314.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_8",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.4.m.0.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 482.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_9",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.4.m.0/aten::add/Add",
+      "type": "Subgraph",
+      "execution_type": "jit_avx2_f32",
+      "microseconds": 77.0
+    },
+    {
+      "name": "__module.model.4/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_f32",
+      "microseconds": 154.0
+    },
+    {
+      "name": "__module.model.4.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 2048.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_10",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.5.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 2017.0000000000002
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_11",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.6.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 372.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_12",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.6/aten::split_with_sizes/VariadicSplit",
+      "type": "VariadicSplit",
+      "execution_type": "ref_f32",
+      "microseconds": 40.0
+    },
+    {
+      "name": "__module.model.6.m.0.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 151.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_13",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.6.m.0.m.0.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 370.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_14",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.6.m.0.m.0.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 206.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_15",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.6.m.0.m.0/aten::add/Add",
+      "type": "Subgraph",
+      "execution_type": "jit_avx2_f32",
+      "microseconds": 22.0
+    },
+    {
+      "name": "__module.model.6.m.0.m.1.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 207.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_16",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.6.m.0.m.1.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 194.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_17",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.6.m.0.m.1/aten::add/Add",
+      "type": "Subgraph",
+      "execution_type": "jit_avx2_f32",
+      "microseconds": 13.0
+    },
+    {
+      "name": "__module.model.6.m.0.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 63.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_18",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.6.m.0/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_f32",
+      "microseconds": 22.0
+    },
+    {
+      "name": "__module.model.6.m.0.cv3.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 112.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_19",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.6/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_f32",
+      "microseconds": 49.0
+    },
+    {
+      "name": "__module.model.6.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 441.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_20",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.7.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 1163.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_21",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.8.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 278.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_22",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.8/aten::split_with_sizes/VariadicSplit",
+      "type": "VariadicSplit",
+      "execution_type": "ref_f32",
+      "microseconds": 21.0
+    },
+    {
+      "name": "__module.model.8.m.0.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 59.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_23",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.8.m.0.m.0.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 187.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_24",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.8.m.0.m.0.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 180.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_25",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.8.m.0.m.0/aten::add/Add",
+      "type": "Subgraph",
+      "execution_type": "jit_avx2_f32",
+      "microseconds": 15.0
+    },
+    {
+      "name": "__module.model.8.m.0.m.1.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 617.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_26",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.8.m.0.m.1.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 217.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_27",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.8.m.0.m.1/aten::add/Add",
+      "type": "Subgraph",
+      "execution_type": "jit_avx2_f32",
+      "microseconds": 14.0
+    },
+    {
+      "name": "__module.model.8.m.0.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 61.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_28",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.8.m.0/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_f32",
+      "microseconds": 17.0
+    },
+    {
+      "name": "__module.model.8.m.0.cv3.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 100.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_29",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.8/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_f32",
+      "microseconds": 49.0
+    },
+    {
+      "name": "__module.model.8.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 470.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_30",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.9.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 209.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_31",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.9.m/aten::max_pool2d/MaxPool",
+      "type": "MaxPool",
+      "execution_type": "jit_avx2_f32",
+      "microseconds": 139.0
+    },
+    {
+      "name": "__module.model.9.m/aten::max_pool2d/MaxPool_1",
+      "type": "MaxPool",
+      "execution_type": "jit_avx2_f32",
+      "microseconds": 66.0
+    },
+    {
+      "name": "__module.model.9.m/aten::max_pool2d/MaxPool_2",
+      "type": "MaxPool",
+      "execution_type": "jit_avx2_f32",
+      "microseconds": 92.0
+    },
+    {
+      "name": "__module.model.9/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_f32",
+      "microseconds": 48.0
+    },
+    {
+      "name": "__module.model.9.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 1024.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_32",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.10.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 466.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_33",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.10/aten::split_with_sizes/VariadicSplit",
+      "type": "VariadicSplit",
+      "execution_type": "ref_f32",
+      "microseconds": 26.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn.qkv.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 137.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn.qkv.conv/aten::_convolution/Convolution_acdb_abcd___module.model.10.m.0.attn/aten::view/Reshape",
+      "type": "Reorder",
+      "execution_type": "jit_uni_f32",
+      "microseconds": 49.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn/aten::view/Reshape",
+      "type": "Reshape",
+      "execution_type": "unknown_f32",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn/aten::split_with_sizes/VariadicSplit",
+      "type": "VariadicSplit",
+      "execution_type": "ref_f32",
+      "microseconds": 17.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn/aten::reshape/Reshape",
+      "type": "Reshape",
+      "execution_type": "unknown_f32",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn/aten::reshape/Reshape_abcd_acdb___module.model.10.m.0.attn.pe.conv/aten::_convolution/GroupConvolution",
+      "type": "Reorder",
+      "execution_type": "jit_uni_f32",
+      "microseconds": 46.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn/aten::mul/Multiply_1",
+      "type": "Subgraph",
+      "execution_type": "jit_avx2_f32",
+      "microseconds": 13.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn/aten::matmul/MatMul",
+      "type": "MatMul",
+      "execution_type": "brgemm_avx2_f32",
+      "microseconds": 184.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn/aten::softmax/Softmax",
+      "type": "Softmax",
+      "execution_type": "jit_avx2_f32",
+      "microseconds": 159.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn/aten::matmul/MatMul_1",
+      "type": "MatMul",
+      "execution_type": "brgemm_avx2_f32",
+      "microseconds": 698.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn/aten::view/Reshape_1",
+      "type": "Reshape",
+      "execution_type": "unknown_f32",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn/aten::view/Reshape_1_abcd_acdb___module.model.10.m.0.attn.pe.conv/aten::_convolution/GroupConvolution",
+      "type": "Reorder",
+      "execution_type": "jit_uni_f32",
+      "microseconds": 52.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn.pe.conv/aten::_convolution/GroupConvolution",
+      "type": "GroupConvolution",
+      "execution_type": "brgconv_avx2_dw_f32",
+      "microseconds": 48.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn/aten::add/Add",
+      "type": "Add",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn.proj.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 68.0
+    },
+    {
+      "name": "__module.model.10.m.0/aten::add/Add",
+      "type": "Add",
+      "execution_type": "jit_avx2_f32",
+      "microseconds": 15.0
+    },
+    {
+      "name": "__module.model.10.m.0.ffn.0.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 356.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_34",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.10.m.0.ffn.1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 131.0
+    },
+    {
+      "name": "__module.model.10.m.0/aten::add/Add_1",
+      "type": "Add",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.10/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_f32",
+      "microseconds": 25.0
+    },
+    {
+      "name": "__module.model.10.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 393.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_35",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.11/aten::upsample_nearest2d/Interpolate",
+      "type": "Interpolate",
+      "execution_type": "jit_avx2_f32",
+      "microseconds": 152.0
+    },
+    {
+      "name": "__module.model.12/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_f32",
+      "microseconds": 161.0
+    },
+    {
+      "name": "__module.model.13.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 719.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_36",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.13/aten::split_with_sizes/VariadicSplit",
+      "type": "VariadicSplit",
+      "execution_type": "ref_f32",
+      "microseconds": 56.0
+    },
+    {
+      "name": "__module.model.13.m.0.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 880.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_37",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.13.m.0.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 375.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_38",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.13.m.0/aten::add/Add",
+      "type": "Subgraph",
+      "execution_type": "jit_avx2_f32",
+      "microseconds": 28.0
+    },
+    {
+      "name": "__module.model.13/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_f32",
+      "microseconds": 48.0
+    },
+    {
+      "name": "__module.model.13.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 878.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_39",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.14/aten::upsample_nearest2d/Interpolate",
+      "type": "Interpolate",
+      "execution_type": "jit_avx2_f32",
+      "microseconds": 912.0
+    },
+    {
+      "name": "__module.model.15/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_f32",
+      "microseconds": 982.0
+    },
+    {
+      "name": "__module.model.16.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 1783.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_40",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.16/aten::split_with_sizes/VariadicSplit",
+      "type": "VariadicSplit",
+      "execution_type": "ref_f32",
+      "microseconds": 198.0
+    },
+    {
+      "name": "__module.model.16.m.0.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 393.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_41",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.16.m.0.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 411.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_42",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.16.m.0/aten::add/Add",
+      "type": "Subgraph",
+      "execution_type": "jit_avx2_f32",
+      "microseconds": 68.0
+    },
+    {
+      "name": "__module.model.16/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_f32",
+      "microseconds": 155.0
+    },
+    {
+      "name": "__module.model.16.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 495.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_43",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv2.0.0.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 2417.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_44",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv2.0.1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 2619.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_45",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv2.0.2/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 274.0
+    },
+    {
+      "name": "__module.model.23.cv2.0.2/aten::_convolution/Convolution_acdb_abcd___module.model.23/aten::view/Reshape",
+      "type": "Reorder",
+      "execution_type": "reorder_f32",
+      "microseconds": 327.0
+    },
+    {
+      "name": "__module.model.23/aten::view/Reshape",
+      "type": "Reshape",
+      "execution_type": "unknown_f32",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.17.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 627.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_46",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.18/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_f32",
+      "microseconds": 139.0
+    },
+    {
+      "name": "__module.model.19.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 419.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_47",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.19/aten::split_with_sizes/VariadicSplit",
+      "type": "VariadicSplit",
+      "execution_type": "ref_f32",
+      "microseconds": 35.0
+    },
+    {
+      "name": "__module.model.19.m.0.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 275.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_48",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.19.m.0.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 309.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_49",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.19.m.0/aten::add/Add",
+      "type": "Subgraph",
+      "execution_type": "jit_avx2_f32",
+      "microseconds": 24.0
+    },
+    {
+      "name": "__module.model.19/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_f32",
+      "microseconds": 40.0
+    },
+    {
+      "name": "__module.model.19.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 409.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_50",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv2.1.0.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 1219.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_51",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv2.1.1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 1100.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_52",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv2.1.2/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 189.0
+    },
+    {
+      "name": "__module.model.23.cv2.1.2/aten::_convolution/Convolution_acdb_abcd___module.model.23/aten::view/Reshape_1",
+      "type": "Reorder",
+      "execution_type": "reorder_f32",
+      "microseconds": 95.0
+    },
+    {
+      "name": "__module.model.23/aten::view/Reshape_1",
+      "type": "Reshape",
+      "execution_type": "unknown_f32",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.20.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 1119.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_53",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.21/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_f32",
+      "microseconds": 45.0
+    },
+    {
+      "name": "__module.model.22.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 420.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_54",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.22/aten::split_with_sizes/VariadicSplit",
+      "type": "VariadicSplit",
+      "execution_type": "ref_f32",
+      "microseconds": 28.0
+    },
+    {
+      "name": "__module.model.22.m.0.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 58.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_55",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.22.m.0.m.0.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 167.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_56",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.22.m.0.m.0.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 156.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_57",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.22.m.0.m.0/aten::add/Add",
+      "type": "Subgraph",
+      "execution_type": "jit_avx2_f32",
+      "microseconds": 15.0
+    },
+    {
+      "name": "__module.model.22.m.0.m.1.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 157.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_58",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.22.m.0.m.1.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 157.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_59",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.22.m.0.m.1/aten::add/Add",
+      "type": "Subgraph",
+      "execution_type": "jit_avx2_f32",
+      "microseconds": 9.0
+    },
+    {
+      "name": "__module.model.22.m.0.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 56.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_60",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.22.m.0/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_f32",
+      "microseconds": 15.0
+    },
+    {
+      "name": "__module.model.22.m.0.cv3.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 83.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_61",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.22/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_f32",
+      "microseconds": 23.0
+    },
+    {
+      "name": "__module.model.22.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 410.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_62",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv2.2.0.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 755.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_63",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv2.2.1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_f32",
+      "microseconds": 167.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_64",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv2.2.2/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 29.0
+    },
+    {
+      "name": "__module.model.23.cv2.2.2/aten::_convolution/Convolution_acdb_abcd___module.model.23/aten::view/Reshape_2",
+      "type": "Reorder",
+      "execution_type": "reorder_f32",
+      "microseconds": 18.0
+    },
+    {
+      "name": "__module.model.23/aten::view/Reshape_2",
+      "type": "Reshape",
+      "execution_type": "unknown_f32",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_f32",
+      "microseconds": 147.0
+    },
+    {
+      "name": "__module.model.23.dfl/aten::view/Reshape",
+      "type": "Reshape",
+      "execution_type": "unknown_f32",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.dfl/aten::transpose/Transpose",
+      "type": "Transpose",
+      "execution_type": "unknown_f32",
+      "microseconds": 125.0
+    },
+    {
+      "name": "__module.model.23.dfl/aten::softmax/Softmax",
+      "type": "Softmax",
+      "execution_type": "jit_avx2_f32",
+      "microseconds": 240.0
+    },
+    {
+      "name": "__module.model.23.dfl/aten::softmax/Softmax_abcd_acdb___module.model.23.dfl.conv/aten::_convolution/Convolution",
+      "type": "Reorder",
+      "execution_type": "jit_f32",
+      "microseconds": 76.0
+    },
+    {
+      "name": "__module.model.23.dfl.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 91.0
+    },
+    {
+      "name": "__module.model.23.dfl.conv/aten::_convolution/Convolution_acdb_abcd___module.model.23.dfl/aten::view/Reshape_1",
+      "type": "Reorder",
+      "execution_type": "reorder_f32",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.dfl/aten::view/Reshape_1",
+      "type": "Reshape",
+      "execution_type": "unknown_f32",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23/prim::ListUnpack/VariadicSplit",
+      "type": "VariadicSplit",
+      "execution_type": "unknown_f32",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23/aten::sub/Subtract_1",
+      "type": "Subgraph",
+      "execution_type": "jit_avx2_f32",
+      "microseconds": 34.0
+    },
+    {
+      "name": "__module.model.23/aten::cat/Concat_1",
+      "type": "Concat",
+      "execution_type": "unknown_f32",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23/aten::mul/Multiply",
+      "type": "Subgraph",
+      "execution_type": "jit_avx2_f32",
+      "microseconds": 64.0
+    },
+    {
+      "name": "__module.model.23.cv3.0.0.0.conv/aten::_convolution/GroupConvolution",
+      "type": "GroupConvolution",
+      "execution_type": "brgconv_avx2_dw_f32",
+      "microseconds": 270.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_65",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.0.0.1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 495.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_66",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.0.1.0.conv/aten::_convolution/GroupConvolution",
+      "type": "GroupConvolution",
+      "execution_type": "brgconv_avx2_dw_f32",
+      "microseconds": 346.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_67",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.0.1.1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 539.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_68",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.0.2/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 357.0
+    },
+    {
+      "name": "__module.model.23.cv3.0.2/aten::_convolution/Convolution_acdb_abcd___module.model.23/aten::view/Reshape_3",
+      "type": "Reorder",
+      "execution_type": "jit_uni_f32",
+      "microseconds": 79.0
+    },
+    {
+      "name": "__module.model.23/aten::view/Reshape_3",
+      "type": "Reshape",
+      "execution_type": "unknown_f32",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.1.0.0.conv/aten::_convolution/GroupConvolution",
+      "type": "GroupConvolution",
+      "execution_type": "brgconv_avx2_dw_f32",
+      "microseconds": 150.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_69",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.1.0.1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 205.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_70",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.1.1.0.conv/aten::_convolution/GroupConvolution",
+      "type": "GroupConvolution",
+      "execution_type": "brgconv_avx2_dw_f32",
+      "microseconds": 98.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_71",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.1.1.1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 161.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_72",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.1.2/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 98.0
+    },
+    {
+      "name": "__module.model.23.cv3.1.2/aten::_convolution/Convolution_acdb_abcd___module.model.23/aten::view/Reshape_4",
+      "type": "Reorder",
+      "execution_type": "jit_uni_f32",
+      "microseconds": 64.0
+    },
+    {
+      "name": "__module.model.23/aten::view/Reshape_4",
+      "type": "Reshape",
+      "execution_type": "unknown_f32",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.0.0.conv/aten::_convolution/GroupConvolution",
+      "type": "GroupConvolution",
+      "execution_type": "brgconv_avx2_dw_f32",
+      "microseconds": 88.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_73",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.0.1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 105.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_74",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.0.conv/aten::_convolution/GroupConvolution",
+      "type": "GroupConvolution",
+      "execution_type": "brgconv_avx2_dw_f32",
+      "microseconds": 40.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_75",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 50.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_76",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.2/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 39.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.2/aten::_convolution/Convolution_acdb_abcd___module.model.23/aten::view/Reshape_5",
+      "type": "Reorder",
+      "execution_type": "jit_uni_f32",
+      "microseconds": 19.0
+    },
+    {
+      "name": "__module.model.23/aten::view/Reshape_5",
+      "type": "Reshape",
+      "execution_type": "unknown_f32",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23/aten::cat/Concat_2",
+      "type": "Concat",
+      "execution_type": "ref_f32",
+      "microseconds": 374.0
+    },
+    {
+      "name": "__module.model.23/aten::sigmoid/Sigmoid",
+      "type": "Subgraph",
+      "execution_type": "jit_avx2_f32",
+      "microseconds": 610.0
+    },
+    {
+      "name": "__module.model.23/aten::cat/Concat_3",
+      "type": "Concat",
+      "execution_type": "unknown_f32",
+      "microseconds": 0.0
+    },
+    {
+      "name": "Result_5815",
+      "type": "Result",
+      "execution_type": "unknown_f32",
+      "microseconds": 0.0
+    }
+  ],
+  "execution_type_counts": {
+    "unknown_f32": 17,
+    "jit_uni_f32": 7,
+    "brgconv_avx2_f32": 35,
+    "undef": 79,
+    "brgconv_avx2_1x1_f32": 46,
+    "ref_f32": 29,
+    "jit_avx2_f32": 23,
+    "brgemm_avx2_f32": 2,
+    "brgconv_avx2_dw_f32": 7,
+    "reorder_f32": 4,
+    "jit_f32": 1
+  },
+  "runtime_precision_counts": {
+    "f32": 171,
+    "undef": 79
+  },
+  "note": "Inspection/profiling is a separate untimed run. TensorRT precision flags allow mixed-precision tactics."
+}

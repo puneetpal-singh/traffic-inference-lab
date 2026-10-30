@@ -1,0 +1,22 @@
+{
+  "kind": "full_matrix_case",
+  "spec": {
+    "name": "onnx-cpu-int8-640",
+    "backend": "onnx",
+    "precision": 8,
+    "device": "cpu",
+    "imgsz": 640,
+    "model": "models\\full-matrix\\onnx-int8-640\\yolo11n_int8.onnx",
+    "half": false,
+    "export_key": "onnx-int8-640",
+    "export_dir": "models\\full-matrix\\onnx-int8-640"
+  },
+  "throughput_fps": 7.571384804667779,
+  "mean_trial_fps": 7.620708321541564,
+  "p95_ms": 150.78295497514773,
+  "p99_ms": 170.0771160086151,
+  "map50_95": 0.3538747433382664,
+  "map50": 0.5092022749666216,
+  "strict_detection_parity_passed": false,
+  "note": "Strict detection parity is diagnostic for quantized models; evaluate mAP loss separately."
+}

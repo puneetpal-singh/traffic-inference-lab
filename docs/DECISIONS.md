@@ -31,6 +31,9 @@ everything is not success. Archival processing needs a different offline policy 
 The expanded serving experiments request one FFmpeg decoder thread per camera and record the actual count. Decoder
 oversubscription must be distinguished from model saturation. Schema-v2 frame age includes metadata preparation; disk
 logging remains outside that endpoint. TensorRT batching uses a separately built and accuracy-checked dynamic engine.
+Stride filtering occurs after decoding, so it does not eliminate compressed-video decode work. The serving traces expose
+decoder lag separately from queueing, model, tracking and telemetry time. Sampled brightness is measured as an optional
+observability optimization, preserving the full-frame diagnostic as the baseline rather than assuming its overhead is free.
 
 ## Keep the demonstration small and honest
 

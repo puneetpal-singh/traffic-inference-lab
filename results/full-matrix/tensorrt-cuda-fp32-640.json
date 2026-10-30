@@ -1,0 +1,22 @@
+{
+  "kind": "full_matrix_case",
+  "spec": {
+    "name": "tensorrt-cuda-fp32-640",
+    "backend": "tensorrt",
+    "precision": 32,
+    "device": "0",
+    "imgsz": 640,
+    "model": "models\\full-matrix\\tensorrt-fp32-640\\yolo11n.engine",
+    "half": false,
+    "export_key": "tensorrt-fp32-640",
+    "export_dir": "models\\full-matrix\\tensorrt-fp32-640"
+  },
+  "throughput_fps": 59.24873141822651,
+  "mean_trial_fps": 77.67034622043471,
+  "p95_ms": 27.618285044445656,
+  "p99_ms": 32.17892296845076,
+  "map50_95": 0.40154165290852595,
+  "map50": 0.5524832537817155,
+  "strict_detection_parity_passed": true,
+  "note": "Strict detection parity is diagnostic for quantized models; evaluate mAP loss separately."
+}

@@ -1,0 +1,64 @@
+Ultralytics 8.4.193  Python-3.12.10 torch-2.6.0+cu124 CPU (Intel Core i7-10750H 2.60GHz)
+YOLO11n summary (fused): 100 layers, 2,616,248 parameters, 0 gradients, 1.6 GFLOPs
+
+[34m[1mPyTorch:[0m starting from 'models\full-matrix\onnx-int8-320\yolo11n.pt' with input shape (1, 3, 320, 320) BCHW and output shape(s) (1, 84, 2100) (5.4 MB)
+
+[34m[1mONNX:[0m starting export with onnx 1.23.2 opset 17...
+[34m[1mONNX:[0m slimming with onnxslim 0.1.98...
+[34m[1mONNX:[0m collecting INT8 calibration images from 'data=data/coco-deployment/calibration.yaml'
+WARNING [34m[1mval: [0mSlow image access detected (ping: 16.6±23.6 ms, read: 2.4±1.1 MB/s, size: 190.6 KB). Use local storage instead of remote/mounted storage for better performance. See https://docs.ultralytics.com/guides/model-training-tips
+[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 1 images, 0 backgrounds, 0 corrupt: 0% ──────────── 1/512 1.2s/it 0.3s<9:55[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 9 images, 0 backgrounds, 0 corrupt: 1% ──────────── 9/512 15.7it/s 0.5s<32.1s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 13 images, 0 backgrounds, 0 corrupt: 2% ──────────── 13/512 16.0it/s 0.7s<31.2s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 27 images, 0 backgrounds, 0 corrupt: 5% ╸─────────── 27/512 20.6it/s 1.2s<23.5s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 50 images, 0 backgrounds, 0 corrupt: 9% ━─────────── 50/512 62.6it/s 1.3s<7.4s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 51 images, 0 backgrounds, 0 corrupt: 9% ━─────────── 51/512 46.5it/s 1.4s<9.9s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 67 images, 0 backgrounds, 0 corrupt: 13% ━╸────────── 67/512 70.8it/s 1.6s<6.3s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 71 images, 0 backgrounds, 0 corrupt: 13% ━╸────────── 71/512 56.7it/s 1.7s<7.8s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 83 images, 1 backgrounds, 0 corrupt: 16% ━╸────────── 83/512 69.2it/s 1.9s<6.2s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 88 images, 1 backgrounds, 0 corrupt: 17% ━━────────── 88/512 54.8it/s 2.1s<7.7s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 104 images, 1 backgrounds, 0 corrupt: 20% ━━────────── 104/512 81.5it/s 2.2s<5.0s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 111 images, 1 backgrounds, 0 corrupt: 21% ━━╸───────── 111/512 70.3it/s 2.4s<5.7s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 123 images, 1 backgrounds, 0 corrupt: 24% ━━╸───────── 123/512 66.3it/s 2.6s<5.9s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 138 images, 1 backgrounds, 0 corrupt: 26% ━━━───────── 138/512 68.7it/s 2.8s<5.4s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 154 images, 1 backgrounds, 0 corrupt: 30% ━━━╸──────── 154/512 68.2it/s 3.0s<5.2s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 176 images, 1 backgrounds, 0 corrupt: 34% ━━━━──────── 176/512 106.2it/s 3.1s<3.2s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 181 images, 1 backgrounds, 0 corrupt: 35% ━━━━──────── 181/512 83.9it/s 3.3s<3.9s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 191 images, 3 backgrounds, 0 corrupt: 37% ━━━━──────── 191/512 76.3it/s 3.5s<4.2s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 194 images, 3 backgrounds, 0 corrupt: 37% ━━━━╸─────── 194/512 58.2it/s 3.7s<5.5s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 212 images, 4 backgrounds, 0 corrupt: 41% ━━━━╸─────── 212/512 61.8it/s 3.9s<4.9s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 226 images, 4 backgrounds, 0 corrupt: 44% ━━━━━─────── 226/512 79.8it/s 4.0s<3.6s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 231 images, 4 backgrounds, 0 corrupt: 45% ━━━━━─────── 231/512 67.6it/s 4.2s<4.2s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 248 images, 4 backgrounds, 0 corrupt: 48% ━━━━━╸────── 248/512 83.5it/s 4.3s<3.2s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 257 images, 4 backgrounds, 0 corrupt: 50% ━━━━━━────── 257/512 82.2it/s 4.4s<3.1s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 259 images, 4 backgrounds, 0 corrupt: 50% ━━━━━━────── 259/512 59.5it/s 4.7s<4.3s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 285 images, 4 backgrounds, 0 corrupt: 55% ━━━━━━╸───── 285/512 112.1it/s 4.8s<2.0s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 287 images, 4 backgrounds, 0 corrupt: 56% ━━━━━━╸───── 287/512 83.2it/s 5.0s<2.7s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 298 images, 4 backgrounds, 0 corrupt: 58% ━━━━━━╸───── 298/512 84.2it/s 5.1s<2.5s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 303 images, 4 backgrounds, 0 corrupt: 59% ━━━━━━━───── 303/512 67.1it/s 5.3s<3.1s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 314 images, 4 backgrounds, 0 corrupt: 61% ━━━━━━━───── 314/512 63.2it/s 5.5s<3.1s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 329 images, 4 backgrounds, 0 corrupt: 64% ━━━━━━━╸──── 329/512 80.9it/s 5.6s<2.3s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 332 images, 4 backgrounds, 0 corrupt: 64% ━━━━━━━╸──── 332/512 63.7it/s 5.7s<2.8s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 345 images, 4 backgrounds, 0 corrupt: 67% ━━━━━━━━──── 345/512 69.3it/s 5.9s<2.4s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 354 images, 4 backgrounds, 0 corrupt: 69% ━━━━━━━━──── 354/512 67.4it/s 6.0s<2.3s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 367 images, 4 backgrounds, 0 corrupt: 71% ━━━━━━━━╸─── 367/512 68.9it/s 6.2s<2.1s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 370 images, 4 backgrounds, 0 corrupt: 72% ━━━━━━━━╸─── 370/512 52.2it/s 6.4s<2.7s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 385 images, 4 backgrounds, 0 corrupt: 75% ━━━━━━━━━─── 385/512 59.7it/s 6.6s<2.1s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 397 images, 4 backgrounds, 0 corrupt: 77% ━━━━━━━━━─── 397/512 62.5it/s 6.8s<1.8s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 412 images, 4 backgrounds, 0 corrupt: 80% ━━━━━━━━━╸── 412/512 84.0it/s 6.9s<1.2s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 419 images, 4 backgrounds, 0 corrupt: 81% ━━━━━━━━━╸── 419/512 76.0it/s 7.0s<1.2s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 427 images, 4 backgrounds, 0 corrupt: 83% ━━━━━━━━━━── 427/512 76.9it/s 7.1s<1.1s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 437 images, 4 backgrounds, 0 corrupt: 85% ━━━━━━━━━━── 437/512 65.6it/s 7.4s<1.1s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 452 images, 4 backgrounds, 0 corrupt: 88% ━━━━━━━━━━╸─ 452/512 67.5it/s 7.6s<0.9s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 467 images, 5 backgrounds, 0 corrupt: 91% ━━━━━━━━━━╸─ 467/512 71.2it/s 7.8s<0.6s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 478 images, 6 backgrounds, 0 corrupt: 93% ━━━━━━━━━━━─ 478/512 64.6it/s 8.0s<0.5s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 489 images, 7 backgrounds, 0 corrupt: 95% ━━━━━━━━━━━─ 489/512 75.0it/s 8.1s<0.3s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 493 images, 7 backgrounds, 0 corrupt: 96% ━━━━━━━━━━━╸ 493/512 55.9it/s 8.5s<0.3s[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration... 512 images, 7 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 512/512 60.1it/s 8.5s
+[34m[1mval: [0mNew cache created: D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration.cache
+[34m[1mONNX:[0m quantizing INT8 with ONNX Runtime...
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+WARNING:root:Please consider pre-processing before quantization. See https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+[34m[1mONNX:[0m export success  77.7s, saved as 'models\full-matrix\onnx-int8-320\yolo11n_int8.onnx' (2.8 MB)
+
+Export complete (80.7s)
+Results saved to [1mD:\M\New_Project\traffic-inference-lab\models\full-matrix\onnx-int8-320\yolo11n_int8.onnx[0m
+Predict:         yolo predict task=detect model=models\full-matrix\onnx-int8-320\yolo11n_int8.onnx imgsz=320 
+Validate:        yolo val task=detect model=models\full-matrix\onnx-int8-320\yolo11n_int8.onnx imgsz=320  
+Visualize:       https://netron.app
+{
+  "kind": "export",
+  "source_sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+  "artifact": "models\\full-matrix\\onnx-int8-320\\yolo11n_int8.onnx",
+  "artifact_sha256": "25044716ae122f9d74d2f4b455747ee1783e84e9d3e428ef5a833b8dfe86531e",
+  "arguments": {
+    "format": "onnx",
+    "imgsz": 320,
+    "device": "cpu",
+    "quantize": 8,
+    "batch": 1,
+    "dynamic": false,
+    "data": "data/coco-deployment/calibration.yaml",
+    "opset": 17,
+    "simplify": true
+  },
+  "environment": {
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 165 Stepping 2, GenuineIntel",
+    "cpu_physical_cores": 6,
+    "cpu_logical_cores": 12,
+    "ram_gib": 7.839607238769531,
+    "gpu": "NVIDIA GeForce GTX 1650 Ti, 580.97, 4096 MiB",
+    "packages": {
+      "traffic-inference-lab": "0.1.0",
+      "ultralytics": "8.4.193",
+      "torch": "2.6.0+cu124",
+      "torchvision": "0.21.0+cu124",
+      "numpy": "2.4.6",
+      "opencv-python": "4.14.0.94",
+      "onnxruntime": null,
+      "onnxruntime-gpu": "1.20.2",
+      "openvino": "2026.4.1",
+      "onnx": "1.23.2",
+      "nncf": "3.4.0",
+      "tensorrt": "10.8.0.43",
+      "tensorrt-cu12": null,
+      "lap": "0.5.13"
+    },
+    "utc": "2026-10-30T11:59:34Z"
+  }
+}

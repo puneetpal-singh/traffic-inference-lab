@@ -75,6 +75,18 @@ Serving initialization uses five zero-image calls plus real first-frame batches 
 the replay clock starts. This warms NMS paths that zeros can miss. Each source is reopened from frame zero for measurement;
 trackers receive no warm-up observations. This serving protocol differs from the fixed twenty-zero-call model benchmark.
 
+The serving study contains 24 experiments: 1/2/4/8-camera replays for OpenVINO CPU, ONNX CPU, ONNX CUDA and TensorRT CUDA
+(16 runs), plus TensorRT BoT-SORT, rendered output and stride-two variants (3), and dynamic TensorRT batch-four replays
+at 4/8 cameras (2), and TensorRT sampled-brightness telemetry at 1/4/8 cameras (3).
+ONNX CPU was added after the model matrix identified its lower 320px CPU p95. Each backend/device
+combination selects its lowest-p95 candidate that meets both accuracy budgets. Decoder threads, queues and warm-up stay fixed.
+
+The sampled-telemetry experiment follows the first serving traces, where full-frame brightness measurement contributed
+several milliseconds per processed frame. It uses a strided grid of at most 64×64 pixels instead of the full frame for
+the brightness diagnostic only. Detector input and tracking settings are unchanged. Sampled brightness is an approximation
+and must not be treated as the exact full-frame mean. Baseline and sampled runs remain separate artifacts; short fixed-order
+before/after comparisons still have shared-desktop noise. Decoder lag remains a separate possible bottleneck.
+
 ## Reproduction
 
 Use the Windows CUDA/TensorRT setup in the README, then:

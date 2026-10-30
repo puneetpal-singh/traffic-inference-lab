@@ -1,0 +1,22 @@
+{
+  "kind": "full_matrix_case",
+  "spec": {
+    "name": "pytorch-cpu-fp32-640",
+    "backend": "pytorch",
+    "precision": 32,
+    "device": "cpu",
+    "imgsz": 640,
+    "model": "models/yolo11n.pt",
+    "half": false,
+    "export_key": "pytorch-fp32-640",
+    "export_dir": "models\\full-matrix\\pytorch-fp32-640"
+  },
+  "throughput_fps": 11.888210991170205,
+  "mean_trial_fps": 11.96117140080187,
+  "p95_ms": 100.556744998903,
+  "p99_ms": 139.0454210183816,
+  "map50_95": 0.4015416458201684,
+  "map50": 0.5524832241417204,
+  "strict_detection_parity_passed": true,
+  "note": "Strict detection parity is diagnostic for quantized models; evaluate mAP loss separately."
+}

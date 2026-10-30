@@ -98,6 +98,9 @@ def build_matrix_report(root, output):
             group = [r for r in rows if r["imgsz"] == size and r["device"] == device]
             labels = [
                 f"{r['backend']} {'INT8' if r['precision'] == 8 else 'FP' + str(r['precision'])}"
+                + (" graph" if r["backend"] == "onnx" and r["precision"] == 16 else "")
+                + (" stored" if r["backend"] == "openvino" and r["precision"] == 16 else "")
+                + (" enabled" if r["backend"] == "tensorrt" and r["precision"] in (8, 16) else "")
                 for r in group
             ]
             ax.barh(
@@ -107,7 +110,7 @@ def build_matrix_report(root, output):
             )
             ax.invert_yaxis()
             ax.set_title(f"{device} · {size}px · model p95 latency")
-            ax.set_xlabel("Milliseconds; green meets model-only latency/accuracy gate")
+            ax.set_xlabel("ms; green: p95 ≤100 ms and mAP loss ≤1 point vs same-size CPU FP32")
             for i, result in enumerate(group):
                 ax.text(result["p95_ms"], i, f" {result['p95_ms']:.1f}", va="center", fontsize=8)
             ax.margins(x=0.18)
@@ -136,6 +139,12 @@ def build_matrix_report(root, output):
         if group:
             ax.legend(loc="center left", bbox_to_anchor=(1.02, 0.5), fontsize=7)
     frontier_image = root / "quality-latency.png"
+    fig.text(
+        0.09,
+        0.02,
+        "Outlined points: measured Pareto frontier. FP16 denotes ONNX graph / OpenVINO storage; TensorRT flags allow mixed precision.",
+        fontsize=8,
+    )
     fig.savefig(frontier_image, dpi=140, bbox_inches="tight")
     plt.close(fig)
 
@@ -180,11 +189,13 @@ def build_matrix_report(root, output):
             {
                 "experiment": path.parent.name,
                 "backend": pipeline["backend"],
+                "device": "CPU" if pipeline["config"]["device"] == "cpu" else "CUDA",
                 "streams": len(cameras),
                 "batch": pipeline["requested_batch"],
                 "stride": pipeline["stride"],
                 "tracker": pipeline["tracker"],
                 "render": pipeline["render"],
+                "brightness_grid": pipeline.get("brightness_grid", 0),
                 "decoded": sum(c["decoded"] for c in cameras),
                 "processed": sum(c["processed"] for c in cameras),
                 "queue_dropped": sum(c["queue_dropped"] for c in cameras),
@@ -220,6 +231,23 @@ def build_matrix_report(root, output):
         )
         serving_table += "<tr>" + "".join(f"<td>{html.escape(str(v))}</td>" for v in values) + "</tr>"
     serving_table += "</table></div>"
+    capacity_notes = []
+    for backend, device in sorted({(r["backend"], r["device"]) for r in pipeline_rows}):
+        passing = [
+            r
+            for r in pipeline_rows
+            if r["backend"] == backend
+            and r["device"] == device
+            and r["timing_gate_passed"]
+            and r["batch"] == 1
+            and r["stride"] == 1
+            and r["tracker"] == "bytetrack"
+            and not r["render"]
+            and r["brightness_grid"] == 0
+        ]
+        largest = str(max(r["streams"] for r in passing)) if passing else "none"
+        capacity_notes.append(f"{backend} {device}: {largest}")
+    capacity_text = html.escape("; ".join(capacity_notes))
     resource_table = (
         "<div class='scroll'><table><tr><th>Configuration</th><th>Sampled process RSS MiB</th><th>Minimum available system RAM MiB</th>"
         "<th>Peak sampled GPU MiB</th><th>Mean GPU utilization %</th><th>Max temperature °C</th>"
@@ -273,9 +301,12 @@ has an independent tracker and a bounded queue, and requests one decoder thread.
 point of both global mAP and mean vehicle AP against the same-size CPU PyTorch baseline.
 Serving warms the detector with five zero-image calls and real first-frame batches before replay; trackers start fresh.
 The illustrative serving timing gate is at least 15 processed FPS and p95 frame age at most 100 ms for every camera.</p>
-{serving_table}<p>Frame age includes decode backlog, queueing, inference, tracking and metadata preparation. Disk logging is excluded.
+{serving_table}<p>Largest tested passing baseline camera count (batch one, stride one, ByteTrack, no rendering): {capacity_text}.
+This is a tested short-replay result, not a production capacity ceiling.</p>
+<p>Frame age includes decode backlog, queueing, inference, tracking and metadata preparation. Disk logging is excluded.
 Batch size is an opportunistic maximum. Stride skips are reported separately from queue drops. BoT-SORT and rendering runs are
-separate experiments. Passing this short replay gate is not proof of sustained production capacity or counting accuracy.</p>
+separate experiments. Sampled-telemetry runs estimate brightness on a grid, keeping detector and tracker settings unchanged.
+Passing this short replay gate is not proof of sustained production capacity or counting accuracy.</p>
 <h2>Evidence and limitations</h2><p>GPU telemetry is sampled with NVML and covers the whole device; unsupported power readings remain N/A.
 {resource_table}
 <p>Process RSS includes predecoded frames and runtime libraries. GPU readings are whole-device samples, not per-process allocations.

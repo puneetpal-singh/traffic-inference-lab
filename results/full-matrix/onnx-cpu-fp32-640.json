@@ -1,0 +1,22 @@
+{
+  "kind": "full_matrix_case",
+  "spec": {
+    "name": "onnx-cpu-fp32-640",
+    "backend": "onnx",
+    "precision": 32,
+    "device": "cpu",
+    "imgsz": 640,
+    "model": "models\\full-matrix\\onnx-fp32-640\\yolo11n.onnx",
+    "half": false,
+    "export_key": "onnx-fp32-640",
+    "export_dir": "models\\full-matrix\\onnx-fp32-640"
+  },
+  "throughput_fps": 12.407689222015604,
+  "mean_trial_fps": 12.43554141024393,
+  "p95_ms": 99.40178001997985,
+  "p99_ms": 145.81621004559554,
+  "map50_95": 0.4015416512350468,
+  "map50": 0.5524832537817155,
+  "strict_detection_parity_passed": true,
+  "note": "Strict detection parity is diagnostic for quantized models; evaluate mAP loss separately."
+}

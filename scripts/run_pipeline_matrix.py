@@ -34,7 +34,7 @@ def main():
     baseline_vehicle = vehicle_map(json.loads((ROOT / "quality-pytorch-cpu-fp32-320.json").read_text()))
     selections = []
     decisions = []
-    for prefix in ("openvino-cpu", "onnx-cuda", "tensorrt-cuda"):
+    for prefix in ("openvino-cpu", "onnx-cpu", "onnx-cuda", "tensorrt-cuda"):
         cases = [json.loads(p.read_text()) for p in ROOT.glob(f"{prefix}-*-320.json")]
         eligible = []
         for case in cases:
@@ -69,7 +69,9 @@ def main():
     ledger_path = ROOT / "pipeline-ledger.json"
     ledger = json.loads(ledger_path.read_text()) if ledger_path.exists() else {}
 
-    def run(spec, streams, batch=1, stride=1, tracker="bytetrack", render=False, suffix=""):
+    def run(
+        spec, streams, batch=1, stride=1, tracker="bytetrack", render=False, suffix="", brightness_grid=0
+    ):
         name = f"{spec['name']}-streams-{streams}-batch-{batch}-stride-{stride}-{tracker}{suffix}"
         output = ROOT / "pipelines" / name
         if ledger.get(name, {}).get("status") == "complete" and (output / "summary.json").exists():
@@ -88,6 +90,7 @@ def main():
                 and previous.get("stride") == stride
                 and previous.get("tracker") == tracker
                 and previous.get("render") == render
+                and previous.get("brightness_grid", 0) == brightness_grid
                 and previous.get("requested_decoder_threads") == 1
                 and previous.get("warmup", {}).get("real_image_batch_sizes")
                 == list(range(1, min(batch, streams) + 1))
@@ -108,6 +111,7 @@ def main():
                 tracker=tracker,
                 render=render,
                 decode_threads=1,
+                brightness_grid=brightness_grid,
             )
             ledger[name] = {
                 "status": "complete",
@@ -121,6 +125,7 @@ def main():
                 "stride": stride,
                 "tracker": tracker,
                 "render": render,
+                "brightness_grid": brightness_grid,
             }
         except Exception as exc:
             traceback.print_exc()
@@ -135,6 +140,8 @@ def main():
     run(trt, 1, tracker="botsort")
     run(trt, 1, render=True, suffix="-render")
     run(trt, 4, stride=2)
+    for streams in (1, 4, 8):
+        run(trt, streams, brightness_grid=64, suffix="-sampled-telemetry")
     dynamic_dir = Path("models/full-matrix/tensorrt-dynamic-batch4")
     dynamic_model = dynamic_dir / "yolo11n.engine"
     manifest_path = dynamic_dir / "export.json"

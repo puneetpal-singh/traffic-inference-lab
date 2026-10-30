@@ -1,0 +1,84 @@
+Ultralytics 8.4.193  Python-3.12.10 torch-2.6.0+cu124 CPU (Intel Core i7-10750H 2.60GHz)
+YOLO11n summary (fused): 100 layers, 2,616,248 parameters, 0 gradients, 1.6 GFLOPs
+
+[34m[1mPyTorch:[0m starting from 'models\full-matrix\openvino-int8-320\yolo11n.pt' with input shape (1, 3, 320, 320) BCHW and output shape(s) (1, 84, 2100) (5.4 MB)
+[34m[1mOpenVINO:[0m collecting INT8 calibration images from 'data=data/coco-deployment/calibration.yaml'
+WARNING [34m[1mval: [0mSlow image access detected (ping: 0.2±0.0 ms, read: 5.6±3.6 MB/s, size: 125.6 KB). Use local storage instead of remote/mounted storage for better performance. See https://docs.ultralytics.com/guides/model-training-tips
+[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration.cache... 512 images, 7 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 512/512  0.0s
+
+[34m[1mOpenVINO:[0m starting export with openvino 2026.4.1-22982-e213a147257-releases/2026/4...
+INFO:nncf:34 ignored nodes were found by names in the NNCFGraph
+INFO:nncf:Not adding activation input quantizer for operation: 132 __module.model.23/aten::view/Reshape
+INFO:nncf:Not adding activation input quantizer for operation: 195 __module.model.23/aten::view/Reshape_3
+INFO:nncf:Not adding activation input quantizer for operation: 252 __module.model.23/aten::view/Reshape_1
+INFO:nncf:Not adding activation input quantizer for operation: 300 __module.model.23/aten::view/Reshape_4
+INFO:nncf:Not adding activation input quantizer for operation: 334 __module.model.23/aten::view/Reshape_2
+INFO:nncf:Not adding activation input quantizer for operation: 341 __module.model.23/aten::view/Reshape_5
+INFO:nncf:Not adding activation input quantizer for operation: 139 __module.model.23/aten::cat/Concat
+INFO:nncf:Not adding activation input quantizer for operation: 149 __module.model.23.dfl/aten::view/Reshape
+INFO:nncf:Not adding activation input quantizer for operation: 159 __module.model.23.dfl/aten::transpose/Transpose
+INFO:nncf:Not adding activation input quantizer for operation: 171 __module.model.23.dfl/aten::softmax/Softmax
+INFO:nncf:Not adding activation input quantizer for operation: 183 __module.model.23.dfl.conv/aten::_convolution/Convolution
+INFO:nncf:Not adding activation input quantizer for operation: 194 __module.model.23.dfl/aten::view/Reshape_1
+INFO:nncf:Not adding activation input quantizer for operation: 205 __module.model.23/prim::ListUnpack/VariadicSplit
+INFO:nncf:Not adding activation input quantizer for operation: 216 __module.model.23/aten::sub/Subtract
+INFO:nncf:Not adding activation input quantizer for operation: 217 __module.model.23/aten::add/Add
+INFO:nncf:Not adding activation input quantizer for operation: 228 __module.model.23/aten::add/Add_1
+238 __module.model.23/aten::div/Divide
+
+INFO:nncf:Not adding activation input quantizer for operation: 229 __module.model.23/aten::sub/Subtract_1
+INFO:nncf:Not adding activation input quantizer for operation: 239 __module.model.23/aten::cat/Concat_1
+INFO:nncf:Not adding activation input quantizer for operation: 247 __module.model.23/aten::mul/Multiply
+INFO:nncf:Not adding activation input quantizer for operation: 206 __module.model.23/aten::cat/Concat_2
+INFO:nncf:Not adding activation input quantizer for operation: 218 __module.model.23/aten::sigmoid/Sigmoid
+INFO:nncf:Not adding activation input quantizer for operation: 230 __module.model.23/aten::cat/Concat_3
+Statistics collection ------------------------ 100% 512/512 • 0:01:07 • 0:00:00
+Applying Fast Bias correction ------------------ 100% 80/80 • 0:00:06 • 0:00:00
+[34m[1mOpenVINO:[0m export success  126.0s, saved as 'models\full-matrix\openvino-int8-320\yolo11n_int8_openvino_model\' (3.2 MB)
+
+Export complete (129.7s)
+Results saved to [1mD:\M\New_Project\traffic-inference-lab\models\full-matrix\openvino-int8-320\yolo11n_int8_openvino_model[0m
+Predict:         yolo predict task=detect model=models\full-matrix\openvino-int8-320\yolo11n_int8_openvino_model\ imgsz=320 
+Validate:        yolo val task=detect model=models\full-matrix\openvino-int8-320\yolo11n_int8_openvino_model\ imgsz=320  
+Visualize:       https://netron.app
+{
+  "kind": "export",
+  "source_sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+  "artifact": "models\\full-matrix\\openvino-int8-320\\yolo11n_int8_openvino_model\\",
+  "artifact_sha256": "e5d94ac8a23d4a242a201c48ecb69ab2274df25556cb9758ca74b0f82cd2996c",
+  "arguments": {
+    "format": "openvino",
+    "imgsz": 320,
+    "device": "cpu",
+    "quantize": 8,
+    "batch": 1,
+    "dynamic": false,
+    "data": "data/coco-deployment/calibration.yaml"
+  },
+  "environment": {
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 165 Stepping 2, GenuineIntel",
+    "cpu_physical_cores": 6,
+    "cpu_logical_cores": 12,
+    "ram_gib": 7.839607238769531,
+    "gpu": "NVIDIA GeForce GTX 1650 Ti, 580.97, 4096 MiB",
+    "packages": {
+      "traffic-inference-lab": "0.1.0",
+      "ultralytics": "8.4.193",
+      "torch": "2.6.0+cu124",
+      "torchvision": "0.21.0+cu124",
+      "numpy": "2.4.6",
+      "opencv-python": "4.14.0.94",
+      "onnxruntime": null,
+      "onnxruntime-gpu": "1.20.2",
+      "openvino": "2026.4.1",
+      "onnx": "1.23.2",
+      "nncf": "3.4.0",
+      "tensorrt": "10.8.0.43",
+      "tensorrt-cu12": null,
+      "lap": "0.5.13"
+    },
+    "utc": "2026-10-30T12:18:10Z"
+  }
+}

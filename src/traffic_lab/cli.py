@@ -76,6 +76,12 @@ def parser():
     run.add_argument("--render", action="store_true")
     run.add_argument("--zone", nargs=4, type=float, default=[0.2, 0.3, 0.8, 0.8])
     run.add_argument("--decode-threads", type=int, default=1)
+    run.add_argument(
+        "--brightness-grid",
+        type=int,
+        default=0,
+        help="Approximate brightness on a sampled grid; 0 uses all pixels",
+    )
     report = sub.add_parser("report")
     report.add_argument("--input", default="results")
     report.add_argument("--output", default="results/report.html")
@@ -228,6 +234,7 @@ def main(argv=None):
                 args.render,
                 args.zone,
                 args.decode_threads,
+                args.brightness_grid,
             )
         elif args.command == "report":
             matrix = Path(args.input)

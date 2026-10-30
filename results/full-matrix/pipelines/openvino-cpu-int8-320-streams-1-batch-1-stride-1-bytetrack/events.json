@@ -1,0 +1,18 @@
+[
+  {
+    "camera": 0,
+    "source_seconds": 1.2679333333333334,
+    "track_id": 3,
+    "direction": "positive",
+    "class_id": 2,
+    "frame": 38
+  },
+  {
+    "camera": 0,
+    "source_seconds": 4.137466666666667,
+    "track_id": 13,
+    "direction": "positive",
+    "class_id": 7,
+    "frame": 124
+  }
+]

@@ -5,6 +5,10 @@
 A computer vision deployment project built around that question: reproducible YOLO runtime comparisons,
 export parity gates, independent vehicle tracking and counting, bounded multi-camera scheduling, and a local results dashboard.
 
+Measured on an i7-10750H / GTX 1650 Ti: **28 model configurations and 24 serving experiments**, including CPU/CUDA,
+FP32/FP16/INT8, camera scaling, batching, tracking, rendering, stride and telemetry tuning. See the
+[measured findings](docs/RESULTS.md), [portable report](results/report.html), and [raw evidence](results/full-matrix/).
+
 ```mermaid
 flowchart LR
     A[Recorded camera replay] --> B[Bounded per-camera queues]
@@ -98,6 +102,8 @@ the scheduler does not wait to fill them. Use dynamic exports when shapes/batch 
 rendered videos also receive an H.264 browser copy after the timed run; otherwise use a local video player.
 The dashboard plots tracked-position density from normalized bottom-center observations and includes a cost-sensitivity
 calculator using your supplied machine hourly rate and the selected replay's measured processing rate.
+`--brightness-grid 64` measures approximate brightness from at most 64×64 sampled pixels; the default zero uses the full
+image. The serving study preserves separate baseline and sampled-telemetry runs to measure the observability overhead.
 
 Additional export and event-quality commands:
 

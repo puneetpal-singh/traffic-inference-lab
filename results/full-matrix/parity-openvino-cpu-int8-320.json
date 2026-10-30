@@ -1,0 +1,353 @@
+{
+  "kind": "detection_parity",
+  "reference": {
+    "model": "models/yolo11n.pt",
+    "imgsz": 320,
+    "device": "cpu",
+    "half": false,
+    "threads": 4,
+    "conf": 0.25,
+    "iou": 0.7,
+    "classes": [
+      2,
+      3,
+      5,
+      7
+    ]
+  },
+  "candidate": {
+    "config": {
+      "model": "models\\full-matrix\\openvino-int8-320\\yolo11n_int8_openvino_model",
+      "imgsz": 320,
+      "device": "cpu",
+      "half": false,
+      "threads": 4,
+      "conf": 0.25,
+      "iou": 0.7,
+      "classes": [
+        2,
+        3,
+        5,
+        7
+      ]
+    },
+    "model_sha256": "e5d94ac8a23d4a242a201c48ecb69ab2274df25556cb9758ca74b0f82cd2996c",
+    "model_size_bytes": 3371777,
+    "backend": "OpenVINOBackend",
+    "execution_device_argument": "intel:cpu",
+    "openvino_execution_devices": [
+      "CPU"
+    ],
+    "cuda_available": true,
+    "torch_cuda": "12.4",
+    "onnx_providers": [],
+    "backend_input_fp16": false,
+    "tensorrt_cuda_graph_active": null,
+    "openvino_runtime_threads": 6,
+    "openvino_inference_precision_hint": "<Type: 'float32'>"
+  },
+  "reference_model_sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+  "source_sha256": "82d3a2f8a8f02f86906aaed6d097346a66cc924b0ffb591a76f0e7a5bfb4f853",
+  "environment": {
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 165 Stepping 2, GenuineIntel",
+    "cpu_physical_cores": 6,
+    "cpu_logical_cores": 12,
+    "ram_gib": 7.839607238769531,
+    "gpu": "NVIDIA GeForce GTX 1650 Ti, 580.97, 4096 MiB",
+    "packages": {
+      "traffic-inference-lab": "0.1.0",
+      "ultralytics": "8.4.193",
+      "torch": "2.6.0+cu124",
+      "torchvision": "0.21.0+cu124",
+      "numpy": "2.4.6",
+      "opencv-python": "4.14.0.94",
+      "onnxruntime": null,
+      "onnxruntime-gpu": "1.20.2",
+      "openvino": "2026.4.1",
+      "onnx": "1.23.2",
+      "nncf": "3.4.0",
+      "tensorrt": "10.8.0.43",
+      "tensorrt-cu12": null,
+      "lap": "0.5.13"
+    },
+    "utc": "2026-10-30T12:20:27Z"
+  },
+  "min_iou": 0.9,
+  "max_conf_delta": 0.02,
+  "frames": [
+    {
+      "reference": 5,
+      "candidate": 5,
+      "matched": 5,
+      "min_iou": 0.9439305111457316,
+      "max_conf_delta": 0.04721677303314209,
+      "frame": 0,
+      "passed": false
+    },
+    {
+      "reference": 5,
+      "candidate": 5,
+      "matched": 5,
+      "min_iou": 0.9542636645771732,
+      "max_conf_delta": 0.05315271019935608,
+      "frame": 1,
+      "passed": false
+    },
+    {
+      "reference": 5,
+      "candidate": 5,
+      "matched": 5,
+      "min_iou": 0.971666704225514,
+      "max_conf_delta": 0.053645968437194824,
+      "frame": 2,
+      "passed": false
+    },
+    {
+      "reference": 7,
+      "candidate": 7,
+      "matched": 6,
+      "min_iou": 0.9727558696850035,
+      "max_conf_delta": 0.07000598311424255,
+      "frame": 3,
+      "passed": false
+    },
+    {
+      "reference": 6,
+      "candidate": 6,
+      "matched": 5,
+      "min_iou": 0.9745801802627508,
+      "max_conf_delta": 0.07873183488845825,
+      "frame": 4,
+      "passed": false
+    },
+    {
+      "reference": 6,
+      "candidate": 6,
+      "matched": 5,
+      "min_iou": 0.9147260467990209,
+      "max_conf_delta": 0.10804012417793274,
+      "frame": 5,
+      "passed": false
+    },
+    {
+      "reference": 6,
+      "candidate": 7,
+      "matched": 6,
+      "min_iou": 0.9233438683169829,
+      "max_conf_delta": 0.0835767388343811,
+      "frame": 6,
+      "passed": false
+    },
+    {
+      "reference": 6,
+      "candidate": 7,
+      "matched": 6,
+      "min_iou": 0.933044442808444,
+      "max_conf_delta": 0.039029598236083984,
+      "frame": 7,
+      "passed": false
+    },
+    {
+      "reference": 7,
+      "candidate": 7,
+      "matched": 4,
+      "min_iou": 0.9832958288594709,
+      "max_conf_delta": 0.07464867830276489,
+      "frame": 8,
+      "passed": false
+    },
+    {
+      "reference": 7,
+      "candidate": 6,
+      "matched": 6,
+      "min_iou": 0.9040147757802091,
+      "max_conf_delta": 0.04472696781158447,
+      "frame": 9,
+      "passed": false
+    },
+    {
+      "reference": 7,
+      "candidate": 7,
+      "matched": 6,
+      "min_iou": 0.9563748400227846,
+      "max_conf_delta": 0.06495854258537292,
+      "frame": 10,
+      "passed": false
+    },
+    {
+      "reference": 8,
+      "candidate": 7,
+      "matched": 6,
+      "min_iou": 0.9177472813505545,
+      "max_conf_delta": 0.04997718334197998,
+      "frame": 11,
+      "passed": false
+    },
+    {
+      "reference": 7,
+      "candidate": 6,
+      "matched": 6,
+      "min_iou": 0.9438098839510307,
+      "max_conf_delta": 0.06850764155387878,
+      "frame": 12,
+      "passed": false
+    },
+    {
+      "reference": 7,
+      "candidate": 7,
+      "matched": 6,
+      "min_iou": 0.9078057943979263,
+      "max_conf_delta": 0.06169220805168152,
+      "frame": 13,
+      "passed": false
+    },
+    {
+      "reference": 5,
+      "candidate": 6,
+      "matched": 5,
+      "min_iou": 0.9740330443930784,
+      "max_conf_delta": 0.04954656958580017,
+      "frame": 14,
+      "passed": false
+    },
+    {
+      "reference": 6,
+      "candidate": 5,
+      "matched": 5,
+      "min_iou": 0.9722807758454806,
+      "max_conf_delta": 0.08303502202033997,
+      "frame": 15,
+      "passed": false
+    },
+    {
+      "reference": 6,
+      "candidate": 5,
+      "matched": 5,
+      "min_iou": 0.9645106610952415,
+      "max_conf_delta": 0.05134144425392151,
+      "frame": 16,
+      "passed": false
+    },
+    {
+      "reference": 5,
+      "candidate": 6,
+      "matched": 5,
+      "min_iou": 0.9714754220290367,
+      "max_conf_delta": 0.02271735668182373,
+      "frame": 17,
+      "passed": false
+    },
+    {
+      "reference": 5,
+      "candidate": 5,
+      "matched": 5,
+      "min_iou": 0.9374085218142792,
+      "max_conf_delta": 0.03175133466720581,
+      "frame": 18,
+      "passed": false
+    },
+    {
+      "reference": 5,
+      "candidate": 5,
+      "matched": 5,
+      "min_iou": 0.9480595181258008,
+      "max_conf_delta": 0.024182498455047607,
+      "frame": 19,
+      "passed": false
+    },
+    {
+      "reference": 5,
+      "candidate": 5,
+      "matched": 5,
+      "min_iou": 0.9670187009719629,
+      "max_conf_delta": 0.02672755718231201,
+      "frame": 20,
+      "passed": false
+    },
+    {
+      "reference": 5,
+      "candidate": 6,
+      "matched": 5,
+      "min_iou": 0.920619466523161,
+      "max_conf_delta": 0.02319350838661194,
+      "frame": 21,
+      "passed": false
+    },
+    {
+      "reference": 5,
+      "candidate": 5,
+      "matched": 5,
+      "min_iou": 0.9497437247808913,
+      "max_conf_delta": 0.04244604706764221,
+      "frame": 22,
+      "passed": false
+    },
+    {
+      "reference": 5,
+      "candidate": 5,
+      "matched": 5,
+      "min_iou": 0.9577276725999717,
+      "max_conf_delta": 0.05066266655921936,
+      "frame": 23,
+      "passed": false
+    },
+    {
+      "reference": 5,
+      "candidate": 5,
+      "matched": 5,
+      "min_iou": 0.9753092033335198,
+      "max_conf_delta": 0.08319079875946045,
+      "frame": 24,
+      "passed": false
+    },
+    {
+      "reference": 5,
+      "candidate": 5,
+      "matched": 5,
+      "min_iou": 0.970811997586566,
+      "max_conf_delta": 0.04140913486480713,
+      "frame": 25,
+      "passed": false
+    },
+    {
+      "reference": 6,
+      "candidate": 7,
+      "matched": 6,
+      "min_iou": 0.965403836652174,
+      "max_conf_delta": 0.040003061294555664,
+      "frame": 26,
+      "passed": false
+    },
+    {
+      "reference": 6,
+      "candidate": 7,
+      "matched": 6,
+      "min_iou": 0.9735005570168207,
+      "max_conf_delta": 0.05901104211807251,
+      "frame": 27,
+      "passed": false
+    },
+    {
+      "reference": 6,
+      "candidate": 6,
+      "matched": 6,
+      "min_iou": 0.9646712014780305,
+      "max_conf_delta": 0.05425232648849487,
+      "frame": 28,
+      "passed": false
+    },
+    {
+      "reference": 5,
+      "candidate": 5,
+      "matched": 5,
+      "min_iou": 0.9637063558748136,
+      "max_conf_delta": 0.055813372135162354,
+      "frame": 29,
+      "passed": false
+    }
+  ],
+  "passed": false,
+  "note": "Detection agreement on sampled frames is not mAP or domain accuracy."
+}

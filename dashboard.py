@@ -62,6 +62,9 @@ else:
         st.line_chart(rows[["frame_age_ms", "queue_wait_ms", "batch_predict_ms"]])
         st.line_chart(rows[[k for k in ("detections", "tracks", "zone_occupancy") if k in rows]])
         if "track_positions_normalized" in rows:
+            import matplotlib
+
+            matplotlib.use("Agg")
             import matplotlib.pyplot as plt
             import numpy as np
 

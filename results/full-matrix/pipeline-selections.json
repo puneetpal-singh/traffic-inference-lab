@@ -1,0 +1,120 @@
+{
+  "baseline_map50_95": 0.2997242920109305,
+  "baseline_vehicle_map50_95": 0.28006890542265184,
+  "max_map_drop_points": 1,
+  "max_vehicle_drop_points": 1,
+  "candidate_decisions": [
+    {
+      "name": "openvino-cpu-fp16-320",
+      "global_drop_points": -0.024814711017417945,
+      "vehicle_drop_points": -0.058842549097520847,
+      "eligible": true
+    },
+    {
+      "name": "openvino-cpu-fp32-320",
+      "global_drop_points": 0.004378920728242974,
+      "vehicle_drop_points": 0.0,
+      "eligible": true
+    },
+    {
+      "name": "openvino-cpu-int8-320",
+      "global_drop_points": -0.03858902929478325,
+      "vehicle_drop_points": -0.00017105646779591588,
+      "eligible": true
+    },
+    {
+      "name": "onnx-cpu-fp16-320",
+      "global_drop_points": 0.006642571647913487,
+      "vehicle_drop_points": -0.05767842359110098,
+      "eligible": true
+    },
+    {
+      "name": "onnx-cpu-fp32-320",
+      "global_drop_points": 0.004378920728242974,
+      "vehicle_drop_points": 0.0,
+      "eligible": true
+    },
+    {
+      "name": "onnx-cpu-int8-320",
+      "global_drop_points": 3.7072155100728477,
+      "vehicle_drop_points": 2.7069099573253985,
+      "eligible": false
+    },
+    {
+      "name": "onnx-cuda-fp16-320",
+      "global_drop_points": 0.04596456256030779,
+      "vehicle_drop_points": -0.026472561203849665,
+      "eligible": true
+    },
+    {
+      "name": "onnx-cuda-fp32-320",
+      "global_drop_points": 0.0005011237734497964,
+      "vehicle_drop_points": 0.0,
+      "eligible": true
+    },
+    {
+      "name": "tensorrt-cuda-fp16-320",
+      "global_drop_points": -0.002353667174842533,
+      "vehicle_drop_points": 0.048219305497043674,
+      "eligible": true
+    },
+    {
+      "name": "tensorrt-cuda-fp32-320",
+      "global_drop_points": -1.0044228559991097e-06,
+      "vehicle_drop_points": 0.0,
+      "eligible": true
+    },
+    {
+      "name": "tensorrt-cuda-int8-320",
+      "global_drop_points": 0.7842845100333895,
+      "vehicle_drop_points": 1.0379502875003221,
+      "eligible": false
+    }
+  ],
+  "selections": [
+    {
+      "name": "openvino-cpu-int8-320",
+      "backend": "openvino",
+      "precision": 8,
+      "device": "cpu",
+      "imgsz": 320,
+      "model": "models\\full-matrix\\openvino-int8-320\\yolo11n_int8_openvino_model",
+      "half": false,
+      "export_key": "openvino-int8-320",
+      "export_dir": "models\\full-matrix\\openvino-int8-320"
+    },
+    {
+      "name": "onnx-cpu-fp32-320",
+      "backend": "onnx",
+      "precision": 32,
+      "device": "cpu",
+      "imgsz": 320,
+      "model": "models\\full-matrix\\onnx-fp32-320\\yolo11n.onnx",
+      "half": false,
+      "export_key": "onnx-fp32-320",
+      "export_dir": "models\\full-matrix\\onnx-fp32-320"
+    },
+    {
+      "name": "onnx-cuda-fp16-320",
+      "backend": "onnx",
+      "precision": 16,
+      "device": "0",
+      "imgsz": 320,
+      "model": "models\\full-matrix\\onnx-fp16-320\\yolo11n.onnx",
+      "half": false,
+      "export_key": "onnx-fp16-320",
+      "export_dir": "models\\full-matrix\\onnx-fp16-320"
+    },
+    {
+      "name": "tensorrt-cuda-fp16-320",
+      "backend": "tensorrt",
+      "precision": 16,
+      "device": "0",
+      "imgsz": 320,
+      "model": "models\\full-matrix\\tensorrt-fp16-320\\yolo11n.engine",
+      "half": false,
+      "export_key": "tensorrt-fp16-320",
+      "export_dir": "models\\full-matrix\\tensorrt-fp16-320"
+    }
+  ]
+}

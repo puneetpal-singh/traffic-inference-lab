@@ -132,9 +132,12 @@ def run_pipeline(
     render=False,
     zone=(0.2, 0.3, 0.8, 0.8),
     decode_threads=1,
+    brightness_grid=0,
 ):
     if not sources or min(duration, queue_size, batch, stride, decode_threads) <= 0:
         raise ValueError("Sources and positive duration, queue, batch, stride are required")
+    if brightness_grid < 0:
+        raise ValueError("Brightness grid must be nonnegative; zero uses the full image")
     if len(line) != 4 or any(not 0 <= v <= 1 for v in line) or line[:2] == line[2:]:
         raise ValueError("Line must have distinct normalized endpoints")
     if len(zone) != 4 or not (0 <= zone[0] < zone[2] <= 1 and 0 <= zone[1] < zone[3] <= 1):
@@ -293,7 +296,19 @@ def run_pipeline(
                             for t in tracks
                         ],
                         "confidences": result.boxes.conf.cpu().tolist(),
-                        "brightness": float(np.mean(cv2.cvtColor(packet.frame, cv2.COLOR_BGR2GRAY))),
+                        "brightness": float(
+                            np.mean(
+                                cv2.cvtColor(
+                                    packet.frame[
+                                        :: max(1, (height + brightness_grid - 1) // brightness_grid),
+                                        :: max(1, (width + brightness_grid - 1) // brightness_grid),
+                                    ]
+                                    if brightness_grid
+                                    else packet.frame,
+                                    cv2.COLOR_BGR2GRAY,
+                                )
+                            )
+                        ),
                         "rss_mib": process.memory_info().rss / 1024**2,
                     }
                     telemetry_end = time.perf_counter()
@@ -349,6 +364,7 @@ def run_pipeline(
             "queue_capacity_per_camera": queue_size,
             "stride": stride,
             "requested_decoder_threads": decode_threads,
+            "brightness_grid": brightness_grid,
             "warmup": {"zero_image_calls": 5, "real_image_batch_sizes": list(range(1, effective_batch + 1))},
             "resources": monitor.summary(),
             "tracker": tracker,

@@ -1,0 +1,11 @@
+{
+  "model": "models\\yolo11n.pt",
+  "device": "0",
+  "torch_cuda_version": "12.4",
+  "requested_fp16": false,
+  "compute_capability": [
+    7,
+    5
+  ],
+  "note": "Inspection/profiling is a separate untimed run. TensorRT precision flags allow mixed-precision tactics."
+}

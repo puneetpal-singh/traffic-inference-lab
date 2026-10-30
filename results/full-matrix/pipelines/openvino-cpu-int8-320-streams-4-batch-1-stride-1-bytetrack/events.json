@@ -1,0 +1,66 @@
+[
+  {
+    "camera": 3,
+    "source_seconds": 1.3346666666666667,
+    "track_id": 3,
+    "direction": "positive",
+    "class_id": 2,
+    "frame": 40
+  },
+  {
+    "camera": 0,
+    "source_seconds": 1.4347666666666667,
+    "track_id": 3,
+    "direction": "positive",
+    "class_id": 2,
+    "frame": 43
+  },
+  {
+    "camera": 1,
+    "source_seconds": 1.4681333333333333,
+    "track_id": 3,
+    "direction": "positive",
+    "class_id": 2,
+    "frame": 44
+  },
+  {
+    "camera": 2,
+    "source_seconds": 1.5348666666666666,
+    "track_id": 3,
+    "direction": "positive",
+    "class_id": 2,
+    "frame": 46
+  },
+  {
+    "camera": 1,
+    "source_seconds": 4.037366666666666,
+    "track_id": 5,
+    "direction": "positive",
+    "class_id": 7,
+    "frame": 121
+  },
+  {
+    "camera": 3,
+    "source_seconds": 4.1041,
+    "track_id": 5,
+    "direction": "positive",
+    "class_id": 7,
+    "frame": 123
+  },
+  {
+    "camera": 0,
+    "source_seconds": 4.137466666666667,
+    "track_id": 5,
+    "direction": "positive",
+    "class_id": 7,
+    "frame": 124
+  },
+  {
+    "camera": 2,
+    "source_seconds": 4.037366666666666,
+    "track_id": 4,
+    "direction": "positive",
+    "class_id": 7,
+    "frame": 121
+  }
+]

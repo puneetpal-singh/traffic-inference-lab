@@ -1,0 +1,2166 @@
+{
+  "model": "models\\full-matrix\\openvino-int8-320\\yolo11n_int8_openvino_model",
+  "device": "cpu",
+  "ir_operations": {
+    "Parameter": 1,
+    "Const": 713,
+    "FakeQuantize": 101,
+    "Convert": 89,
+    "Multiply": 89,
+    "Convolution": 81,
+    "Add": 104,
+    "Swish": 77,
+    "VariadicSplit": 11,
+    "Concat": 23,
+    "MaxPool": 3,
+    "Reshape": 11,
+    "MatMul": 2,
+    "SoftMax": 2,
+    "ShapeOf": 2,
+    "GroupConvolution": 7,
+    "Interpolate": 2,
+    "Transpose": 1,
+    "Gather": 3,
+    "Divide": 2,
+    "Mod": 1,
+    "Greater": 1,
+    "Subtract": 2,
+    "Sigmoid": 1,
+    "Result": 1
+  },
+  "constant_types": {
+    "f32": 585,
+    "i8": 87,
+    "i64": 35,
+    "i32": 6
+  },
+  "execution_devices": [
+    "CPU"
+  ],
+  "openvino_inference_precision_hint": "<Type: 'float32'>",
+  "profiled_nodes": [
+    {
+      "name": "x.1",
+      "type": "Parameter",
+      "execution_type": "unknown_f32",
+      "microseconds": 0.0
+    },
+    {
+      "name": "x.1/fq_output_0",
+      "type": "Subgraph",
+      "execution_type": "jit_avx2_f32",
+      "microseconds": 495.0
+    },
+    {
+      "name": "x.1/fq_output_0_abcd_acdb___module.model.0.conv/aten::_convolution/Convolution",
+      "type": "Reorder",
+      "execution_type": "jit_uni_I8",
+      "microseconds": 329.0
+    },
+    {
+      "name": "__module.model.0.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 884.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 737.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_1",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_1/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.2.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 410.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_2",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_2/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.2/aten::split_with_sizes/VariadicSplit",
+      "type": "VariadicSplit",
+      "execution_type": "ref_I8",
+      "microseconds": 190.0
+    },
+    {
+      "name": "__module.model.2.m.0.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 296.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_3",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_3/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.2.m.0.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 342.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_4",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_4/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.2.m.0/aten::add/Add",
+      "type": "Add",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 102.0
+    },
+    {
+      "name": "__module.model.2.m.0/aten::add/Add/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.2/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_I8",
+      "microseconds": 146.0
+    },
+    {
+      "name": "__module.model.2.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 782.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_5",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_5/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.3.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 874.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_6",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_6/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.4.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 260.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_7",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_7/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.4/aten::split_with_sizes/VariadicSplit",
+      "type": "VariadicSplit",
+      "execution_type": "ref_I8",
+      "microseconds": 33.0
+    },
+    {
+      "name": "__module.model.4.m.0.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 206.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_8",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_8/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.4.m.0.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 202.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_9",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_9/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.4.m.0/aten::add/Add",
+      "type": "Add",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 28.0
+    },
+    {
+      "name": "__module.model.4.m.0/aten::add/Add/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.4/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_I8",
+      "microseconds": 36.0
+    },
+    {
+      "name": "__module.model.4.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 611.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_10",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_10/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.5.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 1343.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_11",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_11/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.6.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 352.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_12",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_12/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.6/aten::split_with_sizes/VariadicSplit",
+      "type": "VariadicSplit",
+      "execution_type": "ref_I8",
+      "microseconds": 40.0
+    },
+    {
+      "name": "__module.model.6.m.0.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 130.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_13",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_13/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.6.m.0.m.0.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 1231.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_14",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_14/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.6.m.0.m.0.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 602.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_15",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_15/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.6.m.0.m.0/aten::add/Add",
+      "type": "Add",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.6.m.0.m.0/aten::add/Add/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.6.m.0.m.1.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 1164.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_16",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_16/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.6.m.0.m.1.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 531.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_17",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_17/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.6.m.0.m.1/aten::add/Add",
+      "type": "Add",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.6.m.0.m.1/aten::add/Add/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.6.m.0.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 179.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_18",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_18/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.6.m.0/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_I8",
+      "microseconds": 40.0
+    },
+    {
+      "name": "__module.model.6.m.0.cv3.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 208.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_19",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_19/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.6/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_I8",
+      "microseconds": 38.0
+    },
+    {
+      "name": "__module.model.6.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 390.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_20",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_20/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.7.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 1654.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_21",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_21/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.8.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 338.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_22",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_22/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.8/aten::split_with_sizes/VariadicSplit",
+      "type": "VariadicSplit",
+      "execution_type": "ref_I8",
+      "microseconds": 24.0
+    },
+    {
+      "name": "__module.model.8.m.0.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 51.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_23",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_23/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.8.m.0.m.0.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 95.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_24",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_24/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.8.m.0.m.0.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 111.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_25",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_25/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.8.m.0.m.0/aten::add/Add",
+      "type": "Add",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.8.m.0.m.0/aten::add/Add/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.8.m.0.m.1.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 93.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_26",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_26/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.8.m.0.m.1.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 93.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_27",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_27/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.8.m.0.m.1/aten::add/Add",
+      "type": "Add",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.8.m.0.m.1/aten::add/Add/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.8.m.0.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 45.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_28",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_28/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.8.m.0/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_I8",
+      "microseconds": 23.0
+    },
+    {
+      "name": "__module.model.8.m.0.cv3.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 61.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_29",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_29/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.8/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_I8",
+      "microseconds": 34.0
+    },
+    {
+      "name": "__module.model.8.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 179.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_30",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_30/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.9.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 79.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_31",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_31/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.9.m/aten::max_pool2d/MaxPool",
+      "type": "MaxPool",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 116.0
+    },
+    {
+      "name": "__module.model.9.m/aten::max_pool2d/MaxPool_1",
+      "type": "MaxPool",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 28.0
+    },
+    {
+      "name": "__module.model.9.m/aten::max_pool2d/MaxPool_2",
+      "type": "MaxPool",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 28.0
+    },
+    {
+      "name": "__module.model.9/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_I8",
+      "microseconds": 18.0
+    },
+    {
+      "name": "__module.model.9.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 217.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_32",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_32/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.10.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 178.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_33",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_33/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.10/aten::split_with_sizes/VariadicSplit",
+      "type": "VariadicSplit",
+      "execution_type": "ref_I8",
+      "microseconds": 16.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn.qkv.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 100.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn.qkv.conv/aten::_convolution/Add/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn.qkv.conv/aten::_convolution/Convolution_acdb_abcd___module.model.10.m.0.attn/aten::view/Reshape",
+      "type": "Reorder",
+      "execution_type": "jit_uni_f32",
+      "microseconds": 81.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn/aten::view/Reshape",
+      "type": "Reshape",
+      "execution_type": "unknown_f32",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn/aten::split_with_sizes/VariadicSplit",
+      "type": "VariadicSplit",
+      "execution_type": "ref_f32",
+      "microseconds": 20.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn/aten::mul/Multiply_1/fq_output_0",
+      "type": "Subgraph",
+      "execution_type": "jit_avx2_f32",
+      "microseconds": 47.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn/aten::matmul/MatMul",
+      "type": "MatMul",
+      "execution_type": "brgemm_avx2_f32",
+      "microseconds": 222.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn/aten::softmax/Softmax",
+      "type": "Softmax",
+      "execution_type": "jit_avx2_f32",
+      "microseconds": 104.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn/aten::softmax/Softmax_____module.model.10.m.0.attn/aten::softmax/Softmax/fq_output_0",
+      "type": "Reorder",
+      "execution_type": "jit_uni_f32",
+      "microseconds": 53.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn/aten::softmax/Softmax/fq_output_0",
+      "type": "Subgraph",
+      "execution_type": "jit_avx2_f32",
+      "microseconds": 47.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn/aten::matmul/MatMul_1",
+      "type": "MatMul",
+      "execution_type": "brgemm_avx2_f32",
+      "microseconds": 102.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn/aten::matmul/MatMul_1/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "jit_avx2_f32",
+      "microseconds": 51.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn/aten::view/Reshape_1",
+      "type": "Reshape",
+      "execution_type": "unknown_I8",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn/aten::view/Reshape_1_abcd_acdb___module.model.10.m.0.attn/aten::add/Add",
+      "type": "Reorder",
+      "execution_type": "jit_uni_I8",
+      "microseconds": 40.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn/aten::reshape/Reshape",
+      "type": "Reshape",
+      "execution_type": "unknown_f32",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn/aten::reshape/Reshape_abcd_acdb___module.model.10.m.0.attn.pe.conv/aten::_convolution/GroupConvolution",
+      "type": "Reorder",
+      "execution_type": "jit_uni_f32",
+      "microseconds": 37.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn.pe.conv/aten::_convolution/GroupConvolution",
+      "type": "GroupConvolution",
+      "execution_type": "brgconv_avx2_dw_f32",
+      "microseconds": 79.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn.pe.conv/aten::_convolution/Add/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn/aten::add/Add",
+      "type": "Add",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 26.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn/aten::add/Add/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn.proj.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 79.0
+    },
+    {
+      "name": "__module.model.10.m.0.attn.proj.conv/aten::_convolution/Add/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.10.m.0/aten::add/Add",
+      "type": "Add",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 25.0
+    },
+    {
+      "name": "__module.model.10.m.0/aten::add/Add/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.10.m.0.ffn.0.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 118.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_34",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_34/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.10.m.0.ffn.1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 80.0
+    },
+    {
+      "name": "__module.model.10.m.0.ffn.1.conv/aten::_convolution/Add/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.10.m.0/aten::add/Add_1",
+      "type": "Add",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.10.m.0/aten::add/Add_1/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.10/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_I8",
+      "microseconds": 27.0
+    },
+    {
+      "name": "__module.model.10.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 184.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_35",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_35/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.11/aten::upsample_nearest2d/Interpolate",
+      "type": "Interpolate",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 89.0
+    },
+    {
+      "name": "__module.model.11/aten::upsample_nearest2d/Interpolate/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.12/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_I8",
+      "microseconds": 34.0
+    },
+    {
+      "name": "__module.model.13.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 311.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_36",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_36/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.13/aten::split_with_sizes/VariadicSplit",
+      "type": "VariadicSplit",
+      "execution_type": "ref_I8",
+      "microseconds": 59.0
+    },
+    {
+      "name": "__module.model.13.m.0.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 172.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_37",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_37/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.13.m.0.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 184.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_38",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_38/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.13.m.0/aten::add/Add",
+      "type": "Add",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 26.0
+    },
+    {
+      "name": "__module.model.13.m.0/aten::add/Add/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.13/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_I8",
+      "microseconds": 30.0
+    },
+    {
+      "name": "__module.model.13.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 387.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_39",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_39/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.14/aten::upsample_nearest2d/Interpolate",
+      "type": "Interpolate",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 51.0
+    },
+    {
+      "name": "__module.model.15/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_I8",
+      "microseconds": 48.0
+    },
+    {
+      "name": "__module.model.16.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 416.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_40",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_40/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.16/aten::split_with_sizes/VariadicSplit",
+      "type": "VariadicSplit",
+      "execution_type": "ref_I8",
+      "microseconds": 31.0
+    },
+    {
+      "name": "__module.model.16.m.0.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 844.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_41",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_41/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.16.m.0.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 425.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_42",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_42/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.16.m.0/aten::add/Add",
+      "type": "Add",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 99.0
+    },
+    {
+      "name": "__module.model.16.m.0/aten::add/Add/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.16/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_I8",
+      "microseconds": 58.0
+    },
+    {
+      "name": "__module.model.16.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 368.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_43",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_43/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv2.0.0.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 1510.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_44",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_44/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv2.0.1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 866.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_45",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_45/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv2.0.2/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 178.0
+    },
+    {
+      "name": "__module.model.23.cv2.0.2/aten::_convolution/Convolution_acdb_abcd___module.model.23/aten::view/Reshape",
+      "type": "Reorder",
+      "execution_type": "reorder_f32",
+      "microseconds": 134.0
+    },
+    {
+      "name": "__module.model.23/aten::view/Reshape",
+      "type": "Reshape",
+      "execution_type": "unknown_f32",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.17.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 393.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_46",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_46/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.18/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_I8",
+      "microseconds": 32.0
+    },
+    {
+      "name": "__module.model.19.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 194.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_47",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_47/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.19/aten::split_with_sizes/VariadicSplit",
+      "type": "VariadicSplit",
+      "execution_type": "ref_I8",
+      "microseconds": 20.0
+    },
+    {
+      "name": "__module.model.19.m.0.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 109.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_48",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_48/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.19.m.0.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 142.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_49",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_49/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.19.m.0/aten::add/Add",
+      "type": "Add",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 21.0
+    },
+    {
+      "name": "__module.model.19.m.0/aten::add/Add/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.19/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_I8",
+      "microseconds": 19.0
+    },
+    {
+      "name": "__module.model.19.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 229.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_50",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_50/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv2.1.0.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 366.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_51",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_51/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv2.1.1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 215.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_52",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_52/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv2.1.2/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 46.0
+    },
+    {
+      "name": "__module.model.23.cv2.1.2/aten::_convolution/Convolution_acdb_abcd___module.model.23/aten::view/Reshape_1",
+      "type": "Reorder",
+      "execution_type": "reorder_f32",
+      "microseconds": 65.0
+    },
+    {
+      "name": "__module.model.23/aten::view/Reshape_1",
+      "type": "Reshape",
+      "execution_type": "unknown_f32",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.20.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 225.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_53",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_53/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.21/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_I8",
+      "microseconds": 17.0
+    },
+    {
+      "name": "__module.model.22.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 200.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_54",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_54/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.22/aten::split_with_sizes/VariadicSplit",
+      "type": "VariadicSplit",
+      "execution_type": "ref_I8",
+      "microseconds": 14.0
+    },
+    {
+      "name": "__module.model.22.m.0.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 40.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_55",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_55/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.22.m.0.m.0.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 70.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_56",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_56/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.22.m.0.m.0.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 106.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_57",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_57/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.22.m.0.m.0/aten::add/Add",
+      "type": "Add",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.22.m.0.m.0/aten::add/Add/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.22.m.0.m.1.cv1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 76.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_58",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_58/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.22.m.0.m.1.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 90.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_59",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_59/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.22.m.0.m.1/aten::add/Add",
+      "type": "Add",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.22.m.0.m.1/aten::add/Add/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.22.m.0.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 52.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_60",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_60/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.22.m.0/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_I8",
+      "microseconds": 15.0
+    },
+    {
+      "name": "__module.model.22.m.0.cv3.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 50.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_61",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_61/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.22/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_I8",
+      "microseconds": 14.0
+    },
+    {
+      "name": "__module.model.22.cv2.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 418.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_62",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_62/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv2.2.0.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 350.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_63",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_63/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv2.2.1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 97.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_64",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_64/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv2.2.2/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 44.0
+    },
+    {
+      "name": "__module.model.23.cv2.2.2/aten::_convolution/Convolution_acdb_abcd___module.model.23/aten::view/Reshape_2",
+      "type": "Reorder",
+      "execution_type": "jit_uni_f32",
+      "microseconds": 42.0
+    },
+    {
+      "name": "__module.model.23/aten::view/Reshape_2",
+      "type": "Reshape",
+      "execution_type": "unknown_f32",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23/aten::cat/Concat",
+      "type": "Concat",
+      "execution_type": "ref_f32",
+      "microseconds": 86.0
+    },
+    {
+      "name": "__module.model.23.dfl/aten::view/Reshape",
+      "type": "Reshape",
+      "execution_type": "unknown_f32",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.dfl/aten::transpose/Transpose",
+      "type": "Transpose",
+      "execution_type": "unknown_f32",
+      "microseconds": 55.0
+    },
+    {
+      "name": "__module.model.23.dfl/aten::softmax/Softmax",
+      "type": "Softmax",
+      "execution_type": "jit_avx2_f32",
+      "microseconds": 202.0
+    },
+    {
+      "name": "__module.model.23.dfl/aten::softmax/Softmax_abcd_acdb___module.model.23.dfl.conv/aten::_convolution/Convolution",
+      "type": "Reorder",
+      "execution_type": "jit_f32",
+      "microseconds": 86.0
+    },
+    {
+      "name": "__module.model.23.dfl.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "brgconv_avx2_1x1_f32",
+      "microseconds": 116.0
+    },
+    {
+      "name": "__module.model.23.dfl.conv/aten::_convolution/Convolution_acdb_abcd___module.model.23.dfl/aten::view/Reshape_1",
+      "type": "Reorder",
+      "execution_type": "reorder_f32",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.dfl/aten::view/Reshape_1",
+      "type": "Reshape",
+      "execution_type": "unknown_f32",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23/prim::ListUnpack/VariadicSplit",
+      "type": "VariadicSplit",
+      "execution_type": "unknown_f32",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23/aten::sub/Subtract_1",
+      "type": "Subgraph",
+      "execution_type": "jit_avx2_f32",
+      "microseconds": 27.0
+    },
+    {
+      "name": "__module.model.23/aten::cat/Concat_1",
+      "type": "Concat",
+      "execution_type": "unknown_f32",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23/aten::mul/Multiply",
+      "type": "Subgraph",
+      "execution_type": "jit_avx2_f32",
+      "microseconds": 59.0
+    },
+    {
+      "name": "__module.model.23.cv3.0.0.0.conv/aten::_convolution/GroupConvolution",
+      "type": "GroupConvolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 258.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_65",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_65/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.0.0.1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 314.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_66",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_66/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.0.1.0.conv/aten::_convolution/GroupConvolution",
+      "type": "GroupConvolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 303.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_67",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_67/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.0.1.1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 262.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_68",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_68/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.0.2/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 136.0
+    },
+    {
+      "name": "__module.model.23.cv3.0.2/aten::_convolution/Convolution_acdb_abcd___module.model.23/aten::view/Reshape_3",
+      "type": "Reorder",
+      "execution_type": "jit_uni_f32",
+      "microseconds": 114.0
+    },
+    {
+      "name": "__module.model.23/aten::view/Reshape_3",
+      "type": "Reshape",
+      "execution_type": "unknown_f32",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.1.0.0.conv/aten::_convolution/GroupConvolution",
+      "type": "GroupConvolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 121.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_69",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_69/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.1.0.1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 99.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_70",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_70/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.1.1.0.conv/aten::_convolution/GroupConvolution",
+      "type": "GroupConvolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 90.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_71",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_71/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.1.1.1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 81.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_72",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_72/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.1.2/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 81.0
+    },
+    {
+      "name": "__module.model.23.cv3.1.2/aten::_convolution/Convolution_acdb_abcd___module.model.23/aten::view/Reshape_4",
+      "type": "Reorder",
+      "execution_type": "jit_uni_f32",
+      "microseconds": 71.0
+    },
+    {
+      "name": "__module.model.23/aten::view/Reshape_4",
+      "type": "Reshape",
+      "execution_type": "unknown_f32",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.0.0.conv/aten::_convolution/GroupConvolution",
+      "type": "GroupConvolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 77.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_73",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_73/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.0.1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 55.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_74",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_74/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.0.conv/aten::_convolution/GroupConvolution",
+      "type": "GroupConvolution",
+      "execution_type": "jit_avx2_I8",
+      "microseconds": 42.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_75",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_75/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.conv/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 39.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_76",
+      "type": "SwishCPU",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.1.1.act/aten::silu_/Swish_76/fq_output_0",
+      "type": "FakeQuantize",
+      "execution_type": "undef",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.2/aten::_convolution/Convolution",
+      "type": "Convolution",
+      "execution_type": "jit_avx2_1x1_I8",
+      "microseconds": 31.0
+    },
+    {
+      "name": "__module.model.23.cv3.2.2/aten::_convolution/Convolution_acdb_abcd___module.model.23/aten::view/Reshape_5",
+      "type": "Reorder",
+      "execution_type": "jit_uni_f32",
+      "microseconds": 26.0
+    },
+    {
+      "name": "__module.model.23/aten::view/Reshape_5",
+      "type": "Reshape",
+      "execution_type": "unknown_f32",
+      "microseconds": 0.0
+    },
+    {
+      "name": "__module.model.23/aten::cat/Concat_2",
+      "type": "Concat",
+      "execution_type": "ref_f32",
+      "microseconds": 503.0
+    },
+    {
+      "name": "__module.model.23/aten::sigmoid/Sigmoid",
+      "type": "Subgraph",
+      "execution_type": "jit_avx2_f32",
+      "microseconds": 215.0
+    },
+    {
+      "name": "__module.model.23/aten::cat/Concat_3",
+      "type": "Concat",
+      "execution_type": "unknown_f32",
+      "microseconds": 0.0
+    },
+    {
+      "name": "Result_5815",
+      "type": "Result",
+      "execution_type": "unknown_f32",
+      "microseconds": 0.0
+    }
+  ],
+  "execution_type_counts": {
+    "unknown_f32": 16,
+    "jit_avx2_f32": 9,
+    "jit_uni_I8": 2,
+    "jit_avx2_I8": 53,
+    "undef": 180,
+    "jit_avx2_1x1_I8": 45,
+    "ref_I8": 26,
+    "jit_uni_f32": 7,
+    "ref_f32": 3,
+    "brgemm_avx2_f32": 2,
+    "unknown_I8": 1,
+    "brgconv_avx2_dw_f32": 1,
+    "reorder_f32": 3,
+    "jit_f32": 1,
+    "brgconv_avx2_1x1_f32": 1
+  },
+  "runtime_precision_counts": {
+    "f32": 43,
+    "I8": 127,
+    "undef": 180
+  },
+  "note": "Inspection/profiling is a separate untimed run. TensorRT precision flags allow mixed-precision tactics."
+}

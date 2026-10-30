@@ -1,0 +1,8 @@
+{
+  "kind": "full_matrix_report",
+  "complete": 28,
+  "planned": 28,
+  "missing": [],
+  "failed_stages": [],
+  "pipeline_runs": 24
+}

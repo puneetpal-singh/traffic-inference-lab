@@ -1,0 +1,967 @@
+{
+  "hardware-check": {
+    "exit_code": 0,
+    "seconds": 136.14513179997448,
+    "arguments": [
+      "scripts/check_accelerators.py"
+    ],
+    "artifact": "results\\full-matrix\\hardware.json",
+    "previous_attempts": [
+      {
+        "exit_code": 1,
+        "seconds": 1.8531994000077248,
+        "arguments": [
+          "scripts/check_accelerators.py"
+        ],
+        "artifact": "results\\full-matrix\\hardware.json"
+      },
+      {
+        "exit_code": 0,
+        "seconds": 103.39145009999629,
+        "arguments": [
+          "scripts/check_accelerators.py"
+        ],
+        "artifact": "results\\full-matrix\\hardware.json",
+        "log": "results\\full-matrix\\logs\\hardware-check.attempt-2.log"
+      }
+    ]
+  },
+  "pytorch-cpu-fp32-320": {
+    "exit_code": 0,
+    "seconds": 157.43964490003418,
+    "arguments": [
+      "scripts/matrix_case.py",
+      "--case",
+      "{\"name\": \"pytorch-cpu-fp32-320\", \"backend\": \"pytorch\", \"precision\": 32, \"device\": \"cpu\", \"imgsz\": 320, \"model\": \"models/yolo11n.pt\", \"half\": false, \"export_key\": \"pytorch-fp32-320\", \"export_dir\": \"models\\\\full-matrix\\\\pytorch-fp32-320\"}",
+      "--frames",
+      "120",
+      "--repeats",
+      "5",
+      "--warmup",
+      "20"
+    ],
+    "artifact": "results\\full-matrix\\pytorch-cpu-fp32-320.json",
+    "previous_attempts": []
+  },
+  "pytorch-cuda-fp32-320": {
+    "exit_code": 0,
+    "seconds": 113.57108470000094,
+    "arguments": [
+      "scripts/matrix_case.py",
+      "--case",
+      "{\"name\": \"pytorch-cuda-fp32-320\", \"backend\": \"pytorch\", \"precision\": 32, \"device\": \"0\", \"imgsz\": 320, \"model\": \"models/yolo11n.pt\", \"half\": false, \"export_key\": \"pytorch-fp32-320\", \"export_dir\": \"models\\\\full-matrix\\\\pytorch-fp32-320\"}",
+      "--frames",
+      "120",
+      "--repeats",
+      "5",
+      "--warmup",
+      "20"
+    ],
+    "artifact": "results\\full-matrix\\pytorch-cuda-fp32-320.json",
+    "previous_attempts": []
+  },
+  "pytorch-cuda-fp16-320": {
+    "exit_code": 0,
+    "seconds": 130.15002559998538,
+    "arguments": [
+      "scripts/matrix_case.py",
+      "--case",
+      "{\"name\": \"pytorch-cuda-fp16-320\", \"backend\": \"pytorch\", \"precision\": 16, \"device\": \"0\", \"imgsz\": 320, \"model\": \"models/yolo11n.pt\", \"half\": true, \"export_key\": \"pytorch-fp16-320\", \"export_dir\": \"models\\\\full-matrix\\\\pytorch-fp16-320\"}",
+      "--frames",
+      "120",
+      "--repeats",
+      "5",
+      "--warmup",
+      "20"
+    ],
+    "artifact": "results\\full-matrix\\pytorch-cuda-fp16-320.json",
+    "previous_attempts": []
+  },
+  "export-onnx-fp32-320": {
+    "exit_code": 0,
+    "seconds": 81.80780079995748,
+    "arguments": [
+      "-m",
+      "traffic_lab.cli",
+      "export",
+      "--format",
+      "onnx",
+      "--imgsz",
+      "320",
+      "--quantize",
+      "32",
+      "--output-dir",
+      "models\\full-matrix\\onnx-fp32-320",
+      "--device",
+      "cpu",
+      "--batch",
+      "1"
+    ],
+    "artifact": "models\\full-matrix\\onnx-fp32-320\\yolo11n.onnx",
+    "previous_attempts": []
+  },
+  "onnx-cpu-fp32-320": {
+    "exit_code": 0,
+    "seconds": 85.80462150002131,
+    "arguments": [
+      "scripts/matrix_case.py",
+      "--case",
+      "{\"name\": \"onnx-cpu-fp32-320\", \"backend\": \"onnx\", \"precision\": 32, \"device\": \"cpu\", \"imgsz\": 320, \"model\": \"models\\\\full-matrix\\\\onnx-fp32-320\\\\yolo11n.onnx\", \"half\": false, \"export_key\": \"onnx-fp32-320\", \"export_dir\": \"models\\\\full-matrix\\\\onnx-fp32-320\"}",
+      "--frames",
+      "120",
+      "--repeats",
+      "5",
+      "--warmup",
+      "20"
+    ],
+    "artifact": "results\\full-matrix\\onnx-cpu-fp32-320.json",
+    "previous_attempts": []
+  },
+  "export-onnx-fp16-320": {
+    "exit_code": 0,
+    "seconds": 44.55324899998959,
+    "arguments": [
+      "-m",
+      "traffic_lab.cli",
+      "export",
+      "--format",
+      "onnx",
+      "--imgsz",
+      "320",
+      "--quantize",
+      "16",
+      "--output-dir",
+      "models\\full-matrix\\onnx-fp16-320",
+      "--device",
+      "cpu",
+      "--batch",
+      "1"
+    ],
+    "artifact": "models\\full-matrix\\onnx-fp16-320\\yolo11n.onnx",
+    "previous_attempts": []
+  },
+  "onnx-cpu-fp16-320": {
+    "exit_code": 0,
+    "seconds": 117.566980100004,
+    "arguments": [
+      "scripts/matrix_case.py",
+      "--case",
+      "{\"name\": \"onnx-cpu-fp16-320\", \"backend\": \"onnx\", \"precision\": 16, \"device\": \"cpu\", \"imgsz\": 320, \"model\": \"models\\\\full-matrix\\\\onnx-fp16-320\\\\yolo11n.onnx\", \"half\": false, \"export_key\": \"onnx-fp16-320\", \"export_dir\": \"models\\\\full-matrix\\\\onnx-fp16-320\"}",
+      "--frames",
+      "120",
+      "--repeats",
+      "5",
+      "--warmup",
+      "20"
+    ],
+    "artifact": "results\\full-matrix\\onnx-cpu-fp16-320.json",
+    "previous_attempts": []
+  },
+  "export-onnx-int8-320": {
+    "exit_code": 0,
+    "seconds": 117.24861939996481,
+    "arguments": [
+      "-m",
+      "traffic_lab.cli",
+      "export",
+      "--format",
+      "onnx",
+      "--imgsz",
+      "320",
+      "--quantize",
+      "8",
+      "--output-dir",
+      "models\\full-matrix\\onnx-int8-320",
+      "--device",
+      "cpu",
+      "--batch",
+      "1",
+      "--data",
+      "data/coco-deployment/calibration.yaml"
+    ],
+    "artifact": "models\\full-matrix\\onnx-int8-320\\yolo11n_int8.onnx",
+    "previous_attempts": []
+  },
+  "onnx-cpu-int8-320": {
+    "exit_code": 0,
+    "seconds": 95.49797839997336,
+    "arguments": [
+      "scripts/matrix_case.py",
+      "--case",
+      "{\"name\": \"onnx-cpu-int8-320\", \"backend\": \"onnx\", \"precision\": 8, \"device\": \"cpu\", \"imgsz\": 320, \"model\": \"models\\\\full-matrix\\\\onnx-int8-320\\\\yolo11n_int8.onnx\", \"half\": false, \"export_key\": \"onnx-int8-320\", \"export_dir\": \"models\\\\full-matrix\\\\onnx-int8-320\"}",
+      "--frames",
+      "120",
+      "--repeats",
+      "5",
+      "--warmup",
+      "20"
+    ],
+    "artifact": "results\\full-matrix\\onnx-cpu-int8-320.json",
+    "previous_attempts": []
+  },
+  "onnx-cuda-fp32-320": {
+    "exit_code": 0,
+    "seconds": 125.57823069998994,
+    "arguments": [
+      "scripts/matrix_case.py",
+      "--case",
+      "{\"name\": \"onnx-cuda-fp32-320\", \"backend\": \"onnx\", \"precision\": 32, \"device\": \"0\", \"imgsz\": 320, \"model\": \"models\\\\full-matrix\\\\onnx-fp32-320\\\\yolo11n.onnx\", \"half\": false, \"export_key\": \"onnx-fp32-320\", \"export_dir\": \"models\\\\full-matrix\\\\onnx-fp32-320\"}",
+      "--frames",
+      "120",
+      "--repeats",
+      "5",
+      "--warmup",
+      "20"
+    ],
+    "artifact": "results\\full-matrix\\onnx-cuda-fp32-320.json",
+    "previous_attempts": []
+  },
+  "onnx-cuda-fp16-320": {
+    "exit_code": 0,
+    "seconds": 137.1067075000028,
+    "arguments": [
+      "scripts/matrix_case.py",
+      "--case",
+      "{\"name\": \"onnx-cuda-fp16-320\", \"backend\": \"onnx\", \"precision\": 16, \"device\": \"0\", \"imgsz\": 320, \"model\": \"models\\\\full-matrix\\\\onnx-fp16-320\\\\yolo11n.onnx\", \"half\": false, \"export_key\": \"onnx-fp16-320\", \"export_dir\": \"models\\\\full-matrix\\\\onnx-fp16-320\"}",
+      "--frames",
+      "120",
+      "--repeats",
+      "5",
+      "--warmup",
+      "20"
+    ],
+    "artifact": "results\\full-matrix\\onnx-cuda-fp16-320.json",
+    "previous_attempts": []
+  },
+  "export-openvino-fp32-320": {
+    "exit_code": 0,
+    "seconds": 99.34506159997545,
+    "arguments": [
+      "-m",
+      "traffic_lab.cli",
+      "export",
+      "--format",
+      "openvino",
+      "--imgsz",
+      "320",
+      "--quantize",
+      "32",
+      "--output-dir",
+      "models\\full-matrix\\openvino-fp32-320",
+      "--device",
+      "cpu",
+      "--batch",
+      "1"
+    ],
+    "artifact": "models\\full-matrix\\openvino-fp32-320\\yolo11n_openvino_model",
+    "previous_attempts": []
+  },
+  "openvino-cpu-fp32-320": {
+    "exit_code": 0,
+    "seconds": 73.89390389999608,
+    "arguments": [
+      "scripts/matrix_case.py",
+      "--case",
+      "{\"name\": \"openvino-cpu-fp32-320\", \"backend\": \"openvino\", \"precision\": 32, \"device\": \"cpu\", \"imgsz\": 320, \"model\": \"models\\\\full-matrix\\\\openvino-fp32-320\\\\yolo11n_openvino_model\", \"half\": false, \"export_key\": \"openvino-fp32-320\", \"export_dir\": \"models\\\\full-matrix\\\\openvino-fp32-320\"}",
+      "--frames",
+      "120",
+      "--repeats",
+      "5",
+      "--warmup",
+      "20"
+    ],
+    "artifact": "results\\full-matrix\\openvino-cpu-fp32-320.json",
+    "previous_attempts": [
+      {
+        "exit_code": 3221225477,
+        "seconds": 199.5588190999697,
+        "arguments": [
+          "scripts/matrix_case.py",
+          "--case",
+          "{\"name\": \"openvino-cpu-fp32-320\", \"backend\": \"openvino\", \"precision\": 32, \"device\": \"cpu\", \"imgsz\": 320, \"model\": \"models\\\\full-matrix\\\\openvino-fp32-320\\\\yolo11n_openvino_model\", \"half\": false, \"export_key\": \"openvino-fp32-320\", \"export_dir\": \"models\\\\full-matrix\\\\openvino-fp32-320\"}",
+          "--frames",
+          "120",
+          "--repeats",
+          "5",
+          "--warmup",
+          "20"
+        ],
+        "artifact": "results\\full-matrix\\openvino-cpu-fp32-320.json",
+        "log": "results\\full-matrix\\logs\\openvino-cpu-fp32-320.attempt-1.log"
+      }
+    ]
+  },
+  "export-openvino-fp16-320": {
+    "exit_code": 0,
+    "seconds": 88.25044690002687,
+    "arguments": [
+      "-m",
+      "traffic_lab.cli",
+      "export",
+      "--format",
+      "openvino",
+      "--imgsz",
+      "320",
+      "--quantize",
+      "16",
+      "--output-dir",
+      "models\\full-matrix\\openvino-fp16-320",
+      "--device",
+      "cpu",
+      "--batch",
+      "1"
+    ],
+    "artifact": "models\\full-matrix\\openvino-fp16-320\\yolo11n_openvino_model",
+    "previous_attempts": []
+  },
+  "openvino-cpu-fp16-320": {
+    "exit_code": 0,
+    "seconds": 11.11705240001902,
+    "arguments": [
+      "scripts/matrix_case.py",
+      "--case",
+      "{\"name\": \"openvino-cpu-fp16-320\", \"backend\": \"openvino\", \"precision\": 16, \"device\": \"cpu\", \"imgsz\": 320, \"model\": \"models\\\\full-matrix\\\\openvino-fp16-320\\\\yolo11n_openvino_model\", \"half\": false, \"export_key\": \"openvino-fp16-320\", \"export_dir\": \"models\\\\full-matrix\\\\openvino-fp16-320\"}",
+      "--frames",
+      "120",
+      "--repeats",
+      "5",
+      "--warmup",
+      "20"
+    ],
+    "artifact": "results\\full-matrix\\openvino-cpu-fp16-320.json",
+    "previous_attempts": [
+      {
+        "exit_code": 3221225477,
+        "seconds": 165.25193899997976,
+        "arguments": [
+          "scripts/matrix_case.py",
+          "--case",
+          "{\"name\": \"openvino-cpu-fp16-320\", \"backend\": \"openvino\", \"precision\": 16, \"device\": \"cpu\", \"imgsz\": 320, \"model\": \"models\\\\full-matrix\\\\openvino-fp16-320\\\\yolo11n_openvino_model\", \"half\": false, \"export_key\": \"openvino-fp16-320\", \"export_dir\": \"models\\\\full-matrix\\\\openvino-fp16-320\"}",
+          "--frames",
+          "120",
+          "--repeats",
+          "5",
+          "--warmup",
+          "20"
+        ],
+        "artifact": "results\\full-matrix\\openvino-cpu-fp16-320.json",
+        "log": "results\\full-matrix\\logs\\openvino-cpu-fp16-320.attempt-1.log"
+      }
+    ]
+  },
+  "export-openvino-int8-320": {
+    "exit_code": 0,
+    "seconds": 206.8125158000039,
+    "arguments": [
+      "-m",
+      "traffic_lab.cli",
+      "export",
+      "--format",
+      "openvino",
+      "--imgsz",
+      "320",
+      "--quantize",
+      "8",
+      "--output-dir",
+      "models\\full-matrix\\openvino-int8-320",
+      "--device",
+      "cpu",
+      "--batch",
+      "1",
+      "--data",
+      "data/coco-deployment/calibration.yaml"
+    ],
+    "artifact": "models\\full-matrix\\openvino-int8-320\\yolo11n_int8_openvino_model",
+    "previous_attempts": []
+  },
+  "openvino-cpu-int8-320": {
+    "exit_code": 0,
+    "seconds": 155.96443980000913,
+    "arguments": [
+      "scripts/matrix_case.py",
+      "--case",
+      "{\"name\": \"openvino-cpu-int8-320\", \"backend\": \"openvino\", \"precision\": 8, \"device\": \"cpu\", \"imgsz\": 320, \"model\": \"models\\\\full-matrix\\\\openvino-int8-320\\\\yolo11n_int8_openvino_model\", \"half\": false, \"export_key\": \"openvino-int8-320\", \"export_dir\": \"models\\\\full-matrix\\\\openvino-int8-320\"}",
+      "--frames",
+      "120",
+      "--repeats",
+      "5",
+      "--warmup",
+      "20"
+    ],
+    "artifact": "results\\full-matrix\\openvino-cpu-int8-320.json",
+    "previous_attempts": []
+  },
+  "export-tensorrt-fp32-320": {
+    "exit_code": 0,
+    "seconds": 334.56647830002476,
+    "arguments": [
+      "-m",
+      "traffic_lab.cli",
+      "export",
+      "--format",
+      "engine",
+      "--imgsz",
+      "320",
+      "--quantize",
+      "32",
+      "--output-dir",
+      "models\\full-matrix\\tensorrt-fp32-320",
+      "--device",
+      "0",
+      "--batch",
+      "1"
+    ],
+    "artifact": "models\\full-matrix\\tensorrt-fp32-320\\yolo11n.engine",
+    "previous_attempts": []
+  },
+  "tensorrt-cuda-fp32-320": {
+    "exit_code": 0,
+    "seconds": 151.3608768999693,
+    "arguments": [
+      "scripts/matrix_case.py",
+      "--case",
+      "{\"name\": \"tensorrt-cuda-fp32-320\", \"backend\": \"tensorrt\", \"precision\": 32, \"device\": \"0\", \"imgsz\": 320, \"model\": \"models\\\\full-matrix\\\\tensorrt-fp32-320\\\\yolo11n.engine\", \"half\": false, \"export_key\": \"tensorrt-fp32-320\", \"export_dir\": \"models\\\\full-matrix\\\\tensorrt-fp32-320\"}",
+      "--frames",
+      "120",
+      "--repeats",
+      "5",
+      "--warmup",
+      "20"
+    ],
+    "artifact": "results\\full-matrix\\tensorrt-cuda-fp32-320.json",
+    "previous_attempts": []
+  },
+  "export-tensorrt-fp16-320": {
+    "exit_code": 0,
+    "seconds": 623.8096643000026,
+    "arguments": [
+      "-m",
+      "traffic_lab.cli",
+      "export",
+      "--format",
+      "engine",
+      "--imgsz",
+      "320",
+      "--quantize",
+      "16",
+      "--output-dir",
+      "models\\full-matrix\\tensorrt-fp16-320",
+      "--device",
+      "0",
+      "--batch",
+      "1"
+    ],
+    "artifact": "models\\full-matrix\\tensorrt-fp16-320\\yolo11n.engine",
+    "previous_attempts": []
+  },
+  "tensorrt-cuda-fp16-320": {
+    "exit_code": 0,
+    "seconds": 160.8413259999943,
+    "arguments": [
+      "scripts/matrix_case.py",
+      "--case",
+      "{\"name\": \"tensorrt-cuda-fp16-320\", \"backend\": \"tensorrt\", \"precision\": 16, \"device\": \"0\", \"imgsz\": 320, \"model\": \"models\\\\full-matrix\\\\tensorrt-fp16-320\\\\yolo11n.engine\", \"half\": false, \"export_key\": \"tensorrt-fp16-320\", \"export_dir\": \"models\\\\full-matrix\\\\tensorrt-fp16-320\"}",
+      "--frames",
+      "120",
+      "--repeats",
+      "5",
+      "--warmup",
+      "20"
+    ],
+    "artifact": "results\\full-matrix\\tensorrt-cuda-fp16-320.json",
+    "previous_attempts": []
+  },
+  "export-tensorrt-int8-320": {
+    "exit_code": 0,
+    "seconds": 1161.1766988000018,
+    "arguments": [
+      "-m",
+      "traffic_lab.cli",
+      "export",
+      "--format",
+      "engine",
+      "--imgsz",
+      "320",
+      "--quantize",
+      "8",
+      "--output-dir",
+      "models\\full-matrix\\tensorrt-int8-320",
+      "--device",
+      "0",
+      "--batch",
+      "1",
+      "--data",
+      "data/coco-deployment/calibration.yaml"
+    ],
+    "artifact": "models\\full-matrix\\tensorrt-int8-320\\yolo11n.engine",
+    "previous_attempts": []
+  },
+  "tensorrt-cuda-int8-320": {
+    "exit_code": 0,
+    "seconds": 145.25070209999103,
+    "arguments": [
+      "scripts/matrix_case.py",
+      "--case",
+      "{\"name\": \"tensorrt-cuda-int8-320\", \"backend\": \"tensorrt\", \"precision\": 8, \"device\": \"0\", \"imgsz\": 320, \"model\": \"models\\\\full-matrix\\\\tensorrt-int8-320\\\\yolo11n.engine\", \"half\": false, \"export_key\": \"tensorrt-int8-320\", \"export_dir\": \"models\\\\full-matrix\\\\tensorrt-int8-320\"}",
+      "--frames",
+      "120",
+      "--repeats",
+      "5",
+      "--warmup",
+      "20"
+    ],
+    "artifact": "results\\full-matrix\\tensorrt-cuda-int8-320.json",
+    "previous_attempts": []
+  },
+  "pytorch-cpu-fp32-640": {
+    "exit_code": 0,
+    "seconds": 185.66741329996148,
+    "arguments": [
+      "scripts/matrix_case.py",
+      "--case",
+      "{\"name\": \"pytorch-cpu-fp32-640\", \"backend\": \"pytorch\", \"precision\": 32, \"device\": \"cpu\", \"imgsz\": 640, \"model\": \"models/yolo11n.pt\", \"half\": false, \"export_key\": \"pytorch-fp32-640\", \"export_dir\": \"models\\\\full-matrix\\\\pytorch-fp32-640\"}",
+      "--frames",
+      "120",
+      "--repeats",
+      "5",
+      "--warmup",
+      "20"
+    ],
+    "artifact": "results\\full-matrix\\pytorch-cpu-fp32-640.json",
+    "previous_attempts": []
+  },
+  "pytorch-cuda-fp32-640": {
+    "exit_code": 0,
+    "seconds": 126.625566600007,
+    "arguments": [
+      "scripts/matrix_case.py",
+      "--case",
+      "{\"name\": \"pytorch-cuda-fp32-640\", \"backend\": \"pytorch\", \"precision\": 32, \"device\": \"0\", \"imgsz\": 640, \"model\": \"models/yolo11n.pt\", \"half\": false, \"export_key\": \"pytorch-fp32-640\", \"export_dir\": \"models\\\\full-matrix\\\\pytorch-fp32-640\"}",
+      "--frames",
+      "120",
+      "--repeats",
+      "5",
+      "--warmup",
+      "20"
+    ],
+    "artifact": "results\\full-matrix\\pytorch-cuda-fp32-640.json",
+    "previous_attempts": []
+  },
+  "pytorch-cuda-fp16-640": {
+    "exit_code": 0,
+    "seconds": 101.38445790001424,
+    "arguments": [
+      "scripts/matrix_case.py",
+      "--case",
+      "{\"name\": \"pytorch-cuda-fp16-640\", \"backend\": \"pytorch\", \"precision\": 16, \"device\": \"0\", \"imgsz\": 640, \"model\": \"models/yolo11n.pt\", \"half\": true, \"export_key\": \"pytorch-fp16-640\", \"export_dir\": \"models\\\\full-matrix\\\\pytorch-fp16-640\"}",
+      "--frames",
+      "120",
+      "--repeats",
+      "5",
+      "--warmup",
+      "20"
+    ],
+    "artifact": "results\\full-matrix\\pytorch-cuda-fp16-640.json",
+    "previous_attempts": []
+  },
+  "export-onnx-fp32-640": {
+    "exit_code": 0,
+    "seconds": 39.56116100004874,
+    "arguments": [
+      "-m",
+      "traffic_lab.cli",
+      "export",
+      "--format",
+      "onnx",
+      "--imgsz",
+      "640",
+      "--quantize",
+      "32",
+      "--output-dir",
+      "models\\full-matrix\\onnx-fp32-640",
+      "--device",
+      "cpu",
+      "--batch",
+      "1"
+    ],
+    "artifact": "models\\full-matrix\\onnx-fp32-640\\yolo11n.onnx",
+    "previous_attempts": []
+  },
+  "onnx-cpu-fp32-640": {
+    "exit_code": 0,
+    "seconds": 107.42853139998624,
+    "arguments": [
+      "scripts/matrix_case.py",
+      "--case",
+      "{\"name\": \"onnx-cpu-fp32-640\", \"backend\": \"onnx\", \"precision\": 32, \"device\": \"cpu\", \"imgsz\": 640, \"model\": \"models\\\\full-matrix\\\\onnx-fp32-640\\\\yolo11n.onnx\", \"half\": false, \"export_key\": \"onnx-fp32-640\", \"export_dir\": \"models\\\\full-matrix\\\\onnx-fp32-640\"}",
+      "--frames",
+      "120",
+      "--repeats",
+      "5",
+      "--warmup",
+      "20"
+    ],
+    "artifact": "results\\full-matrix\\onnx-cpu-fp32-640.json",
+    "previous_attempts": []
+  },
+  "export-onnx-fp16-640": {
+    "exit_code": 0,
+    "seconds": 16.728835100017022,
+    "arguments": [
+      "-m",
+      "traffic_lab.cli",
+      "export",
+      "--format",
+      "onnx",
+      "--imgsz",
+      "640",
+      "--quantize",
+      "16",
+      "--output-dir",
+      "models\\full-matrix\\onnx-fp16-640",
+      "--device",
+      "cpu",
+      "--batch",
+      "1"
+    ],
+    "artifact": "models\\full-matrix\\onnx-fp16-640\\yolo11n.onnx",
+    "previous_attempts": []
+  },
+  "onnx-cpu-fp16-640": {
+    "exit_code": 0,
+    "seconds": 187.9428121999954,
+    "arguments": [
+      "scripts/matrix_case.py",
+      "--case",
+      "{\"name\": \"onnx-cpu-fp16-640\", \"backend\": \"onnx\", \"precision\": 16, \"device\": \"cpu\", \"imgsz\": 640, \"model\": \"models\\\\full-matrix\\\\onnx-fp16-640\\\\yolo11n.onnx\", \"half\": false, \"export_key\": \"onnx-fp16-640\", \"export_dir\": \"models\\\\full-matrix\\\\onnx-fp16-640\"}",
+      "--frames",
+      "120",
+      "--repeats",
+      "5",
+      "--warmup",
+      "20"
+    ],
+    "artifact": "results\\full-matrix\\onnx-cpu-fp16-640.json",
+    "previous_attempts": []
+  },
+  "export-onnx-int8-640": {
+    "exit_code": 0,
+    "seconds": 145.45405709999613,
+    "arguments": [
+      "-m",
+      "traffic_lab.cli",
+      "export",
+      "--format",
+      "onnx",
+      "--imgsz",
+      "640",
+      "--quantize",
+      "8",
+      "--output-dir",
+      "models\\full-matrix\\onnx-int8-640",
+      "--device",
+      "cpu",
+      "--batch",
+      "1",
+      "--data",
+      "data/coco-deployment/calibration.yaml"
+    ],
+    "artifact": "models\\full-matrix\\onnx-int8-640\\yolo11n_int8.onnx",
+    "previous_attempts": []
+  },
+  "onnx-cpu-int8-640": {
+    "exit_code": 0,
+    "seconds": 271.21775380003965,
+    "arguments": [
+      "scripts/matrix_case.py",
+      "--case",
+      "{\"name\": \"onnx-cpu-int8-640\", \"backend\": \"onnx\", \"precision\": 8, \"device\": \"cpu\", \"imgsz\": 640, \"model\": \"models\\\\full-matrix\\\\onnx-int8-640\\\\yolo11n_int8.onnx\", \"half\": false, \"export_key\": \"onnx-int8-640\", \"export_dir\": \"models\\\\full-matrix\\\\onnx-int8-640\"}",
+      "--frames",
+      "120",
+      "--repeats",
+      "5",
+      "--warmup",
+      "20"
+    ],
+    "artifact": "results\\full-matrix\\onnx-cpu-int8-640.json",
+    "previous_attempts": []
+  },
+  "onnx-cuda-fp32-640": {
+    "exit_code": 0,
+    "seconds": 185.35997529997258,
+    "arguments": [
+      "scripts/matrix_case.py",
+      "--case",
+      "{\"name\": \"onnx-cuda-fp32-640\", \"backend\": \"onnx\", \"precision\": 32, \"device\": \"0\", \"imgsz\": 640, \"model\": \"models\\\\full-matrix\\\\onnx-fp32-640\\\\yolo11n.onnx\", \"half\": false, \"export_key\": \"onnx-fp32-640\", \"export_dir\": \"models\\\\full-matrix\\\\onnx-fp32-640\"}",
+      "--frames",
+      "120",
+      "--repeats",
+      "5",
+      "--warmup",
+      "20"
+    ],
+    "artifact": "results\\full-matrix\\onnx-cuda-fp32-640.json",
+    "previous_attempts": []
+  },
+  "onnx-cuda-fp16-640": {
+    "exit_code": 0,
+    "seconds": 140.06628269999055,
+    "arguments": [
+      "scripts/matrix_case.py",
+      "--case",
+      "{\"name\": \"onnx-cuda-fp16-640\", \"backend\": \"onnx\", \"precision\": 16, \"device\": \"0\", \"imgsz\": 640, \"model\": \"models\\\\full-matrix\\\\onnx-fp16-640\\\\yolo11n.onnx\", \"half\": false, \"export_key\": \"onnx-fp16-640\", \"export_dir\": \"models\\\\full-matrix\\\\onnx-fp16-640\"}",
+      "--frames",
+      "120",
+      "--repeats",
+      "5",
+      "--warmup",
+      "20"
+    ],
+    "artifact": "results\\full-matrix\\onnx-cuda-fp16-640.json",
+    "previous_attempts": []
+  },
+  "export-openvino-fp32-640": {
+    "exit_code": 0,
+    "seconds": 67.27859000000171,
+    "arguments": [
+      "-m",
+      "traffic_lab.cli",
+      "export",
+      "--format",
+      "openvino",
+      "--imgsz",
+      "640",
+      "--quantize",
+      "32",
+      "--output-dir",
+      "models\\full-matrix\\openvino-fp32-640",
+      "--device",
+      "cpu",
+      "--batch",
+      "1"
+    ],
+    "artifact": "models\\full-matrix\\openvino-fp32-640\\yolo11n_openvino_model",
+    "previous_attempts": []
+  },
+  "openvino-cpu-fp32-640": {
+    "exit_code": 0,
+    "seconds": 201.00222929997835,
+    "arguments": [
+      "scripts/matrix_case.py",
+      "--case",
+      "{\"name\": \"openvino-cpu-fp32-640\", \"backend\": \"openvino\", \"precision\": 32, \"device\": \"cpu\", \"imgsz\": 640, \"model\": \"models\\\\full-matrix\\\\openvino-fp32-640\\\\yolo11n_openvino_model\", \"half\": false, \"export_key\": \"openvino-fp32-640\", \"export_dir\": \"models\\\\full-matrix\\\\openvino-fp32-640\"}",
+      "--frames",
+      "120",
+      "--repeats",
+      "5",
+      "--warmup",
+      "20"
+    ],
+    "artifact": "results\\full-matrix\\openvino-cpu-fp32-640.json",
+    "previous_attempts": []
+  },
+  "export-openvino-fp16-640": {
+    "exit_code": 0,
+    "seconds": 80.27506750001339,
+    "arguments": [
+      "-m",
+      "traffic_lab.cli",
+      "export",
+      "--format",
+      "openvino",
+      "--imgsz",
+      "640",
+      "--quantize",
+      "16",
+      "--output-dir",
+      "models\\full-matrix\\openvino-fp16-640",
+      "--device",
+      "cpu",
+      "--batch",
+      "1"
+    ],
+    "artifact": "models\\full-matrix\\openvino-fp16-640\\yolo11n_openvino_model",
+    "previous_attempts": []
+  },
+  "openvino-cpu-fp16-640": {
+    "exit_code": 0,
+    "seconds": 185.4687261999934,
+    "arguments": [
+      "scripts/matrix_case.py",
+      "--case",
+      "{\"name\": \"openvino-cpu-fp16-640\", \"backend\": \"openvino\", \"precision\": 16, \"device\": \"cpu\", \"imgsz\": 640, \"model\": \"models\\\\full-matrix\\\\openvino-fp16-640\\\\yolo11n_openvino_model\", \"half\": false, \"export_key\": \"openvino-fp16-640\", \"export_dir\": \"models\\\\full-matrix\\\\openvino-fp16-640\"}",
+      "--frames",
+      "120",
+      "--repeats",
+      "5",
+      "--warmup",
+      "20"
+    ],
+    "artifact": "results\\full-matrix\\openvino-cpu-fp16-640.json",
+    "previous_attempts": []
+  },
+  "export-openvino-int8-640": {
+    "exit_code": 0,
+    "seconds": 253.76496250001946,
+    "arguments": [
+      "-m",
+      "traffic_lab.cli",
+      "export",
+      "--format",
+      "openvino",
+      "--imgsz",
+      "640",
+      "--quantize",
+      "8",
+      "--output-dir",
+      "models\\full-matrix\\openvino-int8-640",
+      "--device",
+      "cpu",
+      "--batch",
+      "1",
+      "--data",
+      "data/coco-deployment/calibration.yaml"
+    ],
+    "artifact": "models\\full-matrix\\openvino-int8-640\\yolo11n_int8_openvino_model",
+    "previous_attempts": []
+  },
+  "openvino-cpu-int8-640": {
+    "exit_code": 0,
+    "seconds": 255.5709820999764,
+    "arguments": [
+      "scripts/matrix_case.py",
+      "--case",
+      "{\"name\": \"openvino-cpu-int8-640\", \"backend\": \"openvino\", \"precision\": 8, \"device\": \"cpu\", \"imgsz\": 640, \"model\": \"models\\\\full-matrix\\\\openvino-int8-640\\\\yolo11n_int8_openvino_model\", \"half\": false, \"export_key\": \"openvino-int8-640\", \"export_dir\": \"models\\\\full-matrix\\\\openvino-int8-640\"}",
+      "--frames",
+      "120",
+      "--repeats",
+      "5",
+      "--warmup",
+      "20"
+    ],
+    "artifact": "results\\full-matrix\\openvino-cpu-int8-640.json",
+    "previous_attempts": []
+  },
+  "export-tensorrt-fp32-640": {
+    "exit_code": 0,
+    "seconds": 234.7554999999702,
+    "arguments": [
+      "-m",
+      "traffic_lab.cli",
+      "export",
+      "--format",
+      "engine",
+      "--imgsz",
+      "640",
+      "--quantize",
+      "32",
+      "--output-dir",
+      "models\\full-matrix\\tensorrt-fp32-640",
+      "--device",
+      "0",
+      "--batch",
+      "1"
+    ],
+    "artifact": "models\\full-matrix\\tensorrt-fp32-640\\yolo11n.engine",
+    "previous_attempts": []
+  },
+  "tensorrt-cuda-fp32-640": {
+    "exit_code": 0,
+    "seconds": 175.23592359997565,
+    "arguments": [
+      "scripts/matrix_case.py",
+      "--case",
+      "{\"name\": \"tensorrt-cuda-fp32-640\", \"backend\": \"tensorrt\", \"precision\": 32, \"device\": \"0\", \"imgsz\": 640, \"model\": \"models\\\\full-matrix\\\\tensorrt-fp32-640\\\\yolo11n.engine\", \"half\": false, \"export_key\": \"tensorrt-fp32-640\", \"export_dir\": \"models\\\\full-matrix\\\\tensorrt-fp32-640\"}",
+      "--frames",
+      "120",
+      "--repeats",
+      "5",
+      "--warmup",
+      "20"
+    ],
+    "artifact": "results\\full-matrix\\tensorrt-cuda-fp32-640.json",
+    "previous_attempts": []
+  },
+  "export-tensorrt-fp16-640": {
+    "exit_code": 0,
+    "seconds": 527.63931280002,
+    "arguments": [
+      "-m",
+      "traffic_lab.cli",
+      "export",
+      "--format",
+      "engine",
+      "--imgsz",
+      "640",
+      "--quantize",
+      "16",
+      "--output-dir",
+      "models\\full-matrix\\tensorrt-fp16-640",
+      "--device",
+      "0",
+      "--batch",
+      "1"
+    ],
+    "artifact": "models\\full-matrix\\tensorrt-fp16-640\\yolo11n.engine",
+    "previous_attempts": []
+  },
+  "tensorrt-cuda-fp16-640": {
+    "exit_code": 0,
+    "seconds": 154.3235197000322,
+    "arguments": [
+      "scripts/matrix_case.py",
+      "--case",
+      "{\"name\": \"tensorrt-cuda-fp16-640\", \"backend\": \"tensorrt\", \"precision\": 16, \"device\": \"0\", \"imgsz\": 640, \"model\": \"models\\\\full-matrix\\\\tensorrt-fp16-640\\\\yolo11n.engine\", \"half\": false, \"export_key\": \"tensorrt-fp16-640\", \"export_dir\": \"models\\\\full-matrix\\\\tensorrt-fp16-640\"}",
+      "--frames",
+      "120",
+      "--repeats",
+      "5",
+      "--warmup",
+      "20"
+    ],
+    "artifact": "results\\full-matrix\\tensorrt-cuda-fp16-640.json",
+    "previous_attempts": []
+  },
+  "export-tensorrt-int8-640": {
+    "exit_code": 0,
+    "seconds": 1065.7996259999927,
+    "arguments": [
+      "-m",
+      "traffic_lab.cli",
+      "export",
+      "--format",
+      "engine",
+      "--imgsz",
+      "640",
+      "--quantize",
+      "8",
+      "--output-dir",
+      "models\\full-matrix\\tensorrt-int8-640",
+      "--device",
+      "0",
+      "--batch",
+      "1",
+      "--data",
+      "data/coco-deployment/calibration.yaml"
+    ],
+    "artifact": "models\\full-matrix\\tensorrt-int8-640\\yolo11n.engine",
+    "previous_attempts": []
+  },
+  "tensorrt-cuda-int8-640": {
+    "exit_code": 0,
+    "seconds": 227.844574799994,
+    "arguments": [
+      "scripts/matrix_case.py",
+      "--case",
+      "{\"name\": \"tensorrt-cuda-int8-640\", \"backend\": \"tensorrt\", \"precision\": 8, \"device\": \"0\", \"imgsz\": 640, \"model\": \"models\\\\full-matrix\\\\tensorrt-int8-640\\\\yolo11n.engine\", \"half\": false, \"export_key\": \"tensorrt-int8-640\", \"export_dir\": \"models\\\\full-matrix\\\\tensorrt-int8-640\"}",
+      "--frames",
+      "120",
+      "--repeats",
+      "5",
+      "--warmup",
+      "20"
+    ],
+    "artifact": "results\\full-matrix\\tensorrt-cuda-int8-640.json",
+    "previous_attempts": []
+  }
+}

@@ -1,0 +1,130 @@
+[
+  {
+    "camera": 3,
+    "source_seconds": 1.3013000000000001,
+    "track_id": 3,
+    "direction": "positive",
+    "class_id": 2,
+    "frame": 39
+  },
+  {
+    "camera": 7,
+    "source_seconds": 1.2679333333333334,
+    "track_id": 3,
+    "direction": "positive",
+    "class_id": 2,
+    "frame": 38
+  },
+  {
+    "camera": 0,
+    "source_seconds": 1.3013000000000001,
+    "track_id": 3,
+    "direction": "positive",
+    "class_id": 2,
+    "frame": 39
+  },
+  {
+    "camera": 1,
+    "source_seconds": 1.3680333333333334,
+    "track_id": 3,
+    "direction": "positive",
+    "class_id": 2,
+    "frame": 41
+  },
+  {
+    "camera": 2,
+    "source_seconds": 1.2679333333333334,
+    "track_id": 3,
+    "direction": "positive",
+    "class_id": 2,
+    "frame": 38
+  },
+  {
+    "camera": 5,
+    "source_seconds": 1.3346666666666667,
+    "track_id": 3,
+    "direction": "positive",
+    "class_id": 2,
+    "frame": 40
+  },
+  {
+    "camera": 4,
+    "source_seconds": 1.3346666666666667,
+    "track_id": 3,
+    "direction": "positive",
+    "class_id": 2,
+    "frame": 40
+  },
+  {
+    "camera": 6,
+    "source_seconds": 1.4014,
+    "track_id": 3,
+    "direction": "positive",
+    "class_id": 2,
+    "frame": 42
+  },
+  {
+    "camera": 3,
+    "source_seconds": 4.3043000000000005,
+    "track_id": 5,
+    "direction": "positive",
+    "class_id": 7,
+    "frame": 129
+  },
+  {
+    "camera": 0,
+    "source_seconds": 4.170833333333333,
+    "track_id": 5,
+    "direction": "positive",
+    "class_id": 7,
+    "frame": 125
+  },
+  {
+    "camera": 1,
+    "source_seconds": 4.170833333333333,
+    "track_id": 5,
+    "direction": "positive",
+    "class_id": 7,
+    "frame": 125
+  },
+  {
+    "camera": 2,
+    "source_seconds": 4.170833333333333,
+    "track_id": 5,
+    "direction": "positive",
+    "class_id": 7,
+    "frame": 125
+  },
+  {
+    "camera": 7,
+    "source_seconds": 4.137466666666667,
+    "track_id": 5,
+    "direction": "positive",
+    "class_id": 7,
+    "frame": 124
+  },
+  {
+    "camera": 6,
+    "source_seconds": 4.2042,
+    "track_id": 5,
+    "direction": "positive",
+    "class_id": 7,
+    "frame": 126
+  },
+  {
+    "camera": 5,
+    "source_seconds": 4.1041,
+    "track_id": 5,
+    "direction": "positive",
+    "class_id": 7,
+    "frame": 123
+  },
+  {
+    "camera": 4,
+    "source_seconds": 4.1041,
+    "track_id": 5,
+    "direction": "positive",
+    "class_id": 7,
+    "frame": 123
+  }
+]

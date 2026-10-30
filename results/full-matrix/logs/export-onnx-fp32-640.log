@@ -1,0 +1,58 @@
+Ultralytics 8.4.193  Python-3.12.10 torch-2.6.0+cu124 CPU (Intel Core i7-10750H 2.60GHz)
+YOLO11n summary (fused): 100 layers, 2,616,248 parameters, 0 gradients, 6.5 GFLOPs
+
+[34m[1mPyTorch:[0m starting from 'models\full-matrix\onnx-fp32-640\yolo11n.pt' with input shape (1, 3, 640, 640) BCHW and output shape(s) (1, 84, 8400) (5.4 MB)
+
+[34m[1mONNX:[0m starting export with onnx 1.23.2 opset 17...
+[34m[1mONNX:[0m slimming with onnxslim 0.1.98...
+[34m[1mONNX:[0m export success  25.4s, saved as 'models\full-matrix\onnx-fp32-640\yolo11n.onnx' (10.2 MB)
+
+Export complete (28.7s)
+Results saved to [1mD:\M\New_Project\traffic-inference-lab\models\full-matrix\onnx-fp32-640\yolo11n.onnx[0m
+Predict:         yolo predict task=detect model=models\full-matrix\onnx-fp32-640\yolo11n.onnx imgsz=640 
+Validate:        yolo val task=detect model=models\full-matrix\onnx-fp32-640\yolo11n.onnx imgsz=640  
+Visualize:       https://netron.app
+{
+  "kind": "export",
+  "source_sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+  "artifact": "models\\full-matrix\\onnx-fp32-640\\yolo11n.onnx",
+  "artifact_sha256": "da47494e3bce3a670801fc5cd30b22fdb8ae1e1acd9388baa0a67a3c6235cf41",
+  "arguments": {
+    "format": "onnx",
+    "imgsz": 640,
+    "device": "cpu",
+    "quantize": 32,
+    "batch": 1,
+    "dynamic": false,
+    "opset": 17,
+    "simplify": true
+  },
+  "calibration_yaml_sha256": null,
+  "calibration_manifest_sha256": null,
+  "environment": {
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 165 Stepping 2, GenuineIntel",
+    "cpu_physical_cores": 6,
+    "cpu_logical_cores": 12,
+    "ram_gib": 7.839607238769531,
+    "gpu": "NVIDIA GeForce GTX 1650 Ti, 580.97, 4096 MiB",
+    "packages": {
+      "traffic-inference-lab": "0.1.0",
+      "ultralytics": "8.4.193",
+      "torch": "2.6.0+cu124",
+      "torchvision": "0.21.0+cu124",
+      "numpy": "2.4.6",
+      "opencv-python": "4.14.0.94",
+      "onnxruntime": null,
+      "onnxruntime-gpu": "1.20.2",
+      "openvino": "2026.4.1",
+      "onnx": "1.23.2",
+      "nncf": "3.4.0",
+      "tensorrt": "10.8.0.43",
+      "tensorrt-cu12": null,
+      "lap": "0.5.13"
+    },
+    "utc": "2026-10-30T13:11:18Z"
+  }
+}

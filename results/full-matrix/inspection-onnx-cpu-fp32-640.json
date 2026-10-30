@@ -1,0 +1,39 @@
+{
+  "model": "models\\full-matrix\\onnx-fp32-640\\yolo11n.onnx",
+  "device": "cpu",
+  "initializer_types": {
+    "FLOAT": 181,
+    "INT64": 15
+  },
+  "graph_operations": {
+    "Conv": 88,
+    "Sigmoid": 78,
+    "Mul": 79,
+    "Split": 10,
+    "Add": 16,
+    "Concat": 21,
+    "MaxPool": 3,
+    "Reshape": 11,
+    "Transpose": 3,
+    "MatMul": 2,
+    "Softmax": 2,
+    "Resize": 2,
+    "Slice": 2,
+    "Sub": 2,
+    "Div": 1
+  },
+  "registered_providers": [
+    "CPUExecutionProvider"
+  ],
+  "executed_kernel_providers": {
+    "CPUExecutionProvider": 1230
+  },
+  "weighted_kernel_providers": {
+    "CPUExecutionProvider": 270
+  },
+  "profile": "results\\full-matrix\\inspection-onnx-cpu-fp32-640_2026-10-30_14-13-05.json",
+  "note": "Inspection/profiling is a separate untimed run. TensorRT precision flags allow mixed-precision tactics.",
+  "weighted_kernel_input_types": {
+    "CPUExecutionProvider:float": 270
+  }
+}

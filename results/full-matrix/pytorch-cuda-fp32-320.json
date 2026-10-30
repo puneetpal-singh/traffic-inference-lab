@@ -1,0 +1,22 @@
+{
+  "kind": "full_matrix_case",
+  "spec": {
+    "name": "pytorch-cuda-fp32-320",
+    "backend": "pytorch",
+    "precision": 32,
+    "device": "0",
+    "imgsz": 320,
+    "model": "models/yolo11n.pt",
+    "half": false,
+    "export_key": "pytorch-fp32-320",
+    "export_dir": "models\\full-matrix\\pytorch-fp32-320"
+  },
+  "throughput_fps": 36.80042958359364,
+  "mean_trial_fps": 38.35199221683787,
+  "p95_ms": 32.95512999757193,
+  "p99_ms": 36.20403703593183,
+  "map50_95": 0.29968050280364805,
+  "map50": 0.4366947445948652,
+  "strict_detection_parity_passed": true,
+  "note": "Strict detection parity is diagnostic for quantized models; evaluate mAP loss separately."
+}

@@ -1,0 +1,622 @@
+Ultralytics 8.4.193  Python-3.12.10 torch-2.6.0+cu124 CUDA:0 (NVIDIA GeForce GTX 1650 Ti, 4096MiB)
+YOLO11n summary (fused): 100 layers, 2,616,248 parameters, 0 gradients, 1.6 GFLOPs
+
+[34m[1mPyTorch:[0m starting from 'models\full-matrix\tensorrt-int8-320\yolo11n.pt' with input shape (1, 3, 320, 320) BCHW and output shape(s) (1, 84, 2100) (5.4 MB)
+
+[34m[1mONNX:[0m starting export with onnx 1.23.2 opset 18...
+[34m[1mONNX:[0m slimming with onnxslim 0.1.98...
+[34m[1mONNX:[0m export success  9.3s, saved as 'models\full-matrix\tensorrt-int8-320\yolo11n.onnx' (10.1 MB)
+[34m[1mTensorRT:[0m collecting INT8 calibration images from 'data=data/coco-deployment/calibration.yaml'
+WARNING [34m[1mval: [0mSlow image access detected (ping: 0.5±0.4 ms, read: 8.2±3.8 MB/s, size: 155.0 KB). Use local storage instead of remote/mounted storage for better performance. See https://docs.ultralytics.com/guides/model-training-tips
+[K[34m[1mval: [0mScanning D:\M\New_Project\traffic-inference-lab\data\coco-deployment\labels\calibration.cache... 512 images, 7 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 512/512  0.0s
+
+[34m[1mTensorRT:[0m starting export with TensorRT 10.8.0.43...
+[10/30/2026-13:43:28] [TRT] [I] [MemUsageChange] Init CUDA: CPU +3, GPU +0, now: CPU 7273, GPU 900 (MiB)
+[10/30/2026-13:43:57] [TRT] [I] [MemUsageChange] Init builder kernel library: CPU -290, GPU +192, now: CPU 7192, GPU 1092 (MiB)
+[10/30/2026-13:43:57] [TRT] [I] ----------------------------------------------------------------
+[10/30/2026-13:43:57] [TRT] [I] Input filename:   models\full-matrix\tensorrt-int8-320\yolo11n.onnx
+[10/30/2026-13:43:57] [TRT] [I] ONNX IR version:  0.0.8
+[10/30/2026-13:43:57] [TRT] [I] Opset version:    18
+[10/30/2026-13:43:57] [TRT] [I] Producer name:    pytorch
+[10/30/2026-13:43:57] [TRT] [I] Producer version: 2.6.0
+[10/30/2026-13:43:57] [TRT] [I] Domain:           
+[10/30/2026-13:43:57] [TRT] [I] Model version:    0
+[10/30/2026-13:43:57] [TRT] [I] Doc string:       
+[10/30/2026-13:43:57] [TRT] [I] ----------------------------------------------------------------
+[34m[1mTensorRT:[0m input "images" with shape(1, 3, 320, 320) DataType.FLOAT
+[34m[1mTensorRT:[0m output "output0" with shape(1, 84, 2100) DataType.FLOAT
+[34m[1mTensorRT:[0m building INT8 engine as models\full-matrix\tensorrt-int8-320\yolo11n.engine
+[34m[1mTensorRT:[0m keeping 26 head layers out of INT8 for accuracy
+[10/30/2026-13:43:58] [TRT] [I] BuilderFlag::kTF32 is set but hardware does not support TF32. Disabling TF32.
+[10/30/2026-13:43:58] [TRT] [I] Perform graph optimization on calibration graph.
+[10/30/2026-13:43:58] [TRT] [W] Heuristics has been ignored in this builder run. This feature is only supported on Ampere and beyond.
+[10/30/2026-13:43:58] [TRT] [I] Local timing cache in use. Profiling results in this builder pass will not be stored.
+[10/30/2026-13:44:01] [TRT] [I] Compiler backend is used during engine build.
+[10/30/2026-13:44:11] [TRT] [I] Detected 1 inputs and 3 output network tensors.
+[10/30/2026-13:44:17] [TRT] [I] Total Host Persistent Memory: 486784 bytes
+[10/30/2026-13:44:17] [TRT] [I] Total Device Persistent Memory: 0 bytes
+[10/30/2026-13:44:17] [TRT] [I] Max Scratch Memory: 0 bytes
+[10/30/2026-13:44:17] [TRT] [I] [BlockAssignment] Started assigning block shifts. This will take 335 steps to complete.
+[10/30/2026-13:44:17] [TRT] [I] [BlockAssignment] Algorithm ShiftNTopDown took 78.2776ms to assign 14 blocks to 335 nodes requiring 6460416 bytes.
+[10/30/2026-13:44:17] [TRT] [I] Total Activation Memory: 6460416 bytes
+[10/30/2026-13:44:17] [TRT] [I] Total Weights Memory: 10514436 bytes
+[10/30/2026-13:44:17] [TRT] [I] Compiler backend is used during engine execution.
+[10/30/2026-13:44:17] [TRT] [I] Engine generation completed in 18.9657 seconds.
+[10/30/2026-13:44:18] [TRT] [I] [MemUsageChange] TensorRT-managed allocation in IExecutionContext creation: CPU +0, GPU +6, now: CPU 0, GPU 17 (MiB)
+[10/30/2026-13:44:18] [TRT] [I] Starting Calibration.
+[10/30/2026-13:44:19] [TRT] [I]   Calibrated batch 0 in 0.405937 seconds.
+[10/30/2026-13:44:19] [TRT] [I]   Calibrated batch 1 in 0.242221 seconds.
+[10/30/2026-13:44:20] [TRT] [I]   Calibrated batch 2 in 0.246466 seconds.
+[10/30/2026-13:44:20] [TRT] [I]   Calibrated batch 3 in 0.222055 seconds.
+[10/30/2026-13:44:20] [TRT] [I]   Calibrated batch 4 in 0.205322 seconds.
+[10/30/2026-13:44:20] [TRT] [I]   Calibrated batch 5 in 0.2131 seconds.
+[10/30/2026-13:44:21] [TRT] [I]   Calibrated batch 6 in 0.22369 seconds.
+[10/30/2026-13:44:21] [TRT] [I]   Calibrated batch 7 in 0.211817 seconds.
+[10/30/2026-13:44:21] [TRT] [I]   Calibrated batch 8 in 0.21315 seconds.
+[10/30/2026-13:44:21] [TRT] [I]   Calibrated batch 9 in 0.211024 seconds.
+[10/30/2026-13:44:22] [TRT] [I]   Calibrated batch 10 in 0.207631 seconds.
+[10/30/2026-13:44:22] [TRT] [I]   Calibrated batch 11 in 0.216976 seconds.
+[10/30/2026-13:44:22] [TRT] [I]   Calibrated batch 12 in 0.220133 seconds.
+[10/30/2026-13:44:22] [TRT] [I]   Calibrated batch 13 in 0.225513 seconds.
+[10/30/2026-13:44:23] [TRT] [I]   Calibrated batch 14 in 0.193783 seconds.
+[10/30/2026-13:44:23] [TRT] [I]   Calibrated batch 15 in 0.210238 seconds.
+[10/30/2026-13:44:23] [TRT] [I]   Calibrated batch 16 in 0.216672 seconds.
+[10/30/2026-13:44:23] [TRT] [I]   Calibrated batch 17 in 0.172923 seconds.
+[10/30/2026-13:44:23] [TRT] [I]   Calibrated batch 18 in 0.178417 seconds.
+[10/30/2026-13:44:24] [TRT] [I]   Calibrated batch 19 in 0.183365 seconds.
+[10/30/2026-13:44:24] [TRT] [I]   Calibrated batch 20 in 0.16921 seconds.
+[10/30/2026-13:44:24] [TRT] [I]   Calibrated batch 21 in 0.155624 seconds.
+[10/30/2026-13:44:24] [TRT] [I]   Calibrated batch 22 in 0.185254 seconds.
+[10/30/2026-13:44:24] [TRT] [I]   Calibrated batch 23 in 0.190383 seconds.
+[10/30/2026-13:44:25] [TRT] [I]   Calibrated batch 24 in 0.179153 seconds.
+[10/30/2026-13:44:25] [TRT] [I]   Calibrated batch 25 in 0.161491 seconds.
+[10/30/2026-13:44:25] [TRT] [I]   Calibrated batch 26 in 0.187879 seconds.
+[10/30/2026-13:44:25] [TRT] [I]   Calibrated batch 27 in 0.183918 seconds.
+[10/30/2026-13:44:25] [TRT] [I]   Calibrated batch 28 in 0.172226 seconds.
+[10/30/2026-13:44:26] [TRT] [I]   Calibrated batch 29 in 0.166748 seconds.
+[10/30/2026-13:44:26] [TRT] [I]   Calibrated batch 30 in 0.164082 seconds.
+[10/30/2026-13:44:26] [TRT] [I]   Calibrated batch 31 in 0.1714 seconds.
+[10/30/2026-13:44:26] [TRT] [I]   Calibrated batch 32 in 0.169037 seconds.
+[10/30/2026-13:44:26] [TRT] [I]   Calibrated batch 33 in 0.172576 seconds.
+[10/30/2026-13:44:27] [TRT] [I]   Calibrated batch 34 in 0.160481 seconds.
+[10/30/2026-13:44:27] [TRT] [I]   Calibrated batch 35 in 0.165332 seconds.
+[10/30/2026-13:44:27] [TRT] [I]   Calibrated batch 36 in 0.199634 seconds.
+[10/30/2026-13:44:27] [TRT] [I]   Calibrated batch 37 in 0.216779 seconds.
+[10/30/2026-13:44:28] [TRT] [I]   Calibrated batch 38 in 0.219192 seconds.
+[10/30/2026-13:44:28] [TRT] [I]   Calibrated batch 39 in 0.206715 seconds.
+[10/30/2026-13:44:28] [TRT] [I]   Calibrated batch 40 in 0.19588 seconds.
+[10/30/2026-13:44:28] [TRT] [I]   Calibrated batch 41 in 0.181219 seconds.
+[10/30/2026-13:44:28] [TRT] [I]   Calibrated batch 42 in 0.263783 seconds.
+[10/30/2026-13:44:29] [TRT] [I]   Calibrated batch 43 in 0.292596 seconds.
+[10/30/2026-13:44:29] [TRT] [I]   Calibrated batch 44 in 0.209163 seconds.
+[10/30/2026-13:44:29] [TRT] [I]   Calibrated batch 45 in 0.200783 seconds.
+[10/30/2026-13:44:29] [TRT] [I]   Calibrated batch 46 in 0.214985 seconds.
+[10/30/2026-13:44:30] [TRT] [I]   Calibrated batch 47 in 0.197125 seconds.
+[10/30/2026-13:44:30] [TRT] [I]   Calibrated batch 48 in 0.210812 seconds.
+[10/30/2026-13:44:30] [TRT] [I]   Calibrated batch 49 in 0.209637 seconds.
+[10/30/2026-13:44:30] [TRT] [I]   Calibrated batch 50 in 0.230158 seconds.
+[10/30/2026-13:44:31] [TRT] [I]   Calibrated batch 51 in 0.214412 seconds.
+[10/30/2026-13:44:31] [TRT] [I]   Calibrated batch 52 in 0.196999 seconds.
+[10/30/2026-13:44:31] [TRT] [I]   Calibrated batch 53 in 0.170078 seconds.
+[10/30/2026-13:44:31] [TRT] [I]   Calibrated batch 54 in 0.173208 seconds.
+[10/30/2026-13:44:31] [TRT] [I]   Calibrated batch 55 in 0.157466 seconds.
+[10/30/2026-13:44:32] [TRT] [I]   Calibrated batch 56 in 0.15871 seconds.
+[10/30/2026-13:44:32] [TRT] [I]   Calibrated batch 57 in 0.178844 seconds.
+[10/30/2026-13:44:32] [TRT] [I]   Calibrated batch 58 in 0.17856 seconds.
+[10/30/2026-13:44:32] [TRT] [I]   Calibrated batch 59 in 0.168563 seconds.
+[10/30/2026-13:44:32] [TRT] [I]   Calibrated batch 60 in 0.158272 seconds.
+[10/30/2026-13:44:33] [TRT] [I]   Calibrated batch 61 in 0.175894 seconds.
+[10/30/2026-13:44:33] [TRT] [I]   Calibrated batch 62 in 0.169288 seconds.
+[10/30/2026-13:44:33] [TRT] [I]   Calibrated batch 63 in 0.199804 seconds.
+[10/30/2026-13:44:33] [TRT] [I]   Calibrated batch 64 in 0.167413 seconds.
+[10/30/2026-13:44:33] [TRT] [I]   Calibrated batch 65 in 0.170499 seconds.
+[10/30/2026-13:44:34] [TRT] [I]   Calibrated batch 66 in 0.198748 seconds.
+[10/30/2026-13:44:34] [TRT] [I]   Calibrated batch 67 in 0.176413 seconds.
+[10/30/2026-13:44:34] [TRT] [I]   Calibrated batch 68 in 0.174955 seconds.
+[10/30/2026-13:44:34] [TRT] [I]   Calibrated batch 69 in 0.185861 seconds.
+[10/30/2026-13:44:34] [TRT] [I]   Calibrated batch 70 in 0.173603 seconds.
+[10/30/2026-13:44:35] [TRT] [I]   Calibrated batch 71 in 0.161065 seconds.
+[10/30/2026-13:44:35] [TRT] [I]   Calibrated batch 72 in 0.184362 seconds.
+[10/30/2026-13:44:35] [TRT] [I]   Calibrated batch 73 in 0.186113 seconds.
+[10/30/2026-13:44:35] [TRT] [I]   Calibrated batch 74 in 0.171806 seconds.
+[10/30/2026-13:44:35] [TRT] [I]   Calibrated batch 75 in 0.16083 seconds.
+[10/30/2026-13:44:36] [TRT] [I]   Calibrated batch 76 in 0.169856 seconds.
+[10/30/2026-13:44:36] [TRT] [I]   Calibrated batch 77 in 0.166597 seconds.
+[10/30/2026-13:44:36] [TRT] [I]   Calibrated batch 78 in 0.17858 seconds.
+[10/30/2026-13:44:36] [TRT] [I]   Calibrated batch 79 in 0.153478 seconds.
+[10/30/2026-13:44:36] [TRT] [I]   Calibrated batch 80 in 0.172298 seconds.
+[10/30/2026-13:44:37] [TRT] [I]   Calibrated batch 81 in 0.166739 seconds.
+[10/30/2026-13:44:37] [TRT] [I]   Calibrated batch 82 in 0.167283 seconds.
+[10/30/2026-13:44:37] [TRT] [I]   Calibrated batch 83 in 0.194527 seconds.
+[10/30/2026-13:44:37] [TRT] [I]   Calibrated batch 84 in 0.181002 seconds.
+[10/30/2026-13:44:37] [TRT] [I]   Calibrated batch 85 in 0.223225 seconds.
+[10/30/2026-13:44:38] [TRT] [I]   Calibrated batch 86 in 0.22796 seconds.
+[10/30/2026-13:44:38] [TRT] [I]   Calibrated batch 87 in 0.217053 seconds.
+[10/30/2026-13:44:38] [TRT] [I]   Calibrated batch 88 in 0.196577 seconds.
+[10/30/2026-13:44:38] [TRT] [I]   Calibrated batch 89 in 0.207508 seconds.
+[10/30/2026-13:44:39] [TRT] [I]   Calibrated batch 90 in 0.209483 seconds.
+[10/30/2026-13:44:39] [TRT] [I]   Calibrated batch 91 in 0.196019 seconds.
+[10/30/2026-13:44:39] [TRT] [I]   Calibrated batch 92 in 0.229695 seconds.
+[10/30/2026-13:44:39] [TRT] [I]   Calibrated batch 93 in 0.236648 seconds.
+[10/30/2026-13:44:40] [TRT] [I]   Calibrated batch 94 in 0.232503 seconds.
+[10/30/2026-13:44:40] [TRT] [I]   Calibrated batch 95 in 0.22337 seconds.
+[10/30/2026-13:44:40] [TRT] [I]   Calibrated batch 96 in 0.21678 seconds.
+[10/30/2026-13:44:40] [TRT] [I]   Calibrated batch 97 in 0.219524 seconds.
+[10/30/2026-13:44:41] [TRT] [I]   Calibrated batch 98 in 0.211242 seconds.
+[10/30/2026-13:44:41] [TRT] [I]   Calibrated batch 99 in 0.241805 seconds.
+[10/30/2026-13:44:41] [TRT] [I]   Calibrated batch 100 in 0.225673 seconds.
+[10/30/2026-13:44:41] [TRT] [I]   Calibrated batch 101 in 0.193915 seconds.
+[10/30/2026-13:44:42] [TRT] [I]   Calibrated batch 102 in 0.205643 seconds.
+[10/30/2026-13:44:42] [TRT] [I]   Calibrated batch 103 in 0.201525 seconds.
+[10/30/2026-13:44:42] [TRT] [I]   Calibrated batch 104 in 0.216034 seconds.
+[10/30/2026-13:44:42] [TRT] [I]   Calibrated batch 105 in 0.258295 seconds.
+[10/30/2026-13:44:43] [TRT] [I]   Calibrated batch 106 in 0.251263 seconds.
+[10/30/2026-13:44:43] [TRT] [I]   Calibrated batch 107 in 0.226665 seconds.
+[10/30/2026-13:44:43] [TRT] [I]   Calibrated batch 108 in 0.205803 seconds.
+[10/30/2026-13:44:43] [TRT] [I]   Calibrated batch 109 in 0.220115 seconds.
+[10/30/2026-13:44:44] [TRT] [I]   Calibrated batch 110 in 0.23909 seconds.
+[10/30/2026-13:44:44] [TRT] [I]   Calibrated batch 111 in 0.237178 seconds.
+[10/30/2026-13:44:44] [TRT] [I]   Calibrated batch 112 in 0.205135 seconds.
+[10/30/2026-13:44:44] [TRT] [I]   Calibrated batch 113 in 0.231431 seconds.
+[10/30/2026-13:44:45] [TRT] [I]   Calibrated batch 114 in 0.207356 seconds.
+[10/30/2026-13:44:45] [TRT] [I]   Calibrated batch 115 in 0.205364 seconds.
+[10/30/2026-13:44:45] [TRT] [I]   Calibrated batch 116 in 0.199849 seconds.
+[10/30/2026-13:44:45] [TRT] [I]   Calibrated batch 117 in 0.208797 seconds.
+[10/30/2026-13:44:45] [TRT] [I]   Calibrated batch 118 in 0.186705 seconds.
+[10/30/2026-13:44:46] [TRT] [I]   Calibrated batch 119 in 0.194139 seconds.
+[10/30/2026-13:44:46] [TRT] [I]   Calibrated batch 120 in 0.191569 seconds.
+[10/30/2026-13:44:46] [TRT] [I]   Calibrated batch 121 in 0.187144 seconds.
+[10/30/2026-13:44:46] [TRT] [I]   Calibrated batch 122 in 0.230187 seconds.
+[10/30/2026-13:44:47] [TRT] [I]   Calibrated batch 123 in 0.219434 seconds.
+[10/30/2026-13:44:47] [TRT] [I]   Calibrated batch 124 in 0.211179 seconds.
+[10/30/2026-13:44:47] [TRT] [I]   Calibrated batch 125 in 0.212212 seconds.
+[10/30/2026-13:44:48] [TRT] [I]   Calibrated batch 126 in 0.400996 seconds.
+[10/30/2026-13:44:48] [TRT] [I]   Calibrated batch 127 in 0.30699 seconds.
+[10/30/2026-13:44:48] [TRT] [I]   Calibrated batch 128 in 0.240373 seconds.
+[10/30/2026-13:44:48] [TRT] [I]   Calibrated batch 129 in 0.273583 seconds.
+[10/30/2026-13:44:49] [TRT] [I]   Calibrated batch 130 in 0.453798 seconds.
+[10/30/2026-13:44:49] [TRT] [I]   Calibrated batch 131 in 0.271596 seconds.
+[10/30/2026-13:44:50] [TRT] [I]   Calibrated batch 132 in 0.293927 seconds.
+[10/30/2026-13:44:50] [TRT] [I]   Calibrated batch 133 in 0.284813 seconds.
+[10/30/2026-13:44:51] [TRT] [I]   Calibrated batch 134 in 0.919189 seconds.
+[10/30/2026-13:44:51] [TRT] [I]   Calibrated batch 135 in 0.298378 seconds.
+[10/30/2026-13:44:51] [TRT] [I]   Calibrated batch 136 in 0.318632 seconds.
+[10/30/2026-13:44:52] [TRT] [I]   Calibrated batch 137 in 0.302987 seconds.
+[10/30/2026-13:44:53] [TRT] [I]   Calibrated batch 138 in 0.943287 seconds.
+[10/30/2026-13:44:53] [TRT] [I]   Calibrated batch 139 in 0.355285 seconds.
+[10/30/2026-13:44:54] [TRT] [I]   Calibrated batch 140 in 0.40025 seconds.
+[10/30/2026-13:44:54] [TRT] [I]   Calibrated batch 141 in 0.316548 seconds.
+[10/30/2026-13:44:54] [TRT] [I]   Calibrated batch 142 in 0.3012 seconds.
+[10/30/2026-13:44:55] [TRT] [I]   Calibrated batch 143 in 0.285034 seconds.
+[10/30/2026-13:44:55] [TRT] [I]   Calibrated batch 144 in 0.264481 seconds.
+[10/30/2026-13:44:55] [TRT] [I]   Calibrated batch 145 in 0.270227 seconds.
+[10/30/2026-13:44:56] [TRT] [I]   Calibrated batch 146 in 0.270403 seconds.
+[10/30/2026-13:44:56] [TRT] [I]   Calibrated batch 147 in 0.237274 seconds.
+[10/30/2026-13:44:56] [TRT] [I]   Calibrated batch 148 in 0.253895 seconds.
+[10/30/2026-13:44:57] [TRT] [I]   Calibrated batch 149 in 0.231945 seconds.
+[10/30/2026-13:44:57] [TRT] [I]   Calibrated batch 150 in 0.231185 seconds.
+[10/30/2026-13:44:57] [TRT] [I]   Calibrated batch 151 in 0.221944 seconds.
+[10/30/2026-13:44:57] [TRT] [I]   Calibrated batch 152 in 0.238764 seconds.
+[10/30/2026-13:44:58] [TRT] [I]   Calibrated batch 153 in 0.226918 seconds.
+[10/30/2026-13:44:58] [TRT] [I]   Calibrated batch 154 in 0.238188 seconds.
+[10/30/2026-13:44:58] [TRT] [I]   Calibrated batch 155 in 0.239988 seconds.
+[10/30/2026-13:44:58] [TRT] [I]   Calibrated batch 156 in 0.212569 seconds.
+[10/30/2026-13:44:59] [TRT] [I]   Calibrated batch 157 in 0.222849 seconds.
+[10/30/2026-13:44:59] [TRT] [I]   Calibrated batch 158 in 0.230668 seconds.
+[10/30/2026-13:44:59] [TRT] [I]   Calibrated batch 159 in 0.216498 seconds.
+[10/30/2026-13:44:59] [TRT] [I]   Calibrated batch 160 in 0.218606 seconds.
+[10/30/2026-13:45:00] [TRT] [I]   Calibrated batch 161 in 0.233555 seconds.
+[10/30/2026-13:45:00] [TRT] [I]   Calibrated batch 162 in 0.217094 seconds.
+[10/30/2026-13:45:00] [TRT] [I]   Calibrated batch 163 in 0.244165 seconds.
+[10/30/2026-13:45:01] [TRT] [I]   Calibrated batch 164 in 0.246805 seconds.
+[10/30/2026-13:45:01] [TRT] [I]   Calibrated batch 165 in 0.257522 seconds.
+[10/30/2026-13:45:01] [TRT] [I]   Calibrated batch 166 in 0.263983 seconds.
+[10/30/2026-13:45:02] [TRT] [I]   Calibrated batch 167 in 0.242747 seconds.
+[10/30/2026-13:45:02] [TRT] [I]   Calibrated batch 168 in 0.240462 seconds.
+[10/30/2026-13:45:02] [TRT] [I]   Calibrated batch 169 in 0.24269 seconds.
+[10/30/2026-13:45:02] [TRT] [I]   Calibrated batch 170 in 0.254997 seconds.
+[10/30/2026-13:45:03] [TRT] [I]   Calibrated batch 171 in 0.251796 seconds.
+[10/30/2026-13:45:03] [TRT] [I]   Calibrated batch 172 in 0.244417 seconds.
+[10/30/2026-13:45:03] [TRT] [I]   Calibrated batch 173 in 0.256681 seconds.
+[10/30/2026-13:45:04] [TRT] [I]   Calibrated batch 174 in 0.244764 seconds.
+[10/30/2026-13:45:04] [TRT] [I]   Calibrated batch 175 in 0.231206 seconds.
+[10/30/2026-13:45:04] [TRT] [I]   Calibrated batch 176 in 0.294399 seconds.
+[10/30/2026-13:45:04] [TRT] [I]   Calibrated batch 177 in 0.243344 seconds.
+[10/30/2026-13:45:05] [TRT] [I]   Calibrated batch 178 in 0.226446 seconds.
+[10/30/2026-13:45:05] [TRT] [I]   Calibrated batch 179 in 0.219842 seconds.
+[10/30/2026-13:45:05] [TRT] [I]   Calibrated batch 180 in 0.205429 seconds.
+[10/30/2026-13:45:05] [TRT] [I]   Calibrated batch 181 in 0.204423 seconds.
+[10/30/2026-13:45:06] [TRT] [I]   Calibrated batch 182 in 0.210134 seconds.
+[10/30/2026-13:45:06] [TRT] [I]   Calibrated batch 183 in 0.199267 seconds.
+[10/30/2026-13:45:06] [TRT] [I]   Calibrated batch 184 in 0.211906 seconds.
+[10/30/2026-13:45:06] [TRT] [I]   Calibrated batch 185 in 0.20041 seconds.
+[10/30/2026-13:45:07] [TRT] [I]   Calibrated batch 186 in 0.207449 seconds.
+[10/30/2026-13:45:07] [TRT] [I]   Calibrated batch 187 in 0.197743 seconds.
+[10/30/2026-13:45:07] [TRT] [I]   Calibrated batch 188 in 0.202547 seconds.
+[10/30/2026-13:45:07] [TRT] [I]   Calibrated batch 189 in 0.207113 seconds.
+[10/30/2026-13:45:08] [TRT] [I]   Calibrated batch 190 in 0.206199 seconds.
+[10/30/2026-13:45:08] [TRT] [I]   Calibrated batch 191 in 0.204257 seconds.
+[10/30/2026-13:45:08] [TRT] [I]   Calibrated batch 192 in 0.199329 seconds.
+[10/30/2026-13:45:08] [TRT] [I]   Calibrated batch 193 in 0.204662 seconds.
+[10/30/2026-13:45:09] [TRT] [I]   Calibrated batch 194 in 0.20305 seconds.
+[10/30/2026-13:45:09] [TRT] [I]   Calibrated batch 195 in 0.232302 seconds.
+[10/30/2026-13:45:09] [TRT] [I]   Calibrated batch 196 in 0.203878 seconds.
+[10/30/2026-13:45:09] [TRT] [I]   Calibrated batch 197 in 0.213435 seconds.
+[10/30/2026-13:45:09] [TRT] [I]   Calibrated batch 198 in 0.19868 seconds.
+[10/30/2026-13:45:10] [TRT] [I]   Calibrated batch 199 in 0.207591 seconds.
+[10/30/2026-13:45:10] [TRT] [I]   Calibrated batch 200 in 0.195599 seconds.
+[10/30/2026-13:45:10] [TRT] [I]   Calibrated batch 201 in 0.200756 seconds.
+[10/30/2026-13:45:10] [TRT] [I]   Calibrated batch 202 in 0.200968 seconds.
+[10/30/2026-13:45:11] [TRT] [I]   Calibrated batch 203 in 0.215609 seconds.
+[10/30/2026-13:45:11] [TRT] [I]   Calibrated batch 204 in 0.200488 seconds.
+[10/30/2026-13:45:11] [TRT] [I]   Calibrated batch 205 in 0.170271 seconds.
+[10/30/2026-13:45:11] [TRT] [I]   Calibrated batch 206 in 0.177634 seconds.
+[10/30/2026-13:45:12] [TRT] [I]   Calibrated batch 207 in 0.165837 seconds.
+[10/30/2026-13:45:12] [TRT] [I]   Calibrated batch 208 in 0.174035 seconds.
+[10/30/2026-13:45:12] [TRT] [I]   Calibrated batch 209 in 0.172188 seconds.
+[10/30/2026-13:45:12] [TRT] [I]   Calibrated batch 210 in 0.169863 seconds.
+[10/30/2026-13:45:12] [TRT] [I]   Calibrated batch 211 in 0.169941 seconds.
+[10/30/2026-13:45:13] [TRT] [I]   Calibrated batch 212 in 0.1819 seconds.
+[10/30/2026-13:45:13] [TRT] [I]   Calibrated batch 213 in 0.184743 seconds.
+[10/30/2026-13:45:13] [TRT] [I]   Calibrated batch 214 in 0.287185 seconds.
+[10/30/2026-13:45:13] [TRT] [I]   Calibrated batch 215 in 0.27139 seconds.
+[10/30/2026-13:45:14] [TRT] [I]   Calibrated batch 216 in 0.205285 seconds.
+[10/30/2026-13:45:14] [TRT] [I]   Calibrated batch 217 in 0.21731 seconds.
+[10/30/2026-13:45:14] [TRT] [I]   Calibrated batch 218 in 0.218209 seconds.
+[10/30/2026-13:45:14] [TRT] [I]   Calibrated batch 219 in 0.215259 seconds.
+[10/30/2026-13:45:15] [TRT] [I]   Calibrated batch 220 in 0.205817 seconds.
+[10/30/2026-13:45:15] [TRT] [I]   Calibrated batch 221 in 0.200459 seconds.
+[10/30/2026-13:45:15] [TRT] [I]   Calibrated batch 222 in 0.215282 seconds.
+[10/30/2026-13:45:15] [TRT] [I]   Calibrated batch 223 in 0.265384 seconds.
+[10/30/2026-13:45:16] [TRT] [I]   Calibrated batch 224 in 0.214976 seconds.
+[10/30/2026-13:45:16] [TRT] [I]   Calibrated batch 225 in 0.216029 seconds.
+[10/30/2026-13:45:16] [TRT] [I]   Calibrated batch 226 in 0.242624 seconds.
+[10/30/2026-13:45:16] [TRT] [I]   Calibrated batch 227 in 0.216016 seconds.
+[10/30/2026-13:45:17] [TRT] [I]   Calibrated batch 228 in 0.222992 seconds.
+[10/30/2026-13:45:17] [TRT] [I]   Calibrated batch 229 in 0.213712 seconds.
+[10/30/2026-13:45:17] [TRT] [I]   Calibrated batch 230 in 0.229033 seconds.
+[10/30/2026-13:45:18] [TRT] [I]   Calibrated batch 231 in 0.246656 seconds.
+[10/30/2026-13:45:18] [TRT] [I]   Calibrated batch 232 in 0.245781 seconds.
+[10/30/2026-13:45:18] [TRT] [I]   Calibrated batch 233 in 0.251074 seconds.
+[10/30/2026-13:45:18] [TRT] [I]   Calibrated batch 234 in 0.234308 seconds.
+[10/30/2026-13:45:19] [TRT] [I]   Calibrated batch 235 in 0.239684 seconds.
+[10/30/2026-13:45:19] [TRT] [I]   Calibrated batch 236 in 0.224798 seconds.
+[10/30/2026-13:45:19] [TRT] [I]   Calibrated batch 237 in 0.225746 seconds.
+[10/30/2026-13:45:19] [TRT] [I]   Calibrated batch 238 in 0.266022 seconds.
+[10/30/2026-13:45:20] [TRT] [I]   Calibrated batch 239 in 0.20608 seconds.
+[10/30/2026-13:45:20] [TRT] [I]   Calibrated batch 240 in 0.232356 seconds.
+[10/30/2026-13:45:20] [TRT] [I]   Calibrated batch 241 in 0.227888 seconds.
+[10/30/2026-13:45:21] [TRT] [I]   Calibrated batch 242 in 0.238097 seconds.
+[10/30/2026-13:45:21] [TRT] [I]   Calibrated batch 243 in 0.23416 seconds.
+[10/30/2026-13:45:21] [TRT] [I]   Calibrated batch 244 in 0.245412 seconds.
+[10/30/2026-13:45:21] [TRT] [I]   Calibrated batch 245 in 0.221267 seconds.
+[10/30/2026-13:45:22] [TRT] [I]   Calibrated batch 246 in 0.240021 seconds.
+[10/30/2026-13:45:22] [TRT] [I]   Calibrated batch 247 in 0.221161 seconds.
+[10/30/2026-13:45:22] [TRT] [I]   Calibrated batch 248 in 0.223194 seconds.
+[10/30/2026-13:45:22] [TRT] [I]   Calibrated batch 249 in 0.225589 seconds.
+[10/30/2026-13:45:23] [TRT] [I]   Calibrated batch 250 in 0.239967 seconds.
+[10/30/2026-13:45:23] [TRT] [I]   Calibrated batch 251 in 0.248133 seconds.
+[10/30/2026-13:45:23] [TRT] [I]   Calibrated batch 252 in 0.241958 seconds.
+[10/30/2026-13:45:23] [TRT] [I]   Calibrated batch 253 in 0.233992 seconds.
+[10/30/2026-13:45:24] [TRT] [I]   Calibrated batch 254 in 0.219408 seconds.
+[10/30/2026-13:45:24] [TRT] [I]   Calibrated batch 255 in 0.231976 seconds.
+[10/30/2026-13:45:24] [TRT] [I]   Calibrated batch 256 in 0.219901 seconds.
+[10/30/2026-13:45:24] [TRT] [I]   Calibrated batch 257 in 0.206966 seconds.
+[10/30/2026-13:45:25] [TRT] [I]   Calibrated batch 258 in 0.24363 seconds.
+[10/30/2026-13:45:25] [TRT] [I]   Calibrated batch 259 in 0.229155 seconds.
+[10/30/2026-13:45:25] [TRT] [I]   Calibrated batch 260 in 0.247566 seconds.
+[10/30/2026-13:45:26] [TRT] [I]   Calibrated batch 261 in 0.229578 seconds.
+[10/30/2026-13:45:26] [TRT] [I]   Calibrated batch 262 in 0.217345 seconds.
+[10/30/2026-13:45:26] [TRT] [I]   Calibrated batch 263 in 0.203222 seconds.
+[10/30/2026-13:45:26] [TRT] [I]   Calibrated batch 264 in 0.239282 seconds.
+[10/30/2026-13:45:27] [TRT] [I]   Calibrated batch 265 in 0.224834 seconds.
+[10/30/2026-13:45:27] [TRT] [I]   Calibrated batch 266 in 0.210648 seconds.
+[10/30/2026-13:45:27] [TRT] [I]   Calibrated batch 267 in 0.21841 seconds.
+[10/30/2026-13:45:27] [TRT] [I]   Calibrated batch 268 in 0.213222 seconds.
+[10/30/2026-13:45:28] [TRT] [I]   Calibrated batch 269 in 0.212476 seconds.
+[10/30/2026-13:45:28] [TRT] [I]   Calibrated batch 270 in 0.207318 seconds.
+[10/30/2026-13:45:28] [TRT] [I]   Calibrated batch 271 in 0.187545 seconds.
+[10/30/2026-13:45:28] [TRT] [I]   Calibrated batch 272 in 0.169968 seconds.
+[10/30/2026-13:45:28] [TRT] [I]   Calibrated batch 273 in 0.175371 seconds.
+[10/30/2026-13:45:29] [TRT] [I]   Calibrated batch 274 in 0.176306 seconds.
+[10/30/2026-13:45:29] [TRT] [I]   Calibrated batch 275 in 0.178186 seconds.
+[10/30/2026-13:45:29] [TRT] [I]   Calibrated batch 276 in 0.184164 seconds.
+[10/30/2026-13:45:29] [TRT] [I]   Calibrated batch 277 in 0.187246 seconds.
+[10/30/2026-13:45:29] [TRT] [I]   Calibrated batch 278 in 0.189479 seconds.
+[10/30/2026-13:45:30] [TRT] [I]   Calibrated batch 279 in 0.175323 seconds.
+[10/30/2026-13:45:30] [TRT] [I]   Calibrated batch 280 in 0.207131 seconds.
+[10/30/2026-13:45:30] [TRT] [I]   Calibrated batch 281 in 0.236166 seconds.
+[10/30/2026-13:45:30] [TRT] [I]   Calibrated batch 282 in 0.231615 seconds.
+[10/30/2026-13:45:31] [TRT] [I]   Calibrated batch 283 in 0.228837 seconds.
+[10/30/2026-13:45:31] [TRT] [I]   Calibrated batch 284 in 0.215418 seconds.
+[10/30/2026-13:45:31] [TRT] [I]   Calibrated batch 285 in 0.246348 seconds.
+[10/30/2026-13:45:31] [TRT] [I]   Calibrated batch 286 in 0.218514 seconds.
+[10/30/2026-13:45:32] [TRT] [I]   Calibrated batch 287 in 0.208949 seconds.
+[10/30/2026-13:45:32] [TRT] [I]   Calibrated batch 288 in 0.263315 seconds.
+[10/30/2026-13:45:32] [TRT] [I]   Calibrated batch 289 in 0.221048 seconds.
+[10/30/2026-13:45:32] [TRT] [I]   Calibrated batch 290 in 0.223277 seconds.
+[10/30/2026-13:45:33] [TRT] [I]   Calibrated batch 291 in 0.221911 seconds.
+[10/30/2026-13:45:33] [TRT] [I]   Calibrated batch 292 in 0.21067 seconds.
+[10/30/2026-13:45:33] [TRT] [I]   Calibrated batch 293 in 0.227382 seconds.
+[10/30/2026-13:45:33] [TRT] [I]   Calibrated batch 294 in 0.218716 seconds.
+[10/30/2026-13:45:34] [TRT] [I]   Calibrated batch 295 in 0.21515 seconds.
+[10/30/2026-13:45:34] [TRT] [I]   Calibrated batch 296 in 0.222815 seconds.
+[10/30/2026-13:45:34] [TRT] [I]   Calibrated batch 297 in 0.216752 seconds.
+[10/30/2026-13:45:34] [TRT] [I]   Calibrated batch 298 in 0.219265 seconds.
+[10/30/2026-13:45:35] [TRT] [I]   Calibrated batch 299 in 0.217385 seconds.
+[10/30/2026-13:45:35] [TRT] [I]   Calibrated batch 300 in 0.224485 seconds.
+[10/30/2026-13:45:35] [TRT] [I]   Calibrated batch 301 in 0.21046 seconds.
+[10/30/2026-13:45:36] [TRT] [I]   Calibrated batch 302 in 0.205361 seconds.
+[10/30/2026-13:45:36] [TRT] [I]   Calibrated batch 303 in 0.201472 seconds.
+[10/30/2026-13:45:36] [TRT] [I]   Calibrated batch 304 in 0.181037 seconds.
+[10/30/2026-13:45:36] [TRT] [I]   Calibrated batch 305 in 0.196654 seconds.
+[10/30/2026-13:45:37] [TRT] [I]   Calibrated batch 306 in 0.322264 seconds.
+[10/30/2026-13:45:37] [TRT] [I]   Calibrated batch 307 in 0.19282 seconds.
+[10/30/2026-13:45:37] [TRT] [I]   Calibrated batch 308 in 0.178546 seconds.
+[10/30/2026-13:45:37] [TRT] [I]   Calibrated batch 309 in 0.18508 seconds.
+[10/30/2026-13:45:37] [TRT] [I]   Calibrated batch 310 in 0.202711 seconds.
+[10/30/2026-13:45:38] [TRT] [I]   Calibrated batch 311 in 0.205723 seconds.
+[10/30/2026-13:45:38] [TRT] [I]   Calibrated batch 312 in 0.222371 seconds.
+[10/30/2026-13:45:38] [TRT] [I]   Calibrated batch 313 in 0.210205 seconds.
+[10/30/2026-13:45:38] [TRT] [I]   Calibrated batch 314 in 0.220459 seconds.
+[10/30/2026-13:45:39] [TRT] [I]   Calibrated batch 315 in 0.249719 seconds.
+[10/30/2026-13:45:39] [TRT] [I]   Calibrated batch 316 in 0.23048 seconds.
+[10/30/2026-13:45:39] [TRT] [I]   Calibrated batch 317 in 0.23636 seconds.
+[10/30/2026-13:45:40] [TRT] [I]   Calibrated batch 318 in 0.230844 seconds.
+[10/30/2026-13:45:40] [TRT] [I]   Calibrated batch 319 in 0.224453 seconds.
+[10/30/2026-13:45:40] [TRT] [I]   Calibrated batch 320 in 0.202264 seconds.
+[10/30/2026-13:45:40] [TRT] [I]   Calibrated batch 321 in 0.224114 seconds.
+[10/30/2026-13:45:41] [TRT] [I]   Calibrated batch 322 in 0.209306 seconds.
+[10/30/2026-13:45:41] [TRT] [I]   Calibrated batch 323 in 0.227164 seconds.
+[10/30/2026-13:45:41] [TRT] [I]   Calibrated batch 324 in 0.209785 seconds.
+[10/30/2026-13:45:41] [TRT] [I]   Calibrated batch 325 in 0.203925 seconds.
+[10/30/2026-13:45:41] [TRT] [I]   Calibrated batch 326 in 0.202995 seconds.
+[10/30/2026-13:45:42] [TRT] [I]   Calibrated batch 327 in 0.206841 seconds.
+[10/30/2026-13:45:42] [TRT] [I]   Calibrated batch 328 in 0.196265 seconds.
+[10/30/2026-13:45:42] [TRT] [I]   Calibrated batch 329 in 0.19863 seconds.
+[10/30/2026-13:45:42] [TRT] [I]   Calibrated batch 330 in 0.196281 seconds.
+[10/30/2026-13:45:43] [TRT] [I]   Calibrated batch 331 in 0.170613 seconds.
+[10/30/2026-13:45:43] [TRT] [I]   Calibrated batch 332 in 0.162276 seconds.
+[10/30/2026-13:45:43] [TRT] [I]   Calibrated batch 333 in 0.167232 seconds.
+[10/30/2026-13:45:43] [TRT] [I]   Calibrated batch 334 in 0.17814 seconds.
+[10/30/2026-13:45:43] [TRT] [I]   Calibrated batch 335 in 0.179438 seconds.
+[10/30/2026-13:45:44] [TRT] [I]   Calibrated batch 336 in 0.185438 seconds.
+[10/30/2026-13:45:44] [TRT] [I]   Calibrated batch 337 in 0.183555 seconds.
+[10/30/2026-13:45:44] [TRT] [I]   Calibrated batch 338 in 0.200333 seconds.
+[10/30/2026-13:45:44] [TRT] [I]   Calibrated batch 339 in 0.202449 seconds.
+[10/30/2026-13:45:44] [TRT] [I]   Calibrated batch 340 in 0.232185 seconds.
+[10/30/2026-13:45:45] [TRT] [I]   Calibrated batch 341 in 0.21554 seconds.
+[10/30/2026-13:45:45] [TRT] [I]   Calibrated batch 342 in 0.224117 seconds.
+[10/30/2026-13:45:45] [TRT] [I]   Calibrated batch 343 in 0.222005 seconds.
+[10/30/2026-13:45:45] [TRT] [I]   Calibrated batch 344 in 0.20754 seconds.
+[10/30/2026-13:45:46] [TRT] [I]   Calibrated batch 345 in 0.235222 seconds.
+[10/30/2026-13:45:46] [TRT] [I]   Calibrated batch 346 in 0.218638 seconds.
+[10/30/2026-13:45:46] [TRT] [I]   Calibrated batch 347 in 0.208245 seconds.
+[10/30/2026-13:45:46] [TRT] [I]   Calibrated batch 348 in 0.208858 seconds.
+[10/30/2026-13:45:47] [TRT] [I]   Calibrated batch 349 in 0.204339 seconds.
+[10/30/2026-13:45:47] [TRT] [I]   Calibrated batch 350 in 0.339439 seconds.
+[10/30/2026-13:45:47] [TRT] [I]   Calibrated batch 351 in 0.20632 seconds.
+[10/30/2026-13:45:47] [TRT] [I]   Calibrated batch 352 in 0.207092 seconds.
+[10/30/2026-13:45:48] [TRT] [I]   Calibrated batch 353 in 0.219746 seconds.
+[10/30/2026-13:45:48] [TRT] [I]   Calibrated batch 354 in 0.203664 seconds.
+[10/30/2026-13:45:48] [TRT] [I]   Calibrated batch 355 in 0.17176 seconds.
+[10/30/2026-13:45:48] [TRT] [I]   Calibrated batch 356 in 0.171901 seconds.
+[10/30/2026-13:45:48] [TRT] [I]   Calibrated batch 357 in 0.18832 seconds.
+[10/30/2026-13:45:49] [TRT] [I]   Calibrated batch 358 in 0.174997 seconds.
+[10/30/2026-13:45:49] [TRT] [I]   Calibrated batch 359 in 0.186769 seconds.
+[10/30/2026-13:45:49] [TRT] [I]   Calibrated batch 360 in 0.246653 seconds.
+[10/30/2026-13:45:49] [TRT] [I]   Calibrated batch 361 in 0.222212 seconds.
+[10/30/2026-13:45:50] [TRT] [I]   Calibrated batch 362 in 0.202422 seconds.
+[10/30/2026-13:45:50] [TRT] [I]   Calibrated batch 363 in 0.21546 seconds.
+[10/30/2026-13:45:50] [TRT] [I]   Calibrated batch 364 in 0.218911 seconds.
+[10/30/2026-13:45:50] [TRT] [I]   Calibrated batch 365 in 0.21934 seconds.
+[10/30/2026-13:45:51] [TRT] [I]   Calibrated batch 366 in 0.223447 seconds.
+[10/30/2026-13:45:51] [TRT] [I]   Calibrated batch 367 in 0.215979 seconds.
+[10/30/2026-13:45:51] [TRT] [I]   Calibrated batch 368 in 0.171075 seconds.
+[10/30/2026-13:45:51] [TRT] [I]   Calibrated batch 369 in 0.159839 seconds.
+[10/30/2026-13:45:52] [TRT] [I]   Calibrated batch 370 in 0.199068 seconds.
+[10/30/2026-13:45:52] [TRT] [I]   Calibrated batch 371 in 0.184271 seconds.
+[10/30/2026-13:45:52] [TRT] [I]   Calibrated batch 372 in 0.161952 seconds.
+[10/30/2026-13:45:52] [TRT] [I]   Calibrated batch 373 in 0.15617 seconds.
+[10/30/2026-13:45:52] [TRT] [I]   Calibrated batch 374 in 0.151321 seconds.
+[10/30/2026-13:45:53] [TRT] [I]   Calibrated batch 375 in 0.193824 seconds.
+[10/30/2026-13:45:53] [TRT] [I]   Calibrated batch 376 in 0.183129 seconds.
+[10/30/2026-13:45:53] [TRT] [I]   Calibrated batch 377 in 0.18262 seconds.
+[10/30/2026-13:45:53] [TRT] [I]   Calibrated batch 378 in 0.172426 seconds.
+[10/30/2026-13:45:53] [TRT] [I]   Calibrated batch 379 in 0.147269 seconds.
+[10/30/2026-13:45:53] [TRT] [I]   Calibrated batch 380 in 0.178196 seconds.
+[10/30/2026-13:45:54] [TRT] [I]   Calibrated batch 381 in 0.1691 seconds.
+[10/30/2026-13:45:54] [TRT] [I]   Calibrated batch 382 in 0.154797 seconds.
+[10/30/2026-13:45:54] [TRT] [I]   Calibrated batch 383 in 0.151794 seconds.
+[10/30/2026-13:45:54] [TRT] [I]   Calibrated batch 384 in 0.17646 seconds.
+[10/30/2026-13:45:54] [TRT] [I]   Calibrated batch 385 in 0.167876 seconds.
+[10/30/2026-13:45:55] [TRT] [I]   Calibrated batch 386 in 0.153116 seconds.
+[10/30/2026-13:45:55] [TRT] [I]   Calibrated batch 387 in 0.197247 seconds.
+[10/30/2026-13:45:55] [TRT] [I]   Calibrated batch 388 in 0.176483 seconds.
+[10/30/2026-13:45:55] [TRT] [I]   Calibrated batch 389 in 0.17844 seconds.
+[10/30/2026-13:45:55] [TRT] [I]   Calibrated batch 390 in 0.183407 seconds.
+[10/30/2026-13:45:56] [TRT] [I]   Calibrated batch 391 in 0.15501 seconds.
+[10/30/2026-13:45:56] [TRT] [I]   Calibrated batch 392 in 0.174535 seconds.
+[10/30/2026-13:45:56] [TRT] [I]   Calibrated batch 393 in 0.170142 seconds.
+[10/30/2026-13:45:56] [TRT] [I]   Calibrated batch 394 in 0.168574 seconds.
+[10/30/2026-13:45:56] [TRT] [I]   Calibrated batch 395 in 0.152888 seconds.
+[10/30/2026-13:45:57] [TRT] [I]   Calibrated batch 396 in 0.161069 seconds.
+[10/30/2026-13:45:57] [TRT] [I]   Calibrated batch 397 in 0.190413 seconds.
+[10/30/2026-13:45:57] [TRT] [I]   Calibrated batch 398 in 0.182098 seconds.
+[10/30/2026-13:45:57] [TRT] [I]   Calibrated batch 399 in 0.16805 seconds.
+[10/30/2026-13:45:57] [TRT] [I]   Calibrated batch 400 in 0.154713 seconds.
+[10/30/2026-13:45:57] [TRT] [I]   Calibrated batch 401 in 0.175988 seconds.
+[10/30/2026-13:45:58] [TRT] [I]   Calibrated batch 402 in 0.162034 seconds.
+[10/30/2026-13:45:58] [TRT] [I]   Calibrated batch 403 in 0.161653 seconds.
+[10/30/2026-13:45:58] [TRT] [I]   Calibrated batch 404 in 0.168072 seconds.
+[10/30/2026-13:45:58] [TRT] [I]   Calibrated batch 405 in 0.166183 seconds.
+[10/30/2026-13:45:58] [TRT] [I]   Calibrated batch 406 in 0.170474 seconds.
+[10/30/2026-13:45:59] [TRT] [I]   Calibrated batch 407 in 0.172765 seconds.
+[10/30/2026-13:45:59] [TRT] [I]   Calibrated batch 408 in 0.190571 seconds.
+[10/30/2026-13:45:59] [TRT] [I]   Calibrated batch 409 in 0.200789 seconds.
+[10/30/2026-13:45:59] [TRT] [I]   Calibrated batch 410 in 0.195747 seconds.
+[10/30/2026-13:45:59] [TRT] [I]   Calibrated batch 411 in 0.196216 seconds.
+[10/30/2026-13:46:00] [TRT] [I]   Calibrated batch 412 in 0.17386 seconds.
+[10/30/2026-13:46:00] [TRT] [I]   Calibrated batch 413 in 0.151959 seconds.
+[10/30/2026-13:46:00] [TRT] [I]   Calibrated batch 414 in 0.165882 seconds.
+[10/30/2026-13:46:00] [TRT] [I]   Calibrated batch 415 in 0.177204 seconds.
+[10/30/2026-13:46:00] [TRT] [I]   Calibrated batch 416 in 0.153043 seconds.
+[10/30/2026-13:46:01] [TRT] [I]   Calibrated batch 417 in 0.156746 seconds.
+[10/30/2026-13:46:01] [TRT] [I]   Calibrated batch 418 in 0.178613 seconds.
+[10/30/2026-13:46:01] [TRT] [I]   Calibrated batch 419 in 0.173004 seconds.
+[10/30/2026-13:46:01] [TRT] [I]   Calibrated batch 420 in 0.156283 seconds.
+[10/30/2026-13:46:01] [TRT] [I]   Calibrated batch 421 in 0.163501 seconds.
+[10/30/2026-13:46:02] [TRT] [I]   Calibrated batch 422 in 0.200623 seconds.
+[10/30/2026-13:46:02] [TRT] [I]   Calibrated batch 423 in 0.206701 seconds.
+[10/30/2026-13:46:02] [TRT] [I]   Calibrated batch 424 in 0.190307 seconds.
+[10/30/2026-13:46:02] [TRT] [I]   Calibrated batch 425 in 0.169453 seconds.
+[10/30/2026-13:46:02] [TRT] [I]   Calibrated batch 426 in 0.1502 seconds.
+[10/30/2026-13:46:03] [TRT] [I]   Calibrated batch 427 in 0.1689 seconds.
+[10/30/2026-13:46:03] [TRT] [I]   Calibrated batch 428 in 0.16682 seconds.
+[10/30/2026-13:46:03] [TRT] [I]   Calibrated batch 429 in 0.159998 seconds.
+[10/30/2026-13:46:03] [TRT] [I]   Calibrated batch 430 in 0.156853 seconds.
+[10/30/2026-13:46:03] [TRT] [I]   Calibrated batch 431 in 0.165626 seconds.
+[10/30/2026-13:46:03] [TRT] [I]   Calibrated batch 432 in 0.162075 seconds.
+[10/30/2026-13:46:04] [TRT] [I]   Calibrated batch 433 in 0.153112 seconds.
+[10/30/2026-13:46:04] [TRT] [I]   Calibrated batch 434 in 0.166864 seconds.
+[10/30/2026-13:46:04] [TRT] [I]   Calibrated batch 435 in 0.17288 seconds.
+[10/30/2026-13:46:04] [TRT] [I]   Calibrated batch 436 in 0.154525 seconds.
+[10/30/2026-13:46:04] [TRT] [I]   Calibrated batch 437 in 0.163449 seconds.
+[10/30/2026-13:46:05] [TRT] [I]   Calibrated batch 438 in 0.199309 seconds.
+[10/30/2026-13:46:05] [TRT] [I]   Calibrated batch 439 in 0.189805 seconds.
+[10/30/2026-13:46:05] [TRT] [I]   Calibrated batch 440 in 0.1809 seconds.
+[10/30/2026-13:46:05] [TRT] [I]   Calibrated batch 441 in 0.195857 seconds.
+[10/30/2026-13:46:06] [TRT] [I]   Calibrated batch 442 in 0.192355 seconds.
+[10/30/2026-13:46:06] [TRT] [I]   Calibrated batch 443 in 0.180999 seconds.
+[10/30/2026-13:46:06] [TRT] [I]   Calibrated batch 444 in 0.171108 seconds.
+[10/30/2026-13:46:06] [TRT] [I]   Calibrated batch 445 in 0.184765 seconds.
+[10/30/2026-13:46:06] [TRT] [I]   Calibrated batch 446 in 0.150923 seconds.
+[10/30/2026-13:46:07] [TRT] [I]   Calibrated batch 447 in 0.163231 seconds.
+[10/30/2026-13:46:07] [TRT] [I]   Calibrated batch 448 in 0.1635 seconds.
+[10/30/2026-13:46:07] [TRT] [I]   Calibrated batch 449 in 0.166467 seconds.
+[10/30/2026-13:46:07] [TRT] [I]   Calibrated batch 450 in 0.155423 seconds.
+[10/30/2026-13:46:07] [TRT] [I]   Calibrated batch 451 in 0.175205 seconds.
+[10/30/2026-13:46:08] [TRT] [I]   Calibrated batch 452 in 0.202288 seconds.
+[10/30/2026-13:46:08] [TRT] [I]   Calibrated batch 453 in 0.197987 seconds.
+[10/30/2026-13:46:08] [TRT] [I]   Calibrated batch 454 in 0.196378 seconds.
+[10/30/2026-13:46:08] [TRT] [I]   Calibrated batch 455 in 0.179573 seconds.
+[10/30/2026-13:46:08] [TRT] [I]   Calibrated batch 456 in 0.162786 seconds.
+[10/30/2026-13:46:09] [TRT] [I]   Calibrated batch 457 in 0.164564 seconds.
+[10/30/2026-13:46:09] [TRT] [I]   Calibrated batch 458 in 0.164821 seconds.
+[10/30/2026-13:46:09] [TRT] [I]   Calibrated batch 459 in 0.180816 seconds.
+[10/30/2026-13:46:09] [TRT] [I]   Calibrated batch 460 in 0.179025 seconds.
+[10/30/2026-13:46:09] [TRT] [I]   Calibrated batch 461 in 0.158372 seconds.
+[10/30/2026-13:46:10] [TRT] [I]   Calibrated batch 462 in 0.162096 seconds.
+[10/30/2026-13:46:10] [TRT] [I]   Calibrated batch 463 in 0.208077 seconds.
+[10/30/2026-13:46:10] [TRT] [I]   Calibrated batch 464 in 0.21233 seconds.
+[10/30/2026-13:46:10] [TRT] [I]   Calibrated batch 465 in 0.208418 seconds.
+[10/30/2026-13:46:11] [TRT] [I]   Calibrated batch 466 in 0.173693 seconds.
+[10/30/2026-13:46:11] [TRT] [I]   Calibrated batch 467 in 0.250754 seconds.
+[10/30/2026-13:46:11] [TRT] [I]   Calibrated batch 468 in 0.249867 seconds.
+[10/30/2026-13:46:11] [TRT] [I]   Calibrated batch 469 in 0.223816 seconds.
+[10/30/2026-13:46:12] [TRT] [I]   Calibrated batch 470 in 0.204126 seconds.
+[10/30/2026-13:46:12] [TRT] [I]   Calibrated batch 471 in 0.197486 seconds.
+[10/30/2026-13:46:12] [TRT] [I]   Calibrated batch 472 in 0.198431 seconds.
+[10/30/2026-13:46:12] [TRT] [I]   Calibrated batch 473 in 0.199499 seconds.
+[10/30/2026-13:46:12] [TRT] [I]   Calibrated batch 474 in 0.2163 seconds.
+[10/30/2026-13:46:13] [TRT] [I]   Calibrated batch 475 in 0.211483 seconds.
+[10/30/2026-13:46:13] [TRT] [I]   Calibrated batch 476 in 0.214722 seconds.
+[10/30/2026-13:46:13] [TRT] [I]   Calibrated batch 477 in 0.212764 seconds.
+[10/30/2026-13:46:13] [TRT] [I]   Calibrated batch 478 in 0.216848 seconds.
+[10/30/2026-13:46:14] [TRT] [I]   Calibrated batch 479 in 0.208868 seconds.
+[10/30/2026-13:46:14] [TRT] [I]   Calibrated batch 480 in 0.195138 seconds.
+[10/30/2026-13:46:14] [TRT] [I]   Calibrated batch 481 in 0.207095 seconds.
+[10/30/2026-13:46:14] [TRT] [I]   Calibrated batch 482 in 0.227442 seconds.
+[10/30/2026-13:46:15] [TRT] [I]   Calibrated batch 483 in 0.211834 seconds.
+[10/30/2026-13:46:15] [TRT] [I]   Calibrated batch 484 in 0.202629 seconds.
+[10/30/2026-13:46:15] [TRT] [I]   Calibrated batch 485 in 0.21188 seconds.
+[10/30/2026-13:46:15] [TRT] [I]   Calibrated batch 486 in 0.215741 seconds.
+[10/30/2026-13:46:16] [TRT] [I]   Calibrated batch 487 in 0.216831 seconds.
+[10/30/2026-13:46:16] [TRT] [I]   Calibrated batch 488 in 0.230479 seconds.
+[10/30/2026-13:46:16] [TRT] [I]   Calibrated batch 489 in 0.215133 seconds.
+[10/30/2026-13:46:16] [TRT] [I]   Calibrated batch 490 in 0.213109 seconds.
+[10/30/2026-13:46:17] [TRT] [I]   Calibrated batch 491 in 0.222937 seconds.
+[10/30/2026-13:46:17] [TRT] [I]   Calibrated batch 492 in 0.20141 seconds.
+[10/30/2026-13:46:17] [TRT] [I]   Calibrated batch 493 in 0.192274 seconds.
+[10/30/2026-13:46:17] [TRT] [I]   Calibrated batch 494 in 0.187285 seconds.
+[10/30/2026-13:46:17] [TRT] [I]   Calibrated batch 495 in 0.170667 seconds.
+[10/30/2026-13:46:18] [TRT] [I]   Calibrated batch 496 in 0.174211 seconds.
+[10/30/2026-13:46:18] [TRT] [I]   Calibrated batch 497 in 0.175263 seconds.
+[10/30/2026-13:46:18] [TRT] [I]   Calibrated batch 498 in 0.168554 seconds.
+[10/30/2026-13:46:18] [TRT] [I]   Calibrated batch 499 in 0.171601 seconds.
+[10/30/2026-13:46:18] [TRT] [I]   Calibrated batch 500 in 0.182328 seconds.
+[10/30/2026-13:46:19] [TRT] [I]   Calibrated batch 501 in 0.16934 seconds.
+[10/30/2026-13:46:19] [TRT] [I]   Calibrated batch 502 in 0.179466 seconds.
+[10/30/2026-13:46:19] [TRT] [I]   Calibrated batch 503 in 0.23943 seconds.
+[10/30/2026-13:46:19] [TRT] [I]   Calibrated batch 504 in 0.202896 seconds.
+[10/30/2026-13:46:20] [TRT] [I]   Calibrated batch 505 in 0.20156 seconds.
+[10/30/2026-13:46:20] [TRT] [I]   Calibrated batch 506 in 0.208059 seconds.
+[10/30/2026-13:46:20] [TRT] [I]   Calibrated batch 507 in 0.211754 seconds.
+[10/30/2026-13:46:20] [TRT] [I]   Calibrated batch 508 in 0.209523 seconds.
+[10/30/2026-13:46:20] [TRT] [I]   Calibrated batch 509 in 0.206573 seconds.
+[10/30/2026-13:46:21] [TRT] [I]   Calibrated batch 510 in 0.243031 seconds.
+[10/30/2026-13:46:21] [TRT] [I]   Calibrated batch 511 in 0.197097 seconds.
+[10/30/2026-13:46:22] [TRT] [I]   Post Processing Calibration data in 0.0073177 seconds.
+[10/30/2026-13:46:22] [TRT] [I] Calibration completed in 143.644 seconds.
+[10/30/2026-13:46:22] [TRT] [I] Writing Calibration Cache for calibrator: TRT-100800-MinMaxCalibration
+[10/30/2026-13:46:23] [TRT] [I] BuilderFlag::kTF32 is set but hardware does not support TF32. Disabling TF32.
+[10/30/2026-13:46:23] [TRT] [I] Local timing cache in use. Profiling results in this builder pass will not be stored.
+[10/30/2026-14:00:37] [TRT] [I] Detected 1 inputs and 3 output network tensors.
+[10/30/2026-14:00:56] [TRT] [I] Total Host Persistent Memory: 422080 bytes
+[10/30/2026-14:00:56] [TRT] [I] Total Device Persistent Memory: 577024 bytes
+[10/30/2026-14:00:56] [TRT] [I] Max Scratch Memory: 0 bytes
+[10/30/2026-14:00:56] [TRT] [I] [BlockAssignment] Started assigning block shifts. This will take 154 steps to complete.
+[10/30/2026-14:00:56] [TRT] [I] [BlockAssignment] Algorithm ShiftNTopDown took 19.7281ms to assign 9 blocks to 154 nodes requiring 2119168 bytes.
+[10/30/2026-14:00:56] [TRT] [I] Total Activation Memory: 2118656 bytes
+[10/30/2026-14:00:56] [TRT] [I] Total Weights Memory: 3149316 bytes
+[10/30/2026-14:00:57] [TRT] [I] Engine generation completed in 874.537 seconds.
+[10/30/2026-14:00:57] [TRT] [I] [MemUsageStats] Peak memory usage of TRT CPU/GPU memory allocators: CPU 3 MiB, GPU 43 MiB
+[34m[1mTensorRT:[0m export success  1066.7s, saved as 'models\full-matrix\tensorrt-int8-320\yolo11n.engine' (7.3 MB)
+
+Export complete (1075.4s)
+Results saved to [1mD:\M\New_Project\traffic-inference-lab\models\full-matrix\tensorrt-int8-320\yolo11n.engine[0m
+Predict:         yolo predict task=detect model=models\full-matrix\tensorrt-int8-320\yolo11n.engine imgsz=320 
+Validate:        yolo val task=detect model=models\full-matrix\tensorrt-int8-320\yolo11n.engine imgsz=320  
+Visualize:       https://netron.app
+{
+  "kind": "export",
+  "source_sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+  "artifact": "models\\full-matrix\\tensorrt-int8-320\\yolo11n.engine",
+  "artifact_sha256": "d4e13412740b1efed0c8b6b0c0f703c673f6cc60348fd9c6e0ef849cf1f46f05",
+  "arguments": {
+    "format": "engine",
+    "imgsz": 320,
+    "device": "0",
+    "quantize": 8,
+    "batch": 1,
+    "dynamic": false,
+    "data": "data/coco-deployment/calibration.yaml",
+    "workspace": 0.5
+  },
+  "environment": {
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 165 Stepping 2, GenuineIntel",
+    "cpu_physical_cores": 6,
+    "cpu_logical_cores": 12,
+    "ram_gib": 7.839607238769531,
+    "gpu": "NVIDIA GeForce GTX 1650 Ti, 580.97, 4096 MiB",
+    "packages": {
+      "traffic-inference-lab": "0.1.0",
+      "ultralytics": "8.4.193",
+      "torch": "2.6.0+cu124",
+      "torchvision": "0.21.0+cu124",
+      "numpy": "2.4.6",
+      "opencv-python": "4.14.0.94",
+      "onnxruntime": null,
+      "onnxruntime-gpu": "1.20.2",
+      "openvino": "2026.4.1",
+      "onnx": "1.23.2",
+      "nncf": "3.4.0",
+      "tensorrt": "10.8.0.43",
+      "tensorrt-cu12": null,
+      "lap": "0.5.13"
+    },
+    "utc": "2026-10-30T13:01:05Z"
+  }
+}

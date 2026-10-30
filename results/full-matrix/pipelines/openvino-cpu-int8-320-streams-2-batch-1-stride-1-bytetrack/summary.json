@@ -1,0 +1,502 @@
+{
+  "kind": "paced_recorded_multistream",
+  "schema_version": 2,
+  "environment": {
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 165 Stepping 2, GenuineIntel",
+    "cpu_physical_cores": 6,
+    "cpu_logical_cores": 12,
+    "ram_gib": 7.839607238769531,
+    "gpu": "NVIDIA GeForce GTX 1650 Ti, 580.97, 4096 MiB",
+    "packages": {
+      "traffic-inference-lab": "0.1.0",
+      "ultralytics": "8.4.193",
+      "torch": "2.6.0+cu124",
+      "torchvision": "0.21.0+cu124",
+      "numpy": "2.4.6",
+      "opencv-python": "4.14.0.94",
+      "onnxruntime": null,
+      "onnxruntime-gpu": "1.20.2",
+      "openvino": "2026.4.1",
+      "onnx": "1.23.2",
+      "nncf": "3.4.0",
+      "tensorrt": "10.8.0.43",
+      "tensorrt-cu12": null,
+      "lap": "0.5.13"
+    },
+    "utc": "2026-10-30T14:32:26Z"
+  },
+  "config": {
+    "model": "models\\full-matrix\\openvino-int8-320\\yolo11n_int8_openvino_model",
+    "imgsz": 320,
+    "device": "cpu",
+    "half": false,
+    "threads": 4,
+    "conf": 0.25,
+    "iou": 0.7,
+    "classes": [
+      2,
+      3,
+      5,
+      7
+    ]
+  },
+  "model_sha256": "e5d94ac8a23d4a242a201c48ecb69ab2274df25556cb9758ca74b0f82cd2996c",
+  "model_size_bytes": 3371777,
+  "backend": "OpenVINOBackend",
+  "execution_device_argument": "intel:cpu",
+  "openvino_execution_devices": [
+    "CPU"
+  ],
+  "cuda_available": true,
+  "torch_cuda": "12.4",
+  "onnx_providers": [],
+  "backend_input_fp16": false,
+  "tensorrt_cuda_graph_active": null,
+  "openvino_runtime_threads": 6,
+  "openvino_inference_precision_hint": "<Type: 'float32'>",
+  "input_hashes": [
+    "82d3a2f8a8f02f86906aaed6d097346a66cc924b0ffb591a76f0e7a5bfb4f853",
+    "82d3a2f8a8f02f86906aaed6d097346a66cc924b0ffb591a76f0e7a5bfb4f853"
+  ],
+  "elapsed_seconds": 5.116009399993345,
+  "requested_seconds": 5,
+  "requested_batch": 1,
+  "effective_max_batch": 1,
+  "queue_capacity_per_camera": 1,
+  "stride": 1,
+  "requested_decoder_threads": 1,
+  "warmup": {
+    "zero_image_calls": 5,
+    "real_image_batch_sizes": [
+      1
+    ]
+  },
+  "resources": {
+    "sample_interval_seconds": 0.1,
+    "nvml_error": null,
+    "metrics": {
+      "gpu_power_w": {
+        "n": 25,
+        "mean": 4.984319999999999,
+        "p50": 5.589,
+        "p95": 6.981199999999999,
+        "p99": 7.128279999999999,
+        "max": 7.165
+      },
+      "gpu_sm_clock_mhz": {
+        "n": 25,
+        "mean": 355.2,
+        "p50": 300.0,
+        "p95": 645.0,
+        "p99": 645.0,
+        "max": 645.0
+      },
+      "gpu_temperature_c": {
+        "n": 25,
+        "mean": 63.8,
+        "p50": 64.0,
+        "p95": 64.0,
+        "p99": 64.0,
+        "max": 64.0
+      },
+      "gpu_used_mib": {
+        "n": 25,
+        "mean": 161.0,
+        "p50": 161.0,
+        "p95": 161.0,
+        "p99": 161.0,
+        "max": 161.0
+      },
+      "gpu_utilization_percent": {
+        "n": 24,
+        "mean": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "max": 0.0
+      },
+      "process_rss_mib": {
+        "n": 25,
+        "mean": 438.86453125,
+        "p50": 450.75,
+        "p95": 464.3640625,
+        "p99": 464.40265625,
+        "max": 464.41015625
+      },
+      "system_available_ram_mib": {
+        "n": 25,
+        "mean": 795.36828125,
+        "p50": 794.1640625,
+        "p95": 857.9906249999999,
+        "p99": 881.4973437499999,
+        "max": 888.04296875
+      }
+    },
+    "samples": [
+      {
+        "seconds": 0.001888600003439933,
+        "process_rss_mib": 350.42578125,
+        "system_available_ram_mib": 846.875,
+        "gpu_used_mib": 161.0,
+        "gpu_utilization_percent": 0.0,
+        "gpu_temperature_c": 63.0,
+        "gpu_power_w": 6.427,
+        "gpu_sm_clock_mhz": 300.0
+      },
+      {
+        "seconds": 0.12121849996037781,
+        "process_rss_mib": 362.84375,
+        "system_available_ram_mib": 822.515625,
+        "gpu_used_mib": 161.0,
+        "gpu_utilization_percent": 0.0,
+        "gpu_temperature_c": 63.0,
+        "gpu_power_w": 4.589,
+        "gpu_sm_clock_mhz": 300.0
+      },
+      {
+        "seconds": 0.22748229996068403,
+        "process_rss_mib": 370.65234375,
+        "system_available_ram_mib": 888.04296875,
+        "gpu_used_mib": 161.0,
+        "gpu_utilization_percent": 0.0,
+        "gpu_temperature_c": 63.0,
+        "gpu_power_w": 4.835,
+        "gpu_sm_clock_mhz": 300.0
+      },
+      {
+        "seconds": 0.33891819999553263,
+        "process_rss_mib": 402.61328125,
+        "system_available_ram_mib": 860.76953125,
+        "gpu_used_mib": 161.0,
+        "gpu_utilization_percent": 0.0,
+        "gpu_temperature_c": 63.0,
+        "gpu_power_w": 1.0,
+        "gpu_sm_clock_mhz": 645.0
+      },
+      {
+        "seconds": 1.082022299990058,
+        "process_rss_mib": 453.50390625,
+        "system_available_ram_mib": 794.53515625,
+        "gpu_used_mib": 161.0,
+        "gpu_utilization_percent": 0.0,
+        "gpu_temperature_c": 63.0,
+        "gpu_power_w": 6.858,
+        "gpu_sm_clock_mhz": 300.0
+      },
+      {
+        "seconds": 1.1871987999766134,
+        "process_rss_mib": 461.99609375,
+        "system_available_ram_mib": 791.4453125,
+        "gpu_used_mib": 161.0,
+        "gpu_utilization_percent": 0.0,
+        "gpu_temperature_c": 64.0,
+        "gpu_power_w": 6.511,
+        "gpu_sm_clock_mhz": 300.0
+      },
+      {
+        "seconds": 1.2938362999702804,
+        "process_rss_mib": 464.3046875,
+        "system_available_ram_mib": 794.1640625,
+        "gpu_used_mib": 161.0,
+        "gpu_utilization_percent": 0.0,
+        "gpu_temperature_c": 64.0,
+        "gpu_power_w": 5.022,
+        "gpu_sm_clock_mhz": 300.0
+      },
+      {
+        "seconds": 1.404158399964217,
+        "process_rss_mib": 464.37890625,
+        "system_available_ram_mib": 784.5078125,
+        "gpu_used_mib": 161.0,
+        "gpu_utilization_percent": 0.0,
+        "gpu_temperature_c": 64.0,
+        "gpu_power_w": 4.421,
+        "gpu_sm_clock_mhz": 300.0
+      },
+      {
+        "seconds": 1.5088004999561235,
+        "process_rss_mib": 464.41015625,
+        "system_available_ram_mib": 780.0703125,
+        "gpu_used_mib": 161.0,
+        "gpu_utilization_percent": 0.0,
+        "gpu_temperature_c": 64.0,
+        "gpu_power_w": 1.0,
+        "gpu_sm_clock_mhz": 645.0
+      },
+      {
+        "seconds": 2.270037100010086,
+        "process_rss_mib": 459.3203125,
+        "system_available_ram_mib": 800.49609375,
+        "gpu_used_mib": 161.0,
+        "gpu_utilization_percent": 0.0,
+        "gpu_temperature_c": 64.0,
+        "gpu_power_w": 6.824,
+        "gpu_sm_clock_mhz": 300.0
+      },
+      {
+        "seconds": 2.3738670999882743,
+        "process_rss_mib": 461.4375,
+        "system_available_ram_mib": 806.1484375,
+        "gpu_used_mib": 161.0,
+        "gpu_utilization_percent": 0.0,
+        "gpu_temperature_c": 64.0,
+        "gpu_power_w": 6.506,
+        "gpu_sm_clock_mhz": 300.0
+      },
+      {
+        "seconds": 2.487140199984424,
+        "process_rss_mib": 461.54296875,
+        "system_available_ram_mib": 804.94921875,
+        "gpu_used_mib": 161.0,
+        "gpu_utilization_percent": 0.0,
+        "gpu_temperature_c": 64.0,
+        "gpu_power_w": 5.45,
+        "gpu_sm_clock_mhz": 300.0
+      },
+      {
+        "seconds": 2.6007028999738395,
+        "process_rss_mib": 463.5859375,
+        "system_available_ram_mib": 804.328125,
+        "gpu_used_mib": 161.0,
+        "gpu_utilization_percent": 0.0,
+        "gpu_temperature_c": 64.0,
+        "gpu_power_w": 3.89,
+        "gpu_sm_clock_mhz": 300.0
+      },
+      {
+        "seconds": 2.7196886999881826,
+        "process_rss_mib": 463.6171875,
+        "system_available_ram_mib": 805.47265625,
+        "gpu_used_mib": 161.0,
+        "gpu_utilization_percent": 0.0,
+        "gpu_temperature_c": 64.0,
+        "gpu_power_w": 5.84,
+        "gpu_sm_clock_mhz": 300.0
+      },
+      {
+        "seconds": 2.824993899965193,
+        "process_rss_mib": 463.6328125,
+        "system_available_ram_mib": 794.69140625,
+        "gpu_used_mib": 161.0,
+        "gpu_utilization_percent": null,
+        "gpu_temperature_c": 64.0,
+        "gpu_power_w": 1.0,
+        "gpu_sm_clock_mhz": 645.0
+      },
+      {
+        "seconds": 3.568167099962011,
+        "process_rss_mib": 450.61328125,
+        "system_available_ram_mib": 800.73828125,
+        "gpu_used_mib": 161.0,
+        "gpu_utilization_percent": 0.0,
+        "gpu_temperature_c": 64.0,
+        "gpu_power_w": 7.165,
+        "gpu_sm_clock_mhz": 300.0
+      },
+      {
+        "seconds": 3.6839838000014424,
+        "process_rss_mib": 450.65234375,
+        "system_available_ram_mib": 793.98046875,
+        "gpu_used_mib": 161.0,
+        "gpu_utilization_percent": 0.0,
+        "gpu_temperature_c": 64.0,
+        "gpu_power_w": 6.504,
+        "gpu_sm_clock_mhz": 300.0
+      },
+      {
+        "seconds": 3.800571299972944,
+        "process_rss_mib": 450.68359375,
+        "system_available_ram_mib": 779.8203125,
+        "gpu_used_mib": 161.0,
+        "gpu_utilization_percent": 0.0,
+        "gpu_temperature_c": 64.0,
+        "gpu_power_w": 5.589,
+        "gpu_sm_clock_mhz": 300.0
+      },
+      {
+        "seconds": 3.9071412999765016,
+        "process_rss_mib": 450.75,
+        "system_available_ram_mib": 768.57421875,
+        "gpu_used_mib": 161.0,
+        "gpu_utilization_percent": 0.0,
+        "gpu_temperature_c": 64.0,
+        "gpu_power_w": 4.386,
+        "gpu_sm_clock_mhz": 300.0
+      },
+      {
+        "seconds": 4.017567600007169,
+        "process_rss_mib": 450.80078125,
+        "system_available_ram_mib": 768.0234375,
+        "gpu_used_mib": 161.0,
+        "gpu_utilization_percent": 0.0,
+        "gpu_temperature_c": 64.0,
+        "gpu_power_w": 1.0,
+        "gpu_sm_clock_mhz": 645.0
+      },
+      {
+        "seconds": 4.796946099959314,
+        "process_rss_mib": 435.015625,
+        "system_available_ram_mib": 766.78125,
+        "gpu_used_mib": 161.0,
+        "gpu_utilization_percent": 0.0,
+        "gpu_temperature_c": 64.0,
+        "gpu_power_w": 7.012,
+        "gpu_sm_clock_mhz": 300.0
+      },
+      {
+        "seconds": 4.902079399966169,
+        "process_rss_mib": 435.0625,
+        "system_available_ram_mib": 771.5625,
+        "gpu_used_mib": 161.0,
+        "gpu_utilization_percent": 0.0,
+        "gpu_temperature_c": 64.0,
+        "gpu_power_w": 6.634,
+        "gpu_sm_clock_mhz": 300.0
+      },
+      {
+        "seconds": 5.015447899990249,
+        "process_rss_mib": 435.0625,
+        "system_available_ram_mib": 760.23828125,
+        "gpu_used_mib": 161.0,
+        "gpu_utilization_percent": 0.0,
+        "gpu_temperature_c": 64.0,
+        "gpu_power_w": 5.711,
+        "gpu_sm_clock_mhz": 300.0
+      },
+      {
+        "seconds": 5.119943399971817,
+        "process_rss_mib": 423.6640625,
+        "system_available_ram_mib": 748.40625,
+        "gpu_used_mib": 161.0,
+        "gpu_utilization_percent": 0.0,
+        "gpu_temperature_c": 64.0,
+        "gpu_power_w": 4.304,
+        "gpu_sm_clock_mhz": 300.0
+      },
+      {
+        "seconds": 5.227169299963862,
+        "process_rss_mib": 421.04296875,
+        "system_available_ram_mib": 747.0703125,
+        "gpu_used_mib": 161.0,
+        "gpu_utilization_percent": 0.0,
+        "gpu_temperature_c": 64.0,
+        "gpu_power_w": 6.13,
+        "gpu_sm_clock_mhz": 300.0
+      }
+    ],
+    "scope": "NVML readings cover the whole GPU, not exclusively this process. Power may be unsupported."
+  },
+  "tracker": "bytetrack",
+  "tracker_configs": [
+    {
+      "tracker_type": "bytetrack",
+      "track_high_thresh": 0.25,
+      "track_low_thresh": 0.1,
+      "new_track_thresh": 0.25,
+      "track_buffer": 30,
+      "match_thresh": 0.8,
+      "fuse_score": true
+    },
+    {
+      "tracker_type": "bytetrack",
+      "track_high_thresh": 0.25,
+      "track_low_thresh": 0.1,
+      "new_track_thresh": 0.25,
+      "track_buffer": 30,
+      "match_thresh": 0.8,
+      "fuse_score": true
+    }
+  ],
+  "line": [
+    0.1,
+    0.55,
+    0.9,
+    0.55
+  ],
+  "zone": [
+    0.2,
+    0.3,
+    0.8,
+    0.8
+  ],
+  "render": false,
+  "cameras": [
+    {
+      "camera": 0,
+      "source": "data/traffic.mp4",
+      "source_fps": 29.97002997002997,
+      "decoder_threads": 1,
+      "decoded": 150,
+      "processed": 65,
+      "queue_dropped": 85,
+      "stride_skipped": 0,
+      "remaining": 0,
+      "queue_high_water": 1,
+      "processed_fps": 12.705215123350742,
+      "frame_age_ms": {
+        "n": 65,
+        "mean": 103.41436204751237,
+        "p50": 99.66506663477048,
+        "p95": 173.55962002184236,
+        "p99": 194.69853998161852
+      },
+      "queue_wait_ms": {
+        "n": 65,
+        "mean": 16.46092769403297,
+        "p50": 14.127300004474819,
+        "p95": 42.746419983450316,
+        "p99": 49.82702397974208
+      },
+      "counts": {
+        "positive": 2
+      },
+      "error": null
+    },
+    {
+      "camera": 1,
+      "source": "data/traffic.mp4",
+      "source_fps": 29.97002997002997,
+      "decoder_threads": 1,
+      "decoded": 150,
+      "processed": 65,
+      "queue_dropped": 85,
+      "stride_skipped": 0,
+      "remaining": 0,
+      "queue_high_water": 1,
+      "processed_fps": 12.705215123350742,
+      "frame_age_ms": {
+        "n": 65,
+        "mean": 104.68777435688445,
+        "p50": 98.78193336771801,
+        "p95": 162.7837000065483,
+        "p99": 204.84715736471117
+      },
+      "queue_wait_ms": {
+        "n": 65,
+        "mean": 18.701015379673873,
+        "p50": 16.09309995546937,
+        "p95": 45.053200004622326,
+        "p99": 63.01347599597647
+      },
+      "counts": {
+        "positive": 2
+      },
+      "error": null
+    }
+  ],
+  "process_cpu_one_core_percent": 522.2576408877347,
+  "peak_sampled_rss_mib": 472.69921875,
+  "error": null,
+  "status": "complete",
+  "limitations": [
+    "Recorded sources replayed at metadata FPS; not an RTSP network test.",
+    "Frame age starts at scheduled source arrival and includes decode backlog.",
+    "Rendered video contains processed frames only; gaps are compressed.",
+    "Counts are unvalidated until compared with independent human event labels.",
+    "Tracker time uses update steps; frame skips/drops change its effective time scale.",
+    "No cross-camera identity association. Metadata preparation included; log writing excluded from frame age."
+  ],
+  "browser_videos": []
+}

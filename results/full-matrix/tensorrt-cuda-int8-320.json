@@ -1,0 +1,22 @@
+{
+  "kind": "full_matrix_case",
+  "spec": {
+    "name": "tensorrt-cuda-int8-320",
+    "backend": "tensorrt",
+    "precision": 8,
+    "device": "0",
+    "imgsz": 320,
+    "model": "models\\full-matrix\\tensorrt-int8-320\\yolo11n.engine",
+    "half": false,
+    "export_key": "tensorrt-int8-320",
+    "export_dir": "models\\full-matrix\\tensorrt-int8-320"
+  },
+  "throughput_fps": 91.68018796647078,
+  "mean_trial_fps": 112.00529728375179,
+  "p95_ms": 17.68185499822721,
+  "p99_ms": 24.456884998362508,
+  "map50_95": 0.2918814469105966,
+  "map50": 0.4308132998634488,
+  "strict_detection_parity_passed": false,
+  "note": "Strict detection parity is diagnostic for quantized models; evaluate mAP loss separately."
+}

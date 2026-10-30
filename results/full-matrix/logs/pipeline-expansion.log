@@ -1,0 +1,46 @@
+openvino-cpu-int8-320-streams-1-batch-1-stride-1-bytetrack: cached matching model, input and configuration
+openvino-cpu-int8-320-streams-2-batch-1-stride-1-bytetrack: cached matching model, input and configuration
+openvino-cpu-int8-320-streams-4-batch-1-stride-1-bytetrack: cached matching model, input and configuration
+openvino-cpu-int8-320-streams-8-batch-1-stride-1-bytetrack: cached matching model, input and configuration
+Running onnx-cpu-fp32-320-streams-1-batch-1-stride-1-bytetrack
+Loading models\full-matrix\onnx-fp32-320\yolo11n.onnx for ONNX Runtime inference...
+Using ONNX Runtime 1.20.2 with CPUExecutionProvider
+Running onnx-cpu-fp32-320-streams-2-batch-1-stride-1-bytetrack
+Loading models\full-matrix\onnx-fp32-320\yolo11n.onnx for ONNX Runtime inference...
+Using ONNX Runtime 1.20.2 with CPUExecutionProvider
+Running onnx-cpu-fp32-320-streams-4-batch-1-stride-1-bytetrack
+Loading models\full-matrix\onnx-fp32-320\yolo11n.onnx for ONNX Runtime inference...
+Using ONNX Runtime 1.20.2 with CPUExecutionProvider
+Running onnx-cpu-fp32-320-streams-8-batch-1-stride-1-bytetrack
+Loading models\full-matrix\onnx-fp32-320\yolo11n.onnx for ONNX Runtime inference...
+Using ONNX Runtime 1.20.2 with CPUExecutionProvider
+onnx-cuda-fp16-320-streams-1-batch-1-stride-1-bytetrack: cached matching model, input and configuration
+onnx-cuda-fp16-320-streams-2-batch-1-stride-1-bytetrack: cached matching model, input and configuration
+onnx-cuda-fp16-320-streams-4-batch-1-stride-1-bytetrack: cached matching model, input and configuration
+onnx-cuda-fp16-320-streams-8-batch-1-stride-1-bytetrack: cached matching model, input and configuration
+tensorrt-cuda-fp16-320-streams-1-batch-1-stride-1-bytetrack: cached matching model, input and configuration
+tensorrt-cuda-fp16-320-streams-2-batch-1-stride-1-bytetrack: cached matching model, input and configuration
+tensorrt-cuda-fp16-320-streams-4-batch-1-stride-1-bytetrack: cached matching model, input and configuration
+tensorrt-cuda-fp16-320-streams-8-batch-1-stride-1-bytetrack: cached matching model, input and configuration
+tensorrt-cuda-fp16-320-streams-1-batch-1-stride-1-botsort: cached matching model, input and configuration
+tensorrt-cuda-fp16-320-streams-1-batch-1-stride-1-bytetrack-render: cached matching model, input and configuration
+tensorrt-cuda-fp16-320-streams-4-batch-1-stride-2-bytetrack: cached matching model, input and configuration
+Running tensorrt-cuda-fp16-320-streams-1-batch-1-stride-1-bytetrack-sampled-telemetry
+Loading models\full-matrix\tensorrt-fp16-320\yolo11n.engine for TensorRT inference...
+[10/30/2026-15:50:54] [TRT] [I] Loaded engine size: 10 MiB
+[10/30/2026-15:50:55] [TRT] [I] [MemUsageChange] TensorRT-managed allocation in IExecutionContext creation: CPU +0, GPU +3, now: CPU 0, GPU 9 (MiB)
+WARNING NMS time limit 2.050s exceeded
+Running tensorrt-cuda-fp16-320-streams-4-batch-1-stride-1-bytetrack-sampled-telemetry
+Loading models\full-matrix\tensorrt-fp16-320\yolo11n.engine for TensorRT inference...
+[10/30/2026-15:51:13] [TRT] [I] Loaded engine size: 10 MiB
+[10/30/2026-15:51:13] [TRT] [I] [MemUsageChange] TensorRT-managed allocation in IExecutionContext creation: CPU +0, GPU +3, now: CPU 0, GPU 9 (MiB)
+Running tensorrt-cuda-fp16-320-streams-8-batch-1-stride-1-bytetrack-sampled-telemetry
+Loading models\full-matrix\tensorrt-fp16-320\yolo11n.engine for TensorRT inference...
+[10/30/2026-15:51:22] [TRT] [I] Loaded engine size: 10 MiB
+[10/30/2026-15:51:22] [TRT] [I] [MemUsageChange] TensorRT-managed allocation in IExecutionContext creation: CPU +0, GPU +3, now: CPU 0, GPU 9 (MiB)
+tensorrt-cuda-dynamic-320-streams-4-batch-4-stride-1-bytetrack: cached matching model, input and configuration
+tensorrt-cuda-dynamic-320-streams-8-batch-4-stride-1-bytetrack: cached matching model, input and configuration
+{
+  "pipeline_runs": 24,
+  "failed": []
+}

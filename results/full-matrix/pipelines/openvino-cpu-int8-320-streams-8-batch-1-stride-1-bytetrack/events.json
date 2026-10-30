@@ -1,0 +1,98 @@
+[
+  {
+    "camera": 5,
+    "source_seconds": 1.2679333333333334,
+    "track_id": 3,
+    "direction": "positive",
+    "class_id": 2,
+    "frame": 38
+  },
+  {
+    "camera": 7,
+    "source_seconds": 1.5348666666666666,
+    "track_id": 3,
+    "direction": "positive",
+    "class_id": 2,
+    "frame": 46
+  },
+  {
+    "camera": 0,
+    "source_seconds": 1.7017,
+    "track_id": 3,
+    "direction": "positive",
+    "class_id": 2,
+    "frame": 51
+  },
+  {
+    "camera": 6,
+    "source_seconds": 2.435766666666667,
+    "track_id": 3,
+    "direction": "positive",
+    "class_id": 2,
+    "frame": 73
+  },
+  {
+    "camera": 1,
+    "source_seconds": 4.971633333333333,
+    "track_id": 4,
+    "direction": "positive",
+    "class_id": 7,
+    "frame": 149
+  },
+  {
+    "camera": 2,
+    "source_seconds": 4.971633333333333,
+    "track_id": 4,
+    "direction": "positive",
+    "class_id": 7,
+    "frame": 149
+  },
+  {
+    "camera": 3,
+    "source_seconds": 4.971633333333333,
+    "track_id": 4,
+    "direction": "positive",
+    "class_id": 7,
+    "frame": 149
+  },
+  {
+    "camera": 4,
+    "source_seconds": 4.971633333333333,
+    "track_id": 5,
+    "direction": "positive",
+    "class_id": 7,
+    "frame": 149
+  },
+  {
+    "camera": 5,
+    "source_seconds": 4.771433333333333,
+    "track_id": 4,
+    "direction": "positive",
+    "class_id": 7,
+    "frame": 143
+  },
+  {
+    "camera": 6,
+    "source_seconds": 4.771433333333333,
+    "track_id": 5,
+    "direction": "positive",
+    "class_id": 7,
+    "frame": 143
+  },
+  {
+    "camera": 7,
+    "source_seconds": 4.971633333333333,
+    "track_id": 5,
+    "direction": "positive",
+    "class_id": 7,
+    "frame": 149
+  },
+  {
+    "camera": 0,
+    "source_seconds": 4.9049000000000005,
+    "track_id": 5,
+    "direction": "positive",
+    "class_id": 7,
+    "frame": 147
+  }
+]

@@ -3,3 +3,5 @@
 # Preserve captured terminal streams, including progress-control characters.
 results/logs/*.log -text -diff
 results/**/logs/*.log -text -diff
+# This file is content-addressed by evaluation/export artifacts; retain its exact bytes.
+results/full-matrix/dataset-manifest.json -text whitespace=cr-at-eol
