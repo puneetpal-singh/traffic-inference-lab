@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "trials": 12,
+  "pairs": 6,
+  "errors": [],
+  "global_map_drop_points": -0.006732587903085507,
+  "vehicle_map_drop_points": 0.048219305497043674,
+  "accuracy_budget_passed": true
+}

@@ -1,5 +1,8 @@
 # Presenting the optimization work
 
+For a CV or interview, lead with the [same-GPU paired confirmation](CONFIRMATION.md) and use the
+[copy-ready project description](CV_READY.md). It separates runtime optimization from a CPU-to-GPU hardware change.
+
 Start with the engineering question: **How many cameras can this machine process while preserving detection quality
 and keeping results fresh?** Open [the measured findings](RESULTS.md) and the downloadable [standalone report](../results/report.html).
 

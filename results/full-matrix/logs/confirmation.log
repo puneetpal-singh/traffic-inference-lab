@@ -1,0 +1,46 @@
+Loading models/full-matrix/tensorrt-fp16-320/yolo11n.engine for TensorRT inference...
+[10/30/2026-17:57:35] [TRT] [I] Loaded engine size: 10 MiB
+[10/30/2026-17:57:36] [TRT] [I] [MemUsageChange] TensorRT-managed allocation in IExecutionContext creation: CPU +0, GPU +3, now: CPU 0, GPU 9 (MiB)
+Pair 1/6, tensorrt: 129.95 FPS, p95 9.36 ms
+Pair 1/6, pytorch: 36.61 FPS, p95 33.44 ms
+Pair 2/6, pytorch: 37.21 FPS, p95 32.15 ms
+Pair 2/6, tensorrt: 134.05 FPS, p95 8.48 ms
+Pair 3/6, tensorrt: 133.43 FPS, p95 8.47 ms
+Pair 3/6, pytorch: 38.98 FPS, p95 32.65 ms
+Pair 4/6, pytorch: 41.63 FPS, p95 25.52 ms
+Pair 4/6, tensorrt: 137.77 FPS, p95 7.84 ms
+Pair 5/6, tensorrt: 133.77 FPS, p95 8.62 ms
+Pair 5/6, pytorch: 41.63 FPS, p95 25.60 ms
+Pair 6/6, pytorch: 41.74 FPS, p95 25.76 ms
+Pair 6/6, tensorrt: 136.13 FPS, p95 8.13 ms
+{
+  "kind": "same_gpu_confirmation",
+  "plan_json_sha256": "979894944b5acec0e00376c878c588f612b3af59ff949b02ed173fdae79e2cfb",
+  "pairs": 6,
+  "paired_fps_ratios": [
+    3.5500214891730546,
+    3.602849341795638,
+    3.4228931231923756,
+    3.3094268135801808,
+    3.213179909296983,
+    3.261442807660872
+  ],
+  "geometric_mean_speedup": 3.390220942597465,
+  "trial_bootstrap_95_interval": [
+    3.2793215651977037,
+    3.5047905211569312
+  ],
+  "bootstrap_resamples": 10000,
+  "bootstrap_seed": 20261030,
+  "note": "Exploratory paired-trial interval on one shared host; frames are not independent replicates.",
+  "aggregate_fps": {
+    "pytorch": 39.58124436845888,
+    "tensorrt": 134.17493175715637
+  },
+  "limitations": [
+    "One shared laptop and a short cyclic video pool, not diverse or sustained production input.",
+    "This supplements the 28-case matrix; its warm-up, frame pool and residency protocol differ.",
+    "The interval resamples six paired trials, not thousands of correlated frames.",
+    "Held-out quality is reused only for the exact previously evaluated model hashes."
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "kind": "same_gpu_confirmation",
+  "plan_json_sha256": "979894944b5acec0e00376c878c588f612b3af59ff949b02ed173fdae79e2cfb",
+  "trials": [
+    {
+      "path": "pair-00-tensorrt.json",
+      "json_sha256": "e88557f1297b991c51292fef0800f1368444093d79da8bb23873e83b6f0e3d84"
+    },
+    {
+      "path": "pair-00-pytorch.json",
+      "json_sha256": "bed79dfe62caae77bc4eab4c3ac602b5004ec860f81fa81ebdfc9c6089d8363f"
+    },
+    {
+      "path": "pair-01-pytorch.json",
+      "json_sha256": "037e8e41a19ccf65560d643524445befe71d17eb5de2dd1517c2d9c1ff4bedfb"
+    },
+    {
+      "path": "pair-01-tensorrt.json",
+      "json_sha256": "87cda5b5e0a62260df5a26a93868e82cf6cafb7f4b66f9eeaf19d0f49319a387"
+    },
+    {
+      "path": "pair-02-tensorrt.json",
+      "json_sha256": "ea4cff7a155948d142dcf6ea58fa88fd738fd5c85cc63b20b009acd1c5330433"
+    },
+    {
+      "path": "pair-02-pytorch.json",
+      "json_sha256": "e38704f9aaf02c4f48ac365f587784f108682c21c371771c0354aebc87900616"
+    },
+    {
+      "path": "pair-03-pytorch.json",
+      "json_sha256": "5790290a95d543410bc1bf167ce4814db330fcaa5546c34327a3797689fc2b19"
+    },
+    {
+      "path": "pair-03-tensorrt.json",
+      "json_sha256": "d40b2136e1206d6640409734154e2cf74fac700f11239bfcd65d8c86e48e3ea7"
+    },
+    {
+      "path": "pair-04-tensorrt.json",
+      "json_sha256": "27f4fcb6a50266b0cfce6a013fa48a2cc7f9b9930ba399bf4164b2a067fb1345"
+    },
+    {
+      "path": "pair-04-pytorch.json",
+      "json_sha256": "d00ae9c97cdce7245b43a9aabbf19923d2b6bd2e7845226a3322022578bb8e45"
+    },
+    {
+      "path": "pair-05-pytorch.json",
+      "json_sha256": "951161304969b219d9d39246ca4f497b0ead11bd90d84050ebbced29f0df6de4"
+    },
+    {
+      "path": "pair-05-tensorrt.json",
+      "json_sha256": "c8cd4536ef6d28e5932e03830d5fedcdcd1477ad4424427b982bf29780e3c25e"
+    }
+  ],
+  "pairs": 6,
+  "paired_fps_ratios": [
+    3.5500214891730546,
+    3.602849341795638,
+    3.4228931231923756,
+    3.3094268135801808,
+    3.213179909296983,
+    3.261442807660872
+  ],
+  "geometric_mean_speedup": 3.390220942597465,
+  "trial_bootstrap_95_interval": [
+    3.2793215651977037,
+    3.5047905211569312
+  ],
+  "bootstrap_resamples": 10000,
+  "bootstrap_seed": 20261030,
+  "note": "Exploratory paired-trial interval on one shared host; frames are not independent replicates.",
+  "aggregate_fps": {
+    "pytorch": 39.58124436845888,
+    "tensorrt": 134.17493175715637
+  },
+  "limitations": [
+    "One shared laptop and a short cyclic video pool, not diverse or sustained production input.",
+    "This supplements the 28-case matrix; its warm-up, frame pool and residency protocol differ.",
+    "The interval resamples six paired trials, not thousands of correlated frames.",
+    "Held-out quality is reused only for the exact previously evaluated model hashes."
+  ]
+}

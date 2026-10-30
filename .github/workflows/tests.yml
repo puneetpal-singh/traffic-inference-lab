@@ -13,3 +13,7 @@ jobs:
       - run: pip install -e '.[dev]'
       - run: ruff check .
       - run: pytest -q
+      - name: Audit published model and serving evidence (no GPU required)
+        run: python scripts/audit_full_matrix.py --require-pipelines
+      - name: Audit paired GPU confirmation evidence (no GPU required)
+        run: python scripts/audit_confirmation.py

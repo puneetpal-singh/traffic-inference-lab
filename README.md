@@ -9,6 +9,21 @@ Measured on an i7-10750H / GTX 1650 Ti: **28 model configurations and 24 serving
 FP32/FP16/INT8, camera scaling, batching, tracking, rendering, stride and telemetry tuning. See the
 [measured findings](docs/RESULTS.md), [portable report](results/report.html), and [raw evidence](results/full-matrix/).
 
+## Review the project
+
+<!-- confirmation:begin -->
+**Same-GPU confirmation:** TensorRT FP16 enabled recorded **3.39× paired model-throughput speedup** versus PyTorch CUDA FP32
+at 320px on the GTX 1650 Ti. Aggregate throughput was **39.58 → 134.17 FPS** across 6 balanced randomized trial pairs
+with real-image warm-up and at least 20 seconds per trial. Matched-artifact accuracy budget: **PASS**.
+The [confirmation protocol](docs/CONFIRMATION.md) explains the quality checks, uncertainty interval and differences from the original matrix. Decoding, tracking and rendering are excluded.
+<!-- confirmation:end -->
+
+- [Same-GPU confirmation](docs/CONFIRMATION.md): balanced randomized trials with real-image warm-up and a paired-trial uncertainty interval.
+- [CV description and defensible claims](docs/CV_READY.md): measured results and an interview walkthrough.
+- Open [the standalone HTML report](results/report.html) locally to review the complete study without installing inference dependencies.
+
+![Same-GPU optimization confirmation](results/confirmation/same-gpu-comparison.png)
+
 ```mermaid
 flowchart LR
     A[Recorded camera replay] --> B[Bounded per-camera queues]
@@ -147,6 +162,8 @@ Counts in demos are unvalidated. No training, calibrated speed, production SLA, 
 ```powershell
 python -m pytest -q
 python -m ruff check .
+python scripts/audit_full_matrix.py --require-pipelines
+python scripts/audit_confirmation.py
 ```
 
 Read [data provenance](docs/DATA.md), [benchmark protocol](docs/FULL_MATRIX_PROTOCOL.md), and
