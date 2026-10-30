@@ -1,0 +1,5 @@
+{
+  "report": "results\\report.html",
+  "benchmark_runs": 6,
+  "pipeline_runs": 6
+}

@@ -1,0 +1,18 @@
+Loading models/openvino/yolo11n_openvino_model for OpenVINO inference...
+Using OpenVINO LATENCY mode for batch=4 inference on CPU...
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "D:\M\New_Project\traffic-inference-lab\src\traffic_lab\cli.py", line 273, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "D:\M\New_Project\traffic-inference-lab\src\traffic_lab\cli.py", line 209, in main
+    result = run_pipeline(
+             ^^^^^^^^^^^^^
+  File "D:\M\New_Project\traffic-inference-lab\src\traffic_lab\pipeline.py", line 146, in run_pipeline
+    raise ValueError(f"Source must be a decodable recording with valid FPS: {source}")
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\M\New_Project\traffic-inference-lab\src\traffic_lab\pipeline.py", line 105, in make_tracker
+    # The pinned release uses a frame-count buffer and no frame_rate constructor argument.
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: BYTETracker.__init__() got an unexpected keyword argument 'frame_rate'

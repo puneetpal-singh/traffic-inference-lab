@@ -1,0 +1,4 @@
+* text=auto eol=lf
+*.png binary
+# Preserve captured terminal streams, including progress-control characters.
+results/logs/*.log -text -diff

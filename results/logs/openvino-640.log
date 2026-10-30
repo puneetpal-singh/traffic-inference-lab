@@ -1,0 +1,103 @@
+Loading models/openvino/yolo11n_openvino_model for OpenVINO inference...
+Using OpenVINO LATENCY mode for batch=4 inference on CPU...
+{
+  "kind": "predecoded_model_benchmark",
+  "schema_version": 1,
+  "environment": {
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 165 Stepping 2, GenuineIntel",
+    "cpu_physical_cores": 6,
+    "cpu_logical_cores": 12,
+    "ram_gib": 7.839607238769531,
+    "gpu": "NVIDIA GeForce GTX 1650 Ti, 580.97, 4096 MiB",
+    "packages": {
+      "traffic-inference-lab": "0.1.0",
+      "ultralytics": "8.4.193",
+      "torch": "2.15.0+cpu",
+      "torchvision": "0.29.2+cpu",
+      "numpy": "2.5.4",
+      "opencv-python": "4.14.0.94",
+      "onnxruntime": "1.31.1",
+      "openvino": "2026.4.1",
+      "onnx": "1.23.2",
+      "nncf": null,
+      "tensorrt": null
+    },
+    "utc": "2026-10-30T10:54:57Z"
+  },
+  "config": {
+    "model": "models/openvino/yolo11n_openvino_model",
+    "imgsz": 640,
+    "device": "cpu",
+    "half": false,
+    "threads": 4,
+    "conf": 0.25,
+    "iou": 0.7,
+    "classes": [
+      2,
+      3,
+      5,
+      7
+    ]
+  },
+  "model_sha256": "f9455cda3bed366ffa1bc4f04d237ea339b23e108ea8cdafb9dab7b3f26cfc27",
+  "backend": "OpenVINOBackend",
+  "execution_device_argument": "intel:cpu",
+  "openvino_execution_devices": [
+    "CPU"
+  ],
+  "cuda_available": false,
+  "torch_cuda": null,
+  "onnx_providers": [],
+  "input": {
+    "path": "data/traffic.mp4",
+    "sha256": "82d3a2f8a8f02f86906aaed6d097346a66cc924b0ffb591a76f0e7a5bfb4f853",
+    "frames": 60
+  },
+  "warmup_calls": 5,
+  "batch": 1,
+  "repeats": 3,
+  "batch_wall_ms": {
+    "n": 180,
+    "mean": 70.6070522229614,
+    "p50": 61.257550012669526,
+    "p95": 107.36896498274287,
+    "p99": 177.83983699279008
+  },
+  "fps": {
+    "n": 3,
+    "mean": 14.25226981371241,
+    "p50": 14.318485890716737,
+    "p95": 15.73176102328988,
+    "p99": 15.857385479518605
+  },
+  "peak_sampled_rss_mib": 887.58984375,
+  "quality": null,
+  "trials": [
+    {
+      "repeat": 0,
+      "seconds": 4.781054799997946,
+      "fps": 12.549531956844707,
+      "process_cpu_one_core_percent": 481.71901313513274
+    },
+    {
+      "repeat": 1,
+      "seconds": 4.190387200011173,
+      "fps": 14.318485890716737,
+      "process_cpu_one_core_percent": 531.7229395875538
+    },
+    {
+      "repeat": 2,
+      "seconds": 3.7762469000008423,
+      "fps": 15.888791593575785,
+      "process_cpu_one_core_percent": 560.6591825337289
+    }
+  ],
+  "limitations": [
+    "Decode, queues, tracking, rendering excluded.",
+    "RSS includes predecoded frames and runtime; sampled, not true peak.",
+    "Backend stage timers are implementation dependent; compare wall time.",
+    "No accuracy claim without a separately labeled evaluation."
+  ]
+}

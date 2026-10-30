@@ -1,0 +1,12 @@
+WARNING Ultralytics settings updated to the latest schema. Existing values were preserved where possible. 
+View Ultralytics Settings with 'yolo settings' or at 'C:\Users\Puneet\AppData\Roaming\Ultralytics\settings.json'
+Update Settings with 'yolo settings key=value', i.e. 'yolo settings runs_dir=path/to/dir'. For help see https://docs.ultralytics.com/usage/settings.
+[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo11n.pt to 'models\yolo11n.pt': 1% ──────────── 80.0KB/5.4MB 238.3KB/s 0.1s<22.7s[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo11n.pt to 'models\yolo11n.pt': 23% ━━╸───────── 1.2/5.4MB 11.6MB/s 0.2s<0.4s[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo11n.pt to 'models\yolo11n.pt': 55% ━━━━━━╸───── 3.0/5.4MB 15.8MB/s 0.3s<0.2s[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo11n.pt to 'models\yolo11n.pt': 89% ━━━━━━━━━━╸─ 4.8/5.4MB 18.1MB/s 0.4s<0.0s[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo11n.pt to 'models\yolo11n.pt': 100% ━━━━━━━━━━━━ 5.4MB 12.3MB/s 0.4s
+{
+  "model": "models\\yolo11n.pt",
+  "model_sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+  "video": "data\\traffic.mp4",
+  "video_sha256": "82d3a2f8a8f02f86906aaed6d097346a66cc924b0ffb591a76f0e7a5bfb4f853",
+  "video_url": "https://github.com/ultralytics/assets/releases/download/v0.0.0/anpr-demo-video.mp4",
+  "note": "Upstream demo footage; not redistributed here. See docs/DATA.md."
+}

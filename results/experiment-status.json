@@ -1,0 +1,574 @@
+[
+  {
+    "name": "fetch",
+    "exit_code": 0,
+    "seconds": 32.62859710000339,
+    "arguments": [
+      "fetch"
+    ]
+  },
+  {
+    "name": "export-onnx",
+    "exit_code": 0,
+    "seconds": 39.5483368000132,
+    "arguments": [
+      "export",
+      "--format",
+      "onnx",
+      "--dynamic",
+      "--batch",
+      4,
+      "--output-dir",
+      "models/onnx"
+    ]
+  },
+  {
+    "name": "export-openvino",
+    "exit_code": 0,
+    "seconds": 15.182270299992524,
+    "arguments": [
+      "export",
+      "--format",
+      "openvino",
+      "--dynamic",
+      "--batch",
+      4,
+      "--output-dir",
+      "models/openvino"
+    ]
+  },
+  {
+    "name": "pytorch-320",
+    "exit_code": 0,
+    "seconds": 33.87232429999858,
+    "arguments": [
+      "benchmark",
+      "--model",
+      "models/yolo11n.pt",
+      "--source",
+      "data/traffic.mp4",
+      "--imgsz",
+      320,
+      "--frames",
+      60,
+      "--repeats",
+      3,
+      "--output",
+      "results/pytorch-320.json"
+    ]
+  },
+  {
+    "name": "eval-pytorch-320",
+    "exit_code": 0,
+    "seconds": 23.390006200002972,
+    "arguments": [
+      "evaluate",
+      "--model",
+      "models/yolo11n.pt",
+      "--data",
+      "coco128.yaml",
+      "--imgsz",
+      320,
+      "--output",
+      "results/eval-pytorch-320.json"
+    ]
+  },
+  {
+    "name": "onnx-320",
+    "exit_code": 0,
+    "seconds": 21.090505400003167,
+    "arguments": [
+      "benchmark",
+      "--model",
+      "models/onnx/yolo11n.onnx",
+      "--source",
+      "data/traffic.mp4",
+      "--imgsz",
+      320,
+      "--frames",
+      60,
+      "--repeats",
+      3,
+      "--output",
+      "results/onnx-320.json"
+    ]
+  },
+  {
+    "name": "parity-onnx-320",
+    "exit_code": 0,
+    "seconds": 29.966999700001907,
+    "arguments": [
+      "parity",
+      "--candidate",
+      "models/onnx/yolo11n.onnx",
+      "--source",
+      "data/traffic.mp4",
+      "--imgsz",
+      320,
+      "--output",
+      "results/parity-onnx-320.json"
+    ]
+  },
+  {
+    "name": "eval-onnx-320",
+    "exit_code": 0,
+    "seconds": 55.12882750001154,
+    "arguments": [
+      "evaluate",
+      "--model",
+      "models/onnx/yolo11n.onnx",
+      "--data",
+      "coco128.yaml",
+      "--imgsz",
+      320,
+      "--output",
+      "results/eval-onnx-320.json"
+    ]
+  },
+  {
+    "name": "openvino-320",
+    "exit_code": 0,
+    "seconds": 52.029056300001685,
+    "arguments": [
+      "benchmark",
+      "--model",
+      "models/openvino/yolo11n_openvino_model",
+      "--source",
+      "data/traffic.mp4",
+      "--imgsz",
+      320,
+      "--frames",
+      60,
+      "--repeats",
+      3,
+      "--output",
+      "results/openvino-320.json"
+    ]
+  },
+  {
+    "name": "parity-openvino-320",
+    "exit_code": 0,
+    "seconds": 57.29118530001142,
+    "arguments": [
+      "parity",
+      "--candidate",
+      "models/openvino/yolo11n_openvino_model",
+      "--source",
+      "data/traffic.mp4",
+      "--imgsz",
+      320,
+      "--output",
+      "results/parity-openvino-320.json"
+    ]
+  },
+  {
+    "name": "eval-openvino-320",
+    "exit_code": 0,
+    "seconds": 22.348603999998886,
+    "arguments": [
+      "evaluate",
+      "--model",
+      "models/openvino/yolo11n_openvino_model",
+      "--data",
+      "coco128.yaml",
+      "--imgsz",
+      320,
+      "--output",
+      "results/eval-openvino-320.json"
+    ]
+  },
+  {
+    "name": "pytorch-640",
+    "exit_code": 0,
+    "seconds": 24.94659199999296,
+    "arguments": [
+      "benchmark",
+      "--model",
+      "models/yolo11n.pt",
+      "--source",
+      "data/traffic.mp4",
+      "--imgsz",
+      640,
+      "--frames",
+      60,
+      "--repeats",
+      3,
+      "--output",
+      "results/pytorch-640.json"
+    ]
+  },
+  {
+    "name": "eval-pytorch-640",
+    "exit_code": 0,
+    "seconds": 23.4945652000024,
+    "arguments": [
+      "evaluate",
+      "--model",
+      "models/yolo11n.pt",
+      "--data",
+      "coco128.yaml",
+      "--imgsz",
+      640,
+      "--output",
+      "results/eval-pytorch-640.json"
+    ]
+  },
+  {
+    "name": "onnx-640",
+    "exit_code": 0,
+    "seconds": 29.888297400000738,
+    "arguments": [
+      "benchmark",
+      "--model",
+      "models/onnx/yolo11n.onnx",
+      "--source",
+      "data/traffic.mp4",
+      "--imgsz",
+      640,
+      "--frames",
+      60,
+      "--repeats",
+      3,
+      "--output",
+      "results/onnx-640.json"
+    ]
+  },
+  {
+    "name": "parity-onnx-640",
+    "exit_code": 0,
+    "seconds": 19.541924699995434,
+    "arguments": [
+      "parity",
+      "--candidate",
+      "models/onnx/yolo11n.onnx",
+      "--source",
+      "data/traffic.mp4",
+      "--imgsz",
+      640,
+      "--output",
+      "results/parity-onnx-640.json"
+    ]
+  },
+  {
+    "name": "eval-onnx-640",
+    "exit_code": 0,
+    "seconds": 18.544651199976215,
+    "arguments": [
+      "evaluate",
+      "--model",
+      "models/onnx/yolo11n.onnx",
+      "--data",
+      "coco128.yaml",
+      "--imgsz",
+      640,
+      "--output",
+      "results/eval-onnx-640.json"
+    ]
+  },
+  {
+    "name": "openvino-640",
+    "exit_code": 0,
+    "seconds": 34.93464859999949,
+    "arguments": [
+      "benchmark",
+      "--model",
+      "models/openvino/yolo11n_openvino_model",
+      "--source",
+      "data/traffic.mp4",
+      "--imgsz",
+      640,
+      "--frames",
+      60,
+      "--repeats",
+      3,
+      "--output",
+      "results/openvino-640.json"
+    ]
+  },
+  {
+    "name": "parity-openvino-640",
+    "exit_code": 0,
+    "seconds": 32.589016700017964,
+    "arguments": [
+      "parity",
+      "--candidate",
+      "models/openvino/yolo11n_openvino_model",
+      "--source",
+      "data/traffic.mp4",
+      "--imgsz",
+      640,
+      "--output",
+      "results/parity-openvino-640.json"
+    ]
+  },
+  {
+    "name": "eval-openvino-640",
+    "exit_code": 0,
+    "seconds": 24.32141610002145,
+    "arguments": [
+      "evaluate",
+      "--model",
+      "models/openvino/yolo11n_openvino_model",
+      "--data",
+      "coco128.yaml",
+      "--imgsz",
+      640,
+      "--output",
+      "results/eval-openvino-640.json"
+    ]
+  },
+  {
+    "name": "streams-1-batch-1-stride-1-bytetrack",
+    "exit_code": 0,
+    "seconds": 81.28784730000189,
+    "arguments": [
+      "run",
+      "--model",
+      "models/openvino/yolo11n_openvino_model",
+      "--sources",
+      "data/traffic.mp4",
+      "--duration",
+      5,
+      "--batch",
+      1,
+      "--stride",
+      1,
+      "--tracker",
+      "bytetrack",
+      "--output",
+      "results/streams-1-batch-1-stride-1-bytetrack"
+    ],
+    "previous_attempts": [
+      {
+        "name": "streams-1-batch-1-stride-1-bytetrack",
+        "exit_code": 1,
+        "seconds": 19.6611644999939,
+        "arguments": [
+          "run",
+          "--model",
+          "models/openvino/yolo11n_openvino_model",
+          "--sources",
+          "data/traffic.mp4",
+          "--duration",
+          5,
+          "--batch",
+          1,
+          "--stride",
+          1,
+          "--tracker",
+          "bytetrack",
+          "--output",
+          "results/streams-1-batch-1-stride-1-bytetrack"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "streams-2-batch-1-stride-1-bytetrack",
+    "exit_code": 0,
+    "seconds": 32.14564590001828,
+    "arguments": [
+      "run",
+      "--model",
+      "models/openvino/yolo11n_openvino_model",
+      "--sources",
+      "data/traffic.mp4",
+      "data/traffic.mp4",
+      "--duration",
+      5,
+      "--batch",
+      1,
+      "--stride",
+      1,
+      "--tracker",
+      "bytetrack",
+      "--output",
+      "results/streams-2-batch-1-stride-1-bytetrack"
+    ],
+    "previous_attempts": [
+      {
+        "name": "streams-2-batch-1-stride-1-bytetrack",
+        "exit_code": 1,
+        "seconds": 10.999731499992777,
+        "arguments": [
+          "run",
+          "--model",
+          "models/openvino/yolo11n_openvino_model",
+          "--sources",
+          "data/traffic.mp4",
+          "data/traffic.mp4",
+          "--duration",
+          5,
+          "--batch",
+          1,
+          "--stride",
+          1,
+          "--tracker",
+          "bytetrack",
+          "--output",
+          "results/streams-2-batch-1-stride-1-bytetrack"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "streams-4-batch-1-stride-1-bytetrack",
+    "exit_code": 0,
+    "seconds": 25.632556600001408,
+    "arguments": [
+      "run",
+      "--model",
+      "models/openvino/yolo11n_openvino_model",
+      "--sources",
+      "data/traffic.mp4",
+      "data/traffic.mp4",
+      "data/traffic.mp4",
+      "data/traffic.mp4",
+      "--duration",
+      5,
+      "--batch",
+      1,
+      "--stride",
+      1,
+      "--tracker",
+      "bytetrack",
+      "--output",
+      "results/streams-4-batch-1-stride-1-bytetrack"
+    ],
+    "previous_attempts": [
+      {
+        "name": "streams-4-batch-1-stride-1-bytetrack",
+        "exit_code": 1,
+        "seconds": 11.129346100002294,
+        "arguments": [
+          "run",
+          "--model",
+          "models/openvino/yolo11n_openvino_model",
+          "--sources",
+          "data/traffic.mp4",
+          "data/traffic.mp4",
+          "data/traffic.mp4",
+          "data/traffic.mp4",
+          "--duration",
+          5,
+          "--batch",
+          1,
+          "--stride",
+          1,
+          "--tracker",
+          "bytetrack",
+          "--output",
+          "results/streams-4-batch-1-stride-1-bytetrack"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "streams-4-batch-4-stride-1-bytetrack",
+    "exit_code": 0,
+    "seconds": 21.99928910000017,
+    "arguments": [
+      "run",
+      "--model",
+      "models/openvino/yolo11n_openvino_model",
+      "--sources",
+      "data/traffic.mp4",
+      "data/traffic.mp4",
+      "data/traffic.mp4",
+      "data/traffic.mp4",
+      "--duration",
+      5,
+      "--batch",
+      4,
+      "--stride",
+      1,
+      "--tracker",
+      "bytetrack",
+      "--output",
+      "results/streams-4-batch-4-stride-1-bytetrack"
+    ],
+    "previous_attempts": [
+      {
+        "name": "streams-4-batch-4-stride-1-bytetrack",
+        "exit_code": 1,
+        "seconds": 10.766107599978568,
+        "arguments": [
+          "run",
+          "--model",
+          "models/openvino/yolo11n_openvino_model",
+          "--sources",
+          "data/traffic.mp4",
+          "data/traffic.mp4",
+          "data/traffic.mp4",
+          "data/traffic.mp4",
+          "--duration",
+          5,
+          "--batch",
+          4,
+          "--stride",
+          1,
+          "--tracker",
+          "bytetrack",
+          "--output",
+          "results/streams-4-batch-4-stride-1-bytetrack"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "streams-4-batch-1-stride-2-bytetrack",
+    "exit_code": 0,
+    "seconds": 18.135046899988083,
+    "arguments": [
+      "run",
+      "--model",
+      "models/openvino/yolo11n_openvino_model",
+      "--sources",
+      "data/traffic.mp4",
+      "data/traffic.mp4",
+      "data/traffic.mp4",
+      "data/traffic.mp4",
+      "--duration",
+      5,
+      "--batch",
+      1,
+      "--stride",
+      2,
+      "--tracker",
+      "bytetrack",
+      "--output",
+      "results/streams-4-batch-1-stride-2-bytetrack"
+    ]
+  },
+  {
+    "name": "streams-1-batch-1-stride-1-botsort",
+    "exit_code": 0,
+    "seconds": 22.100526499998523,
+    "arguments": [
+      "run",
+      "--model",
+      "models/openvino/yolo11n_openvino_model",
+      "--sources",
+      "data/traffic.mp4",
+      "--duration",
+      5,
+      "--batch",
+      1,
+      "--stride",
+      1,
+      "--tracker",
+      "botsort",
+      "--output",
+      "results/streams-1-batch-1-stride-1-botsort",
+      "--render"
+    ]
+  },
+  {
+    "name": "report",
+    "exit_code": 0,
+    "seconds": 5.944048700010171,
+    "arguments": [
+      "report"
+    ]
+  }
+]

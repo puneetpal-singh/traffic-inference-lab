@@ -1,0 +1,20 @@
+{
+  "kind": "model_deployment_gate",
+  "passed": false,
+  "reasons": [
+    "Accuracy drop exceeds allowance or labeled quality is missing"
+  ],
+  "p95_budget_ms": 100,
+  "measured_p95_ms": 36.185730001307064,
+  "max_map_drop_points": 1,
+  "measured_map_drop_points": 11.960340009378267,
+  "candidate_model_sha256": "f9455cda3bed366ffa1bc4f04d237ea339b23e108ea8cdafb9dab7b3f26cfc27",
+  "baseline_model_sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+  "candidate_imgsz": 320,
+  "baseline_imgsz": 640,
+  "candidate_map50_95": 0.38561289152416334,
+  "baseline_map50_95": 0.505216291617946,
+  "data": "coco128.yaml",
+  "split": "val",
+  "scope": "Model-only gate. Independently require paced-stream and traffic holdout acceptance."
+}

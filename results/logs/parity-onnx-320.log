@@ -1,0 +1,6 @@
+Loading models/onnx/yolo11n.onnx for ONNX Runtime inference...
+Using ONNX Runtime 1.31.1 with CPUExecutionProvider
+{
+  "passed": true,
+  "output": "results/parity-onnx-320.json"
+}

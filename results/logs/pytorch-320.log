@@ -1,0 +1,100 @@
+{
+  "kind": "predecoded_model_benchmark",
+  "schema_version": 1,
+  "environment": {
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 165 Stepping 2, GenuineIntel",
+    "cpu_physical_cores": 6,
+    "cpu_logical_cores": 12,
+    "ram_gib": 7.839607238769531,
+    "gpu": "NVIDIA GeForce GTX 1650 Ti, 580.97, 4096 MiB",
+    "packages": {
+      "traffic-inference-lab": "0.1.0",
+      "ultralytics": "8.4.193",
+      "torch": "2.15.0+cpu",
+      "torchvision": "0.29.2+cpu",
+      "numpy": "2.5.4",
+      "opencv-python": "4.14.0.94",
+      "onnxruntime": "1.31.1",
+      "openvino": "2026.4.1",
+      "onnx": "1.23.2",
+      "nncf": null,
+      "tensorrt": null,
+      "lap": "0.5.13"
+    },
+    "utc": "2026-10-30T11:03:07Z"
+  },
+  "config": {
+    "model": "models/yolo11n.pt",
+    "imgsz": 320,
+    "device": "cpu",
+    "half": false,
+    "threads": 4,
+    "conf": 0.25,
+    "iou": 0.7,
+    "classes": [
+      2,
+      3,
+      5,
+      7
+    ]
+  },
+  "model_sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+  "backend": "PyTorchBackend",
+  "execution_device_argument": "cpu",
+  "openvino_execution_devices": [],
+  "cuda_available": false,
+  "torch_cuda": null,
+  "onnx_providers": [],
+  "input": {
+    "path": "data/traffic.mp4",
+    "sha256": "82d3a2f8a8f02f86906aaed6d097346a66cc924b0ffb591a76f0e7a5bfb4f853",
+    "frames": 60
+  },
+  "warmup_calls": 5,
+  "batch": 1,
+  "repeats": 3,
+  "batch_wall_ms": {
+    "n": 180,
+    "mean": 45.93447777701335,
+    "p50": 41.93715000292286,
+    "p95": 60.94165498070652,
+    "p99": 80.46144900203225
+  },
+  "fps": {
+    "n": 3,
+    "mean": 21.739210031827877,
+    "p50": 21.000624453616798,
+    "p95": 23.22523614108388,
+    "p99": 23.422979402192066
+  },
+  "peak_sampled_rss_mib": 666.390625,
+  "quality": null,
+  "trials": [
+    {
+      "repeat": 0,
+      "seconds": 2.8923203000158537,
+      "fps": 20.744590424397714,
+      "process_cpu_one_core_percent": 743.8880472498868
+    },
+    {
+      "repeat": 1,
+      "seconds": 2.5561920000182,
+      "fps": 23.472415217469113,
+      "process_cpu_one_core_percent": 758.5746688770616
+    },
+    {
+      "repeat": 2,
+      "seconds": 2.8570578999933787,
+      "fps": 21.000624453616798,
+      "process_cpu_one_core_percent": 733.928073352962
+    }
+  ],
+  "limitations": [
+    "Decode, queues, tracking, rendering excluded.",
+    "RSS includes predecoded frames and runtime; sampled, not true peak.",
+    "Backend stage timers are implementation dependent; compare wall time.",
+    "No accuracy claim without a separately labeled evaluation."
+  ]
+}

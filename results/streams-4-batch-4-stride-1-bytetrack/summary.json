@@ -1,0 +1,251 @@
+{
+  "kind": "paced_recorded_multistream",
+  "schema_version": 1,
+  "environment": {
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 165 Stepping 2, GenuineIntel",
+    "cpu_physical_cores": 6,
+    "cpu_logical_cores": 12,
+    "ram_gib": 7.839607238769531,
+    "gpu": "NVIDIA GeForce GTX 1650 Ti, 580.97, 4096 MiB",
+    "packages": {
+      "traffic-inference-lab": "0.1.0",
+      "ultralytics": "8.4.193",
+      "torch": "2.15.0+cpu",
+      "torchvision": "0.29.2+cpu",
+      "numpy": "2.5.4",
+      "opencv-python": "4.14.0.94",
+      "onnxruntime": "1.31.1",
+      "openvino": "2026.4.1",
+      "onnx": "1.23.2",
+      "nncf": null,
+      "tensorrt": null,
+      "lap": "0.5.13"
+    },
+    "utc": "2026-10-30T11:01:43Z"
+  },
+  "config": {
+    "model": "models/openvino/yolo11n_openvino_model",
+    "imgsz": 320,
+    "device": "cpu",
+    "half": false,
+    "threads": 4,
+    "conf": 0.25,
+    "iou": 0.7,
+    "classes": [
+      2,
+      3,
+      5,
+      7
+    ]
+  },
+  "model_sha256": "f9455cda3bed366ffa1bc4f04d237ea339b23e108ea8cdafb9dab7b3f26cfc27",
+  "backend": "OpenVINOBackend",
+  "execution_device_argument": "intel:cpu",
+  "openvino_execution_devices": [
+    "CPU"
+  ],
+  "cuda_available": false,
+  "torch_cuda": null,
+  "onnx_providers": [],
+  "input_hashes": [
+    "82d3a2f8a8f02f86906aaed6d097346a66cc924b0ffb591a76f0e7a5bfb4f853",
+    "82d3a2f8a8f02f86906aaed6d097346a66cc924b0ffb591a76f0e7a5bfb4f853",
+    "82d3a2f8a8f02f86906aaed6d097346a66cc924b0ffb591a76f0e7a5bfb4f853",
+    "82d3a2f8a8f02f86906aaed6d097346a66cc924b0ffb591a76f0e7a5bfb4f853"
+  ],
+  "elapsed_seconds": 5.173011000006227,
+  "requested_seconds": 5.0,
+  "requested_batch": 4,
+  "effective_max_batch": 4,
+  "queue_capacity_per_camera": 1,
+  "stride": 1,
+  "tracker": "bytetrack",
+  "tracker_configs": [
+    {
+      "tracker_type": "bytetrack",
+      "track_high_thresh": 0.25,
+      "track_low_thresh": 0.1,
+      "new_track_thresh": 0.25,
+      "track_buffer": 30,
+      "match_thresh": 0.8,
+      "fuse_score": true
+    },
+    {
+      "tracker_type": "bytetrack",
+      "track_high_thresh": 0.25,
+      "track_low_thresh": 0.1,
+      "new_track_thresh": 0.25,
+      "track_buffer": 30,
+      "match_thresh": 0.8,
+      "fuse_score": true
+    },
+    {
+      "tracker_type": "bytetrack",
+      "track_high_thresh": 0.25,
+      "track_low_thresh": 0.1,
+      "new_track_thresh": 0.25,
+      "track_buffer": 30,
+      "match_thresh": 0.8,
+      "fuse_score": true
+    },
+    {
+      "tracker_type": "bytetrack",
+      "track_high_thresh": 0.25,
+      "track_low_thresh": 0.1,
+      "new_track_thresh": 0.25,
+      "track_buffer": 30,
+      "match_thresh": 0.8,
+      "fuse_score": true
+    }
+  ],
+  "line": [
+    0.1,
+    0.55,
+    0.9,
+    0.55
+  ],
+  "zone": [
+    0.2,
+    0.3,
+    0.8,
+    0.8
+  ],
+  "render": false,
+  "cameras": [
+    {
+      "camera": 0,
+      "source": "data/traffic.mp4",
+      "source_fps": 29.97002997002997,
+      "decoded": 150,
+      "processed": 22,
+      "queue_dropped": 128,
+      "stride_skipped": 0,
+      "remaining": 0,
+      "queue_high_water": 1,
+      "processed_fps": 4.252842300156238,
+      "frame_age_ms": {
+        "n": 22,
+        "mean": 221.07395757286048,
+        "p50": 205.89906667009927,
+        "p95": 303.3074166669394,
+        "p99": 356.6581126567325
+      },
+      "queue_wait_ms": {
+        "n": 22,
+        "mean": 21.507227272112768,
+        "p50": 16.104049995192327,
+        "p95": 36.76732997409999,
+        "p99": 89.70912100834533
+      },
+      "counts": {
+        "positive": 2
+      },
+      "error": null
+    },
+    {
+      "camera": 1,
+      "source": "data/traffic.mp4",
+      "source_fps": 29.97002997002997,
+      "decoded": 150,
+      "processed": 23,
+      "queue_dropped": 127,
+      "stride_skipped": 0,
+      "remaining": 0,
+      "queue_high_water": 1,
+      "processed_fps": 4.4461533137997025,
+      "frame_age_ms": {
+        "n": 23,
+        "mean": 238.85674202060528,
+        "p50": 209.08739999867976,
+        "p95": 323.72393998957705,
+        "p99": 564.7804506705146
+      },
+      "queue_wait_ms": {
+        "n": 23,
+        "mean": 20.173313040488765,
+        "p50": 13.421400013612583,
+        "p95": 43.46359998453406,
+        "p99": 88.38783399260143
+      },
+      "counts": {
+        "positive": 2
+      },
+      "error": null
+    },
+    {
+      "camera": 2,
+      "source": "data/traffic.mp4",
+      "source_fps": 29.97002997002997,
+      "decoded": 150,
+      "processed": 22,
+      "queue_dropped": 128,
+      "stride_skipped": 0,
+      "remaining": 0,
+      "queue_high_water": 1,
+      "processed_fps": 4.252842300156238,
+      "frame_age_ms": {
+        "n": 22,
+        "mean": 221.7816666578239,
+        "p50": 209.75880000332836,
+        "p95": 301.2999533195398,
+        "p99": 330.24037564318854
+      },
+      "queue_wait_ms": {
+        "n": 22,
+        "mean": 21.301218182832766,
+        "p50": 13.975699999718927,
+        "p95": 44.18534998985705,
+        "p99": 88.38310500257644
+      },
+      "counts": {
+        "positive": 2
+      },
+      "error": null
+    },
+    {
+      "camera": 3,
+      "source": "data/traffic.mp4",
+      "source_fps": 29.97002997002997,
+      "decoded": 150,
+      "processed": 23,
+      "queue_dropped": 127,
+      "stride_skipped": 0,
+      "remaining": 0,
+      "queue_high_water": 1,
+      "processed_fps": 4.4461533137997025,
+      "frame_age_ms": {
+        "n": 23,
+        "mean": 238.2562681108855,
+        "p50": 223.07860001455992,
+        "p95": 354.27272666420316,
+        "p99": 563.9515526592735
+      },
+      "queue_wait_ms": {
+        "n": 23,
+        "mean": 20.9805999993873,
+        "p50": 14.098299987381324,
+        "p95": 43.84225999237968,
+        "p99": 90.6639520032332
+      },
+      "counts": {
+        "positive": 2
+      },
+      "error": null
+    }
+  ],
+  "process_cpu_one_core_percent": 811.6042088437365,
+  "peak_sampled_rss_mib": 1157.9453125,
+  "error": null,
+  "status": "complete",
+  "limitations": [
+    "Recorded sources replayed at metadata FPS; not an RTSP network test.",
+    "Frame age starts at scheduled source arrival and includes decode backlog.",
+    "Rendered video contains processed frames only; gaps are compressed.",
+    "Counts are unvalidated until compared with independent human event labels.",
+    "Tracker time uses update steps; frame skips/drops change its effective time scale.",
+    "No cross-camera identity association. Telemetry log writing excluded from frame age."
+  ],
+  "browser_videos": []
+}

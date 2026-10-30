@@ -1,0 +1,74 @@
+[
+  {
+    "name": "pytorch-320",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "passed": true,
+    "seconds": 33.87232429999858
+  },
+  {
+    "name": "gate-same-resolution",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "passed": true,
+    "seconds": 0.8373670000000857
+  },
+  {
+    "name": "gate-resolution-tradeoff",
+    "exit_code": 2,
+    "expected_exit_code": 2,
+    "passed": true,
+    "seconds": 0.784973900008481
+  },
+  {
+    "name": "capture-provenance",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "passed": true,
+    "seconds": 10.229072200017981
+  },
+  {
+    "name": "freeze-environment",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "passed": true,
+    "seconds": 4.36250960000325
+  },
+  {
+    "name": "report",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "passed": true,
+    "seconds": 7.319495300005656
+  },
+  {
+    "name": "summarize-results",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "passed": true,
+    "seconds": 0.9257790000119712
+  },
+  {
+    "name": "audit-artifacts",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "passed": true,
+    "seconds": 0.29734190000453964
+  },
+  {
+    "name": "dashboard-smoke",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "passed": true,
+    "seconds": 2.951352100004442,
+    "previous_attempts": [
+      {
+        "name": "dashboard-smoke",
+        "exit_code": 1,
+        "expected_exit_code": 0,
+        "passed": false,
+        "seconds": 11.106507799995597
+      }
+    ]
+  }
+]

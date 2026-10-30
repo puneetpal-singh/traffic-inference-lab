@@ -1,0 +1,33 @@
+Loading models/openvino/yolo11n_openvino_model for OpenVINO inference...
+Using OpenVINO LATENCY mode for batch=4 inference on CPU...
+[31m[1mrequirements:[0m Ultralytics requirement ['lap>=0.5.12'] not found, attempting AutoUpdate...
+Collecting lap>=0.5.12
+  Downloading lap-0.5.13-cp312-cp312-win_amd64.whl.metadata (6.8 kB)
+Requirement already satisfied: numpy>=1.21.6 in d:\m\new_project\.venv\lib\site-packages (from lap>=0.5.12) (2.5.4)
+Downloading lap-0.5.13-cp312-cp312-win_amd64.whl (1.5 MB)
+   ---------------------------------------- 1.5/1.5 MB 15.4 MB/s eta 0:00:00
+Installing collected packages: lap
+Successfully installed lap-0.5.13
+
+[notice] A new release of pip is available: 25.0.1 -> 26.2.2
+[notice] To update, run: D:\M\New_Project\.venv\Scripts\python.exe -m pip install --upgrade pip
+
+[31m[1mrequirements:[0m AutoUpdate success  8.1s
+WARNING [31m[1mrequirements:[0m [1mRestart runtime or rerun command for updates to take effect[0m
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "D:\M\New_Project\traffic-inference-lab\src\traffic_lab\cli.py", line 273, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "D:\M\New_Project\traffic-inference-lab\src\traffic_lab\cli.py", line 209, in main
+    result = run_pipeline(
+             ^^^^^^^^^^^^^
+  File "D:\M\New_Project\traffic-inference-lab\src\traffic_lab\pipeline.py", line 146, in run_pipeline
+    trackers = [make_tracker(tracker, max(1, round(rate))) for rate in rates]
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\M\New_Project\traffic-inference-lab\src\traffic_lab\pipeline.py", line 105, in make_tracker
+    return {"bytetrack": BYTETracker, "botsort": BOTSORT}[name](args=args, frame_rate=frame_rate)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: BYTETracker.__init__() got an unexpected keyword argument 'frame_rate'

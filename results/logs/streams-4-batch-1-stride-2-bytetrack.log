@@ -1,0 +1,214 @@
+Loading models/openvino/yolo11n_openvino_model for OpenVINO inference...
+Using OpenVINO LATENCY mode for batch=4 inference on CPU...
+{
+  "kind": "paced_recorded_multistream",
+  "schema_version": 1,
+  "environment": {
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 165 Stepping 2, GenuineIntel",
+    "cpu_physical_cores": 6,
+    "cpu_logical_cores": 12,
+    "ram_gib": 7.839607238769531,
+    "gpu": "NVIDIA GeForce GTX 1650 Ti, 580.97, 4096 MiB",
+    "packages": {
+      "traffic-inference-lab": "0.1.0",
+      "ultralytics": "8.4.193",
+      "torch": "2.15.0+cpu",
+      "torchvision": "0.29.2+cpu",
+      "numpy": "2.5.4",
+      "opencv-python": "4.14.0.94",
+      "onnxruntime": "1.31.1",
+      "openvino": "2026.4.1",
+      "onnx": "1.23.2",
+      "nncf": null,
+      "tensorrt": null
+    },
+    "utc": "2026-10-30T10:57:06Z"
+  },
+  "config": {
+    "model": "models/openvino/yolo11n_openvino_model",
+    "imgsz": 320,
+    "device": "cpu",
+    "half": false,
+    "threads": 4,
+    "conf": 0.25,
+    "iou": 0.7,
+    "classes": [
+      2,
+      3,
+      5,
+      7
+    ]
+  },
+  "model_sha256": "f9455cda3bed366ffa1bc4f04d237ea339b23e108ea8cdafb9dab7b3f26cfc27",
+  "backend": "OpenVINOBackend",
+  "execution_device_argument": "intel:cpu",
+  "openvino_execution_devices": [
+    "CPU"
+  ],
+  "cuda_available": false,
+  "torch_cuda": null,
+  "onnx_providers": [],
+  "input_hashes": [
+    "82d3a2f8a8f02f86906aaed6d097346a66cc924b0ffb591a76f0e7a5bfb4f853",
+    "82d3a2f8a8f02f86906aaed6d097346a66cc924b0ffb591a76f0e7a5bfb4f853",
+    "82d3a2f8a8f02f86906aaed6d097346a66cc924b0ffb591a76f0e7a5bfb4f853",
+    "82d3a2f8a8f02f86906aaed6d097346a66cc924b0ffb591a76f0e7a5bfb4f853"
+  ],
+  "elapsed_seconds": 5.056594199995743,
+  "requested_seconds": 5.0,
+  "requested_batch": 1,
+  "effective_max_batch": 1,
+  "queue_capacity_per_camera": 1,
+  "stride": 2,
+  "tracker": "bytetrack",
+  "line": [
+    0.1,
+    0.55,
+    0.9,
+    0.55
+  ],
+  "zone": [
+    0.2,
+    0.3,
+    0.8,
+    0.8
+  ],
+  "render": false,
+  "cameras": [
+    {
+      "camera": 0,
+      "source": "data/traffic.mp4",
+      "source_fps": 29.97002997002997,
+      "decoded": 150,
+      "processed": 11,
+      "queue_dropped": 123,
+      "stride_skipped": 16,
+      "remaining": 0,
+      "queue_high_water": 1,
+      "processed_fps": 2.175377252936227,
+      "frame_age_ms": {
+        "n": 11,
+        "mean": 105.9108272708148,
+        "p50": 98.9750666776672,
+        "p95": 182.78598332835827,
+        "p99": 226.93130332336298
+      },
+      "queue_wait_ms": {
+        "n": 11,
+        "mean": 5.967581819277257,
+        "p50": 3.094899991992861,
+        "p95": 19.68749999650754,
+        "p99": 25.206379994051535
+      },
+      "counts": {
+        "positive": 1
+      },
+      "error": null
+    },
+    {
+      "camera": 1,
+      "source": "data/traffic.mp4",
+      "source_fps": 29.97002997002997,
+      "decoded": 150,
+      "processed": 8,
+      "queue_dropped": 125,
+      "stride_skipped": 17,
+      "remaining": 0,
+      "queue_high_water": 1,
+      "processed_fps": 1.5820925475899836,
+      "frame_age_ms": {
+        "n": 8,
+        "mean": 114.96826666552806,
+        "p50": 105.10260000592098,
+        "p95": 179.80391500605035,
+        "p99": 188.6361696824315
+      },
+      "queue_wait_ms": {
+        "n": 8,
+        "mean": 9.794312496524071,
+        "p50": 7.706349992076866,
+        "p95": 22.007175008184273,
+        "p99": 23.902075013029386
+      },
+      "counts": {
+        "positive": 1
+      },
+      "error": null
+    },
+    {
+      "camera": 2,
+      "source": "data/traffic.mp4",
+      "source_fps": 29.97002997002997,
+      "decoded": 150,
+      "processed": 9,
+      "queue_dropped": 125,
+      "stride_skipped": 16,
+      "remaining": 0,
+      "queue_high_water": 1,
+      "processed_fps": 1.7798541160387316,
+      "frame_age_ms": {
+        "n": 9,
+        "mean": 125.46683703355181,
+        "p50": 111.33503331802785,
+        "p95": 218.61073999316426,
+        "p99": 265.3548679931555
+      },
+      "queue_wait_ms": {
+        "n": 9,
+        "mean": 14.776622216838101,
+        "p50": 11.290099995676428,
+        "p95": 42.4815599923022,
+        "p99": 50.99791199201718
+      },
+      "counts": {
+        "positive": 1
+      },
+      "error": null
+    },
+    {
+      "camera": 3,
+      "source": "data/traffic.mp4",
+      "source_fps": 29.97002997002997,
+      "decoded": 150,
+      "processed": 6,
+      "queue_dropped": 128,
+      "stride_skipped": 16,
+      "remaining": 0,
+      "queue_high_water": 1,
+      "processed_fps": 1.1865694106924876,
+      "frame_age_ms": {
+        "n": 6,
+        "mean": 311.8823110999074,
+        "p50": 119.38049999298528,
+        "p95": 1013.130266655935,
+        "p99": 1245.9985333203806
+      },
+      "queue_wait_ms": {
+        "n": 6,
+        "mean": 10.274050000589341,
+        "p50": 7.323000012547709,
+        "p95": 23.305299982894212,
+        "p99": 25.549219979438934
+      },
+      "counts": {
+        "positive": 1
+      },
+      "error": null
+    }
+  ],
+  "process_cpu_one_core_percent": 740.9878767814024,
+  "peak_sampled_rss_mib": 1023.7421875,
+  "error": null,
+  "status": "complete",
+  "limitations": [
+    "Recorded sources replayed at metadata FPS; not an RTSP network test.",
+    "Frame age starts at scheduled source arrival and includes decode backlog.",
+    "Rendered video contains processed frames only; gaps are compressed.",
+    "Counts are unvalidated until compared with independent human event labels.",
+    "Tracker time uses update steps; frame skips/drops change its effective time scale.",
+    "No cross-camera identity association. Telemetry log writing excluded from frame age."
+  ],
+  "browser_videos": []
+}

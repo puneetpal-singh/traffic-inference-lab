@@ -1,0 +1,6 @@
+Loading models/openvino/yolo11n_openvino_model for OpenVINO inference...
+Using OpenVINO LATENCY mode for batch=4 inference on CPU...
+{
+  "passed": true,
+  "output": "results/parity-openvino-320.json"
+}

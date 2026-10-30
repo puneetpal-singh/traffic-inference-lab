@@ -1,0 +1,56 @@
+WARNING 'int8' is deprecated and will be removed in the future. Use 'quantize' instead.
+Ultralytics 8.4.193  Python-3.12.10 torch-2.15.0+cpu CPU (Intel Core i7-10750H 2.60GHz)
+YOLO11n summary (fused): 100 layers, 2,616,248 parameters, 0 gradients, 1.6 GFLOPs
+
+[34m[1mPyTorch:[0m starting from 'models\openvino\yolo11n.pt' with input shape (4, 3, 320, 320) BCHW and output shape(s) (4, 84, 2100) (5.4 MB)
+
+[34m[1mOpenVINO:[0m starting export with openvino 2026.4.1-22982-e213a147257-releases/2026/4...
+D:\M\New_Project\.venv\Lib\site-packages\torch\jit\_trace.py:1006: FutureWarning: `torch.jit.trace` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+D:\M\New_Project\.venv\Lib\site-packages\torch\jit\_trace.py:1145: FutureWarning: `torch.jit.trace_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+[34m[1mOpenVINO:[0m export success  8.8s, saved as 'models\openvino\yolo11n_openvino_model\' (10.3 MB)
+
+Export complete (9.3s)
+Results saved to [1mD:\M\New_Project\traffic-inference-lab\models\openvino\yolo11n_openvino_model[0m
+Predict:         yolo predict task=detect model=models\openvino\yolo11n_openvino_model\ imgsz=320 
+Validate:        yolo val task=detect model=models\openvino\yolo11n_openvino_model\ imgsz=320  
+Visualize:       https://netron.app
+{
+  "kind": "export",
+  "source_sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+  "artifact": "models\\openvino\\yolo11n_openvino_model\\",
+  "artifact_sha256": "f9455cda3bed366ffa1bc4f04d237ea339b23e108ea8cdafb9dab7b3f26cfc27",
+  "arguments": {
+    "format": "openvino",
+    "imgsz": 320,
+    "device": "cpu",
+    "half": false,
+    "int8": false,
+    "batch": 4,
+    "dynamic": true
+  },
+  "environment": {
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 165 Stepping 2, GenuineIntel",
+    "cpu_physical_cores": 6,
+    "cpu_logical_cores": 12,
+    "ram_gib": 7.839607238769531,
+    "gpu": "NVIDIA GeForce GTX 1650 Ti, 580.97, 4096 MiB",
+    "packages": {
+      "traffic-inference-lab": "0.1.0",
+      "ultralytics": "8.4.193",
+      "torch": "2.15.0+cpu",
+      "torchvision": "0.29.2+cpu",
+      "numpy": "2.5.4",
+      "opencv-python": "4.14.0.94",
+      "onnxruntime": "1.31.1",
+      "openvino": "2026.4.1",
+      "onnx": "1.23.2",
+      "nncf": null,
+      "tensorrt": null
+    },
+    "utc": "2026-10-30T10:47:37Z"
+  }
+}

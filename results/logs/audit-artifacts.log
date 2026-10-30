@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "benchmarks": 6,
+  "pipelines": 6,
+  "parity_checks": 4,
+  "errors": []
+}

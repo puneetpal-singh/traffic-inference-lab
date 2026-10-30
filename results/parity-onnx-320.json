@@ -1,0 +1,345 @@
+{
+  "kind": "detection_parity",
+  "reference": {
+    "model": "models/yolo11n.pt",
+    "imgsz": 320,
+    "device": "cpu",
+    "half": false,
+    "threads": 4,
+    "conf": 0.25,
+    "iou": 0.7,
+    "classes": [
+      2,
+      3,
+      5,
+      7
+    ]
+  },
+  "candidate": {
+    "config": {
+      "model": "models/onnx/yolo11n.onnx",
+      "imgsz": 320,
+      "device": "cpu",
+      "half": false,
+      "threads": 4,
+      "conf": 0.25,
+      "iou": 0.7,
+      "classes": [
+        2,
+        3,
+        5,
+        7
+      ]
+    },
+    "model_sha256": "1fe36aba3a05e2555b7b8b312788341b6f616680cfb76fa80a8669e9ebac94c8",
+    "backend": "ONNXBackend",
+    "execution_device_argument": "cpu",
+    "openvino_execution_devices": [],
+    "cuda_available": false,
+    "torch_cuda": null,
+    "onnx_providers": [
+      "CPUExecutionProvider"
+    ]
+  },
+  "reference_model_sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+  "source_sha256": "82d3a2f8a8f02f86906aaed6d097346a66cc924b0ffb591a76f0e7a5bfb4f853",
+  "environment": {
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 165 Stepping 2, GenuineIntel",
+    "cpu_physical_cores": 6,
+    "cpu_logical_cores": 12,
+    "ram_gib": 7.839607238769531,
+    "gpu": "NVIDIA GeForce GTX 1650 Ti, 580.97, 4096 MiB",
+    "packages": {
+      "traffic-inference-lab": "0.1.0",
+      "ultralytics": "8.4.193",
+      "torch": "2.15.0+cpu",
+      "torchvision": "0.29.2+cpu",
+      "numpy": "2.5.4",
+      "opencv-python": "4.14.0.94",
+      "onnxruntime": "1.31.1",
+      "openvino": "2026.4.1",
+      "onnx": "1.23.2",
+      "nncf": null,
+      "tensorrt": null
+    },
+    "utc": "2026-10-30T10:49:18Z"
+  },
+  "min_iou": 0.9,
+  "max_conf_delta": 0.02,
+  "frames": [
+    {
+      "reference": 5,
+      "candidate": 5,
+      "matched": 5,
+      "min_iou": 0.9999991738003499,
+      "max_conf_delta": 5.364418029785156e-07,
+      "frame": 0,
+      "passed": true
+    },
+    {
+      "reference": 5,
+      "candidate": 5,
+      "matched": 5,
+      "min_iou": 0.9999988276052078,
+      "max_conf_delta": 1.1920928955078125e-06,
+      "frame": 1,
+      "passed": true
+    },
+    {
+      "reference": 5,
+      "candidate": 5,
+      "matched": 5,
+      "min_iou": 0.9999990164102927,
+      "max_conf_delta": 8.642673492431641e-07,
+      "frame": 2,
+      "passed": true
+    },
+    {
+      "reference": 7,
+      "candidate": 7,
+      "matched": 7,
+      "min_iou": 0.99999645773565,
+      "max_conf_delta": 1.8477439880371094e-06,
+      "frame": 3,
+      "passed": true
+    },
+    {
+      "reference": 6,
+      "candidate": 6,
+      "matched": 6,
+      "min_iou": 0.9999968137968633,
+      "max_conf_delta": 1.1622905731201172e-06,
+      "frame": 4,
+      "passed": true
+    },
+    {
+      "reference": 6,
+      "candidate": 6,
+      "matched": 6,
+      "min_iou": 0.9999982840113508,
+      "max_conf_delta": 9.238719940185547e-07,
+      "frame": 5,
+      "passed": true
+    },
+    {
+      "reference": 6,
+      "candidate": 6,
+      "matched": 6,
+      "min_iou": 0.9999991152636702,
+      "max_conf_delta": 4.172325134277344e-07,
+      "frame": 6,
+      "passed": true
+    },
+    {
+      "reference": 6,
+      "candidate": 6,
+      "matched": 6,
+      "min_iou": 0.9999984372879758,
+      "max_conf_delta": 5.960464477539062e-07,
+      "frame": 7,
+      "passed": true
+    },
+    {
+      "reference": 7,
+      "candidate": 7,
+      "matched": 7,
+      "min_iou": 0.9999976042881445,
+      "max_conf_delta": 2.0265579223632812e-06,
+      "frame": 8,
+      "passed": true
+    },
+    {
+      "reference": 7,
+      "candidate": 7,
+      "matched": 7,
+      "min_iou": 0.9999972078126449,
+      "max_conf_delta": 1.043081283569336e-06,
+      "frame": 9,
+      "passed": true
+    },
+    {
+      "reference": 7,
+      "candidate": 7,
+      "matched": 7,
+      "min_iou": 0.9999981351072814,
+      "max_conf_delta": 1.7583370208740234e-06,
+      "frame": 10,
+      "passed": true
+    },
+    {
+      "reference": 8,
+      "candidate": 8,
+      "matched": 8,
+      "min_iou": 0.9999978255474259,
+      "max_conf_delta": 4.172325134277344e-07,
+      "frame": 11,
+      "passed": true
+    },
+    {
+      "reference": 7,
+      "candidate": 7,
+      "matched": 7,
+      "min_iou": 0.9999974847172995,
+      "max_conf_delta": 8.344650268554688e-07,
+      "frame": 12,
+      "passed": true
+    },
+    {
+      "reference": 7,
+      "candidate": 7,
+      "matched": 7,
+      "min_iou": 0.9999968189961913,
+      "max_conf_delta": 8.940696716308594e-07,
+      "frame": 13,
+      "passed": true
+    },
+    {
+      "reference": 5,
+      "candidate": 5,
+      "matched": 5,
+      "min_iou": 0.9999985190644535,
+      "max_conf_delta": 5.364418029785156e-07,
+      "frame": 14,
+      "passed": true
+    },
+    {
+      "reference": 6,
+      "candidate": 6,
+      "matched": 6,
+      "min_iou": 0.9999970718729587,
+      "max_conf_delta": 1.1920928955078125e-06,
+      "frame": 15,
+      "passed": true
+    },
+    {
+      "reference": 6,
+      "candidate": 6,
+      "matched": 6,
+      "min_iou": 0.9999984443085808,
+      "max_conf_delta": 1.7285346984863281e-06,
+      "frame": 16,
+      "passed": true
+    },
+    {
+      "reference": 5,
+      "candidate": 5,
+      "matched": 5,
+      "min_iou": 0.9999991145333413,
+      "max_conf_delta": 6.854534149169922e-07,
+      "frame": 17,
+      "passed": true
+    },
+    {
+      "reference": 5,
+      "candidate": 5,
+      "matched": 5,
+      "min_iou": 0.9999983685870175,
+      "max_conf_delta": 4.470348358154297e-07,
+      "frame": 18,
+      "passed": true
+    },
+    {
+      "reference": 5,
+      "candidate": 5,
+      "matched": 5,
+      "min_iou": 0.9999988842961738,
+      "max_conf_delta": 4.76837158203125e-07,
+      "frame": 19,
+      "passed": true
+    },
+    {
+      "reference": 5,
+      "candidate": 5,
+      "matched": 5,
+      "min_iou": 0.9999983329020251,
+      "max_conf_delta": 8.940696716308594e-07,
+      "frame": 20,
+      "passed": true
+    },
+    {
+      "reference": 5,
+      "candidate": 5,
+      "matched": 5,
+      "min_iou": 0.9999988257344062,
+      "max_conf_delta": 4.172325134277344e-07,
+      "frame": 21,
+      "passed": true
+    },
+    {
+      "reference": 5,
+      "candidate": 5,
+      "matched": 5,
+      "min_iou": 0.9999984058334722,
+      "max_conf_delta": 4.172325134277344e-07,
+      "frame": 22,
+      "passed": true
+    },
+    {
+      "reference": 5,
+      "candidate": 5,
+      "matched": 5,
+      "min_iou": 0.9999989377734001,
+      "max_conf_delta": 1.8775463104248047e-06,
+      "frame": 23,
+      "passed": true
+    },
+    {
+      "reference": 5,
+      "candidate": 5,
+      "matched": 5,
+      "min_iou": 0.9999971260191854,
+      "max_conf_delta": 1.430511474609375e-06,
+      "frame": 24,
+      "passed": true
+    },
+    {
+      "reference": 5,
+      "candidate": 5,
+      "matched": 5,
+      "min_iou": 0.9999990949288996,
+      "max_conf_delta": 1.1920928955078125e-06,
+      "frame": 25,
+      "passed": true
+    },
+    {
+      "reference": 6,
+      "candidate": 6,
+      "matched": 6,
+      "min_iou": 0.9999985497253406,
+      "max_conf_delta": 1.430511474609375e-06,
+      "frame": 26,
+      "passed": true
+    },
+    {
+      "reference": 6,
+      "candidate": 6,
+      "matched": 6,
+      "min_iou": 0.9999990229897832,
+      "max_conf_delta": 2.86102294921875e-06,
+      "frame": 27,
+      "passed": true
+    },
+    {
+      "reference": 6,
+      "candidate": 6,
+      "matched": 6,
+      "min_iou": 0.9999981192765556,
+      "max_conf_delta": 7.748603820800781e-07,
+      "frame": 28,
+      "passed": true
+    },
+    {
+      "reference": 5,
+      "candidate": 5,
+      "matched": 5,
+      "min_iou": 0.9999979403790069,
+      "max_conf_delta": 7.152557373046875e-07,
+      "frame": 29,
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "note": "Detection agreement on sampled frames is not mAP or domain accuracy."
+}

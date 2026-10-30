@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "traffic-inference-lab"
+version = "0.1.0"
+description = "Reproducible YOLO deployment experiments and bounded multi-camera traffic analytics"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+  "ultralytics==8.4.193", "numpy>=1.26,<3", "opencv-python>=4.10,<5",
+  "onnxruntime>=1.20,<2", "onnx>=1.17,<2", "onnxslim>=0.1.50,<1",
+  "psutil>=6,<8", "scipy>=1.14,<2", "matplotlib>=3.9,<4",
+  "lap>=0.5.12,<1",
+]
+
+[project.optional-dependencies]
+cpu = ["openvino>=2024.6,<2027"]
+int8 = ["nncf>=2.14,<4"]
+dashboard = ["streamlit>=1.50,<2", "pandas>=2.2,<3"]
+dev = ["pytest>=8,<10", "ruff>=0.9,<1"]
+
+[project.scripts]
+traffic-lab = "traffic_lab.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 110
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]

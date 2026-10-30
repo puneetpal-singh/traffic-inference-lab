@@ -1,0 +1,2441 @@
+{
+  "kind": "predecoded_model_benchmark",
+  "schema_version": 1,
+  "environment": {
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 165 Stepping 2, GenuineIntel",
+    "cpu_physical_cores": 6,
+    "cpu_logical_cores": 12,
+    "ram_gib": 7.839607238769531,
+    "gpu": "NVIDIA GeForce GTX 1650 Ti, 580.97, 4096 MiB",
+    "packages": {
+      "traffic-inference-lab": "0.1.0",
+      "ultralytics": "8.4.193",
+      "torch": "2.15.0+cpu",
+      "torchvision": "0.29.2+cpu",
+      "numpy": "2.5.4",
+      "opencv-python": "4.14.0.94",
+      "onnxruntime": "1.31.1",
+      "openvino": "2026.4.1",
+      "onnx": "1.23.2",
+      "nncf": null,
+      "tensorrt": null
+    },
+    "utc": "2026-10-30T10:52:54Z"
+  },
+  "config": {
+    "model": "models/yolo11n.pt",
+    "imgsz": 640,
+    "device": "cpu",
+    "half": false,
+    "threads": 4,
+    "conf": 0.25,
+    "iou": 0.7,
+    "classes": [
+      2,
+      3,
+      5,
+      7
+    ]
+  },
+  "model_sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+  "backend": "PyTorchBackend",
+  "execution_device_argument": "cpu",
+  "openvino_execution_devices": [],
+  "cuda_available": false,
+  "torch_cuda": null,
+  "onnx_providers": [],
+  "input": {
+    "path": "data/traffic.mp4",
+    "sha256": "82d3a2f8a8f02f86906aaed6d097346a66cc924b0ffb591a76f0e7a5bfb4f853",
+    "frames": 60
+  },
+  "warmup_calls": 5,
+  "batch": 1,
+  "repeats": 3,
+  "batch_wall_ms": {
+    "n": 180,
+    "mean": 82.46733944332745,
+    "p50": 80.04105000873096,
+    "p95": 93.73190998448987,
+    "p99": 107.04247900866918
+  },
+  "fps": {
+    "n": 3,
+    "mean": 12.11236167332126,
+    "p50": 12.28709384556286,
+    "p95": 12.386386809874502,
+    "p99": 12.395212851146647
+  },
+  "peak_sampled_rss_mib": 741.171875,
+  "quality": null,
+  "trials": [
+    {
+      "repeat": 0,
+      "seconds": 4.839716899994528,
+      "fps": 12.397419361464683,
+      "process_cpu_one_core_percent": 782.5870971924581
+    },
+    {
+      "repeat": 1,
+      "seconds": 5.149077899986878,
+      "fps": 11.652571812936236,
+      "process_cpu_one_core_percent": 769.5552634793305
+    },
+    {
+      "repeat": 2,
+      "seconds": 4.883172599977115,
+      "fps": 12.28709384556286,
+      "process_cpu_one_core_percent": 776.9027046100683
+    }
+  ],
+  "samples": [
+    {
+      "repeat": 0,
+      "offset": 0,
+      "batch_size": 1,
+      "batch_wall_ms": 79.01839999249205,
+      "stages_per_image_ms": {
+        "preprocess": 4.063800006406382,
+        "inference": 72.16429998516105,
+        "postprocess": 1.8507999775465578
+      },
+      "detections": 7,
+      "rss_mib": 740.80859375
+    },
+    {
+      "repeat": 0,
+      "offset": 1,
+      "batch_size": 1,
+      "batch_wall_ms": 77.75130000663921,
+      "stages_per_image_ms": {
+        "preprocess": 3.3559000003151596,
+        "inference": 71.40950000029989,
+        "postprocess": 2.1826000011060387
+      },
+      "detections": 7,
+      "rss_mib": 741.171875
+    },
+    {
+      "repeat": 0,
+      "offset": 2,
+      "batch_size": 1,
+      "batch_wall_ms": 80.77969998703338,
+      "stages_per_image_ms": {
+        "preprocess": 3.9544000173918903,
+        "inference": 74.3679000006523,
+        "postprocess": 1.6100999782793224
+      },
+      "detections": 8,
+      "rss_mib": 740.30078125
+    },
+    {
+      "repeat": 0,
+      "offset": 3,
+      "batch_size": 1,
+      "batch_wall_ms": 77.71280000451952,
+      "stages_per_image_ms": {
+        "preprocess": 3.694799990626052,
+        "inference": 71.50240000919439,
+        "postprocess": 1.572600012877956
+      },
+      "detections": 8,
+      "rss_mib": 735.48046875
+    },
+    {
+      "repeat": 0,
+      "offset": 4,
+      "batch_size": 1,
+      "batch_wall_ms": 79.5423999952618,
+      "stages_per_image_ms": {
+        "preprocess": 4.372499999590218,
+        "inference": 72.63579999562353,
+        "postprocess": 1.600699994014576
+      },
+      "detections": 7,
+      "rss_mib": 737.44140625
+    },
+    {
+      "repeat": 0,
+      "offset": 5,
+      "batch_size": 1,
+      "batch_wall_ms": 81.26380000612698,
+      "stages_per_image_ms": {
+        "preprocess": 3.8838999753352255,
+        "inference": 74.8547000112012,
+        "postprocess": 1.5851999924052507
+      },
+      "detections": 8,
+      "rss_mib": 736.640625
+    },
+    {
+      "repeat": 0,
+      "offset": 6,
+      "batch_size": 1,
+      "batch_wall_ms": 77.9171000176575,
+      "stages_per_image_ms": {
+        "preprocess": 3.7545999803114682,
+        "inference": 71.66040001902729,
+        "postprocess": 1.5561999753117561
+      },
+      "detections": 8,
+      "rss_mib": 737.5234375
+    },
+    {
+      "repeat": 0,
+      "offset": 7,
+      "batch_size": 1,
+      "batch_wall_ms": 87.15410000877455,
+      "stages_per_image_ms": {
+        "preprocess": 3.3662999921943992,
+        "inference": 81.19409999926575,
+        "postprocess": 1.6410000098403543
+      },
+      "detections": 8,
+      "rss_mib": 737.5234375
+    },
+    {
+      "repeat": 0,
+      "offset": 8,
+      "batch_size": 1,
+      "batch_wall_ms": 92.02909999294207,
+      "stages_per_image_ms": {
+        "preprocess": 4.146899998886511,
+        "inference": 85.17919998848811,
+        "postprocess": 1.7444000113755465
+      },
+      "detections": 9,
+      "rss_mib": 736.67578125
+    },
+    {
+      "repeat": 0,
+      "offset": 9,
+      "batch_size": 1,
+      "batch_wall_ms": 89.0734999848064,
+      "stages_per_image_ms": {
+        "preprocess": 3.8847000105306506,
+        "inference": 82.41659999475814,
+        "postprocess": 1.7958999960683286
+      },
+      "detections": 9,
+      "rss_mib": 737.57421875
+    },
+    {
+      "repeat": 0,
+      "offset": 10,
+      "batch_size": 1,
+      "batch_wall_ms": 95.392700022785,
+      "stages_per_image_ms": {
+        "preprocess": 4.211899999063462,
+        "inference": 88.40159999090247,
+        "postprocess": 1.707999996142462
+      },
+      "detections": 9,
+      "rss_mib": 737.15625
+    },
+    {
+      "repeat": 0,
+      "offset": 11,
+      "batch_size": 1,
+      "batch_wall_ms": 90.87239997461438,
+      "stages_per_image_ms": {
+        "preprocess": 3.7850999797228724,
+        "inference": 84.35450002434663,
+        "postprocess": 1.7649999936111271
+      },
+      "detections": 9,
+      "rss_mib": 737.671875
+    },
+    {
+      "repeat": 0,
+      "offset": 12,
+      "batch_size": 1,
+      "batch_wall_ms": 84.63820000179112,
+      "stages_per_image_ms": {
+        "preprocess": 3.904200013494119,
+        "inference": 78.08649999788031,
+        "postprocess": 1.652399980230257
+      },
+      "detections": 7,
+      "rss_mib": 737.7421875
+    },
+    {
+      "repeat": 0,
+      "offset": 13,
+      "batch_size": 1,
+      "batch_wall_ms": 79.63419999578036,
+      "stages_per_image_ms": {
+        "preprocess": 3.740899992408231,
+        "inference": 73.41900002211332,
+        "postprocess": 1.6080000204965472
+      },
+      "detections": 6,
+      "rss_mib": 737.2421875
+    },
+    {
+      "repeat": 0,
+      "offset": 14,
+      "batch_size": 1,
+      "batch_wall_ms": 78.17620001151226,
+      "stages_per_image_ms": {
+        "preprocess": 3.5681000153999776,
+        "inference": 72.07409999682568,
+        "postprocess": 1.6142000094987452
+      },
+      "detections": 7,
+      "rss_mib": 737.80859375
+    },
+    {
+      "repeat": 0,
+      "offset": 15,
+      "batch_size": 1,
+      "batch_wall_ms": 77.76809998904355,
+      "stages_per_image_ms": {
+        "preprocess": 3.6726999969687313,
+        "inference": 71.30869998945855,
+        "postprocess": 1.797800010535866
+      },
+      "detections": 6,
+      "rss_mib": 735.4609375
+    },
+    {
+      "repeat": 0,
+      "offset": 16,
+      "batch_size": 1,
+      "batch_wall_ms": 81.19679999072105,
+      "stages_per_image_ms": {
+        "preprocess": 4.302899993490428,
+        "inference": 74.3922000110615,
+        "postprocess": 1.5731999883428216
+      },
+      "detections": 8,
+      "rss_mib": 736.7734375
+    },
+    {
+      "repeat": 0,
+      "offset": 17,
+      "batch_size": 1,
+      "batch_wall_ms": 77.78399999369867,
+      "stages_per_image_ms": {
+        "preprocess": 3.6573999968823045,
+        "inference": 71.63029999355786,
+        "postprocess": 1.5332000039052218
+      },
+      "detections": 7,
+      "rss_mib": 737.7109375
+    },
+    {
+      "repeat": 0,
+      "offset": 18,
+      "batch_size": 1,
+      "batch_wall_ms": 79.64569999603555,
+      "stages_per_image_ms": {
+        "preprocess": 3.7176999903749675,
+        "inference": 73.72949999989942,
+        "postprocess": 1.3181999966036528
+      },
+      "detections": 8,
+      "rss_mib": 737.0
+    },
+    {
+      "repeat": 0,
+      "offset": 19,
+      "batch_size": 1,
+      "batch_wall_ms": 71.13940000999719,
+      "stages_per_image_ms": {
+        "preprocess": 3.3691000135149807,
+        "inference": 65.75619999784976,
+        "postprocess": 1.270800014026463
+      },
+      "detections": 9,
+      "rss_mib": 737.875
+    },
+    {
+      "repeat": 0,
+      "offset": 20,
+      "batch_size": 1,
+      "batch_wall_ms": 79.31970001664013,
+      "stages_per_image_ms": {
+        "preprocess": 3.1413999968208373,
+        "inference": 72.24259999929927,
+        "postprocess": 1.7946999869309366
+      },
+      "detections": 9,
+      "rss_mib": 731.6796875
+    },
+    {
+      "repeat": 0,
+      "offset": 21,
+      "batch_size": 1,
+      "batch_wall_ms": 79.41579999169335,
+      "stages_per_image_ms": {
+        "preprocess": 3.6653999995905906,
+        "inference": 73.3094000024721,
+        "postprocess": 1.7020000086631626
+      },
+      "detections": 6,
+      "rss_mib": 739.49609375
+    },
+    {
+      "repeat": 0,
+      "offset": 22,
+      "batch_size": 1,
+      "batch_wall_ms": 80.1453999883961,
+      "stages_per_image_ms": {
+        "preprocess": 3.640200011432171,
+        "inference": 74.07569998758845,
+        "postprocess": 1.6206000000238419
+      },
+      "detections": 6,
+      "rss_mib": 737.33984375
+    },
+    {
+      "repeat": 0,
+      "offset": 23,
+      "batch_size": 1,
+      "batch_wall_ms": 77.18449999811128,
+      "stages_per_image_ms": {
+        "preprocess": 3.666700009489432,
+        "inference": 71.02229999145493,
+        "postprocess": 1.6873000131454319
+      },
+      "detections": 6,
+      "rss_mib": 738.2265625
+    },
+    {
+      "repeat": 0,
+      "offset": 24,
+      "batch_size": 1,
+      "batch_wall_ms": 78.85109999915585,
+      "stages_per_image_ms": {
+        "preprocess": 3.712800011271611,
+        "inference": 72.74599999072962,
+        "postprocess": 1.6228000167757273
+      },
+      "detections": 6,
+      "rss_mib": 738.2265625
+    },
+    {
+      "repeat": 0,
+      "offset": 25,
+      "batch_size": 1,
+      "batch_wall_ms": 73.08599998941645,
+      "stages_per_image_ms": {
+        "preprocess": 3.8377000018954277,
+        "inference": 67.20479999785312,
+        "postprocess": 1.298899995163083
+      },
+      "detections": 6,
+      "rss_mib": 737.3671875
+    },
+    {
+      "repeat": 0,
+      "offset": 26,
+      "batch_size": 1,
+      "batch_wall_ms": 75.8561999828089,
+      "stages_per_image_ms": {
+        "preprocess": 3.074500011280179,
+        "inference": 70.44820001465268,
+        "postprocess": 1.6770999936852604
+      },
+      "detections": 7,
+      "rss_mib": 738.2421875
+    },
+    {
+      "repeat": 0,
+      "offset": 27,
+      "batch_size": 1,
+      "batch_wall_ms": 79.46290000109002,
+      "stages_per_image_ms": {
+        "preprocess": 3.6844999995082617,
+        "inference": 73.62199999624863,
+        "postprocess": 1.4158000121824443
+      },
+      "detections": 7,
+      "rss_mib": 737.3671875
+    },
+    {
+      "repeat": 0,
+      "offset": 28,
+      "batch_size": 1,
+      "batch_wall_ms": 77.3983999970369,
+      "stages_per_image_ms": {
+        "preprocess": 3.2333999988622963,
+        "inference": 71.84629997937009,
+        "postprocess": 1.6192000184673816
+      },
+      "detections": 8,
+      "rss_mib": 736.17578125
+    },
+    {
+      "repeat": 0,
+      "offset": 29,
+      "batch_size": 1,
+      "batch_wall_ms": 78.81419998011552,
+      "stages_per_image_ms": {
+        "preprocess": 4.353700001956895,
+        "inference": 72.01309999800287,
+        "postprocess": 1.6459000180475414
+      },
+      "detections": 7,
+      "rss_mib": 738.1484375
+    },
+    {
+      "repeat": 0,
+      "offset": 30,
+      "batch_size": 1,
+      "batch_wall_ms": 80.00919999903999,
+      "stages_per_image_ms": {
+        "preprocess": 3.8633000222034752,
+        "inference": 73.71679999050684,
+        "postprocess": 1.6438000020571053
+      },
+      "detections": 7,
+      "rss_mib": 737.328125
+    },
+    {
+      "repeat": 0,
+      "offset": 31,
+      "batch_size": 1,
+      "batch_wall_ms": 76.32660001399927,
+      "stages_per_image_ms": {
+        "preprocess": 3.731300006620586,
+        "inference": 70.41129999561235,
+        "postprocess": 1.4287999947555363
+      },
+      "detections": 7,
+      "rss_mib": 738.22265625
+    },
+    {
+      "repeat": 0,
+      "offset": 32,
+      "batch_size": 1,
+      "batch_wall_ms": 77.22030000877567,
+      "stages_per_image_ms": {
+        "preprocess": 3.3408000017516315,
+        "inference": 71.53570000082254,
+        "postprocess": 1.6543000238016248
+      },
+      "detections": 8,
+      "rss_mib": 737.3671875
+    },
+    {
+      "repeat": 0,
+      "offset": 33,
+      "batch_size": 1,
+      "batch_wall_ms": 78.45520001137629,
+      "stages_per_image_ms": {
+        "preprocess": 3.6318000056780875,
+        "inference": 72.3493000259623,
+        "postprocess": 1.7084999999497086
+      },
+      "detections": 7,
+      "rss_mib": 738.26171875
+    },
+    {
+      "repeat": 0,
+      "offset": 34,
+      "batch_size": 1,
+      "batch_wall_ms": 80.35179998842068,
+      "stages_per_image_ms": {
+        "preprocess": 3.9357999921776354,
+        "inference": 73.809399997117,
+        "postprocess": 1.819099998101592
+      },
+      "detections": 7,
+      "rss_mib": 737.40625
+    },
+    {
+      "repeat": 0,
+      "offset": 35,
+      "batch_size": 1,
+      "batch_wall_ms": 78.47969999420457,
+      "stages_per_image_ms": {
+        "preprocess": 3.2229000062216073,
+        "inference": 71.47819999954663,
+        "postprocess": 3.1160999787971377
+      },
+      "detections": 7,
+      "rss_mib": 738.36328125
+    },
+    {
+      "repeat": 0,
+      "offset": 36,
+      "batch_size": 1,
+      "batch_wall_ms": 76.869100012118,
+      "stages_per_image_ms": {
+        "preprocess": 3.632200008723885,
+        "inference": 71.09079998917878,
+        "postprocess": 1.3935999886598438
+      },
+      "detections": 6,
+      "rss_mib": 738.37109375
+    },
+    {
+      "repeat": 0,
+      "offset": 37,
+      "batch_size": 1,
+      "batch_wall_ms": 79.4129999994766,
+      "stages_per_image_ms": {
+        "preprocess": 3.4624999971129,
+        "inference": 72.6182000071276,
+        "postprocess": 1.67269998928532
+      },
+      "detections": 6,
+      "rss_mib": 732.07421875
+    },
+    {
+      "repeat": 0,
+      "offset": 38,
+      "batch_size": 1,
+      "batch_wall_ms": 102.92360000312328,
+      "stages_per_image_ms": {
+        "preprocess": 3.1888000085018575,
+        "inference": 97.4421999999322,
+        "postprocess": 1.6105000104289502
+      },
+      "detections": 5,
+      "rss_mib": 738.37890625
+    },
+    {
+      "repeat": 0,
+      "offset": 39,
+      "batch_size": 1,
+      "batch_wall_ms": 88.52910000132397,
+      "stages_per_image_ms": {
+        "preprocess": 4.036600003018975,
+        "inference": 82.01439998811111,
+        "postprocess": 1.6755000106059015
+      },
+      "detections": 5,
+      "rss_mib": 738.37890625
+    },
+    {
+      "repeat": 0,
+      "offset": 40,
+      "batch_size": 1,
+      "batch_wall_ms": 76.70420000795275,
+      "stages_per_image_ms": {
+        "preprocess": 3.814399999100715,
+        "inference": 70.746399986092,
+        "postprocess": 1.3918000040575862
+      },
+      "detections": 5,
+      "rss_mib": 737.5078125
+    },
+    {
+      "repeat": 0,
+      "offset": 41,
+      "batch_size": 1,
+      "batch_wall_ms": 75.24430000921711,
+      "stages_per_image_ms": {
+        "preprocess": 3.322200005641207,
+        "inference": 69.90699999732897,
+        "postprocess": 1.3034000003244728
+      },
+      "detections": 5,
+      "rss_mib": 736.296875
+    },
+    {
+      "repeat": 0,
+      "offset": 42,
+      "batch_size": 1,
+      "batch_wall_ms": 76.43119999556802,
+      "stages_per_image_ms": {
+        "preprocess": 3.728500014403835,
+        "inference": 70.52440001280047,
+        "postprocess": 1.51269999332726
+      },
+      "detections": 5,
+      "rss_mib": 738.25390625
+    },
+    {
+      "repeat": 0,
+      "offset": 43,
+      "batch_size": 1,
+      "batch_wall_ms": 78.93240000703372,
+      "stages_per_image_ms": {
+        "preprocess": 3.720500011695549,
+        "inference": 71.9221000035759,
+        "postprocess": 1.6438000020571053
+      },
+      "detections": 5,
+      "rss_mib": 731.98046875
+    },
+    {
+      "repeat": 0,
+      "offset": 44,
+      "batch_size": 1,
+      "batch_wall_ms": 74.94140000198968,
+      "stages_per_image_ms": {
+        "preprocess": 3.1364000169560313,
+        "inference": 69.55770001513883,
+        "postprocess": 1.5762999828439206
+      },
+      "detections": 5,
+      "rss_mib": 738.3125
+    },
+    {
+      "repeat": 0,
+      "offset": 45,
+      "batch_size": 1,
+      "batch_wall_ms": 77.99389999127015,
+      "stages_per_image_ms": {
+        "preprocess": 3.783899999689311,
+        "inference": 71.31010000011884,
+        "postprocess": 1.280399999814108
+      },
+      "detections": 5,
+      "rss_mib": 732.03125
+    },
+    {
+      "repeat": 0,
+      "offset": 46,
+      "batch_size": 1,
+      "batch_wall_ms": 84.31419997941703,
+      "stages_per_image_ms": {
+        "preprocess": 3.291700006229803,
+        "inference": 78.76929998747073,
+        "postprocess": 1.5789000026416034
+      },
+      "detections": 5,
+      "rss_mib": 738.35546875
+    },
+    {
+      "repeat": 0,
+      "offset": 47,
+      "batch_size": 1,
+      "batch_wall_ms": 76.70499998494051,
+      "stages_per_image_ms": {
+        "preprocess": 3.625899989856407,
+        "inference": 70.73320000199601,
+        "postprocess": 1.5598000027239323
+      },
+      "detections": 5,
+      "rss_mib": 738.375
+    },
+    {
+      "repeat": 0,
+      "offset": 48,
+      "batch_size": 1,
+      "batch_wall_ms": 78.96530002471991,
+      "stages_per_image_ms": {
+        "preprocess": 3.8130000175442547,
+        "inference": 71.71230000676587,
+        "postprocess": 1.5272999880835414
+      },
+      "detections": 5,
+      "rss_mib": 732.078125
+    },
+    {
+      "repeat": 0,
+      "offset": 49,
+      "batch_size": 1,
+      "batch_wall_ms": 77.70540000637993,
+      "stages_per_image_ms": {
+        "preprocess": 3.807900007814169,
+        "inference": 71.83549998444505,
+        "postprocess": 1.2610999983735383
+      },
+      "detections": 5,
+      "rss_mib": 738.38671875
+    },
+    {
+      "repeat": 0,
+      "offset": 50,
+      "batch_size": 1,
+      "batch_wall_ms": 75.3110000223387,
+      "stages_per_image_ms": {
+        "preprocess": 3.261500009102747,
+        "inference": 68.45439999597147,
+        "postprocess": 1.6339000139851123
+      },
+      "detections": 5,
+      "rss_mib": 732.08984375
+    },
+    {
+      "repeat": 0,
+      "offset": 51,
+      "batch_size": 1,
+      "batch_wall_ms": 83.71669999905862,
+      "stages_per_image_ms": {
+        "preprocess": 3.9216000004671514,
+        "inference": 77.40899999043904,
+        "postprocess": 1.6177000070456415
+      },
+      "detections": 5,
+      "rss_mib": 738.39453125
+    },
+    {
+      "repeat": 0,
+      "offset": 52,
+      "batch_size": 1,
+      "batch_wall_ms": 83.3371999906376,
+      "stages_per_image_ms": {
+        "preprocess": 3.671999991638586,
+        "inference": 77.34630000777543,
+        "postprocess": 1.6303999873343855
+      },
+      "detections": 5,
+      "rss_mib": 739.89453125
+    },
+    {
+      "repeat": 0,
+      "offset": 53,
+      "batch_size": 1,
+      "batch_wall_ms": 81.4589999790769,
+      "stages_per_image_ms": {
+        "preprocess": 3.277699986938387,
+        "inference": 76.23000000603497,
+        "postprocess": 1.3936000177636743
+      },
+      "detections": 5,
+      "rss_mib": 737.51953125
+    },
+    {
+      "repeat": 0,
+      "offset": 54,
+      "batch_size": 1,
+      "batch_wall_ms": 92.54639997379854,
+      "stages_per_image_ms": {
+        "preprocess": 3.267399995820597,
+        "inference": 86.98239998193458,
+        "postprocess": 1.6420000174548477
+      },
+      "detections": 5,
+      "rss_mib": 736.36328125
+    },
+    {
+      "repeat": 0,
+      "offset": 55,
+      "batch_size": 1,
+      "batch_wall_ms": 84.67920002294704,
+      "stages_per_image_ms": {
+        "preprocess": 4.661300015868619,
+        "inference": 77.607099985471,
+        "postprocess": 1.6217000083997846
+      },
+      "detections": 5,
+      "rss_mib": 733.6328125
+    },
+    {
+      "repeat": 0,
+      "offset": 56,
+      "batch_size": 1,
+      "batch_wall_ms": 80.01870001317002,
+      "stages_per_image_ms": {
+        "preprocess": 3.8275999831967056,
+        "inference": 73.82370001869276,
+        "postprocess": 1.581899996381253
+      },
+      "detections": 5,
+      "rss_mib": 738.34765625
+    },
+    {
+      "repeat": 0,
+      "offset": 57,
+      "batch_size": 1,
+      "batch_wall_ms": 79.41650002612732,
+      "stages_per_image_ms": {
+        "preprocess": 3.8688999775331467,
+        "inference": 73.08639999246225,
+        "postprocess": 1.64899998344481
+      },
+      "detections": 5,
+      "rss_mib": 738.3671875
+    },
+    {
+      "repeat": 0,
+      "offset": 58,
+      "batch_size": 1,
+      "batch_wall_ms": 80.7275999977719,
+      "stages_per_image_ms": {
+        "preprocess": 3.69070001761429,
+        "inference": 73.5049000068102,
+        "postprocess": 1.5901000006124377
+      },
+      "detections": 5,
+      "rss_mib": 732.08203125
+    },
+    {
+      "repeat": 0,
+      "offset": 59,
+      "batch_size": 1,
+      "batch_wall_ms": 74.97049999074079,
+      "stages_per_image_ms": {
+        "preprocess": 3.5168000031262636,
+        "inference": 69.11480001872405,
+        "postprocess": 1.556300005177036
+      },
+      "detections": 5,
+      "rss_mib": 738.40234375
+    },
+    {
+      "repeat": 1,
+      "offset": 0,
+      "batch_size": 1,
+      "batch_wall_ms": 79.07069998327643,
+      "stages_per_image_ms": {
+        "preprocess": 3.2076000061351806,
+        "inference": 73.45050000003539,
+        "postprocess": 1.6408000083174556
+      },
+      "detections": 7,
+      "rss_mib": 737.54296875
+    },
+    {
+      "repeat": 1,
+      "offset": 1,
+      "batch_size": 1,
+      "batch_wall_ms": 76.9406000035815,
+      "stages_per_image_ms": {
+        "preprocess": 3.2174999942071736,
+        "inference": 71.3732999865897,
+        "postprocess": 1.582800003234297
+      },
+      "detections": 7,
+      "rss_mib": 738.43359375
+    },
+    {
+      "repeat": 1,
+      "offset": 2,
+      "batch_size": 1,
+      "batch_wall_ms": 73.483899992425,
+      "stages_per_image_ms": {
+        "preprocess": 3.4085999941453338,
+        "inference": 68.00219998694956,
+        "postprocess": 1.3715999957639724
+      },
+      "detections": 8,
+      "rss_mib": 738.43359375
+    },
+    {
+      "repeat": 1,
+      "offset": 3,
+      "batch_size": 1,
+      "batch_wall_ms": 72.82810000469908,
+      "stages_per_image_ms": {
+        "preprocess": 2.6274999836459756,
+        "inference": 67.38759999279864,
+        "postprocess": 1.2801999982912093
+      },
+      "detections": 8,
+      "rss_mib": 732.13671875
+    },
+    {
+      "repeat": 1,
+      "offset": 4,
+      "batch_size": 1,
+      "batch_wall_ms": 76.8709999974817,
+      "stages_per_image_ms": {
+        "preprocess": 2.6581999845802784,
+        "inference": 71.95849998970516,
+        "postprocess": 1.576699985889718
+      },
+      "detections": 7,
+      "rss_mib": 738.44140625
+    },
+    {
+      "repeat": 1,
+      "offset": 5,
+      "batch_size": 1,
+      "batch_wall_ms": 79.30359998135827,
+      "stages_per_image_ms": {
+        "preprocess": 3.2011999865062535,
+        "inference": 72.70010001957417,
+        "postprocess": 1.556300005177036
+      },
+      "detections": 8,
+      "rss_mib": 732.140625
+    },
+    {
+      "repeat": 1,
+      "offset": 6,
+      "batch_size": 1,
+      "batch_wall_ms": 80.28690001810901,
+      "stages_per_image_ms": {
+        "preprocess": 3.1327000178862363,
+        "inference": 74.41239999025129,
+        "postprocess": 1.9700000120792538
+      },
+      "detections": 8,
+      "rss_mib": 738.44140625
+    },
+    {
+      "repeat": 1,
+      "offset": 7,
+      "batch_size": 1,
+      "batch_wall_ms": 81.84020000044256,
+      "stages_per_image_ms": {
+        "preprocess": 3.510499984258786,
+        "inference": 74.42049999372102,
+        "postprocess": 1.78089999826625
+      },
+      "detections": 8,
+      "rss_mib": 730.0703125
+    },
+    {
+      "repeat": 1,
+      "offset": 8,
+      "batch_size": 1,
+      "batch_wall_ms": 83.2572000217624,
+      "stages_per_image_ms": {
+        "preprocess": 4.212900006677955,
+        "inference": 76.45510000293143,
+        "postprocess": 1.6985999827738851
+      },
+      "detections": 9,
+      "rss_mib": 738.3125
+    },
+    {
+      "repeat": 1,
+      "offset": 9,
+      "batch_size": 1,
+      "batch_wall_ms": 81.07379998546094,
+      "stages_per_image_ms": {
+        "preprocess": 3.5374000144656748,
+        "inference": 75.29460001387633,
+        "postprocess": 1.4694999845232815
+      },
+      "detections": 9,
+      "rss_mib": 738.34765625
+    },
+    {
+      "repeat": 1,
+      "offset": 10,
+      "batch_size": 1,
+      "batch_wall_ms": 81.37269999133423,
+      "stages_per_image_ms": {
+        "preprocess": 3.3060999994631857,
+        "inference": 74.53549999627285,
+        "postprocess": 1.6098000050988048
+      },
+      "detections": 9,
+      "rss_mib": 732.0703125
+    },
+    {
+      "repeat": 1,
+      "offset": 11,
+      "batch_size": 1,
+      "batch_wall_ms": 85.0806999951601,
+      "stages_per_image_ms": {
+        "preprocess": 3.6609999951906502,
+        "inference": 78.72469999711029,
+        "postprocess": 1.8042000010609627
+      },
+      "detections": 9,
+      "rss_mib": 738.37890625
+    },
+    {
+      "repeat": 1,
+      "offset": 12,
+      "batch_size": 1,
+      "batch_wall_ms": 81.70799998333678,
+      "stages_per_image_ms": {
+        "preprocess": 3.2389999832957983,
+        "inference": 75.97720000194386,
+        "postprocess": 1.649500016355887
+      },
+      "detections": 7,
+      "rss_mib": 738.40234375
+    },
+    {
+      "repeat": 1,
+      "offset": 13,
+      "batch_size": 1,
+      "batch_wall_ms": 82.2760000010021,
+      "stages_per_image_ms": {
+        "preprocess": 3.303199977381155,
+        "inference": 75.00730000901967,
+        "postprocess": 1.873500004876405
+      },
+      "detections": 6,
+      "rss_mib": 732.125
+    },
+    {
+      "repeat": 1,
+      "offset": 14,
+      "batch_size": 1,
+      "batch_wall_ms": 79.42779999575578,
+      "stages_per_image_ms": {
+        "preprocess": 3.025300014996901,
+        "inference": 73.93069998943247,
+        "postprocess": 1.6327000048477203
+      },
+      "detections": 7,
+      "rss_mib": 738.4296875
+    },
+    {
+      "repeat": 1,
+      "offset": 15,
+      "batch_size": 1,
+      "batch_wall_ms": 93.45360001316294,
+      "stages_per_image_ms": {
+        "preprocess": 3.161900007398799,
+        "inference": 86.51540000573732,
+        "postprocess": 1.7646000196691602
+      },
+      "detections": 6,
+      "rss_mib": 707.37109375
+    },
+    {
+      "repeat": 1,
+      "offset": 16,
+      "batch_size": 1,
+      "batch_wall_ms": 89.50040000490844,
+      "stages_per_image_ms": {
+        "preprocess": 3.247799992095679,
+        "inference": 83.71969999279827,
+        "postprocess": 1.7417999915778637
+      },
+      "detections": 8,
+      "rss_mib": 713.671875
+    },
+    {
+      "repeat": 1,
+      "offset": 17,
+      "batch_size": 1,
+      "batch_wall_ms": 87.85599999828264,
+      "stages_per_image_ms": {
+        "preprocess": 3.5253000096417964,
+        "inference": 81.72980000381358,
+        "postprocess": 1.7955999937839806
+      },
+      "detections": 7,
+      "rss_mib": 713.67578125
+    },
+    {
+      "repeat": 1,
+      "offset": 18,
+      "batch_size": 1,
+      "batch_wall_ms": 90.37329998682253,
+      "stages_per_image_ms": {
+        "preprocess": 3.518100013025105,
+        "inference": 82.81699998769909,
+        "postprocess": 1.9704000151250511
+      },
+      "detections": 8,
+      "rss_mib": 707.375
+    },
+    {
+      "repeat": 1,
+      "offset": 19,
+      "batch_size": 1,
+      "batch_wall_ms": 81.97360002668574,
+      "stages_per_image_ms": {
+        "preprocess": 3.293500019935891,
+        "inference": 76.32310001645237,
+        "postprocess": 1.5631999995093793
+      },
+      "detections": 9,
+      "rss_mib": 711.6484375
+    },
+    {
+      "repeat": 1,
+      "offset": 20,
+      "batch_size": 1,
+      "batch_wall_ms": 82.13700001942925,
+      "stages_per_image_ms": {
+        "preprocess": 4.541499976767227,
+        "inference": 74.99309998820536,
+        "postprocess": 1.7005999980028719
+      },
+      "detections": 9,
+      "rss_mib": 713.5390625
+    },
+    {
+      "repeat": 1,
+      "offset": 21,
+      "batch_size": 1,
+      "batch_wall_ms": 82.45810001972131,
+      "stages_per_image_ms": {
+        "preprocess": 3.183600027114153,
+        "inference": 75.59669998590834,
+        "postprocess": 1.6004999924916774
+      },
+      "detections": 6,
+      "rss_mib": 707.26953125
+    },
+    {
+      "repeat": 1,
+      "offset": 22,
+      "batch_size": 1,
+      "batch_wall_ms": 79.03009999427013,
+      "stages_per_image_ms": {
+        "preprocess": 3.2142999989446253,
+        "inference": 73.35759999114089,
+        "postprocess": 1.6583000251557678
+      },
+      "detections": 6,
+      "rss_mib": 713.59765625
+    },
+    {
+      "repeat": 1,
+      "offset": 23,
+      "batch_size": 1,
+      "batch_wall_ms": 86.89410000806674,
+      "stages_per_image_ms": {
+        "preprocess": 3.5955999919679016,
+        "inference": 80.88150000548922,
+        "postprocess": 1.6230999899562448
+      },
+      "detections": 6,
+      "rss_mib": 712.734375
+    },
+    {
+      "repeat": 1,
+      "offset": 24,
+      "batch_size": 1,
+      "batch_wall_ms": 79.01740001398139,
+      "stages_per_image_ms": {
+        "preprocess": 3.2678999996278435,
+        "inference": 73.61359999049455,
+        "postprocess": 1.372099999571219
+      },
+      "detections": 6,
+      "rss_mib": 713.62890625
+    },
+    {
+      "repeat": 1,
+      "offset": 25,
+      "batch_size": 1,
+      "batch_wall_ms": 79.33000000775792,
+      "stages_per_image_ms": {
+        "preprocess": 2.6264000043738633,
+        "inference": 74.43229999626055,
+        "postprocess": 1.6190999886021018
+      },
+      "detections": 6,
+      "rss_mib": 713.6328125
+    },
+    {
+      "repeat": 1,
+      "offset": 26,
+      "batch_size": 1,
+      "batch_wall_ms": 87.81880000606179,
+      "stages_per_image_ms": {
+        "preprocess": 4.225199983920902,
+        "inference": 81.20089999283664,
+        "postprocess": 1.6669000033289194
+      },
+      "detections": 7,
+      "rss_mib": 712.7578125
+    },
+    {
+      "repeat": 1,
+      "offset": 27,
+      "batch_size": 1,
+      "batch_wall_ms": 78.40870000654832,
+      "stages_per_image_ms": {
+        "preprocess": 2.7494000096339732,
+        "inference": 73.24610001523979,
+        "postprocess": 1.6704000008758157
+      },
+      "detections": 7,
+      "rss_mib": 713.65234375
+    },
+    {
+      "repeat": 1,
+      "offset": 28,
+      "batch_size": 1,
+      "batch_wall_ms": 78.25389999197796,
+      "stages_per_image_ms": {
+        "preprocess": 3.1297999958042055,
+        "inference": 72.49449999653734,
+        "postprocess": 1.8261000222992152
+      },
+      "detections": 8,
+      "rss_mib": 713.65625
+    },
+    {
+      "repeat": 1,
+      "offset": 29,
+      "batch_size": 1,
+      "batch_wall_ms": 96.73159997328185,
+      "stages_per_image_ms": {
+        "preprocess": 3.368300007423386,
+        "inference": 90.47140000620857,
+        "postprocess": 2.0281000179238617
+      },
+      "detections": 7,
+      "rss_mib": 712.80078125
+    },
+    {
+      "repeat": 1,
+      "offset": 30,
+      "batch_size": 1,
+      "batch_wall_ms": 103.45990001223981,
+      "stages_per_image_ms": {
+        "preprocess": 4.445800004759803,
+        "inference": 96.1173000105191,
+        "postprocess": 2.0074000058230013
+      },
+      "detections": 7,
+      "rss_mib": 712.80859375
+    },
+    {
+      "repeat": 1,
+      "offset": 31,
+      "batch_size": 1,
+      "batch_wall_ms": 88.62329999101348,
+      "stages_per_image_ms": {
+        "preprocess": 3.3876000088639557,
+        "inference": 82.69450001535006,
+        "postprocess": 1.6808999935165048
+      },
+      "detections": 7,
+      "rss_mib": 711.640625
+    },
+    {
+      "repeat": 1,
+      "offset": 32,
+      "batch_size": 1,
+      "batch_wall_ms": 91.74869998241775,
+      "stages_per_image_ms": {
+        "preprocess": 4.398299992317334,
+        "inference": 84.67479998944327,
+        "postprocess": 1.8644999945536256
+      },
+      "detections": 8,
+      "rss_mib": 712.6875
+    },
+    {
+      "repeat": 1,
+      "offset": 33,
+      "batch_size": 1,
+      "batch_wall_ms": 89.74249998573214,
+      "stages_per_image_ms": {
+        "preprocess": 3.513800009386614,
+        "inference": 83.77150000887923,
+        "postprocess": 1.6172000032383949
+      },
+      "detections": 7,
+      "rss_mib": 713.56640625
+    },
+    {
+      "repeat": 1,
+      "offset": 34,
+      "batch_size": 1,
+      "batch_wall_ms": 77.9890000121668,
+      "stages_per_image_ms": {
+        "preprocess": 3.316600021207705,
+        "inference": 72.24359997780994,
+        "postprocess": 1.6107000119518489
+      },
+      "detections": 7,
+      "rss_mib": 713.58984375
+    },
+    {
+      "repeat": 1,
+      "offset": 35,
+      "batch_size": 1,
+      "batch_wall_ms": 81.11780000035651,
+      "stages_per_image_ms": {
+        "preprocess": 3.2402999931946397,
+        "inference": 75.4229000012856,
+        "postprocess": 1.6431999974884093
+      },
+      "detections": 7,
+      "rss_mib": 712.734375
+    },
+    {
+      "repeat": 1,
+      "offset": 36,
+      "batch_size": 1,
+      "batch_wall_ms": 78.7860999989789,
+      "stages_per_image_ms": {
+        "preprocess": 3.266799991251901,
+        "inference": 73.13239999348298,
+        "postprocess": 1.5968999941833317
+      },
+      "detections": 6,
+      "rss_mib": 713.62890625
+    },
+    {
+      "repeat": 1,
+      "offset": 37,
+      "batch_size": 1,
+      "batch_wall_ms": 79.39569998416118,
+      "stages_per_image_ms": {
+        "preprocess": 3.2227000046987087,
+        "inference": 73.48180000553839,
+        "postprocess": 1.8834999937098473
+      },
+      "detections": 6,
+      "rss_mib": 713.64453125
+    },
+    {
+      "repeat": 1,
+      "offset": 38,
+      "batch_size": 1,
+      "batch_wall_ms": 152.98080001957715,
+      "stages_per_image_ms": {
+        "preprocess": 3.581800003303215,
+        "inference": 146.0846000118181,
+        "postprocess": 2.365799999097362
+      },
+      "detections": 5,
+      "rss_mib": 711.7265625
+    },
+    {
+      "repeat": 1,
+      "offset": 39,
+      "batch_size": 1,
+      "batch_wall_ms": 120.5197999952361,
+      "stages_per_image_ms": {
+        "preprocess": 3.6402999830897897,
+        "inference": 113.2250000082422,
+        "postprocess": 1.6515000024810433
+      },
+      "detections": 5,
+      "rss_mib": 707.44140625
+    },
+    {
+      "repeat": 1,
+      "offset": 40,
+      "batch_size": 1,
+      "batch_wall_ms": 86.93439999478869,
+      "stages_per_image_ms": {
+        "preprocess": 3.514799987897277,
+        "inference": 80.64739999826998,
+        "postprocess": 2.0109000033698976
+      },
+      "detections": 5,
+      "rss_mib": 713.74609375
+    },
+    {
+      "repeat": 1,
+      "offset": 41,
+      "batch_size": 1,
+      "batch_wall_ms": 96.40589999617077,
+      "stages_per_image_ms": {
+        "preprocess": 3.2300000020768493,
+        "inference": 90.71049999329261,
+        "postprocess": 1.6513000009581447
+      },
+      "detections": 5,
+      "rss_mib": 713.75390625
+    },
+    {
+      "repeat": 1,
+      "offset": 42,
+      "batch_size": 1,
+      "batch_wall_ms": 83.16899999044836,
+      "stages_per_image_ms": {
+        "preprocess": 3.0727999983355403,
+        "inference": 77.70910000544973,
+        "postprocess": 1.6265999875031412
+      },
+      "detections": 5,
+      "rss_mib": 710.83203125
+    },
+    {
+      "repeat": 1,
+      "offset": 43,
+      "batch_size": 1,
+      "batch_wall_ms": 84.780100005446,
+      "stages_per_image_ms": {
+        "preprocess": 4.054200020618737,
+        "inference": 77.09169998997822,
+        "postprocess": 2.8079999901819974
+      },
+      "detections": 5,
+      "rss_mib": 713.6328125
+    },
+    {
+      "repeat": 1,
+      "offset": 44,
+      "batch_size": 1,
+      "batch_wall_ms": 89.50069997808896,
+      "stages_per_image_ms": {
+        "preprocess": 3.286499995738268,
+        "inference": 83.67250001174398,
+        "postprocess": 1.7717999871820211
+      },
+      "detections": 5,
+      "rss_mib": 712.76171875
+    },
+    {
+      "repeat": 1,
+      "offset": 45,
+      "batch_size": 1,
+      "batch_wall_ms": 89.84529998269863,
+      "stages_per_image_ms": {
+        "preprocess": 3.50550000439398,
+        "inference": 83.85850000195205,
+        "postprocess": 1.6415999853052199
+      },
+      "detections": 5,
+      "rss_mib": 713.640625
+    },
+    {
+      "repeat": 1,
+      "offset": 46,
+      "batch_size": 1,
+      "batch_wall_ms": 89.71169998403639,
+      "stages_per_image_ms": {
+        "preprocess": 3.534499992383644,
+        "inference": 83.65329998196103,
+        "postprocess": 1.6197999939322472
+      },
+      "detections": 5,
+      "rss_mib": 713.671875
+    },
+    {
+      "repeat": 1,
+      "offset": 47,
+      "batch_size": 1,
+      "batch_wall_ms": 88.39590000570752,
+      "stages_per_image_ms": {
+        "preprocess": 3.461599990259856,
+        "inference": 82.60009999503382,
+        "postprocess": 1.6044999938458204
+      },
+      "detections": 5,
+      "rss_mib": 712.87890625
+    },
+    {
+      "repeat": 1,
+      "offset": 48,
+      "batch_size": 1,
+      "batch_wall_ms": 86.8278999987524,
+      "stages_per_image_ms": {
+        "preprocess": 3.2973999914247543,
+        "inference": 81.0815000149887,
+        "postprocess": 1.6367000062018633
+      },
+      "detections": 5,
+      "rss_mib": 713.7578125
+    },
+    {
+      "repeat": 1,
+      "offset": 49,
+      "batch_size": 1,
+      "batch_wall_ms": 88.1523999851197,
+      "stages_per_image_ms": {
+        "preprocess": 4.705800005467609,
+        "inference": 80.84670000243932,
+        "postprocess": 1.7912999901454896
+      },
+      "detections": 5,
+      "rss_mib": 713.7890625
+    },
+    {
+      "repeat": 1,
+      "offset": 50,
+      "batch_size": 1,
+      "batch_wall_ms": 86.60980002605356,
+      "stages_per_image_ms": {
+        "preprocess": 3.2715000270400196,
+        "inference": 80.90530001209117,
+        "postprocess": 1.6305999888572842
+      },
+      "detections": 5,
+      "rss_mib": 714.859375
+    },
+    {
+      "repeat": 1,
+      "offset": 51,
+      "batch_size": 1,
+      "batch_wall_ms": 79.2479999945499,
+      "stages_per_image_ms": {
+        "preprocess": 3.3208999957423657,
+        "inference": 73.43240000773221,
+        "postprocess": 1.701800007140264
+      },
+      "detections": 5,
+      "rss_mib": 715.3125
+    },
+    {
+      "repeat": 1,
+      "offset": 52,
+      "batch_size": 1,
+      "batch_wall_ms": 78.5094000166282,
+      "stages_per_image_ms": {
+        "preprocess": 3.190799994627014,
+        "inference": 72.90699999430217,
+        "postprocess": 1.659700006712228
+      },
+      "detections": 5,
+      "rss_mib": 715.3125
+    },
+    {
+      "repeat": 1,
+      "offset": 53,
+      "batch_size": 1,
+      "batch_wall_ms": 82.78470000368543,
+      "stages_per_image_ms": {
+        "preprocess": 3.2414000015705824,
+        "inference": 77.07920001121238,
+        "postprocess": 1.6453000134788454
+      },
+      "detections": 5,
+      "rss_mib": 712.95703125
+    },
+    {
+      "repeat": 1,
+      "offset": 54,
+      "batch_size": 1,
+      "batch_wall_ms": 80.42439998826012,
+      "stages_per_image_ms": {
+        "preprocess": 3.3795000053942204,
+        "inference": 74.57870000507683,
+        "postprocess": 1.712299999780953
+      },
+      "detections": 5,
+      "rss_mib": 711.76171875
+    },
+    {
+      "repeat": 1,
+      "offset": 55,
+      "batch_size": 1,
+      "batch_wall_ms": 83.03739997791126,
+      "stages_per_image_ms": {
+        "preprocess": 3.9816999924369156,
+        "inference": 76.54900001944043,
+        "postprocess": 1.662800001213327
+      },
+      "detections": 5,
+      "rss_mib": 712.81640625
+    },
+    {
+      "repeat": 1,
+      "offset": 56,
+      "batch_size": 1,
+      "batch_wall_ms": 78.4787000156939,
+      "stages_per_image_ms": {
+        "preprocess": 3.2291999959852546,
+        "inference": 72.86549999844283,
+        "postprocess": 1.5864000015426427
+      },
+      "detections": 5,
+      "rss_mib": 713.7109375
+    },
+    {
+      "repeat": 1,
+      "offset": 57,
+      "batch_size": 1,
+      "batch_wall_ms": 81.40960001037456,
+      "stages_per_image_ms": {
+        "preprocess": 3.3885999873746186,
+        "inference": 75.55700000375509,
+        "postprocess": 1.6069000121206045
+      },
+      "detections": 5,
+      "rss_mib": 713.7265625
+    },
+    {
+      "repeat": 1,
+      "offset": 58,
+      "batch_size": 1,
+      "batch_wall_ms": 81.04409999214113,
+      "stages_per_image_ms": {
+        "preprocess": 3.213299991330132,
+        "inference": 75.41479999781586,
+        "postprocess": 1.6248000029008836
+      },
+      "detections": 5,
+      "rss_mib": 713.24609375
+    },
+    {
+      "repeat": 1,
+      "offset": 59,
+      "batch_size": 1,
+      "batch_wall_ms": 91.82840000721626,
+      "stages_per_image_ms": {
+        "preprocess": 3.87439999030903,
+        "inference": 85.58020001510158,
+        "postprocess": 1.6064000083133578
+      },
+      "detections": 5,
+      "rss_mib": 713.765625
+    },
+    {
+      "repeat": 2,
+      "offset": 0,
+      "batch_size": 1,
+      "batch_wall_ms": 84.9467999942135,
+      "stages_per_image_ms": {
+        "preprocess": 3.4761000133585185,
+        "inference": 78.96839999011718,
+        "postprocess": 1.6155999910552055
+      },
+      "detections": 7,
+      "rss_mib": 713.7890625
+    },
+    {
+      "repeat": 2,
+      "offset": 1,
+      "batch_size": 1,
+      "batch_wall_ms": 88.40339997550473,
+      "stages_per_image_ms": {
+        "preprocess": 3.6657000018749386,
+        "inference": 82.33150001615286,
+        "postprocess": 1.6409999807365239
+      },
+      "detections": 7,
+      "rss_mib": 713.296875
+    },
+    {
+      "repeat": 2,
+      "offset": 2,
+      "batch_size": 1,
+      "batch_wall_ms": 90.44909998192452,
+      "stages_per_image_ms": {
+        "preprocess": 4.432300018379465,
+        "inference": 83.63269999972545,
+        "postprocess": 1.5955000126268715
+      },
+      "detections": 8,
+      "rss_mib": 713.80078125
+    },
+    {
+      "repeat": 2,
+      "offset": 3,
+      "batch_size": 1,
+      "batch_wall_ms": 98.48970000166446,
+      "stages_per_image_ms": {
+        "preprocess": 3.739000007044524,
+        "inference": 90.88450000854209,
+        "postprocess": 1.9121000077575445
+      },
+      "detections": 8,
+      "rss_mib": 707.51953125
+    },
+    {
+      "repeat": 2,
+      "offset": 4,
+      "batch_size": 1,
+      "batch_wall_ms": 84.95019999099895,
+      "stages_per_image_ms": {
+        "preprocess": 4.030499985674396,
+        "inference": 78.50689999759197,
+        "postprocess": 1.6605999844614416
+      },
+      "detections": 7,
+      "rss_mib": 713.82421875
+    },
+    {
+      "repeat": 2,
+      "offset": 5,
+      "batch_size": 1,
+      "batch_wall_ms": 84.489200002281,
+      "stages_per_image_ms": {
+        "preprocess": 3.8186000019777566,
+        "inference": 78.3184000174515,
+        "postprocess": 1.6202999977394938
+      },
+      "detections": 8,
+      "rss_mib": 711.69140625
+    },
+    {
+      "repeat": 2,
+      "offset": 6,
+      "batch_size": 1,
+      "batch_wall_ms": 87.8458000079263,
+      "stages_per_image_ms": {
+        "preprocess": 4.579800006467849,
+        "inference": 80.82899998407811,
+        "postprocess": 1.627000019652769
+      },
+      "detections": 8,
+      "rss_mib": 712.8828125
+    },
+    {
+      "repeat": 2,
+      "offset": 7,
+      "batch_size": 1,
+      "batch_wall_ms": 90.22079998976551,
+      "stages_per_image_ms": {
+        "preprocess": 3.9262000063899904,
+        "inference": 83.85090000228956,
+        "postprocess": 1.6262000135611743
+      },
+      "detections": 8,
+      "rss_mib": 713.79296875
+    },
+    {
+      "repeat": 2,
+      "offset": 8,
+      "batch_size": 1,
+      "batch_wall_ms": 103.22789999190718,
+      "stages_per_image_ms": {
+        "preprocess": 4.040700005134568,
+        "inference": 96.80369999841787,
+        "postprocess": 1.6632000042591244
+      },
+      "detections": 9,
+      "rss_mib": 713.30859375
+    },
+    {
+      "repeat": 2,
+      "offset": 9,
+      "batch_size": 1,
+      "batch_wall_ms": 88.40710000367835,
+      "stages_per_image_ms": {
+        "preprocess": 4.1674000094644725,
+        "inference": 81.60080001107417,
+        "postprocess": 1.871099986601621
+      },
+      "detections": 9,
+      "rss_mib": 713.83203125
+    },
+    {
+      "repeat": 2,
+      "offset": 10,
+      "batch_size": 1,
+      "batch_wall_ms": 91.88029999495484,
+      "stages_per_image_ms": {
+        "preprocess": 3.580599994165823,
+        "inference": 85.92660000431351,
+        "postprocess": 1.6463999927509576
+      },
+      "detections": 9,
+      "rss_mib": 712.98046875
+    },
+    {
+      "repeat": 2,
+      "offset": 11,
+      "batch_size": 1,
+      "batch_wall_ms": 93.64449998247437,
+      "stages_per_image_ms": {
+        "preprocess": 4.515599983278662,
+        "inference": 86.76000000559725,
+        "postprocess": 1.6112000157590955
+      },
+      "detections": 9,
+      "rss_mib": 713.875
+    },
+    {
+      "repeat": 2,
+      "offset": 12,
+      "batch_size": 1,
+      "batch_wall_ms": 91.22519998345524,
+      "stages_per_image_ms": {
+        "preprocess": 3.6459999973885715,
+        "inference": 85.12110001174733,
+        "postprocess": 1.6704000008758157
+      },
+      "detections": 7,
+      "rss_mib": 713.8828125
+    },
+    {
+      "repeat": 2,
+      "offset": 13,
+      "batch_size": 1,
+      "batch_wall_ms": 86.0924000153318,
+      "stages_per_image_ms": {
+        "preprocess": 3.7136000173632056,
+        "inference": 79.99430000199936,
+        "postprocess": 1.5759999805595726
+      },
+      "detections": 6,
+      "rss_mib": 713.3984375
+    },
+    {
+      "repeat": 2,
+      "offset": 14,
+      "batch_size": 1,
+      "batch_wall_ms": 77.4278000171762,
+      "stages_per_image_ms": {
+        "preprocess": 3.505800006678328,
+        "inference": 71.58309998339973,
+        "postprocess": 1.5450000064447522
+      },
+      "detections": 7,
+      "rss_mib": 713.90234375
+    },
+    {
+      "repeat": 2,
+      "offset": 15,
+      "batch_size": 1,
+      "batch_wall_ms": 79.42480000201613,
+      "stages_per_image_ms": {
+        "preprocess": 3.663600014988333,
+        "inference": 73.36449998547323,
+        "postprocess": 1.6278000257443637
+      },
+      "detections": 6,
+      "rss_mib": 713.90625
+    },
+    {
+      "repeat": 2,
+      "offset": 16,
+      "batch_size": 1,
+      "batch_wall_ms": 79.13790000020526,
+      "stages_per_image_ms": {
+        "preprocess": 3.943299991078675,
+        "inference": 73.20879999315366,
+        "postprocess": 1.2652000004891306
+      },
+      "detections": 8,
+      "rss_mib": 713.40625
+    },
+    {
+      "repeat": 2,
+      "offset": 17,
+      "batch_size": 1,
+      "batch_wall_ms": 72.98279998940416,
+      "stages_per_image_ms": {
+        "preprocess": 3.0789999873377383,
+        "inference": 67.63850001152605,
+        "postprocess": 1.5990000101737678
+      },
+      "detections": 7,
+      "rss_mib": 711.78515625
+    },
+    {
+      "repeat": 2,
+      "offset": 18,
+      "batch_size": 1,
+      "batch_wall_ms": 79.20929999090731,
+      "stages_per_image_ms": {
+        "preprocess": 4.453200002899393,
+        "inference": 72.37609999720007,
+        "postprocess": 1.5650000132154673
+      },
+      "detections": 8,
+      "rss_mib": 713.75390625
+    },
+    {
+      "repeat": 2,
+      "offset": 19,
+      "batch_size": 1,
+      "batch_wall_ms": 82.58020001812838,
+      "stages_per_image_ms": {
+        "preprocess": 4.0450999804306775,
+        "inference": 76.15870001609437,
+        "postprocess": 1.534599985461682
+      },
+      "detections": 9,
+      "rss_mib": 713.30078125
+    },
+    {
+      "repeat": 2,
+      "offset": 20,
+      "batch_size": 1,
+      "batch_wall_ms": 80.8518000121694,
+      "stages_per_image_ms": {
+        "preprocess": 3.9166999922599643,
+        "inference": 74.49609998730011,
+        "postprocess": 1.6106999828480184
+      },
+      "detections": 9,
+      "rss_mib": 713.8203125
+    },
+    {
+      "repeat": 2,
+      "offset": 21,
+      "batch_size": 1,
+      "batch_wall_ms": 80.83390002138913,
+      "stages_per_image_ms": {
+        "preprocess": 3.767200018046424,
+        "inference": 74.82509998953901,
+        "postprocess": 1.488300011260435
+      },
+      "detections": 6,
+      "rss_mib": 713.828125
+    },
+    {
+      "repeat": 2,
+      "offset": 22,
+      "batch_size": 1,
+      "batch_wall_ms": 80.58720000553876,
+      "stages_per_image_ms": {
+        "preprocess": 3.714799997396767,
+        "inference": 73.4455999918282,
+        "postprocess": 1.5568000089842826
+      },
+      "detections": 6,
+      "rss_mib": 707.55078125
+    },
+    {
+      "repeat": 2,
+      "offset": 23,
+      "batch_size": 1,
+      "batch_wall_ms": 81.77469999645837,
+      "stages_per_image_ms": {
+        "preprocess": 3.5547000006772578,
+        "inference": 75.81850001588464,
+        "postprocess": 1.5688999847043306
+      },
+      "detections": 6,
+      "rss_mib": 713.86328125
+    },
+    {
+      "repeat": 2,
+      "offset": 24,
+      "batch_size": 1,
+      "batch_wall_ms": 79.82579999952577,
+      "stages_per_image_ms": {
+        "preprocess": 3.662700008135289,
+        "inference": 73.8030000065919,
+        "postprocess": 1.57789999502711
+      },
+      "detections": 6,
+      "rss_mib": 715.38671875
+    },
+    {
+      "repeat": 2,
+      "offset": 25,
+      "batch_size": 1,
+      "batch_wall_ms": 80.31970000592992,
+      "stages_per_image_ms": {
+        "preprocess": 3.7219999940134585,
+        "inference": 72.80890000401996,
+        "postprocess": 1.5719000075478107
+      },
+      "detections": 6,
+      "rss_mib": 707.58984375
+    },
+    {
+      "repeat": 2,
+      "offset": 26,
+      "batch_size": 1,
+      "batch_wall_ms": 77.22830001148395,
+      "stages_per_image_ms": {
+        "preprocess": 3.0879999976605177,
+        "inference": 72.0189000130631,
+        "postprocess": 1.350500009721145
+      },
+      "detections": 7,
+      "rss_mib": 715.41796875
+    },
+    {
+      "repeat": 2,
+      "offset": 27,
+      "batch_size": 1,
+      "batch_wall_ms": 80.32839998486452,
+      "stages_per_image_ms": {
+        "preprocess": 2.7132999966852367,
+        "inference": 75.45120001304895,
+        "postprocess": 1.5719999792054296
+      },
+      "detections": 7,
+      "rss_mib": 713.04296875
+    },
+    {
+      "repeat": 2,
+      "offset": 28,
+      "batch_size": 1,
+      "batch_wall_ms": 75.07559997611679,
+      "stages_per_image_ms": {
+        "preprocess": 2.8534999873954803,
+        "inference": 69.82479998259805,
+        "postprocess": 1.7414999892935157
+      },
+      "detections": 8,
+      "rss_mib": 713.91796875
+    },
+    {
+      "repeat": 2,
+      "offset": 29,
+      "batch_size": 1,
+      "batch_wall_ms": 79.78850000654347,
+      "stages_per_image_ms": {
+        "preprocess": 3.235700016375631,
+        "inference": 74.07490001060069,
+        "postprocess": 1.7023999826051295
+      },
+      "detections": 7,
+      "rss_mib": 713.046875
+    },
+    {
+      "repeat": 2,
+      "offset": 30,
+      "batch_size": 1,
+      "batch_wall_ms": 75.09490000666119,
+      "stages_per_image_ms": {
+        "preprocess": 3.1648000003769994,
+        "inference": 69.77609999012202,
+        "postprocess": 1.4213999966159463
+      },
+      "detections": 7,
+      "rss_mib": 711.85546875
+    },
+    {
+      "repeat": 2,
+      "offset": 31,
+      "batch_size": 1,
+      "batch_wall_ms": 77.14539999142289,
+      "stages_per_image_ms": {
+        "preprocess": 3.2537000079173595,
+        "inference": 71.5294000110589,
+        "postprocess": 1.6617999935988337
+      },
+      "detections": 7,
+      "rss_mib": 712.90234375
+    },
+    {
+      "repeat": 2,
+      "offset": 32,
+      "batch_size": 1,
+      "batch_wall_ms": 74.11849999334663,
+      "stages_per_image_ms": {
+        "preprocess": 3.2094000198412687,
+        "inference": 68.35620000492781,
+        "postprocess": 1.7672999820206314
+      },
+      "detections": 8,
+      "rss_mib": 713.8046875
+    },
+    {
+      "repeat": 2,
+      "offset": 33,
+      "batch_size": 1,
+      "batch_wall_ms": 77.7640999876894,
+      "stages_per_image_ms": {
+        "preprocess": 3.132799989543855,
+        "inference": 72.21270000445656,
+        "postprocess": 1.6525999817531556
+      },
+      "detections": 7,
+      "rss_mib": 712.9609375
+    },
+    {
+      "repeat": 2,
+      "offset": 34,
+      "batch_size": 1,
+      "batch_wall_ms": 78.11949998722412,
+      "stages_per_image_ms": {
+        "preprocess": 3.1651000026613474,
+        "inference": 72.4480000208132,
+        "postprocess": 1.6956999897956848
+      },
+      "detections": 7,
+      "rss_mib": 713.85546875
+    },
+    {
+      "repeat": 2,
+      "offset": 35,
+      "batch_size": 1,
+      "batch_wall_ms": 75.90709999203682,
+      "stages_per_image_ms": {
+        "preprocess": 3.204300010111183,
+        "inference": 70.2377000125125,
+        "postprocess": 1.646199991228059
+      },
+      "detections": 7,
+      "rss_mib": 713.8828125
+    },
+    {
+      "repeat": 2,
+      "offset": 36,
+      "batch_size": 1,
+      "batch_wall_ms": 79.90199999767356,
+      "stages_per_image_ms": {
+        "preprocess": 3.224300016881898,
+        "inference": 74.21140000224113,
+        "postprocess": 1.7048000008799136
+      },
+      "detections": 6,
+      "rss_mib": 713.01953125
+    },
+    {
+      "repeat": 2,
+      "offset": 37,
+      "batch_size": 1,
+      "batch_wall_ms": 77.5693999894429,
+      "stages_per_image_ms": {
+        "preprocess": 3.196499979821965,
+        "inference": 71.96680002380162,
+        "postprocess": 1.6308999911416322
+      },
+      "detections": 6,
+      "rss_mib": 713.91015625
+    },
+    {
+      "repeat": 2,
+      "offset": 38,
+      "batch_size": 1,
+      "batch_wall_ms": 74.65339999180287,
+      "stages_per_image_ms": {
+        "preprocess": 3.193500015186146,
+        "inference": 69.40300000132993,
+        "postprocess": 1.323700009379536
+      },
+      "detections": 5,
+      "rss_mib": 713.04296875
+    },
+    {
+      "repeat": 2,
+      "offset": 39,
+      "batch_size": 1,
+      "batch_wall_ms": 72.97049998305738,
+      "stages_per_image_ms": {
+        "preprocess": 2.614900004118681,
+        "inference": 67.85669998498634,
+        "postprocess": 1.8284000107087195
+      },
+      "detections": 5,
+      "rss_mib": 713.93359375
+    },
+    {
+      "repeat": 2,
+      "offset": 40,
+      "batch_size": 1,
+      "batch_wall_ms": 81.98399998946115,
+      "stages_per_image_ms": {
+        "preprocess": 3.274499991675839,
+        "inference": 76.26329999766313,
+        "postprocess": 1.622700016014278
+      },
+      "detections": 5,
+      "rss_mib": 713.0625
+    },
+    {
+      "repeat": 2,
+      "offset": 41,
+      "batch_size": 1,
+      "batch_wall_ms": 77.86719998694025,
+      "stages_per_image_ms": {
+        "preprocess": 3.1933000136632472,
+        "inference": 72.22559998626821,
+        "postprocess": 1.7043999978341162
+      },
+      "detections": 5,
+      "rss_mib": 713.9375
+    },
+    {
+      "repeat": 2,
+      "offset": 42,
+      "batch_size": 1,
+      "batch_wall_ms": 80.0634000042919,
+      "stages_per_image_ms": {
+        "preprocess": 3.200399980414659,
+        "inference": 74.3800999771338,
+        "postprocess": 1.6939000051934272
+      },
+      "detections": 5,
+      "rss_mib": 713.94140625
+    },
+    {
+      "repeat": 2,
+      "offset": 43,
+      "batch_size": 1,
+      "batch_wall_ms": 82.38140001776628,
+      "stages_per_image_ms": {
+        "preprocess": 3.1976000173017383,
+        "inference": 75.65059998887591,
+        "postprocess": 1.668399985646829
+      },
+      "detections": 5,
+      "rss_mib": 705.5
+    },
+    {
+      "repeat": 2,
+      "offset": 44,
+      "batch_size": 1,
+      "batch_wall_ms": 81.36019998346455,
+      "stages_per_image_ms": {
+        "preprocess": 3.563100006431341,
+        "inference": 75.19460000912659,
+        "postprocess": 1.7649999936111271
+      },
+      "detections": 5,
+      "rss_mib": 713.78515625
+    },
+    {
+      "repeat": 2,
+      "offset": 45,
+      "batch_size": 1,
+      "batch_wall_ms": 82.31570001225919,
+      "stages_per_image_ms": {
+        "preprocess": 3.5669999779202044,
+        "inference": 76.31219999166206,
+        "postprocess": 1.6337000124622136
+      },
+      "detections": 5,
+      "rss_mib": 713.80859375
+    },
+    {
+      "repeat": 2,
+      "offset": 46,
+      "batch_size": 1,
+      "batch_wall_ms": 77.26619997993112,
+      "stages_per_image_ms": {
+        "preprocess": 2.971899986732751,
+        "inference": 70.66140000824817,
+        "postprocess": 1.6829000087454915
+      },
+      "detections": 5,
+      "rss_mib": 707.53515625
+    },
+    {
+      "repeat": 2,
+      "offset": 47,
+      "batch_size": 1,
+      "batch_wall_ms": 75.50609999452718,
+      "stages_per_image_ms": {
+        "preprocess": 3.3220000041183084,
+        "inference": 69.76829998893663,
+        "postprocess": 1.6324000025633723
+      },
+      "detections": 5,
+      "rss_mib": 713.859375
+    },
+    {
+      "repeat": 2,
+      "offset": 48,
+      "batch_size": 1,
+      "batch_wall_ms": 78.2146000128705,
+      "stages_per_image_ms": {
+        "preprocess": 2.873200020985678,
+        "inference": 72.87720000022091,
+        "postprocess": 1.687199983280152
+      },
+      "detections": 5,
+      "rss_mib": 713.88671875
+    },
+    {
+      "repeat": 2,
+      "offset": 49,
+      "batch_size": 1,
+      "batch_wall_ms": 79.04749998124316,
+      "stages_per_image_ms": {
+        "preprocess": 2.86539999069646,
+        "inference": 73.83010000921786,
+        "postprocess": 1.5878999838605523
+      },
+      "detections": 5,
+      "rss_mib": 715.4140625
+    },
+    {
+      "repeat": 2,
+      "offset": 50,
+      "batch_size": 1,
+      "batch_wall_ms": 78.18539999425411,
+      "stages_per_image_ms": {
+        "preprocess": 3.1518999894615263,
+        "inference": 71.38060001307167,
+        "postprocess": 1.5810999902896583
+      },
+      "detections": 5,
+      "rss_mib": 707.625
+    },
+    {
+      "repeat": 2,
+      "offset": 51,
+      "batch_size": 1,
+      "batch_wall_ms": 77.71179999690503,
+      "stages_per_image_ms": {
+        "preprocess": 3.2241000153589994,
+        "inference": 72.16680000419728,
+        "postprocess": 1.5415000088978559
+      },
+      "detections": 5,
+      "rss_mib": 713.94140625
+    },
+    {
+      "repeat": 2,
+      "offset": 52,
+      "batch_size": 1,
+      "batch_wall_ms": 73.1264999776613,
+      "stages_per_image_ms": {
+        "preprocess": 3.2478000211995095,
+        "inference": 66.20269999257289,
+        "postprocess": 1.7029000155162066
+      },
+      "detections": 5,
+      "rss_mib": 707.6484375
+    },
+    {
+      "repeat": 2,
+      "offset": 53,
+      "batch_size": 1,
+      "batch_wall_ms": 81.8165999953635,
+      "stages_per_image_ms": {
+        "preprocess": 3.543099999660626,
+        "inference": 75.93359999009408,
+        "postprocess": 1.5669999993406236
+      },
+      "detections": 5,
+      "rss_mib": 713.953125
+    },
+    {
+      "repeat": 2,
+      "offset": 54,
+      "batch_size": 1,
+      "batch_wall_ms": 77.69280002685264,
+      "stages_per_image_ms": {
+        "preprocess": 3.20920001831837,
+        "inference": 72.18489999650046,
+        "postprocess": 1.5449000056833029
+      },
+      "detections": 5,
+      "rss_mib": 713.953125
+    },
+    {
+      "repeat": 2,
+      "offset": 55,
+      "batch_size": 1,
+      "batch_wall_ms": 78.35930000874214,
+      "stages_per_image_ms": {
+        "preprocess": 3.204900014679879,
+        "inference": 71.70790000236593,
+        "postprocess": 1.5790999750606716
+      },
+      "detections": 5,
+      "rss_mib": 707.66796875
+    },
+    {
+      "repeat": 2,
+      "offset": 56,
+      "batch_size": 1,
+      "batch_wall_ms": 79.62279999628663,
+      "stages_per_image_ms": {
+        "preprocess": 3.428200026974082,
+        "inference": 73.83159999153577,
+        "postprocess": 1.5971999964676797
+      },
+      "detections": 5,
+      "rss_mib": 713.36328125
+    },
+    {
+      "repeat": 2,
+      "offset": 57,
+      "batch_size": 1,
+      "batch_wall_ms": 80.94549999805167,
+      "stages_per_image_ms": {
+        "preprocess": 4.224800009978935,
+        "inference": 73.10760000837035,
+        "postprocess": 1.5934999973978847
+      },
+      "detections": 5,
+      "rss_mib": 707.52734375
+    },
+    {
+      "repeat": 2,
+      "offset": 58,
+      "batch_size": 1,
+      "batch_wall_ms": 76.85030001448467,
+      "stages_per_image_ms": {
+        "preprocess": 2.732199995080009,
+        "inference": 71.81260001379997,
+        "postprocess": 1.6378999862354249
+      },
+      "detections": 5,
+      "rss_mib": 715.34375
+    },
+    {
+      "repeat": 2,
+      "offset": 59,
+      "batch_size": 1,
+      "batch_wall_ms": 78.66890000877902,
+      "stages_per_image_ms": {
+        "preprocess": 3.208099980838597,
+        "inference": 71.7651000013575,
+        "postprocess": 1.568900013808161
+      },
+      "detections": 5,
+      "rss_mib": 707.578125
+    }
+  ],
+  "limitations": [
+    "Decode, queues, tracking, rendering excluded.",
+    "RSS includes predecoded frames and runtime; sampled, not true peak.",
+    "Backend stage timers are implementation dependent; compare wall time.",
+    "No accuracy claim without a separately labeled evaluation."
+  ]
+}
