@@ -16,6 +16,8 @@ Twenty-eight configurations: two image sizes (320 and 640) for each of these fou
 ONNX Runtime's CUDA provider can partition graphs across devices. CUDA cases require actual weighted kernels on CUDA,
 verified with a separate ORT profile; provider registration alone is insufficient evidence. An INT8 ONNX CPU graph is
 not advertised as GPU INT8 acceleration merely because a CUDA provider is present.
+Profiled weighted-kernel input types are retained too: the FP16 ONNX CPU graphs in this study use FP32 inputs after
+runtime conversion. Graph initializer precision alone is not evidence of native FP16 compute.
 
 OpenVINO FP16 compresses model constants; it does not guarantee native FP16 arithmetic on this i7. The compiled model's
 runtime precision is inspected. TensorRT precision flags enable mixed-precision tactics; the engine may retain higher

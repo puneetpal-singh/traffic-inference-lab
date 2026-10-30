@@ -3,6 +3,7 @@
 import json
 from pathlib import Path
 
+from traffic_lab.inspection import weighted_input_types
 from traffic_lab.provenance import file_hash
 
 root = Path("results/full-matrix")
@@ -26,3 +27,9 @@ for path in Path("models/full-matrix").glob("*/export.json"):
     target.parent.mkdir(exist_ok=True)
     target.write_text(json.dumps(data, indent=2), encoding="utf-8")
 print("Captured export manifests and dataset identity; timing and quality values are unchanged.")
+for path in root.glob("inspection-onnx-*.json"):
+    data = json.loads(path.read_text())
+    if isinstance(data, dict) and data.get("profile"):
+        events = json.loads(Path(data["profile"]).read_text())
+        data["weighted_kernel_input_types"] = weighted_input_types(events)
+        path.write_text(json.dumps(data, indent=2), encoding="utf-8")

@@ -7,6 +7,20 @@ from pathlib import Path
 import numpy as np
 
 
+def weighted_input_types(events):
+    """Count weighted kernels by provider and profiled tensor dtype, not exported storage dtype."""
+    counts = Counter()
+    for event in events:
+        args = event.get("args", {})
+        provider = args.get("provider")
+        if not provider or not any(k in args.get("op_name", "").lower() for k in ("conv", "gemm", "matmul")):
+            continue
+        dtypes = {dtype for tensor in args.get("input_type_shape", []) for dtype in tensor}
+        for dtype in dtypes:
+            counts[f"{provider}:{dtype}"] += 1
+    return dict(counts)
+
+
 def inspect_artifact(config, output):
     from .runtime import Detector, save_json
 
@@ -51,6 +65,7 @@ def inspect_artifact(config, output):
             if any(k in e.get("args", {}).get("op_name", "").lower() for k in ("conv", "gemm", "matmul"))
         ]
         evidence["weighted_kernel_providers"] = dict(Counter(e["args"]["provider"] for e in weighted))
+        evidence["weighted_kernel_input_types"] = weighted_input_types(events)
         evidence["profile"] = profile
         if config.device != "cpu" and not any(
             e["args"]["provider"] == "CUDAExecutionProvider" for e in weighted

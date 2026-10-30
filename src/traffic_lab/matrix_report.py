@@ -251,6 +251,7 @@ This is a model-only acceptance rule; it does not certify a live-camera SLA or c
 <h2>Accuracy and latency</h2><img alt="Measured accuracy versus latency" src="data:image/png;base64,{frontier_b64}">
 <p>OpenVINO FP16 compresses stored constants; runtime precision is separately inspected. TensorRT FP16/INT8 enable mixed-precision
 tactics, so the engine may retain higher precision layers. ONNX profiles separately verify CUDA kernel placement.
+ONNX FP16 denotes the exported graph: CPU profiles show FP32 weighted-kernel inputs after runtime conversion.
 Strict box-level parity is recorded as a diagnostic; quantized models are judged on held-out mAP loss.</p>
 <p>PyTorch uses four CPU threads. ONNX Runtime and OpenVINO use backend threading defaults; these are not equal-thread-budget tests.</p>
 <h2>Camera scaling, tracking and batching</h2><p>{len(pipeline_rows)} serving experiments. Each camera replays the same clip at source FPS,

@@ -60,6 +60,24 @@ for size in (320, 640):
                 f"{best['fps']:.2f} FPS; {best['fps'] / baseline['fps']:.2f}× this study's CPU PyTorch throughput."
             )
 rejected = [r["name"] for r in rows if not r["model_gate_passed"]]
+lines += ["", "### Optimizations that did not help", ""]
+for half in (r for r in rows if r["precision"] == 16):
+    full = next(
+        (
+            r
+            for r in rows
+            if r["backend"] == half["backend"]
+            and r["device"] == half["device"]
+            and r["imgsz"] == half["imgsz"]
+            and r["precision"] == 32
+        ),
+        None,
+    )
+    if full and half["fps"] < 0.9 * full["fps"]:
+        lines.append(
+            f"- {half['name']}: {half['fps']:.2f} FPS versus {full['fps']:.2f} FPS for FP32 "
+            f"({100 * (1 - half['fps'] / full['fps']):.1f}% lower throughput)."
+        )
 lines += [
     "",
     "Rejected by the model gate: " + (", ".join(rejected) or "none") + ".",
@@ -69,6 +87,7 @@ lines += [
     "## Precision and execution evidence",
     "",
     "- ONNX CUDA cases include separate provider profiles proving weighted kernels executed on CUDA.",
+    "- ONNX FP16 names the exported graph. CPU execution profiles show float32 weighted-kernel inputs after conversion.",
     "- OpenVINO FP16 is compressed storage; CPU arithmetic is checked separately through profiling execution types.",
     "- TensorRT FP16/INT8 enable mixed-precision tactics. Engine inspection records available layer details and CUDA graph use.",
     "- Strict detection parity is diagnostic. Quantized models may fail it while still meeting the labeled mAP budget.",
@@ -80,6 +99,16 @@ lines += [
 ]
 pipeline_paths = sorted((root / "pipelines").glob("*/summary.json"))
 if pipeline_paths:
+    selections = json.loads((root / "pipeline-selections.json").read_text())
+    lines += ["Serving model choices: " + ", ".join(s["name"] for s in selections["selections"]) + ".", ""]
+    for decision in selections["candidate_decisions"]:
+        if decision["global_drop_points"] <= 1 and decision["vehicle_drop_points"] > 1:
+            lines += [
+                f"{decision['name']} met the global budget but lost {decision['vehicle_drop_points']:.2f} "
+                "vehicle AP points, so it was excluded from serving selection. The traffic-specific guard was "
+                "added after observing this difference; see the protocol for that scope change.",
+                "",
+            ]
     lines += [
         "All serving configurations use one requested decoder thread per camera, independent trackers, bounded queues,",
         "and models with at most one absolute point lost in both global mAP and mean vehicle AP versus CPU PyTorch.",

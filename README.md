@@ -145,6 +145,7 @@ python -m ruff check .
 
 Read [data provenance](docs/DATA.md), [benchmark protocol](docs/FULL_MATRIX_PROTOCOL.md), and
 [deployment decisions](docs/DECISIONS.md). Weights, videos, calibration images, and secrets are excluded from Git.
+Use the [project walkthrough](docs/WALKTHROUGH.md) to present the measurements and optimization decisions.
 
 ## Learning references
 
