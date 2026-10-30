@@ -71,6 +71,10 @@ The global detector gate above remains unchanged. This additional traffic-specif
 Selection chooses the lowest measured p95 among eligible candidates for each backend. Dynamic batch engines must
 pass both accuracy checks before serving measurements.
 
+Serving initialization uses five zero-image calls plus real first-frame batches for every permitted batch size before
+the replay clock starts. This warms NMS paths that zeros can miss. Each source is reopened from frame zero for measurement;
+trackers receive no warm-up observations. This serving protocol differs from the fixed twenty-zero-call model benchmark.
+
 ## Reproduction
 
 Use the Windows CUDA/TensorRT setup in the README, then:

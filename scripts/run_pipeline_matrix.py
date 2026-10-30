@@ -10,7 +10,7 @@ from pathlib import Path
 
 from traffic_lab.benchmark import evaluate
 from traffic_lab.pipeline import run_pipeline
-from traffic_lab.runtime import ModelConfig, save_json
+from traffic_lab.runtime import ModelConfig, environment, file_hash, save_json
 
 ROOT = Path("results/full-matrix")
 
@@ -24,6 +24,8 @@ def clean():
 
 
 def main():
+    current_environment = environment()
+    video_hash = file_hash("data/traffic.mp4")
     baseline = json.loads((ROOT / "pytorch-cpu-fp32-320.json").read_text())["map50_95"]
 
     def vehicle_map(quality):
@@ -71,8 +73,27 @@ def main():
         name = f"{spec['name']}-streams-{streams}-batch-{batch}-stride-{stride}-{tracker}{suffix}"
         output = ROOT / "pipelines" / name
         if ledger.get(name, {}).get("status") == "complete" and (output / "summary.json").exists():
-            print(f"{name}: cached", flush=True)
-            return
+            previous = json.loads((output / "summary.json").read_text())
+            if (
+                previous.get("status") == "complete"
+                and previous.get("schema_version") == 2
+                and previous.get("model_sha256") == file_hash(spec["model"])
+                and previous.get("input_hashes") == [video_hash] * streams
+                and previous["environment"]["packages"] == current_environment["packages"]
+                and previous["environment"]["gpu"] == current_environment["gpu"]
+                and previous["environment"]["processor"] == current_environment["processor"]
+                and previous.get("requested_seconds") == 5
+                and previous["config"]["imgsz"] == 320
+                and previous.get("requested_batch") == batch
+                and previous.get("stride") == stride
+                and previous.get("tracker") == tracker
+                and previous.get("render") == render
+                and previous.get("requested_decoder_threads") == 1
+                and previous.get("warmup", {}).get("real_image_batch_sizes")
+                == list(range(1, min(batch, streams) + 1))
+            ):
+                print(f"{name}: cached matching model, input and configuration", flush=True)
+                return
         start = time.perf_counter()
         print(f"Running {name}", flush=True)
         try:
@@ -116,7 +137,27 @@ def main():
     run(trt, 4, stride=2)
     dynamic_dir = Path("models/full-matrix/tensorrt-dynamic-batch4")
     dynamic_model = dynamic_dir / "yolo11n.engine"
-    if not dynamic_model.exists():
+    manifest_path = dynamic_dir / "export.json"
+    reusable_dynamic = False
+    if dynamic_model.exists() and manifest_path.exists():
+        manifest = json.loads(manifest_path.read_text())
+        reusable_dynamic = (
+            manifest["arguments"]["quantize"] == trt["precision"]
+            and manifest["arguments"]["batch"] == 4
+            and manifest["arguments"]["dynamic"]
+            and manifest["source_sha256"] == file_hash("models/yolo11n.pt")
+            and manifest["artifact_sha256"] == file_hash(dynamic_model)
+            and manifest["environment"]["packages"] == current_environment["packages"]
+            and manifest["environment"]["gpu"] == current_environment["gpu"]
+        )
+        if trt["precision"] == 8:
+            reusable_dynamic = (
+                reusable_dynamic
+                and manifest.get("calibration_yaml_sha256")
+                == file_hash("data/coco-deployment/calibration.yaml")
+                and manifest.get("calibration_manifest_sha256") == file_hash(ROOT / "dataset-manifest.json")
+            )
+    if not reusable_dynamic:
         arguments = [
             sys.executable,
             "-m",
@@ -147,6 +188,13 @@ def main():
     if quality_path.exists():
         quality = json.loads(quality_path.read_text())
     else:
+        quality = {}
+    if (
+        quality.get("model_sha256") != file_hash(dynamic_model)
+        or quality.get("dataset_yaml_sha256") != file_hash("data/coco-deployment/holdout.yaml")
+        or quality.get("dataset_manifest_sha256") != file_hash(ROOT / "dataset-manifest.json")
+        or quality.get("environment", {}).get("packages") != current_environment["packages"]
+    ):
         quality = evaluate(
             ModelConfig(model=str(dynamic_model), imgsz=320, device="0"),
             "data/coco-deployment/holdout.yaml",

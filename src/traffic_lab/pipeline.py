@@ -151,15 +151,23 @@ def run_pipeline(
     cameras = [
         Camera(i, path, mailboxes[i], start, duration, stop, decode_threads) for i, path in enumerate(sources)
     ]
-    rates = []
+    rates, warmup_frames = [], []
     for source in sources:
         probe = open_recording(source, decode_threads)
         rate = float(probe.get(cv2.CAP_PROP_FPS))
         opened = probe.isOpened()
+        decoded, first_frame = probe.read() if opened else (False, None)
         probe.release()
-        if not opened or not np.isfinite(rate) or rate <= 0:
+        if not opened or not decoded or not np.isfinite(rate) or rate <= 0:
             raise ValueError(f"Source must be a decodable recording with valid FPS: {source}")
         rates.append(rate)
+        warmup_frames.append(first_frame)
+    # Real detections exercise NMS paths that zero-image warm-up may never call.
+    # Exercise every allowed batch shape before the replay clock starts.
+    for size in range(1, effective_batch + 1):
+        for result in detector.predict(warmup_frames[:size]):
+            result.boxes.cpu()
+    del warmup_frames
     trackers = [make_tracker(tracker, max(1, round(rate))) for rate in rates]
     counters = [LineCounter(tuple(line[:2]), tuple(line[2:])) for _ in sources]
     # Importing tracker dependencies can be slow on first use. The replay clock
@@ -341,6 +349,7 @@ def run_pipeline(
             "queue_capacity_per_camera": queue_size,
             "stride": stride,
             "requested_decoder_threads": decode_threads,
+            "warmup": {"zero_image_calls": 5, "real_image_batch_sizes": list(range(1, effective_batch + 1))},
             "resources": monitor.summary(),
             "tracker": tracker,
             "tracker_configs": [vars(t.args) for t in trackers],

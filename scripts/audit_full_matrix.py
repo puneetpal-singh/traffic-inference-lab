@@ -43,6 +43,12 @@ for spec in plan:
     if spec["device"] != "cpu" and spec["backend"] == "onnx":
         if not inspection.get("weighted_kernel_providers", {}).get("CUDAExecutionProvider"):
             errors.append(f"ONNX weighted kernels did not execute on CUDA: {name}")
+    if spec["backend"] == "onnx" and spec["precision"] == 8:
+        if not any(
+            key.endswith((":int8", ":uint8")) and count > 0
+            for key, count in inspection.get("weighted_kernel_input_types", {}).items()
+        ):
+            errors.append(f"No executed INT8 weighted-kernel tensor evidence for ONNX: {name}")
     if spec["backend"] == "openvino" and inspection.get("execution_devices") != ["CPU"]:
         errors.append(f"OpenVINO CPU case ran elsewhere: {name}")
     if spec["backend"] == "openvino" and spec["precision"] == 8:
@@ -76,6 +82,9 @@ if args.require_pipelines:
         pipeline = json.loads(path.read_text())
         if pipeline["status"] != "complete":
             errors.append(f"Incomplete pipeline: {path.parent.name}")
+        expected_batches = list(range(1, min(pipeline["requested_batch"], len(pipeline["cameras"])) + 1))
+        if pipeline.get("warmup") != {"zero_image_calls": 5, "real_image_batch_sizes": expected_batches}:
+            errors.append(f"Serving warm-up protocol mismatch: {path.parent.name}")
         for camera in pipeline["cameras"]:
             accounted = sum(camera[k] for k in ("processed", "queue_dropped", "stride_skipped", "remaining"))
             if accounted != camera["decoded"]:

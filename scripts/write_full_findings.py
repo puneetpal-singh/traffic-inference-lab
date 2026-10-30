@@ -60,6 +60,19 @@ for size in (320, 640):
                 f"{best['fps']:.2f} FPS; {best['fps'] / baseline['fps']:.2f}× this study's CPU PyTorch throughput."
             )
 rejected = [r["name"] for r in rows if not r["model_gate_passed"]]
+lines += [
+    "",
+    "### Trial variation at 320px",
+    "",
+    "Zero-image warm-up does not exercise every real-image path. These trial rates are all retained; the headline",
+    "uses total frames / total trial time, not the arithmetic mean of the rates below.",
+    "",
+    "| Configuration | Five trial FPS, in order |",
+    "|---|---|",
+]
+for row in (r for r in rows if r["imgsz"] == 320 and r["device"] == "CUDA"):
+    timing = json.loads((root / f"timing-{row['name']}.json").read_text())
+    lines.append(f"| {row['name']} | " + " / ".join(f"{t['fps']:.2f}" for t in timing["trials"]) + " |")
 lines += ["", "### Optimizations that did not help", ""]
 for half in (r for r in rows if r["precision"] == 16):
     full = next(
@@ -112,6 +125,7 @@ if pipeline_paths:
     lines += [
         "All serving configurations use one requested decoder thread per camera, independent trackers, bounded queues,",
         "and models with at most one absolute point lost in both global mAP and mean vehicle AP versus CPU PyTorch.",
+        "Before replay, five zero-image calls and real first-frame batches warm the detector/NMS; tracker state remains fresh.",
         "Replay is paced at the source FPS. Frame age includes decode backlog, queueing, prediction, tracking, metadata",
         "preparation and optional rendering; log writing is excluded. The rendered run is reported separately.",
         "",

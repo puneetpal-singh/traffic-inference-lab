@@ -37,6 +37,11 @@ def build_matrix_report(root, output):
                 else model.stat().st_size
             )
         resources = timing.get("resources", {}).get("metrics", {})
+        available_ram = [
+            s["system_available_ram_mib"]
+            for s in timing.get("resources", {}).get("samples", [])
+            if s.get("system_available_ram_mib") is not None
+        ]
         stages = {
             key: sum(s["stages_per_image_ms"][key] for s in timing["samples"]) / len(timing["samples"])
             for key in ("preprocess", "inference", "postprocess")
@@ -64,6 +69,7 @@ def build_matrix_report(root, output):
                 "vehicle_map50_95": sum(vehicle_scores) / 4 if len(vehicle_scores) == 4 else None,
                 "model_mib": size / 1024**2 if size is not None else None,
                 "process_rss_mib": timing["peak_sampled_rss_mib"],
+                "min_system_available_ram_mib": min(available_ram) if available_ram else None,
                 "gpu_used_mib": resources.get("gpu_used_mib", {}).get("max"),
                 "gpu_util_percent": resources.get("gpu_utilization_percent", {}).get("mean"),
                 "gpu_temperature_c": resources.get("gpu_temperature_c", {}).get("max"),
@@ -215,16 +221,15 @@ def build_matrix_report(root, output):
         serving_table += "<tr>" + "".join(f"<td>{html.escape(str(v))}</td>" for v in values) + "</tr>"
     serving_table += "</table></div>"
     resource_table = (
-        "<div class='scroll'><table><tr><th>CUDA configuration</th><th>Sampled process RSS MiB</th>"
+        "<div class='scroll'><table><tr><th>Configuration</th><th>Sampled process RSS MiB</th><th>Minimum available system RAM MiB</th>"
         "<th>Peak sampled GPU MiB</th><th>Mean GPU utilization %</th><th>Max temperature °C</th>"
         "<th>Mean reported GPU power W</th></tr>"
     )
     for r in rows:
-        if r["device"] != "CUDA":
-            continue
         values = (
             r["name"],
             number(r["process_rss_mib"], 0),
+            number(r["min_system_available_ram_mib"], 0),
             number(r["gpu_used_mib"], 0),
             number(r["gpu_util_percent"], 1),
             number(r["gpu_temperature_c"], 1),
@@ -232,6 +237,12 @@ def build_matrix_report(root, output):
         )
         resource_table += "<tr>" + "".join(f"<td>{html.escape(str(v))}</td>" for v in values) + "</tr>"
     resource_table += "</table></div>"
+    trial_table = "<div class='scroll'><table><tr><th>Configuration</th><th>Trial FPS, in execution order</th><th>Aggregate FPS</th></tr>"
+    for row in rows:
+        timing = json.loads((root / f"timing-{row['name']}.json").read_text())
+        values = (row["name"], " / ".join(number(t["fps"]) for t in timing["trials"]), number(row["fps"]))
+        trial_table += "<tr>" + "".join(f"<td>{html.escape(str(v))}</td>" for v in values) + "</tr>"
+    trial_table += "</table></div>"
     body = f"""<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Traffic Inference Lab — CPU, CUDA and TensorRT</title>
 <style>body{{font:15px system-ui;max-width:1400px;margin:40px auto;padding:24px;background:#0d1725;color:#e4edf6}}
@@ -248,6 +259,9 @@ INT8 calibration: 512 separate images; no overlap with evaluation.</p>
 <h2>CUDA configurations</h2>{table([r for r in rows if r["device"] == "CUDA"])}
 <p>Gate: p95 model wall time ≤100 ms and loss ≤1 absolute mAP point relative to PyTorch CPU FP32 at the same resolution.
 This is a model-only acceptance rule; it does not certify a live-camera SLA or counting accuracy.</p>
+<h2>Trial variation</h2><p>All five trials are retained. Zero-image warm-up can miss real-image postprocessing paths;
+first-trial effects and shared-desktop noise remain visible. Headline FPS divides total frames by total trial time.</p>
+{trial_table}
 <h2>Accuracy and latency</h2><img alt="Measured accuracy versus latency" src="data:image/png;base64,{frontier_b64}">
 <p>OpenVINO FP16 compresses stored constants; runtime precision is separately inspected. TensorRT FP16/INT8 enable mixed-precision
 tactics, so the engine may retain higher precision layers. ONNX profiles separately verify CUDA kernel placement.
@@ -257,6 +271,7 @@ Strict box-level parity is recorded as a diagnostic; quantized models are judged
 <h2>Camera scaling, tracking and batching</h2><p>{len(pipeline_rows)} serving experiments. Each camera replays the same clip at source FPS,
 has an independent tracker and a bounded queue, and requests one decoder thread. Model choices lose at most one absolute
 point of both global mAP and mean vehicle AP against the same-size CPU PyTorch baseline.
+Serving warms the detector with five zero-image calls and real first-frame batches before replay; trackers start fresh.
 The illustrative serving timing gate is at least 15 processed FPS and p95 frame age at most 100 ms for every camera.</p>
 {serving_table}<p>Frame age includes decode backlog, queueing, inference, tracking and metadata preparation. Disk logging is excluded.
 Batch size is an opportunistic maximum. Stride skips are reported separately from queue drops. BoT-SORT and rendering runs are
