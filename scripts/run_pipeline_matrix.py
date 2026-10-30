@@ -25,16 +25,44 @@ def clean():
 
 def main():
     baseline = json.loads((ROOT / "pytorch-cpu-fp32-320.json").read_text())["map50_95"]
+
+    def vehicle_map(quality):
+        return sum(quality["per_class_map50_95"][str(c)] for c in (2, 3, 5, 7)) / 4
+
+    baseline_vehicle = vehicle_map(json.loads((ROOT / "quality-pytorch-cpu-fp32-320.json").read_text()))
     selections = []
+    decisions = []
     for prefix in ("openvino-cpu", "onnx-cuda", "tensorrt-cuda"):
         cases = [json.loads(p.read_text()) for p in ROOT.glob(f"{prefix}-*-320.json")]
-        eligible = [c for c in cases if 100 * (baseline - c["map50_95"]) <= 1]
+        eligible = []
+        for case in cases:
+            quality = json.loads((ROOT / f"quality-{case['spec']['name']}.json").read_text())
+            global_drop = 100 * (baseline - case["map50_95"])
+            vehicle_drop = 100 * (baseline_vehicle - vehicle_map(quality))
+            accepted = global_drop <= 1 and vehicle_drop <= 1
+            decisions.append(
+                {
+                    "name": case["spec"]["name"],
+                    "global_drop_points": global_drop,
+                    "vehicle_drop_points": vehicle_drop,
+                    "eligible": accepted,
+                }
+            )
+            if accepted:
+                eligible.append(case)
         if not eligible:
-            raise RuntimeError(f"No {prefix} candidate satisfies the 1-point accuracy-loss limit")
+            raise RuntimeError(f"No {prefix} candidate satisfies global and vehicle 1-point accuracy limits")
         selections.append(min(eligible, key=lambda c: c["p95_ms"])["spec"])
     save_json(
         ROOT / "pipeline-selections.json",
-        {"baseline_map50_95": baseline, "max_map_drop_points": 1, "selections": selections},
+        {
+            "baseline_map50_95": baseline,
+            "baseline_vehicle_map50_95": baseline_vehicle,
+            "max_map_drop_points": 1,
+            "max_vehicle_drop_points": 1,
+            "candidate_decisions": decisions,
+            "selections": selections,
+        },
     )
     ledger_path = ROOT / "pipeline-ledger.json"
     ledger = json.loads(ledger_path.read_text()) if ledger_path.exists() else {}
@@ -125,7 +153,7 @@ def main():
             quality_path,
         )
     clean()
-    if 100 * (baseline - quality["map50_95"]) > 1:
+    if 100 * (baseline - quality["map50_95"]) > 1 or 100 * (baseline_vehicle - vehicle_map(quality)) > 1:
         raise RuntimeError("Dynamic batching engine failed accuracy budget; do not adopt it")
     for streams in (4, 8):
         run(dynamic, streams, batch=4)

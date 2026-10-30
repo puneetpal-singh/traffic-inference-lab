@@ -37,6 +37,10 @@ def build_matrix_report(root, output):
                 else model.stat().st_size
             )
         resources = timing.get("resources", {}).get("metrics", {})
+        stages = {
+            key: sum(s["stages_per_image_ms"][key] for s in timing["samples"]) / len(timing["samples"])
+            for key in ("preprocess", "inference", "postprocess")
+        }
         per_class = quality.get("per_class_map50_95", {})
         vehicle_scores = [per_class[str(c)] for c in (2, 3, 5, 7) if str(c) in per_class]
         rows.append(
@@ -50,6 +54,11 @@ def build_matrix_report(root, output):
                 "p50_ms": timing["batch_wall_ms"]["p50"],
                 "p95_ms": result["p95_ms"],
                 "p99_ms": result["p99_ms"],
+                "mean_preprocess_ms": stages["preprocess"],
+                "mean_forward_ms": stages["inference"],
+                "mean_postprocess_ms": stages["postprocess"],
+                "mean_wrapper_and_transfer_residual_ms": timing["batch_wall_ms"]["mean"]
+                - sum(stages.values()),
                 "map50_95": result["map50_95"],
                 "map50": result["map50"],
                 "vehicle_map50_95": sum(vehicle_scores) / 4 if len(vehicle_scores) == 4 else None,
@@ -60,6 +69,7 @@ def build_matrix_report(root, output):
                 "gpu_temperature_c": resources.get("gpu_temperature_c", {}).get("max"),
                 "gpu_power_w": resources.get("gpu_power_w", {}).get("mean"),
                 "strict_parity": result["strict_detection_parity_passed"],
+                "export_process_seconds": ledger.get("export-" + spec["export_key"], {}).get("seconds"),
             }
         )
     for row in rows:
@@ -95,6 +105,8 @@ def build_matrix_report(root, output):
             for i, result in enumerate(group):
                 ax.text(result["p95_ms"], i, f" {result['p95_ms']:.1f}", va="center", fontsize=8)
             ax.margins(x=0.18)
+            common_limit = max((r["p95_ms"] for r in rows if r["imgsz"] == size), default=1) * 1.2
+            ax.set_xlim(0, common_limit)
     image = root / "latency-comparison.png"
     fig.savefig(image, dpi=140, bbox_inches="tight")
     plt.close(fig)
@@ -151,6 +163,75 @@ def build_matrix_report(root, output):
     latency_b64 = base64.b64encode(image.read_bytes()).decode()
     frontier_b64 = base64.b64encode(frontier_image.read_bytes()).decode()
     failed = [k for k, v in ledger.items() if v["exit_code"]]
+    pipeline_rows = []
+    for path in sorted((root / "pipelines").glob("*/summary.json")):
+        pipeline = json.loads(path.read_text())
+        cameras = pipeline["cameras"]
+        ages = [c["frame_age_ms"]["p95"] for c in cameras]
+        fps = min(c["processed_fps"] for c in cameras)
+        worst_age = max(ages) if all(a is not None for a in ages) else None
+        pipeline_rows.append(
+            {
+                "experiment": path.parent.name,
+                "backend": pipeline["backend"],
+                "streams": len(cameras),
+                "batch": pipeline["requested_batch"],
+                "stride": pipeline["stride"],
+                "tracker": pipeline["tracker"],
+                "render": pipeline["render"],
+                "decoded": sum(c["decoded"] for c in cameras),
+                "processed": sum(c["processed"] for c in cameras),
+                "queue_dropped": sum(c["queue_dropped"] for c in cameras),
+                "stride_skipped": sum(c["stride_skipped"] for c in cameras),
+                "min_camera_fps": fps,
+                "worst_camera_p95_ms": worst_age,
+                "timing_gate_passed": pipeline["status"] == "complete"
+                and worst_age is not None
+                and worst_age <= 100
+                and fps >= 15,
+                "status": pipeline["status"],
+            }
+        )
+    if pipeline_rows:
+        with (root / "pipeline-comparison.csv").open("w", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=list(pipeline_rows[0]))
+            writer.writeheader()
+            writer.writerows(pipeline_rows)
+    serving_table = (
+        "<div class='scroll'><table><tr><th>Experiment</th><th>Decoded / processed</th>"
+        "<th>Queue drops</th><th>Stride skips</th><th>Minimum camera FPS</th>"
+        "<th>Worst camera p95 ms</th><th>Timing gate</th></tr>"
+    )
+    for r in pipeline_rows:
+        values = (
+            r["experiment"],
+            f"{r['decoded']} / {r['processed']}",
+            r["queue_dropped"],
+            r["stride_skipped"],
+            number(r["min_camera_fps"]),
+            number(r["worst_camera_p95_ms"]),
+            "PASS" if r["timing_gate_passed"] else "REJECT",
+        )
+        serving_table += "<tr>" + "".join(f"<td>{html.escape(str(v))}</td>" for v in values) + "</tr>"
+    serving_table += "</table></div>"
+    resource_table = (
+        "<div class='scroll'><table><tr><th>CUDA configuration</th><th>Sampled process RSS MiB</th>"
+        "<th>Peak sampled GPU MiB</th><th>Mean GPU utilization %</th><th>Max temperature °C</th>"
+        "<th>Mean reported GPU power W</th></tr>"
+    )
+    for r in rows:
+        if r["device"] != "CUDA":
+            continue
+        values = (
+            r["name"],
+            number(r["process_rss_mib"], 0),
+            number(r["gpu_used_mib"], 0),
+            number(r["gpu_util_percent"], 1),
+            number(r["gpu_temperature_c"], 1),
+            number(r["gpu_power_w"], 1),
+        )
+        resource_table += "<tr>" + "".join(f"<td>{html.escape(str(v))}</td>" for v in values) + "</tr>"
+    resource_table += "</table></div>"
     body = f"""<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Traffic Inference Lab — CPU, CUDA and TensorRT</title>
 <style>body{{font:15px system-ui;max-width:1400px;margin:40px auto;padding:24px;background:#0d1725;color:#e4edf6}}
@@ -172,7 +253,16 @@ This is a model-only acceptance rule; it does not certify a live-camera SLA or c
 tactics, so the engine may retain higher precision layers. ONNX profiles separately verify CUDA kernel placement.
 Strict box-level parity is recorded as a diagnostic; quantized models are judged on held-out mAP loss.</p>
 <p>PyTorch uses four CPU threads. ONNX Runtime and OpenVINO use backend threading defaults; these are not equal-thread-budget tests.</p>
+<h2>Camera scaling, tracking and batching</h2><p>{len(pipeline_rows)} serving experiments. Each camera replays the same clip at source FPS,
+has an independent tracker and a bounded queue, and requests one decoder thread. Model choices lose at most one absolute
+point of both global mAP and mean vehicle AP against the same-size CPU PyTorch baseline.
+The illustrative serving timing gate is at least 15 processed FPS and p95 frame age at most 100 ms for every camera.</p>
+{serving_table}<p>Frame age includes decode backlog, queueing, inference, tracking and metadata preparation. Disk logging is excluded.
+Batch size is an opportunistic maximum. Stride skips are reported separately from queue drops. BoT-SORT and rendering runs are
+separate experiments. Passing this short replay gate is not proof of sustained production capacity or counting accuracy.</p>
 <h2>Evidence and limitations</h2><p>GPU telemetry is sampled with NVML and covers the whole device; unsupported power readings remain N/A.
+{resource_table}
+<p>Process RSS includes predecoded frames and runtime libraries. GPU readings are whole-device samples, not per-process allocations.
 This is a shared Windows laptop, with a short reproducible traffic clip. Images, weights and engines remain local.
 Raw timing, labeled evaluations, graph/engine inspections, resource samples, dataset hashes and the complete command ledger accompany this report.
 The COCO subset measures general detection quality; independently annotated traffic events are still needed for counting validation.</p>
@@ -185,6 +275,8 @@ The COCO subset measures general detection quality; independently annotated traf
         "missing": missing,
         "failed_stages": failed,
         "rows": rows,
+        "pipeline_runs": len(pipeline_rows),
+        "pipelines": pipeline_rows,
     }
     (root / "summary.json").write_text(json.dumps(summary, indent=2))
     return summary

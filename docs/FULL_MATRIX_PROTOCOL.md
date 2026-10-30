@@ -45,6 +45,9 @@ measurement. Calibration diversity is general COCO imagery; validate on a labele
 ## Timing and resources
 
 - 120 predecoded traffic frames per trial, five trials, twenty warm-up calls, batch one.
+- Warm-up uses zero images at the configured shape. Real images can activate postprocessing paths not exercised by zeros;
+  first-trial variation remains visible in the raw records. No outliers are removed. Headline FPS uses total frames divided
+  by total trial time rather than the arithmetic mean of trial FPS.
 - Static exports for each resolution avoid dynamic-shape compilation becoming a hidden variable.
 - Wall timing stops only after detection boxes reach CPU, including any necessary GPU completion/transfer.
 - Report p50/p95/p99, per-trial FPS, raw observations and backend stage timings.
@@ -54,10 +57,17 @@ measurement. Calibration diversity is general COCO imagery; validate on a labele
   leaderboard, energy-efficiency certification or sustained production-capacity test.
 - Downloads, export, INT8 calibration, compilation, labeled evaluation and execution profiling are outside timing.
 - TensorRT build workspace is limited to 0.5 GiB by default for the 4 GiB device. Engines are built on the deployment GPU.
+  Builder optimization level remains TensorRT's default 3; complete export-job durations are recorded separately from inference.
 
 Strict box agreement is recorded separately. Quantization can legitimately fail that strict gate; accuracy acceptance uses
 the labeled evaluation. The illustrative model gate is p95 ≤100 ms and no more than one absolute mAP50–95 point lost versus
 FP32 PyTorch at the same size. A camera-processing-rate and end-to-end freshness gate is a separate requirement.
+
+Serving candidates must also lose no more than one absolute point of mean vehicle AP (car, motorcycle, bus, truck).
+The global detector gate above remains unchanged. This additional traffic-specific guard is recorded separately in
+`pipeline-selections.json`; it was added after the 320px INT8 result showed a larger vehicle loss than global loss.
+Selection chooses the lowest measured p95 among eligible candidates for each backend. Dynamic batch engines must
+pass both accuracy checks before serving measurements.
 
 ## Reproduction
 
@@ -66,7 +76,10 @@ Use the Windows CUDA/TensorRT setup in the README, then:
 ```powershell
 python scripts/prepare_coco_holdout.py
 python scripts/full_matrix.py
+python scripts/run_pipeline_matrix.py
+python scripts/audit_full_matrix.py --require-pipelines
 traffic-lab report --input results --output results/report.html
+python scripts/write_full_findings.py
 ```
 
 The matrix runner resumes successful artifacts by default. Use `--force` to regenerate them after changing software,

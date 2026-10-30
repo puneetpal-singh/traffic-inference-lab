@@ -61,6 +61,42 @@ else:
         c.metric("Mean tracked objects", f"{rows.tracks.mean():.1f}")
         st.line_chart(rows[["frame_age_ms", "queue_wait_ms", "batch_predict_ms"]])
         st.line_chart(rows[[k for k in ("detections", "tracks", "zone_occupancy") if k in rows]])
+        if "track_positions_normalized" in rows:
+            import matplotlib.pyplot as plt
+            import numpy as np
+
+            points = [point for frame_points in rows.track_positions_normalized for point in frame_points]
+            if points:
+                points = np.asarray(points)
+                fig, ax = plt.subplots(figsize=(7, 4))
+                density = ax.hist2d(points[:, 0], points[:, 1], bins=24, range=((0, 1), (0, 1)), cmap="magma")
+                ax.invert_yaxis()
+                ax.set(
+                    xlabel="Normalized image x", ylabel="Normalized image y", title="Tracked-position density"
+                )
+                fig.colorbar(density[3], ax=ax, label="Processed-frame observations")
+                st.pyplot(fig)
+                plt.close(fig)
+                st.caption(
+                    "Track bottom-center observations; repeated sightings accumulate. This is not a unique-vehicle count."
+                )
+        with st.expander("Cost sensitivity"):
+            hourly_rate = st.number_input(
+                "Assumed machine cost per hour (your currency)", min_value=0.0, value=0.0, step=0.1
+            )
+            observed_fps = sum(camera["processed_fps"] for camera in summary["cameras"])
+            if hourly_rate > 0 and observed_fps > 0:
+                st.metric(
+                    "Assumed cost per million processed frames",
+                    f"{hourly_rate * 1e6 / (3600 * observed_fps):.2f}",
+                )
+                st.metric(
+                    "Assumed cost per configured camera-hour", f"{hourly_rate / len(summary['cameras']):.3f}"
+                )
+            st.caption(
+                "Scenario arithmetic from this replay's measured processing rate and your supplied hourly rate. "
+                "No provider price is assumed; review each camera's freshness, FPS and drops before comparing costs."
+            )
         video = selected.parent / f"camera-{cam}.mp4"
         browser_video = selected.parent / f"camera-{cam}-browser.mp4"
         if browser_video.exists():

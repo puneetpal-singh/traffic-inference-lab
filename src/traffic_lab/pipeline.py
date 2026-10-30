@@ -277,6 +277,13 @@ def run_pipeline(
                         "detections": len(result.boxes),
                         "tracks": len(tracks),
                         "zone_occupancy": occupancy,
+                        "track_positions_normalized": [
+                            [
+                                float(np.clip((t[0] + t[2]) / (2 * width), 0, 1)),
+                                float(np.clip(t[3] / height, 0, 1)),
+                            ]
+                            for t in tracks
+                        ],
                         "confidences": result.boxes.conf.cpu().tolist(),
                         "brightness": float(np.mean(cv2.cvtColor(packet.frame, cv2.COLOR_BGR2GRAY))),
                         "rss_mib": process.memory_info().rss / 1024**2,

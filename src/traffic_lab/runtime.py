@@ -8,12 +8,13 @@ import subprocess
 import sys
 import time
 from dataclasses import asdict, dataclass
-from hashlib import sha256
 from pathlib import Path
 
 import cv2
 import numpy as np
 import psutil
+
+from .provenance import file_hash
 
 _DLL_HANDLES = []
 if os.name == "nt":
@@ -22,21 +23,6 @@ if os.name == "nt":
     if sdk.is_dir():
         _DLL_HANDLES.append(os.add_dll_directory(str(sdk)))
         os.environ["PATH"] = str(sdk) + os.pathsep + os.environ.get("PATH", "")
-
-
-def file_hash(path):
-    path = Path(path)
-    if path.is_dir():
-        h = sha256()
-        for child in sorted(p for p in path.rglob("*") if p.is_file()):
-            h.update(child.relative_to(path).as_posix().encode())
-            h.update(bytes.fromhex(file_hash(child)))
-        return h.hexdigest()
-    h = sha256()
-    with path.open("rb") as f:
-        for chunk in iter(lambda: f.read(1024 * 1024), b""):
-            h.update(chunk)
-    return h.hexdigest()
 
 
 def environment():
@@ -86,7 +72,9 @@ def environment():
 def save_json(path, value):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(value, indent=2, allow_nan=False), encoding="utf-8")
+    temporary = path.with_suffix(path.suffix + ".tmp")
+    temporary.write_text(json.dumps(value, indent=2, allow_nan=False), encoding="utf-8")
+    temporary.replace(path)
 
 
 @dataclass
@@ -174,6 +162,12 @@ class Detector:
             "torch_cuda": torch.version.cuda,
             "onnx_providers": getattr(getattr(backend, "session", None), "get_providers", lambda: [])(),
             "backend_input_fp16": bool(getattr(backend, "fp16", False)),
+            "tensorrt_cuda_graph_active": bool(getattr(backend, "graph", None) is not None)
+            if model_path.suffix == ".engine"
+            else None,
+            "openvino_runtime_threads": int(backend.ov_compiled_model.get_property("INFERENCE_NUM_THREADS"))
+            if backend is not None and hasattr(backend, "ov_compiled_model")
+            else None,
             "openvino_inference_precision_hint": str(
                 backend.ov_compiled_model.get_property("INFERENCE_PRECISION_HINT")
             )

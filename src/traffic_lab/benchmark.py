@@ -149,6 +149,10 @@ def evaluate(config, data, output, split="val"):
         "model_sha256": file_hash(config.model),
         "data": str(data),
         "dataset_yaml_sha256": file_hash(data) if Path(data).is_file() else None,
+        "dataset_manifest_sha256": file_hash("results/full-matrix/dataset-manifest.json")
+        if Path(data).resolve() == Path("data/coco-deployment/holdout.yaml").resolve()
+        and Path("results/full-matrix/dataset-manifest.json").exists()
+        else None,
         "split": split,
         "map50_95": float(result.box.map),
         "map50": float(result.box.map50),

@@ -48,9 +48,13 @@ python -m pip install -e ".[gpu,int8,dashboard,dev]"
 python scripts/bootstrap_tensorrt_windows.py
 python -m pip install .build-cache/tensorrt-sdk/tensorrt-10.8.0.43-cp312-none-win_amd64.whl
 traffic-lab doctor
+traffic-lab fetch
 python scripts/prepare_coco_holdout.py
 python scripts/full_matrix.py
+python scripts/run_pipeline_matrix.py
+python scripts/audit_full_matrix.py --require-pipelines
 traffic-lab report --input results --output results/report.html
+python scripts/write_full_findings.py
 python -m streamlit run dashboard.py
 ```
 
@@ -92,8 +96,10 @@ For `run`, change `--tracker botsort`, `--stride 2`, `--queue-size 1`, `--batch 
 the scheduler does not wait to fill them. Use dynamic exports when shapes/batch sizes vary.
 `--zone x1 y1 x2 y2` controls the normalized occupancy rectangle. If FFmpeg is installed,
 rendered videos also receive an H.264 browser copy after the timed run; otherwise use a local video player.
+The dashboard plots tracked-position density from normalized bottom-center observations and includes a cost-sensitivity
+calculator using your supplied machine hourly rate and the selected replay's measured processing rate.
 
-Optional hardware-dependent paths (provided, not assumed benchmarked):
+Additional export and event-quality commands:
 
 ```powershell
 # Build on the NVIDIA deployment machine with compatible CUDA/TensorRT installed.
@@ -137,7 +143,7 @@ python -m pytest -q
 python -m ruff check .
 ```
 
-Read [data provenance](docs/DATA.md), [benchmark protocol](docs/METHODOLOGY.md), and
+Read [data provenance](docs/DATA.md), [benchmark protocol](docs/FULL_MATRIX_PROTOCOL.md), and
 [deployment decisions](docs/DECISIONS.md). Weights, videos, calibration images, and secrets are excluded from Git.
 
 ## Learning references

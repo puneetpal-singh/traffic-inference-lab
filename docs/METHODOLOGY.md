@@ -1,5 +1,9 @@
 # Benchmark protocol
 
+This documents the original CPU smoke study. The expanded CPU/CUDA/TensorRT study uses
+[the full matrix protocol](FULL_MATRIX_PROTOCOL.md), an independent COCO val2017 calibration/evaluation split,
+and explicit decoder-thread budgets for the new serving experiments.
+
 ## Question and deployment gate
 
 Find the runtime/configuration that sustains the required streams without excessive frame age or accuracy loss.

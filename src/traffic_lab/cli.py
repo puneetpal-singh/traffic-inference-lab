@@ -164,6 +164,12 @@ def export(args):
         "artifact": str(path),
         "artifact_sha256": file_hash(path),
         "arguments": kwargs,
+        "calibration_yaml_sha256": file_hash(args.data) if args.data and Path(args.data).is_file() else None,
+        "calibration_manifest_sha256": file_hash("results/full-matrix/dataset-manifest.json")
+        if args.data
+        and Path(args.data).resolve() == Path("data/coco-deployment/calibration.yaml").resolve()
+        and Path("results/full-matrix/dataset-manifest.json").exists()
+        else None,
         "environment": environment(),
     }
     # Keep manifest outside OpenVINO directory so its hash does not change after saving it.
@@ -231,7 +237,7 @@ def main(argv=None):
                 from .matrix_report import build_matrix_report
 
                 summary = build_matrix_report(matrix, args.output)
-                result = {k: v for k, v in summary.items() if k != "rows"}
+                result = {k: v for k, v in summary.items() if k not in ("rows", "pipelines")}
             else:
                 from .report import build_report
 

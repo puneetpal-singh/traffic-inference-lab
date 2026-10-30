@@ -1,9 +1,13 @@
 """Audit full matrix coverage, matching quality evidence, device placement, and calibration separation."""
 
+import argparse
 import json
 from pathlib import Path
 
 root = Path("results/full-matrix")
+parser = argparse.ArgumentParser()
+parser.add_argument("--require-pipelines", action="store_true")
+args = parser.parse_args()
 
 
 def read(name):
@@ -41,6 +45,22 @@ for spec in plan:
             errors.append(f"ONNX weighted kernels did not execute on CUDA: {name}")
     if spec["backend"] == "openvino" and inspection.get("execution_devices") != ["CPU"]:
         errors.append(f"OpenVINO CPU case ran elsewhere: {name}")
+    if spec["backend"] == "openvino" and spec["precision"] == 8:
+        if not any(
+            "i8" in key.lower() and count > 0
+            for key, count in inspection.get("runtime_precision_counts", {}).items()
+        ):
+            errors.append(f"No native INT8 execution evidence for OpenVINO: {name}")
+    if spec["backend"] == "tensorrt" and spec["precision"] == 8:
+        layers = inspection.get("engine_layers", {}).get("Layers", [])
+        weighted_int8 = [
+            layer
+            for layer in layers
+            if any(op in layer.get("LayerType", "").lower() for op in ("conv", "gemm", "matmul"))
+            and "int8" in json.dumps(layer).lower()
+        ]
+        if not weighted_int8:
+            errors.append(f"No native INT8 weighted TensorRT layer evidence: {name}")
 report = {
     "passed": not errors,
     "planned": len(plan),
@@ -49,6 +69,24 @@ report = {
     "holdout_images": len(holdout),
     "errors": errors,
 }
+pipeline_count = 0
+if args.require_pipelines:
+    for path in (root / "pipelines").glob("*/summary.json"):
+        pipeline_count += 1
+        pipeline = json.loads(path.read_text())
+        if pipeline["status"] != "complete":
+            errors.append(f"Incomplete pipeline: {path.parent.name}")
+        for camera in pipeline["cameras"]:
+            accounted = sum(camera[k] for k in ("processed", "queue_dropped", "stride_skipped", "remaining"))
+            if accounted != camera["decoded"]:
+                errors.append(f"Pipeline accounting mismatch: {path.parent.name} camera {camera['camera']}")
+            if camera["queue_high_water"] > pipeline["queue_capacity_per_camera"]:
+                errors.append(f"Queue bound exceeded: {path.parent.name}")
+            if camera.get("decoder_threads") != 1:
+                errors.append(f"Decoder thread budget not applied: {path.parent.name}")
+    if pipeline_count < 17:
+        errors.append(f"Expected 17 serving experiments, found {pipeline_count}")
+report.update(passed=not errors, errors=errors, pipeline_runs=pipeline_count)
 (root / "audit.json").write_text(json.dumps(report, indent=2))
 print(json.dumps(report, indent=2))
 raise SystemExit(int(bool(errors)))

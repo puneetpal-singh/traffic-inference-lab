@@ -7,6 +7,8 @@ import sys
 import time
 from pathlib import Path
 
+from traffic_lab.provenance import file_hash
+
 
 def variants(size):
     specs = []
@@ -63,9 +65,63 @@ def main():
     all_specs = [s for size in (320, 640) for s in variants(size)]
     (root / "plan.json").write_text(json.dumps(all_specs, indent=2))
 
-    def run(key, arguments, artifact):
+    def reusable(key, arguments, artifact):
+        try:
+            if arguments[0] == "scripts/matrix_case.py":
+                case = json.loads(Path(artifact).read_text())
+                requested = json.loads(arguments[arguments.index("--case") + 1])
+                if case["spec"] != requested or not Path(requested["model"]).exists():
+                    return False
+                timing = json.loads((root / f"timing-{key}.json").read_text())
+                quality = json.loads((root / f"quality-{key}.json").read_text())
+                current = json.loads((root / "hardware.json").read_text())["environment"]
+                old = timing["environment"]
+                if any(
+                    old.get(k) != current.get(k)
+                    for k in ("python", "platform", "processor", "ram_gib", "gpu", "packages")
+                ):
+                    return False
+                return (
+                    timing["model_sha256"] == file_hash(requested["model"])
+                    and timing["input"]["sha256"] == file_hash("data/traffic.mp4")
+                    and timing["repeats"] == args.repeats
+                    and timing["warmup_calls"] == args.warmup
+                    and timing["input"]["frames"] == args.frames
+                    and quality.get("dataset_manifest_sha256") == file_hash(root / "dataset-manifest.json")
+                    and quality["dataset_yaml_sha256"] == file_hash("data/coco-deployment/holdout.yaml")
+                )
+            if key.startswith("export-"):
+                directory = arguments[arguments.index("--output-dir") + 1]
+                manifest = json.loads((Path(directory) / "export.json").read_text())
+                if manifest["source_sha256"] != file_hash("models/yolo11n.pt") or manifest[
+                    "artifact_sha256"
+                ] != file_hash(artifact):
+                    return False
+                current = json.loads((root / "hardware.json").read_text())["environment"]
+                if manifest["environment"]["packages"] != current["packages"]:
+                    return False
+                calibration = manifest["arguments"].get("data")
+                if calibration and (
+                    manifest.get("calibration_yaml_sha256") != file_hash(calibration)
+                    or manifest.get("calibration_manifest_sha256")
+                    != file_hash(root / "dataset-manifest.json")
+                ):
+                    return False
+                return "tensorrt" not in key or manifest["environment"]["gpu"] == current["gpu"]
+            return True
+        except (OSError, ValueError, KeyError):
+            return False
+
+    def run(key, arguments, artifact, always=False):
         prior = ledger.get(key)
-        if not args.force and prior and prior["exit_code"] == 0 and Path(artifact).exists():
+        if (
+            not always
+            and not args.force
+            and prior
+            and prior["exit_code"] == 0
+            and Path(artifact).exists()
+            and reusable(key, arguments, artifact)
+        ):
             print(f"{key}: cached successful artifact", flush=True)
             return True
         if prior:
@@ -95,7 +151,7 @@ def main():
         return result.returncode == 0
 
     selected = [s for s in all_specs if not args.only or args.only in s["name"]]
-    if not run("hardware-check", ["scripts/check_accelerators.py"], root / "hardware.json"):
+    if not run("hardware-check", ["scripts/check_accelerators.py"], root / "hardware.json", always=True):
         return 1
     for spec in selected:
         if spec["backend"] != "pytorch":
@@ -133,6 +189,7 @@ def main():
                 str(args.repeats),
                 "--warmup",
                 str(args.warmup),
+                *(["--force"] if args.force else []),
             ],
             root / (spec["name"] + ".json"),
         )
