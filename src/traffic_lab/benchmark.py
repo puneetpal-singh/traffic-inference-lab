@@ -10,6 +10,7 @@ import numpy as np
 import psutil
 
 from .metrics import distribution, match_detections
+from .resources import ResourceMonitor
 from .runtime import Detector, environment, execution_device, file_hash, save_json, video_frames
 
 
@@ -21,40 +22,41 @@ def benchmark(config, source, output, frames=60, repeats=3, warmup=5, batch=1):
     detector.warmup(warmup, batch)
     process = psutil.Process()
     raw, trials = [], []
-    for repeat in range(repeats):
-        cpu_start = sum(process.cpu_times()[:2])
-        start = time.perf_counter()
-        for offset in range(0, len(images), batch):
-            group = images[offset : offset + batch]
-            tick = time.perf_counter()
-            results = detector.predict(group)
-            elapsed = (time.perf_counter() - tick) * 1000
-            # CPU conversion synchronizes pending device work before reporting completion.
-            detections = [r.boxes.cpu().numpy().data for r in results]
-            elapsed = (time.perf_counter() - tick) * 1000
-            raw.append(
+    with ResourceMonitor() as monitor:
+        for repeat in range(repeats):
+            cpu_start = sum(process.cpu_times()[:2])
+            start = time.perf_counter()
+            for offset in range(0, len(images), batch):
+                group = images[offset : offset + batch]
+                tick = time.perf_counter()
+                results = detector.predict(group)
+                elapsed = (time.perf_counter() - tick) * 1000
+                # CPU conversion synchronizes pending device work before reporting completion.
+                detections = [r.boxes.cpu().numpy().data for r in results]
+                elapsed = (time.perf_counter() - tick) * 1000
+                raw.append(
+                    {
+                        "repeat": repeat,
+                        "offset": offset,
+                        "batch_size": len(group),
+                        "batch_wall_ms": elapsed,
+                        "stages_per_image_ms": {
+                            k: float(np.mean([r.speed[k] for r in results]))
+                            for k in ("preprocess", "inference", "postprocess")
+                        },
+                        "detections": sum(len(x) for x in detections),
+                        "rss_mib": process.memory_info().rss / 1024**2,
+                    }
+                )
+            wall = time.perf_counter() - start
+            trials.append(
                 {
                     "repeat": repeat,
-                    "offset": offset,
-                    "batch_size": len(group),
-                    "batch_wall_ms": elapsed,
-                    "stages_per_image_ms": {
-                        k: float(np.mean([r.speed[k] for r in results]))
-                        for k in ("preprocess", "inference", "postprocess")
-                    },
-                    "detections": sum(len(x) for x in detections),
-                    "rss_mib": process.memory_info().rss / 1024**2,
+                    "seconds": wall,
+                    "fps": len(images) / wall,
+                    "process_cpu_one_core_percent": 100 * (sum(process.cpu_times()[:2]) - cpu_start) / wall,
                 }
             )
-        wall = time.perf_counter() - start
-        trials.append(
-            {
-                "repeat": repeat,
-                "seconds": wall,
-                "fps": len(images) / wall,
-                "process_cpu_one_core_percent": 100 * (sum(process.cpu_times()[:2]) - cpu_start) / wall,
-            }
-        )
     result = {
         "kind": "predecoded_model_benchmark",
         "schema_version": 1,
@@ -66,8 +68,10 @@ def benchmark(config, source, output, frames=60, repeats=3, warmup=5, batch=1):
         "repeats": repeats,
         "batch_wall_ms": distribution([r["batch_wall_ms"] for r in raw]),
         "fps": distribution([r["fps"] for r in trials]),
+        "aggregate_fps": len(images) * repeats / sum(r["seconds"] for r in trials),
         "peak_sampled_rss_mib": max(r["rss_mib"] for r in raw),
         "quality": None,
+        "resources": monitor.summary(),
         "trials": trials,
         "samples": raw,
         "limitations": [
@@ -136,7 +140,7 @@ def evaluate(config, data, output, split="val"):
         rect=False,
         project="runs/validation",
         name=Path(output).stem,
-        **({"half": True} if config.half else {}),
+        quantize=16 if config.half else 32,
     )
     metrics = {
         "kind": "labeled_detection_evaluation",

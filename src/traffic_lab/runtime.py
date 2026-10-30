@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.metadata
 import json
+import os
 import platform
 import subprocess
 import sys
@@ -13,6 +14,14 @@ from pathlib import Path
 import cv2
 import numpy as np
 import psutil
+
+_DLL_HANDLES = []
+if os.name == "nt":
+    # Local, official Windows SDK; no machine-wide PATH or CUDA installation changes.
+    sdk = Path(".build-cache/tensorrt-sdk").resolve()
+    if sdk.is_dir():
+        _DLL_HANDLES.append(os.add_dll_directory(str(sdk)))
+        os.environ["PATH"] = str(sdk) + os.pathsep + os.environ.get("PATH", "")
 
 
 def file_hash(path):
@@ -40,10 +49,12 @@ def environment():
         "numpy",
         "opencv-python",
         "onnxruntime",
+        "onnxruntime-gpu",
         "openvino",
         "onnx",
         "nncf",
         "tensorrt",
+        "tensorrt-cu12",
         "lap",
     ):
         try:
@@ -125,7 +136,7 @@ class Detector:
             rect=False,
             verbose=False,
             stream=False,
-            **({"half": True} if c.half else {}),
+            quantize=16 if c.half else 32,
         )
         self.calls += 1
         return results
@@ -134,14 +145,26 @@ class Detector:
         image = np.zeros((self.config.imgsz, self.config.imgsz, 3), dtype=np.uint8)
         for _ in range(count):
             self.predict([image] * batch)
+        if self.config.device not in ("cpu", "intel:cpu"):
+            backend = self.model.predictor.model
+            session = getattr(backend, "session", None)
+            if session is not None and "CUDAExecutionProvider" not in session.get_providers():
+                raise RuntimeError("Requested CUDA inference but ONNX Runtime fell back to another provider")
 
     def metadata(self):
         import torch
 
         backend = self.model.predictor.model if self.model.predictor else None
+        model_path = Path(self.config.model)
+        size = (
+            sum(p.stat().st_size for p in model_path.rglob("*") if p.is_file())
+            if model_path.is_dir()
+            else model_path.stat().st_size
+        )
         return {
             "config": asdict(self.config),
             "model_sha256": file_hash(self.config.model),
+            "model_size_bytes": size,
             "backend": type(getattr(backend, "backend", backend)).__name__,
             "execution_device_argument": execution_device(self.config),
             "openvino_execution_devices": list(backend.ov_compiled_model.get_property("EXECUTION_DEVICES"))
@@ -150,6 +173,12 @@ class Detector:
             "cuda_available": torch.cuda.is_available(),
             "torch_cuda": torch.version.cuda,
             "onnx_providers": getattr(getattr(backend, "session", None), "get_providers", lambda: [])(),
+            "backend_input_fp16": bool(getattr(backend, "fp16", False)),
+            "openvino_inference_precision_hint": str(
+                backend.ov_compiled_model.get_property("INFERENCE_PRECISION_HINT")
+            )
+            if backend is not None and hasattr(backend, "ov_compiled_model")
+            else None,
         }
 
 

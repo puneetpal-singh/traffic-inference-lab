@@ -39,6 +39,8 @@ def parser():
     export.add_argument("--data", help="Calibration dataset YAML, disjoint from evaluation")
     export.add_argument("--batch", type=int, default=1)
     export.add_argument("--dynamic", action="store_true")
+    export.add_argument("--workspace", type=float, default=0.5, help="TensorRT builder workspace in GiB")
+    export.add_argument("--quantize", type=int, choices=[8, 16, 32], help="Explicit export precision")
     export.add_argument("--output-dir", default="models/export")
     bench = sub.add_parser("benchmark")
     model_args(bench)
@@ -73,6 +75,7 @@ def parser():
     run.add_argument("--line", nargs=4, type=float, default=[0.1, 0.55, 0.9, 0.55])
     run.add_argument("--render", action="store_true")
     run.add_argument("--zone", nargs=4, type=float, default=[0.2, 0.3, 0.8, 0.8])
+    run.add_argument("--decode-threads", type=int, default=1)
     report = sub.add_parser("report")
     report.add_argument("--input", default="results")
     report.add_argument("--output", default="results/report.html")
@@ -127,14 +130,13 @@ def fetch(args):
 def export(args):
     from ultralytics import YOLO
 
-    if args.int8 and not args.data:
+    precision = args.quantize or (8 if args.int8 else 16 if args.half else 32)
+    if precision == 8 and not args.data:
         raise ValueError("INT8 requires --data with representative calibration data")
     if args.half and args.int8:
         raise ValueError("Choose half or INT8, not both")
     if args.format == "engine" and args.device == "cpu":
         raise ValueError("TensorRT export requires a CUDA device, e.g. --device 0")
-    if args.int8 and args.format == "onnx":
-        raise ValueError("Use OpenVINO or TensorRT for this project's calibrated INT8 path")
     destination = Path(args.output_dir)
     destination.mkdir(parents=True, exist_ok=True)
     staged = destination / Path(args.model).name
@@ -145,8 +147,7 @@ def export(args):
         format=args.format,
         imgsz=args.imgsz,
         device=args.device,
-        half=args.half,
-        int8=args.int8,
+        quantize=precision,
         batch=args.batch,
         dynamic=args.dynamic,
     )
@@ -154,6 +155,8 @@ def export(args):
         kwargs["data"] = args.data
     if args.format == "onnx":
         kwargs.update(opset=17, simplify=True)
+    if args.format == "engine":
+        kwargs["workspace"] = args.workspace
     path = model.export(**kwargs)
     manifest = {
         "kind": "export",
@@ -218,11 +221,21 @@ def main(argv=None):
                 args.line,
                 args.render,
                 args.zone,
+                args.decode_threads,
             )
         elif args.command == "report":
-            from .report import build_report
+            matrix = Path(args.input)
+            if not (matrix / "plan.json").exists():
+                matrix = matrix / "full-matrix"
+            if (matrix / "plan.json").exists():
+                from .matrix_report import build_matrix_report
 
-            result = build_report(args.input, args.output)
+                summary = build_matrix_report(matrix, args.output)
+                result = {k: v for k, v in summary.items() if k != "rows"}
+            else:
+                from .report import build_report
+
+                result = build_report(args.input, args.output)
         elif args.command == "drift":
             from .metrics import drift
 

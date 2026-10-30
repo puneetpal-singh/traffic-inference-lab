@@ -33,7 +33,38 @@ On Linux/macOS use `python3.12 -m venv .venv` and `source .venv/bin/activate`.
 The CPU wheels are intentional for the CPU comparison. Use a separate environment with a compatible CUDA-enabled
 PyTorch build for GPU experiments. Do not assume that an installed NVIDIA driver makes CPU-only PyTorch use CUDA.
 
-Run the measured CPU suite (exports, six benchmarks, parity, and multi-camera experiments):
+## Complete CPU, CUDA, ONNX, OpenVINO and TensorRT matrix
+
+The expanded study covers **28 runtime/precision/resolution combinations** and uses **512 calibration images plus 256
+disjoint COCO val2017 evaluation images**. See [the full protocol](docs/FULL_MATRIX_PROTOCOL.md).
+
+Windows setup for the tested GTX 1650 Ti, using a separate environment:
+
+```powershell
+py -3.12 -m venv .venv-gpu
+.\.venv-gpu\Scripts\Activate.ps1
+python -m pip install torch==2.6.0 torchvision==0.21.0 --index-url https://download.pytorch.org/whl/cu124
+python -m pip install -e ".[gpu,int8,dashboard,dev]"
+python scripts/bootstrap_tensorrt_windows.py
+python -m pip install .build-cache/tensorrt-sdk/tensorrt-10.8.0.43-cp312-none-win_amd64.whl
+traffic-lab doctor
+python scripts/prepare_coco_holdout.py
+python scripts/full_matrix.py
+traffic-lab report --input results --output results/report.html
+python -m streamlit run dashboard.py
+```
+
+The SDK helper downloads NVIDIA's official Windows archive and extracts runtime DLLs and Python bindings into the ignored
+local cache. It does not change the machine-wide PATH. Engines are built locally on the deployment GPU; do not reuse them
+across unrelated devices/runtimes. If the CUDA wheel mirror stalls, `scripts/download_cuda_wheel.py` retrieves the official
+Windows wheel using ranges and verifies its SHA-256 against the official index.
+
+`full_matrix.py` resumes successful cases; `--force` reruns them and `--only tensorrt` selects TensorRT. Raw timing, held-out
+mAP, graph/engine inspection, NVML telemetry and failure history are under `results/full-matrix/`.
+FP16 storage and native FP16 compute are distinguished in the report. Strict box parity is diagnostic for INT8; measured
+accuracy loss determines whether quantization meets the chosen budget.
+
+The original CPU smoke suite remains reproducible separately:
 
 ```powershell
 python scripts/run_experiments.py --evaluate
@@ -84,7 +115,7 @@ traffic-lab drift --reference path/to/reference/frames.jsonl --current path/to/c
 - **Evidence:** raw measurements, hashes, environment records, repeatable commands, and explicit failure logs.
 - **Quality discipline:** labeled mAP evaluation and independent event scoring; unknown quality remains unknown.
 
-The initial evaluation uses COCO128 as a **smoke set**. It is not an independent traffic benchmark. The short road clip
+The initial evaluation used COCO128 as a **smoke set**; the expanded matrix uses a separate COCO val2017 holdout. Neither is an independent traffic benchmark. The short road clip
 tests the implementation and runtime behavior; repeat it on long, diverse clips for stable tail/capacity claims.
 Counts in demos are unvalidated. No training, calibrated speed, production SLA, cloud savings, or energy efficiency is claimed.
 

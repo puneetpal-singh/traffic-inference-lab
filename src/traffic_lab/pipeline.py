@@ -15,7 +15,16 @@ import numpy as np
 import psutil
 
 from .metrics import LineCounter, distribution, zone_occupancy
+from .resources import ResourceMonitor
 from .runtime import Detector, environment, file_hash, save_json
+
+
+def open_recording(source, decode_threads=1):
+    cap = cv2.VideoCapture(str(source), cv2.CAP_FFMPEG, [cv2.CAP_PROP_N_THREADS, decode_threads])
+    if not cap.isOpened():
+        cap.release()
+        cap = cv2.VideoCapture(str(source))
+    return cap
 
 
 @dataclass
@@ -56,7 +65,7 @@ class Mailbox:
 
 
 class Camera(threading.Thread):
-    def __init__(self, camera, source, mailbox, start_time, duration, stop):
+    def __init__(self, camera, source, mailbox, start_time, duration, stop, decode_threads=1):
         super().__init__(daemon=True)
         self.camera, self.source, self.mailbox = camera, source, mailbox
         self.start_time, self.duration, self.stop = start_time, duration, stop
@@ -64,13 +73,16 @@ class Camera(threading.Thread):
         self.decoded = 0
         self.error = None
         self.source_fps = None
+        self.decode_threads = decode_threads
+        self.actual_decode_threads = None
 
     def run(self):
-        cap = cv2.VideoCapture(str(self.source))
+        cap = open_recording(self.source, self.decode_threads)
         try:
             if not cap.isOpened():
                 raise ValueError(f"Cannot open {self.source}")
             self.source_fps = float(cap.get(cv2.CAP_PROP_FPS))
+            self.actual_decode_threads = int(cap.get(cv2.CAP_PROP_N_THREADS))
             if not np.isfinite(self.source_fps) or self.source_fps <= 0:
                 raise ValueError("Recorded source requires valid FPS metadata")
             index = 0
@@ -119,8 +131,9 @@ def run_pipeline(
     line=(0.1, 0.55, 0.9, 0.55),
     render=False,
     zone=(0.2, 0.3, 0.8, 0.8),
+    decode_threads=1,
 ):
-    if not sources or min(duration, queue_size, batch, stride) <= 0:
+    if not sources or min(duration, queue_size, batch, stride, decode_threads) <= 0:
         raise ValueError("Sources and positive duration, queue, batch, stride are required")
     if len(line) != 4 or any(not 0 <= v <= 1 for v in line) or line[:2] == line[2:]:
         raise ValueError("Line must have distinct normalized endpoints")
@@ -135,10 +148,12 @@ def run_pipeline(
     mailboxes = [Mailbox(queue_size) for _ in sources]
     stop = threading.Event()
     start = time.perf_counter() + 0.2
-    cameras = [Camera(i, path, mailboxes[i], start, duration, stop) for i, path in enumerate(sources)]
+    cameras = [
+        Camera(i, path, mailboxes[i], start, duration, stop, decode_threads) for i, path in enumerate(sources)
+    ]
     rates = []
     for source in sources:
-        probe = cv2.VideoCapture(str(source))
+        probe = open_recording(source, decode_threads)
         rate = float(probe.get(cv2.CAP_PROP_FPS))
         opened = probe.isOpened()
         probe.release()
@@ -149,6 +164,8 @@ def run_pipeline(
     counters = [LineCounter(tuple(line[:2]), tuple(line[2:])) for _ in sources]
     # Importing tracker dependencies can be slow on first use. The replay clock
     # must start after initialization, otherwise startup becomes fake decode lag.
+    monitor = ResourceMonitor()
+    monitor.__enter__()
     start = time.perf_counter() + 0.2
     for camera in cameras:
         camera.start_time = start
@@ -264,6 +281,10 @@ def run_pipeline(
                         "brightness": float(np.mean(cv2.cvtColor(packet.frame, cv2.COLOR_BGR2GRAY))),
                         "rss_mib": process.memory_info().rss / 1024**2,
                     }
+                    telemetry_end = time.perf_counter()
+                    row["analytics_frame_age_ms"] = row["frame_age_ms"]
+                    row["telemetry_ms"] = (telemetry_end - end) * 1000
+                    row["frame_age_ms"] = (telemetry_end - packet.scheduled) * 1000
                     log.write(json.dumps(row) + "\n")
                     records.append(row)
     except BaseException as exc:
@@ -276,6 +297,7 @@ def run_pipeline(
                 camera.join(timeout=10)
         for writer in writers.values():
             writer.release()
+        monitor.__exit__()
         elapsed = max(time.perf_counter() - start, 1e-9)
         per_camera = []
         for idx, camera in enumerate(cameras):
@@ -285,6 +307,7 @@ def run_pipeline(
                     "camera": idx,
                     "source": str(sources[idx]),
                     "source_fps": camera.source_fps,
+                    "decoder_threads": camera.actual_decode_threads,
                     "decoded": camera.decoded,
                     "processed": len(rows),
                     "queue_dropped": mailboxes[idx].dropped,
@@ -300,7 +323,7 @@ def run_pipeline(
             )
         summary = {
             "kind": "paced_recorded_multistream",
-            "schema_version": 1,
+            "schema_version": 2,
             "environment": environment(),
             **detector.metadata(),
             "input_hashes": [file_hash(s) for s in sources],
@@ -310,6 +333,8 @@ def run_pipeline(
             "effective_max_batch": effective_batch,
             "queue_capacity_per_camera": queue_size,
             "stride": stride,
+            "requested_decoder_threads": decode_threads,
+            "resources": monitor.summary(),
             "tracker": tracker,
             "tracker_configs": [vars(t.args) for t in trackers],
             "line": list(line),
@@ -326,7 +351,7 @@ def run_pipeline(
                 "Rendered video contains processed frames only; gaps are compressed.",
                 "Counts are unvalidated until compared with independent human event labels.",
                 "Tracker time uses update steps; frame skips/drops change its effective time scale.",
-                "No cross-camera identity association. Telemetry log writing excluded from frame age.",
+                "No cross-camera identity association. Metadata preparation included; log writing excluded from frame age.",
             ],
         }
         save_json(output / "summary.json", summary)

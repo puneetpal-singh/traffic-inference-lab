@@ -9,8 +9,16 @@ import streamlit as st
 st.set_page_config(page_title="Traffic Inference Lab", page_icon="🚦", layout="wide")
 st.title("Traffic Inference Lab")
 st.caption("Measured deployment experiments · independent camera tracking · reproducible evidence")
-root = Path(st.sidebar.text_input("Results directory", "results"))
-summaries = sorted(root.rglob("summary.json")) if root.is_dir() else []
+default_results = "results/full-matrix" if Path("results/full-matrix/plan.json").exists() else "results"
+root = Path(st.sidebar.text_input("Results directory", default_results))
+summaries = []
+if root.is_dir():
+    for path in sorted(root.rglob("summary.json")):
+        try:
+            if json.loads(path.read_text()).get("kind") == "paced_recorded_multistream":
+                summaries.append(path)
+        except (OSError, ValueError, AttributeError):
+            continue
 benchmarks = []
 if root.is_dir():
     for path in root.rglob("*.json"):
@@ -23,7 +31,7 @@ if root.is_dir():
                         "device": data["config"]["device"],
                         "input size": data["config"]["imgsz"],
                         "batch": data["batch"],
-                        "mean FPS": data["fps"]["mean"],
+                        "throughput FPS": data.get("aggregate_fps", data["fps"]["mean"]),
                         "p95 batch ms": data["batch_wall_ms"]["p95"],
                         "sampled RSS MiB": data["peak_sampled_rss_mib"],
                     }
@@ -33,7 +41,7 @@ if root.is_dir():
 if benchmarks:
     st.subheader("Runtime comparison")
     st.dataframe(pd.DataFrame(benchmarks), width="stretch", hide_index=True)
-    st.bar_chart(pd.DataFrame(benchmarks).set_index("run")[["mean FPS"]])
+    st.bar_chart(pd.DataFrame(benchmarks).set_index("run")[["throughput FPS"]])
     st.caption("Predecoded model throughput excludes decoding, queues, tracking, and rendering.")
 if not summaries:
     st.info("Run traffic-lab run to generate camera telemetry. Checked-in benchmarks remain viewable above.")

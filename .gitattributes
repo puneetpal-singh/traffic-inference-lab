@@ -2,3 +2,4 @@
 *.png binary
 # Preserve captured terminal streams, including progress-control characters.
 results/logs/*.log -text -diff
+results/**/logs/*.log -text -diff

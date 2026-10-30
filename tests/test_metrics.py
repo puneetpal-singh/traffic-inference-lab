@@ -6,6 +6,13 @@ from traffic_lab.pipeline import Mailbox
 from traffic_lab.scoring import score_events
 
 
+def test_fp16_large_pixel_boxes_do_not_overflow_during_parity():
+    from traffic_lab.metrics import iou
+
+    box = np.array([0, 0, 1080, 1920, 0.9, 2], dtype=np.float16)
+    assert iou(box, box) == pytest.approx(1)
+
+
 def test_zone_occupancy_uses_bottom_center_and_normalized_bounds():
     from traffic_lab.metrics import zone_occupancy
 

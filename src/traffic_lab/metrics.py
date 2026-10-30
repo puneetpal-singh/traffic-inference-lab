@@ -30,7 +30,8 @@ def zone_occupancy(tracks, width, height, zone):
 
 
 def iou(a, b):
-    a, b = np.asarray(a)[:4], np.asarray(b)[:4]
+    # FP16 detector coordinates can overflow when pixel areas are multiplied.
+    a, b = np.asarray(a, dtype=np.float64)[:4], np.asarray(b, dtype=np.float64)[:4]
     lo, hi = np.maximum(a[:2], b[:2]), np.minimum(a[2:], b[2:])
     inter = float(np.maximum(hi - lo, 0).prod())
     union = float(np.maximum(a[2:] - a[:2], 0).prod() + np.maximum(b[2:] - b[:2], 0).prod() - inter)

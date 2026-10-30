@@ -93,6 +93,8 @@ def main():
     profiles = []
     for path in sorted(root.glob("*/summary.json")):
         d = read(path)
+        if d.get("kind") != "paced_recorded_multistream":
+            continue
         c = d["cameras"]
         log = path.parent / "frames.jsonl"
         samples = [json.loads(line) for line in log.read_text().splitlines() if line.strip()]
