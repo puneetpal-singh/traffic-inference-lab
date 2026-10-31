@@ -9,6 +9,10 @@ Measured on an i7-10750H / GTX 1650 Ti: **28 model configurations and 24 serving
 FP32/FP16/INT8, camera scaling, batching, tracking, rendering, stride and telemetry tuning. See the
 [measured findings](docs/RESULTS.md), [portable report](results/report.html), and [raw evidence](results/full-matrix/).
 
+For the focused **one-checkpoint FP32/FP16/INT8 study** across ONNX Runtime, OpenVINO and TensorRT,
+use the [new runner and launch instructions](docs/PRECISION_STUDY.md). It defaults to a dry run;
+the new study has not been executed and does not replace the historical results below.
+
 ## Review the project
 
 <!-- confirmation:begin -->

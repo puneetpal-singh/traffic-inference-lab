@@ -19,6 +19,7 @@ dependencies = [
 cpu = ["onnxruntime>=1.20,<2", "openvino>=2024.6,<2027"]
 gpu = ["onnxruntime-gpu==1.20.2", "tensorrt-cu12==10.8.0.43; platform_system != 'Windows'", "openvino>=2024.6,<2027"]
 int8 = ["nncf>=2.14,<4"]
+evaluation = ["pycocotools>=2.0.10,<3"]
 dashboard = ["streamlit>=1.50,<2", "pandas>=2.2,<3"]
 dev = ["pytest>=8,<10", "ruff>=0.9,<1"]
 
