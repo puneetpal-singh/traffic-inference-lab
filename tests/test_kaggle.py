@@ -116,8 +116,11 @@ def test_generated_notebook_cells_parse_and_default_to_smoke(monkeypatch):
                         source_payload = ast.literal_eval(node.value)
     assert source_payload
     payload = base64.b64decode(source_payload)
-    assert payload == builder.source_bundle(), "Regenerate the notebook after changing bundled source"
-    with zipfile.ZipFile(io.BytesIO(payload)) as archive:
+    with zipfile.ZipFile(io.BytesIO(payload)) as archive, zipfile.ZipFile(io.BytesIO(builder.source_bundle())) as current:
+        # Compare source contents: zlib versions may produce different compressed bytes across CI platforms.
+        assert {n: archive.read(n) for n in archive.namelist()} == {n: current.read(n) for n in current.namelist()}, (
+            "Regenerate the notebook after changing bundled source"
+        )
         for name in archive.namelist():
             if name.endswith(".py"):
                 ast.parse(archive.read(name).decode(), filename=name)
