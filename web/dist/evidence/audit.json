@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "checks": 2753,
+  "errors": [],
+  "archive_sha256": "6007760be6d0a2324ddf0579321d3e01b62370d0fa5f961feb3433032424a702",
+  "archive_bytes": 486942221,
+  "source_payload_commit": "795d811",
+  "source_verified": true,
+  "model_stages": 165,
+  "timing_trials": 130,
+  "serving_runs": 72,
+  "calibration_images": 512,
+  "evaluation_images": 4488,
+  "flagged_model_trials": 1,
+  "coverage_note": "320 complete; 640 intentionally incomplete; no tuning phase present",
+  "limitations": [
+    "Audits identities/arithmetic, not independent reproduction of measured performance.",
+    "Image cache and per-image predictions omitted from checkpoint: AP cannot be independently recomputed or bootstrapped from this archive.",
+    "Counting labels absent; looped short video tests compute capacity only.",
+    "One assigned Kaggle host/session; baseline PyTorch eager with cuDNN autotuning disabled."
+  ],
+  "flagged_trials": [
+    {
+      "case": "onnx-cuda-fp32",
+      "round": 2,
+      "flags": [
+        "NVML thermal throttle bit observed at a pool boundary",
+        "GPU temperature reached 85C; diagnostic, not proof of throttling"
+      ]
+    }
+  ]
+}

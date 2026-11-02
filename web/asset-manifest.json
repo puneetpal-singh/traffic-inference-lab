@@ -1,0 +1,30 @@
+{
+  "origin": "https://traffic-inference-lab.puneetsekhon07.chatgpt.site",
+  "files": [
+    {
+      "path": "dist/assets/poster.jpg",
+      "bytes": 49486,
+      "sha256": "7f15e955ecc142a2180e23bb96bd0180b530cd617b98076a03baf1bcef3fa23c"
+    },
+    {
+      "path": "dist/assets/traffic.mp4",
+      "bytes": 5304740,
+      "sha256": "2de6bc36e206522c1fbac7a04d79f6d50b8fec9dc71014f724c1252c96bec815"
+    },
+    {
+      "path": "dist/assets/yolo11n-320-fp32.onnx",
+      "bytes": 10615285,
+      "sha256": "3c62ce1736fda9a7da6493d581c6d1df63a1930f43a1e6d399c5fa4f1bfc6b17"
+    },
+    {
+      "path": "dist/runtime/ort-wasm-simd-threaded.jsep.wasm",
+      "bytes": 21872216,
+      "sha256": "b45970d0632383a057c27ca5b660b216f8e00c17cf8db9f6207b5e4abc839368"
+    },
+    {
+      "path": "dist/runtime/ort-wasm-simd-threaded.wasm",
+      "bytes": 11210254,
+      "sha256": "71aef04959c5c1b6de461b6538e2058e306610034a85aad2742d0c7fd4533fe4"
+    }
+  ]
+}

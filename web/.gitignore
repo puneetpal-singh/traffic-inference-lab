@@ -1,0 +1,4 @@
+dist/assets/*.onnx
+dist/assets/*.mp4
+dist/assets/*.jpg
+dist/runtime/*.wasm

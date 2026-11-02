@@ -1,0 +1,6 @@
+/*.mjs
+  Content-Type: text/javascript
+/runtime/*.wasm
+  Content-Type: application/wasm
+/assets/*.onnx
+  Content-Type: application/octet-stream

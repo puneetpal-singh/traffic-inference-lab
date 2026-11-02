@@ -1,0 +1,57 @@
+{
+  "tensorrt-cuda-fp32 / pytorch-cuda-fp32": {
+    "rounds": 10,
+    "geometric_mean_ratio": 2.4691271830568264,
+    "exploratory_log_t_95_interval": [
+      2.4442418971754702,
+      2.494265830708191
+    ],
+    "first_five_geomean": 2.471824066811136,
+    "last_five_geomean": 2.466433241737653,
+    "limitation": "Single session, approximately independent normal block log ratios assumed; not a multi-day CI"
+  },
+  "tensorrt-cuda-fp16 / pytorch-cuda-fp32": {
+    "rounds": 10,
+    "geometric_mean_ratio": 2.6939392763483245,
+    "exploratory_log_t_95_interval": [
+      2.671719995412996,
+      2.716343343281486
+    ],
+    "first_five_geomean": 2.7159333177441836,
+    "last_five_geomean": 2.6721233460473743,
+    "limitation": "Single session, approximately independent normal block log ratios assumed; not a multi-day CI"
+  },
+  "tensorrt-cuda-fp16 / tensorrt-cuda-fp32": {
+    "rounds": 10,
+    "geometric_mean_ratio": 1.0910492156233023,
+    "exploratory_log_t_95_interval": [
+      1.0806423918309087,
+      1.1015562594165624
+    ],
+    "first_five_geomean": 1.0987567255334514,
+    "last_five_geomean": 1.083395772011574,
+    "limitation": "Single session, approximately independent normal block log ratios assumed; not a multi-day CI"
+  },
+  "tensorrt-cuda-int8 / tensorrt-cuda-fp16": {
+    "rounds": 10,
+    "geometric_mean_ratio": 0.9992306310065722,
+    "exploratory_log_t_95_interval": [
+      0.9911377685657721,
+      1.0073895734864575
+    ],
+    "first_five_geomean": 0.9920607651549839,
+    "last_five_geomean": 1.0064523152327352,
+    "limitation": "Single session, approximately independent normal block log ratios assumed; not a multi-day CI"
+  },
+  "openvino-cpu-int8 / openvino-cpu-fp32": {
+    "rounds": 10,
+    "geometric_mean_ratio": 1.1361534510910614,
+    "exploratory_log_t_95_interval": [
+      1.1169065560505613,
+      1.1557320148523629
+    ],
+    "first_five_geomean": 1.1411733958816472,
+    "last_five_geomean": 1.1311555886989886,
+    "limitation": "Single session, approximately independent normal block log ratios assumed; not a multi-day CI"
+  }
+}

@@ -1,5 +1,9 @@
 # Traffic Inference Lab
 
+**[Public website and interactive study](https://traffic-inference-lab.puneetsekhon07.chatgpt.site)** ·
+**[Live video demo](https://traffic-inference-lab.puneetsekhon07.chatgpt.site/#live-demo)** ·
+**[Website source and local setup](web/README.md)**
+
 **How many cameras can one machine serve while keeping results fresh and preserving accuracy?**
 
 A computer vision deployment project built around that question: reproducible YOLO runtime comparisons,
@@ -8,7 +12,9 @@ export parity gates, independent vehicle tracking and counting, bounded multi-ca
 **Latest measured study: Kaggle T4, 320px.** Completed 13 model configurations (130 randomized timing trials,
 4488 calibration-disjoint accuracy images) and 72 repeated serving runs. TensorRT FP16 enabled recorded
 **2.69× paired throughput versus eager PyTorch CUDA FP32**; TensorRT INT8 had similar throughput with a larger
-measured AP loss. Two cameras were the largest timing-passing tested GPU load; counting remains unvalidated.
+measured AP loss. The throughput reference was **95.92 FPS** for eager PyTorch CUDA FP32;
+TensorRT FP16 reached **258.37 FPS**. Camera-load curves are reported without inferring production capacity:
+the historical 100 ms / 15 FPS targets were study choices, not application-derived requirements. Counting remains unvalidated.
 See the [verified Kaggle report](results/kaggle-t4-320-2026-11-02/Kaggle_Results_Analysis.md) and
 [scope and evidence](docs/KAGGLE_RESULTS.md). The laptop experiments below are a separate historical study.
 
@@ -18,13 +24,13 @@ FP32/FP16/INT8, camera scaling, batching, tracking, rendering, stride and teleme
 
 For the focused **one-checkpoint FP32/FP16/INT8 study** across ONNX Runtime, OpenVINO and TensorRT,
 use the [new runner and launch instructions](docs/PRECISION_STUDY.md). It defaults to a dry run;
-the new study has not been executed and does not replace the historical results below.
+the completed Kaggle 320px study is linked above and remains separate from the historical laptop results below.
 
 To run the **multi-camera project on Kaggle**, upload the [self-contained notebook](notebooks/kaggle/Traffic_Analytics_Kaggle.ipynb).
 It defaults to a smoke test and gates the full benchmark on a matching PASS. See [Kaggle instructions](docs/KAGGLE.md).
-The notebook has been checked locally; Kaggle execution still needs to be performed in your account.
+The completed Kaggle run and its retained evidence are linked above; new sessions should begin with their own smoke test.
 
-## Review the project
+## Review the historical laptop study
 
 <!-- confirmation:begin -->
 **Same-GPU confirmation:** TensorRT FP16 enabled recorded **3.39× paired model-throughput speedup** versus PyTorch CUDA FP32

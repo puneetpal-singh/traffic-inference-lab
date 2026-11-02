@@ -1,0 +1,3 @@
+export function linear(value,min,max,start,end){if(![value,min,max,start,end].every(Number.isFinite)||max<=min)throw new Error('Invalid linear scale');return start+(value-min)/(max-min)*(end-start);}
+export function logarithmic(value,min,max,start,end){if(value<=0||min<=0)throw new Error('Log scale requires positive values');return linear(Math.log10(value),Math.log10(min),Math.log10(max),start,end);}
+export const domains={fps_median:{CUDA:{max:300,ticks:[0,50,100,150,200,250,300]},CPU:{max:80,ticks:[0,20,40,60,80]}},trial_p95_median_ms:{CUDA:{max:15,ticks:[0,3,6,9,12,15]},CPU:{max:90,ticks:[0,15,30,45,60,75,90]}},artifact_mib:{CUDA:{max:14,ticks:[0,2,4,6,8,10,12,14]},CPU:{max:14,ticks:[0,2,4,6,8,10,12,14]}}};

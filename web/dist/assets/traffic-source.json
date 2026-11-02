@@ -1,0 +1,15 @@
+{
+  "changes": "First 30 seconds; resized to 960x540; audio removed; H.264 MP4; no looping",
+  "license": "Public domain (PD-self)",
+  "acquired_date": "2026-11-02",
+  "original_duration_seconds": 30.4,
+  "source_sha256": "1e9697382fff732a0335b8a300bb0418461e8e03e490790134a4cc6ce2d4cde7",
+  "author": "Kjetil_r",
+  "delivered_duration_seconds": 30,
+  "source_sha1": "2c4ee6a07cba4b51fdf9155b29a452deebc658c9",
+  "title": "E18-Lysaker (02)",
+  "delivered_sha256": "2de6bc36e206522c1fbac7a04d79f6d50b8fec9dc71014f724c1252c96bec815",
+  "fps": 30,
+  "source_page": "https://commons.wikimedia.org/wiki/File:E18-Lysaker_(02).ogv",
+  "captured_date": "2010-04-23"
+}
