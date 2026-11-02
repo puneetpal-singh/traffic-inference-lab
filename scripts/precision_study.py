@@ -27,6 +27,7 @@ from traffic_lab.precision import (
     spread,
     validate_timing,
 )
+from traffic_lab.progress import ledger_progress, log_event, wait_with_progress
 from traffic_lab.provenance import file_hash
 
 REPO = Path(__file__).resolve().parents[1]
@@ -453,6 +454,7 @@ def execute(job, ledger, root, timeout):
             raise ValueError(f"Cached evidence changed: {key}; choose a fresh --output")
         if job["stage"] == "timing":
             validate_timing(read(artifact), job["config"])
+        log_event(f"CACHED {key} | {ledger_progress(ledger, job.get('planned_stages'))}")
         return True
     attempt = len(prior.get("attempts", [])) + 1 if prior else 1
     job_path = root / "jobs" / f"{key}.json"
@@ -464,13 +466,13 @@ def execute(job, ledger, root, timeout):
     ledger[key] = entry
     save(root / "ledger.json", ledger)
     started = time.time()
-    print(f"START {key}", flush=True)
+    log_event(f"START {key} | attempt={attempt} | {ledger_progress(ledger, job.get('planned_stages'))}")
     code, error = -1, None
     with log_path.open("w", encoding="utf-8") as log:
         process = subprocess.Popen([sys.executable, "-u", str(Path(__file__).resolve()), "--worker", str(job_path)],
                                    stdout=log, stderr=subprocess.STDOUT)
         try:
-            code = process.wait(timeout=timeout)
+            code = wait_with_progress(process, log_path, key, timeout)
         except (subprocess.TimeoutExpired, KeyboardInterrupt) as exc:
             error = type(exc).__name__
             if os.name == "nt":
@@ -492,7 +494,8 @@ def execute(job, ledger, root, timeout):
     entry["attempts"].append({"exit_code": code, "error": error, "elapsed_seconds": time.time()-started,
                               "log": str(log_path), "utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
     save(root / "ledger.json", ledger)
-    print(f"{'OK' if success else 'FAILED'} {key} (log: {log_path})", flush=True)
+    log_event(f"{'OK' if success else 'FAILED'} {key} | elapsed={time.time()-started:.1f}s | "
+              f"{ledger_progress(ledger, job.get('planned_stages'))} | log={log_path}")
     return success
 
 
@@ -503,6 +506,7 @@ def run(cfg, timeout):
     root = Path(cfg["output"])
     manifest = verify_inputs(cfg)
     variants = cases(cfg["target"])
+    planned_stages = len({c["export_key"] for c in variants if c["export_key"]}) + len(variants) * (cfg["trials"] + 2)
     orders = randomized_rounds(variants, cfg["trials"], cfg["seed"])
     bindings = {"model_sha256": file_hash(cfg["model"]), "source_sha256": file_hash(cfg["source"]),
                 "dataset_sha256": json_digest(manifest), "runner_sha256": file_hash(__file__),
@@ -527,7 +531,7 @@ def run(cfg, timeout):
             key += f"-round-{round_index:02d}"
         artifact = root / "exports" / case["export_key"] / "export.json" if kind == "export" else root / kind / f"{key}.json"
         job = {"key": key, "stage": kind, "config": cfg, "case": case, "round": round_index,
-               "artifact": str(artifact)}
+               "artifact": str(artifact), "planned_stages": planned_stages}
         dependency = dict(bindings)
         if kind != "export":
             dependency["artifact_sha256"] = file_hash(model_path(cfg, case))
@@ -545,6 +549,8 @@ def run(cfg, timeout):
         ready = [c["name"] for c in variants if not c["export_key"] or c["export_key"] in exported]
         verified = [name for name in ready if stage("inspect", by_name[name])]
         for round_index, order in enumerate(orders):
+            log_event(f"TIMING ROUND {round_index+1}/{cfg['trials']} | {len(order)} configurations | "
+                      f">={cfg['seconds']}s each, plus real-image warm-up")
             for name in order:
                 if name in verified:
                     if not on_ac_power():

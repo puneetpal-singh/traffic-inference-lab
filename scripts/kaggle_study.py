@@ -20,6 +20,7 @@ import precision_study as precision
 
 from traffic_lab.confirmation import json_digest
 from traffic_lab.precision import cases
+from traffic_lab.progress import ledger_progress, log_event, stage_progress, wait_with_progress
 from traffic_lab.provenance import file_hash
 
 REPO = Path(__file__).resolve().parents[1]
@@ -223,6 +224,8 @@ def execute(job, root, bindings, timeout=1800):
     ledger = read(ledger_path) if ledger_path.exists() else {}
     job["identity"] = json_digest({"job": job, "bindings": bindings})
     previous = ledger.get(job["key"], {})
+    planned = (len({c["export_key"] for c in cases() if c["export_key"]}) + 3 * len(cases()) + 3
+               if job["study"]["mode"] == "smoke" else None)
     artifact = Path(job["artifact"])
     if previous.get("status") == "complete" and artifact.exists():
         if previous["identity"] != job["identity"] or previous["sha256"] != file_hash(artifact):
@@ -231,6 +234,7 @@ def execute(job, root, bindings, timeout=1800):
             manifest = read(artifact)
             if file_hash(manifest["artifact"]) != manifest["artifact_sha256"]:
                 raise ValueError("Cached engine changed; use a new run_id")
+        log_event(f"CACHED {job['key']} — {ledger_progress(ledger, planned)}")
         return True
     attempt = len(previous.get("attempts", [])) + 1
     job_file = root / "jobs" / f"{job['key']}.json"
@@ -241,13 +245,13 @@ def execute(job, root, bindings, timeout=1800):
              "attempts": previous.get("attempts", [])}
     ledger[job["key"]] = entry
     save(ledger_path, ledger)
-    print(f"START {job['key']} (log: {log_file})", flush=True)
+    log_event(f"START {job['key']} | attempt={attempt} | {ledger_progress(ledger, planned)} | log={log_file}")
     tick, code, error = time.time(), -1, None
     with log_file.open("w", encoding="utf-8") as log:
         child = subprocess.Popen([sys.executable, "-u", str(Path(__file__).resolve()), "--worker", str(job_file)],
                                  stdout=log, stderr=subprocess.STDOUT, start_new_session=os.name != "nt")
         try:
-            code = child.wait(timeout=timeout)
+            code = wait_with_progress(child, log_file, job["key"], timeout)
         except (subprocess.TimeoutExpired, KeyboardInterrupt) as exc:
             error = type(exc).__name__
             if os.name == "nt":
@@ -263,11 +267,12 @@ def execute(job, root, bindings, timeout=1800):
     entry.update(status="complete" if success else "failed", sha256=file_hash(artifact) if success else None)
     entry["attempts"].append({"exit_code": code, "error": error, "seconds": time.time()-tick, "log": str(log_file)})
     save(ledger_path, ledger)
-    print(f"{'OK' if success else 'FAILED'} {job['key']}", flush=True)
+    log_event(f"{'OK' if success else 'FAILED'} {job['key']} | elapsed={time.time()-tick:.1f}s | {ledger_progress(ledger, planned)}")
     return success
 
 
 def preflight(cfg):
+    log_event("PREFLIGHT: checking GPU, CUDA arithmetic, FFmpeg and dependencies")
     import torch
 
     if not torch.cuda.is_available():
@@ -284,10 +289,12 @@ def preflight(cfg):
              "selected_device": "cuda:0", "cuda_runtime": torch.version.cuda,
              "note": "One GPU only; no parallel configurations. CPU host and accelerator can vary across sessions."}
     save(study_root(cfg) / "preflight.json", probe)
+    log_event(f"PREFLIGHT PASS: {probe['selected_gpu']} | CUDA {probe['cuda_runtime']} | GPU0 only")
     return probe
 
 
 def assets(cfg):
+    log_event("ASSETS: downloading/verifying YOLO checkpoint and traffic recordings")
     from traffic_lab.cli import fetch, parser
 
     fetch(parser().parse_args(["fetch"]))
@@ -336,7 +343,10 @@ def basic_job(cfg, mc, stage, case, artifact, key=None):
 
 def smoke(cfg, bindings):
     root, mc = study_root(cfg), model_cfg(cfg, 320, smoke=True)
-    precision.prepare_data(mc)
+    log_event("SMOKE DATA: preparing 32 calibration / 8 evaluation images")
+    with stage_progress("SMOKE DATA download/verification"):
+        precision.prepare_data(mc)
+    log_event("SMOKE: 9 exports, 13 runtime probes/evaluations, then 3 pipeline checks")
     variants, success, exported = cases(), True, {}
     data_binding = {**bindings, "dataset": json_digest(read(Path(mc["data_root"]) / "manifest.json"))}
     for case in variants:
@@ -470,12 +480,14 @@ def serving(cfg, bindings, tuning=False):
                             scenarios.append({"item": {**item, "case": dynamic}, "streams": streams,
                                               "variant": "dynamic-batch4", "batch": 4})
     for repeat in range(cfg["serving_repeats"]):
+        log_event(f"{'TUNING' if tuning else 'SERVING'}: repeat {repeat+1}/{cfg['serving_repeats']}, {len(scenarios)} scenarios")
         order = scenarios.copy()
         random.Random(cfg["seed"] + repeat + (1000 if tuning else 0)).shuffle(order)
-        for scenario in order:
+        for scenario_index, scenario in enumerate(order, 1):
             item, streams = scenario["item"], scenario["streams"]
             indices = [i % len(sources) for i in range(streams)]
             name = f"{item['case']['name']}-{streams}cam-{scenario['variant']}-r{repeat}"
+            log_event(f"SCENARIO {scenario_index}/{len(order)} | repeat {repeat+1}/{cfg['serving_repeats']} | {name}")
             job = {**basic_job(cfg, mc, "pipeline", item["case"], root / "pipelines" / name / "measurement.json", name),
                    **{k: v for k, v in scenario.items() if k not in ("item", "variant")},
                    "variant": scenario["variant"], "repeat": repeat, "seconds": cfg["serving_seconds"],
@@ -602,7 +614,7 @@ def archive(cfg):
                REPO / "data/traffic.mp4"]
     folders += [REPO / "data" / name for name in
                 (cfg["run_id"], cfg["run_id"]+"-smoke", cfg["run_id"]+"-full")]
-    with zipfile.ZipFile(target, "w", zipfile.ZIP_DEFLATED) as output:
+    with stage_progress(f"CHECKPOINT {target.name}"), zipfile.ZipFile(target, "w", zipfile.ZIP_DEFLATED) as output:
         for folder in folders:
             files = folder.rglob("*") if folder.is_dir() else [folder]
             for path in files:
@@ -613,7 +625,8 @@ def archive(cfg):
 
 def run(cfg):
     os.chdir(REPO)
-    assets(cfg)
+    with stage_progress("ASSETS download/verification"):
+        assets(cfg)
     preflight_result = preflight(cfg)
     bindings = bind_plan(cfg, preflight_result)
     with precision.exclusive_run(study_root(cfg)):
@@ -622,9 +635,11 @@ def run(cfg):
                 return 0 if smoke(cfg, bindings) else 1
             validate_smoke_gate(cfg, preflight_result)
             if cfg["phase"] in ("all", "models"):
-                for size in cfg["image_sizes"]:
+                for index, size in enumerate(cfg["image_sizes"], 1):
+                    log_event(f"MODEL STUDY: resolution {index}/{len(cfg['image_sizes'])}: {size}px")
                     mc = model_cfg(cfg, size)
-                    precision.prepare_data(mc)
+                    with stage_progress(f"FULL DATA download/verification for {size}px"):
+                        precision.prepare_data(mc)
                     with precision.exclusive_run(Path(mc["output"])):
                         status = precision.run(mc, 7200)
                     if status:

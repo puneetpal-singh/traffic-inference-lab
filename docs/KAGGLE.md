@@ -30,6 +30,14 @@ Download `<RUN_ID>-checkpoint.zip`, console output, and `results/<RUN_ID>/smoke/
 If any required stage fails, inspect `logs/`. Full mode refuses to run without a matching smoke PASS.
 The first smoke does not turn itself into a full run.
 
+The notebook prints UTC timestamps, stage names, attempts, cached-stage notices, model-resolution and
+trial/replay round counters, completed/failed stage counts, and elapsed times. Every 15 seconds a running
+worker/setup step emits a heartbeat plus up to three recent log lines, even when a native builder is quiet.
+Full worker logs and the console log remain on disk. A heartbeat means the process is alive, not proof
+that an internal compiler/inference operation is making progress; timeouts still apply. Progress printing
+stays in the parent process rather than the timed inference loop. If replacing code from an already-run
+notebook version, choose a fresh RUN_ID because the saved study binds source hashes.
+
 ## Full study
 
 After PASS, set `MODE="full"`. Keep the same RUN_ID and settings. If starting a new session,

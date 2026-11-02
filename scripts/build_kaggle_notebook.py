@@ -23,7 +23,7 @@ def cell(kind, source):
 def source_bundle():
     tracked = subprocess.check_output(["git", "ls-files", "src/traffic_lab/*.py"], cwd=REPO, text=True).splitlines()
     paths = tracked + ["pyproject.toml", "README.md", "scripts/kaggle_study.py", "scripts/precision_study.py",
-                       "scripts/prepare_coco_holdout.py", "docs/KAGGLE.md"]
+                       "scripts/prepare_coco_holdout.py", "docs/KAGGLE.md", "src/traffic_lab/progress.py"]
     stream = io.BytesIO()
     with zipfile.ZipFile(stream, "w", zipfile.ZIP_DEFLATED) as bundle:
         for name in sorted(set(paths)):
@@ -117,11 +117,22 @@ def build():
         PYTHON = ENV / "bin/python"
         if not PYTHON.exists():
             subprocess.run([sys.executable, "-m", "venv", str(ENV)], check=True)
+        sys.path.insert(0, str(LAB / "src"))
+        from traffic_lab.progress import log_event, wait_with_progress
         def setup_step(arguments, logfile):
-            print("Setup:", " ".join(str(a) for a in arguments[:6]), "...", flush=True)
+            log_event("SETUP " + logfile + ": " + " ".join(str(a) for a in arguments[:6]) + " ...")
             with open(WORK / logfile, "w") as log:
-                status = subprocess.run([str(a) for a in arguments], stdout=log, stderr=subprocess.STDOUT)
-            if status.returncode:
+                status = subprocess.Popen([str(a) for a in arguments], stdout=log, stderr=subprocess.STDOUT,
+                                          start_new_session=True)
+                try:
+                    code = wait_with_progress(status, WORK / logfile, "SETUP " + logfile, timeout=3600)
+                except (subprocess.TimeoutExpired, KeyboardInterrupt):
+                    import signal
+                    os.killpg(status.pid, signal.SIGKILL)
+                    status.wait()
+                    raise
+            log_event("SETUP " + logfile + ": exit=" + str(code))
+            if code:
                 print((WORK / logfile).read_text()[-12000:])
                 raise RuntimeError("Setup failed; inspect " + logfile)
         if INSTALL_DEPENDENCIES:
