@@ -62,6 +62,7 @@ def parser():
     p.add_argument("--seconds", type=float, default=20)
     p.add_argument("--pool-frames", type=int, default=60)
     p.add_argument("--frame-step", type=int, default=2)
+    p.add_argument("--timing-classes", choices=("all", "vehicles"), default="all")
     p.add_argument("--calibration-images", type=int, default=512)
     p.add_argument("--evaluation-limit", type=int, default=0, help="0=all remaining 4488; small subsets are exploratory")
     p.add_argument("--seed", type=int, default=20261030)
@@ -198,8 +199,9 @@ def detector(cfg, case, quality=False):
         options.intra_op_num_threads = cfg["threads"]
         options.inter_op_num_threads = 1
         AutoBackend._BACKEND_MAP["onnx"] = functools.partial(ONNXBackend, session_options=options)
+    classes = (2, 3, 5, 7) if not quality and cfg.get("timing_classes") == "vehicles" else None
     obj = Detector(ModelConfig(model=model_path(cfg, case), imgsz=cfg["imgsz"], device=case["device"],
-                               threads=cfg["threads"], classes=None, conf=.001 if quality else .25))
+                               threads=cfg["threads"], classes=classes, conf=.001 if quality else .25))
     obj.warmup(1)
     if case["backend"] == "openvino":
         import openvino as ov
@@ -634,7 +636,7 @@ def report(root):
         lines.append("")
     lines += ["## Interpretation", "", "- Compare precisions within a runtime/device first; CPU/GPU are separate experiments.",
               "- Warmed, predecoded batch-one wall time includes preprocessing, prediction, NMS and completed CPU boxes.",
-              "- Timing uses conf=.25, all classes; accuracy uses conf=.001 and official COCOeval on calibration-disjoint images.",
+              f"- Timing uses conf=.25, class filter `{plan['config'].get('timing_classes', 'all')}`; accuracy uses conf=.001 and all classes.",
               "- Ten trials are not ten independent days. Single-session log-ratio intervals are exploratory.",
               "- OpenVINO FP16 means stored constants; CPU arithmetic may be FP32. ONNX FP16 CPU may also execute FP32 kernels.",
               "- TensorRT flags permit mixed precision. Inspect execution evidence rather than assuming pure FP16/INT8.",

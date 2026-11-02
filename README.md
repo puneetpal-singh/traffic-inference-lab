@@ -13,6 +13,10 @@ For the focused **one-checkpoint FP32/FP16/INT8 study** across ONNX Runtime, Ope
 use the [new runner and launch instructions](docs/PRECISION_STUDY.md). It defaults to a dry run;
 the new study has not been executed and does not replace the historical results below.
 
+To run the **multi-camera project on Kaggle**, upload the [self-contained notebook](notebooks/kaggle/Traffic_Analytics_Kaggle.ipynb).
+It defaults to a smoke test and gates the full benchmark on a matching PASS. See [Kaggle instructions](docs/KAGGLE.md).
+The notebook has been checked locally; Kaggle execution still needs to be performed in your account.
+
 ## Review the project
 
 <!-- confirmation:begin -->
