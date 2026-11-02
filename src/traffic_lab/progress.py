@@ -1,11 +1,19 @@
 """Parent-process progress reporting; never instrument the timed inference loop."""
 
+import os
 import subprocess
 import threading
 import time
 from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
+
+
+def worker_environment(base=None):
+    """Notebook-only rendering backends are not available in isolated worker environments."""
+    environment = dict(os.environ if base is None else base)
+    environment["MPLBACKEND"] = "Agg"
+    return environment
 
 
 def log_event(message):

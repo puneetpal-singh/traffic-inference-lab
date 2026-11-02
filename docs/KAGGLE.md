@@ -33,6 +33,12 @@ Download `<RUN_ID>-checkpoint.zip`, console output, and `results/<RUN_ID>/smoke/
 If any required stage fails, inspect `logs/`. Full mode refuses to run without a matching smoke PASS.
 The first smoke does not turn itself into a full run.
 
+Workers explicitly use Matplotlib's `Agg` backend. Kaggle's inline notebook backend is not installed
+inside the isolated environment and can otherwise break NNCF/INT8 export. To hotfix an existing notebook
+without changing its saved source identity, interrupt its execution cell, run
+`import os; os.environ["MPLBACKEND"] = "Agg"`, then rerun only the execution cell. Completed stages
+are reused and failed stages retry. Do not import the plotting backend inside the notebook kernel to fix a worker.
+
 The notebook prints UTC timestamps, stage names, attempts, cached-stage notices, model-resolution and
 trial/replay round counters, completed/failed stage counts, and elapsed times. Every 15 seconds a running
 worker/setup step emits a heartbeat plus up to three recent log lines, even when a native builder is quiet.

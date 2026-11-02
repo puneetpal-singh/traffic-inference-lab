@@ -27,7 +27,7 @@ from traffic_lab.precision import (
     spread,
     validate_timing,
 )
-from traffic_lab.progress import ledger_progress, log_event, wait_with_progress
+from traffic_lab.progress import ledger_progress, log_event, wait_with_progress, worker_environment
 from traffic_lab.provenance import file_hash
 
 REPO = Path(__file__).resolve().parents[1]
@@ -470,7 +470,7 @@ def execute(job, ledger, root, timeout):
     code, error = -1, None
     with log_path.open("w", encoding="utf-8") as log:
         process = subprocess.Popen([sys.executable, "-u", str(Path(__file__).resolve()), "--worker", str(job_path)],
-                                   stdout=log, stderr=subprocess.STDOUT)
+                                   stdout=log, stderr=subprocess.STDOUT, env=worker_environment())
         try:
             code = wait_with_progress(process, log_path, key, timeout)
         except (subprocess.TimeoutExpired, KeyboardInterrupt) as exc:

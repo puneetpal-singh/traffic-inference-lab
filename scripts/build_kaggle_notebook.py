@@ -117,6 +117,8 @@ def build():
         sys.path.insert(0, str(LAB / "src"))
         from traffic_lab.progress import log_event, wait_with_progress
         from traffic_lab.notebook_env import ensure_model_python
+        # Do not inherit Kaggle's module://matplotlib_inline backend into isolated ML workers.
+        os.environ["MPLBACKEND"] = "Agg"
         def setup_step(arguments, logfile, env=None):
             log_event("SETUP " + logfile + ": " + " ".join(str(a) for a in arguments[:6]) + " ...")
             with open(WORK / logfile, "w") as log:

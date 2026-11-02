@@ -2,7 +2,7 @@ import subprocess
 
 import pytest
 
-from traffic_lab.progress import ledger_progress, stage_progress, wait_with_progress
+from traffic_lab.progress import ledger_progress, stage_progress, wait_with_progress, worker_environment
 
 
 def test_quiet_worker_emits_heartbeat_then_shows_new_log_output(tmp_path, capsys):
@@ -57,3 +57,11 @@ def test_untimed_stage_reports_failure_and_propagates_it(capsys):
         with stage_progress("data download"):
             raise ValueError("network error")
     assert "STOPPED data download" in capsys.readouterr().out
+
+
+def test_workers_override_inherited_inline_backend_without_mutating_parent():
+    inherited = {"MPLBACKEND": "module://matplotlib_inline.backend_inline", "CUDA_VISIBLE_DEVICES": "0"}
+    worker = worker_environment(inherited)
+    assert worker["MPLBACKEND"] == "Agg"
+    assert worker["CUDA_VISIBLE_DEVICES"] == "0"
+    assert inherited["MPLBACKEND"] == "module://matplotlib_inline.backend_inline"

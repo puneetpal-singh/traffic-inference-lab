@@ -20,7 +20,13 @@ import precision_study as precision
 
 from traffic_lab.confirmation import json_digest
 from traffic_lab.precision import cases
-from traffic_lab.progress import ledger_progress, log_event, stage_progress, wait_with_progress
+from traffic_lab.progress import (
+    ledger_progress,
+    log_event,
+    stage_progress,
+    wait_with_progress,
+    worker_environment,
+)
 from traffic_lab.provenance import file_hash
 
 REPO = Path(__file__).resolve().parents[1]
@@ -249,7 +255,8 @@ def execute(job, root, bindings, timeout=1800):
     tick, code, error = time.time(), -1, None
     with log_file.open("w", encoding="utf-8") as log:
         child = subprocess.Popen([sys.executable, "-u", str(Path(__file__).resolve()), "--worker", str(job_file)],
-                                 stdout=log, stderr=subprocess.STDOUT, start_new_session=os.name != "nt")
+                                 stdout=log, stderr=subprocess.STDOUT, start_new_session=os.name != "nt",
+                                 env=worker_environment())
         try:
             code = wait_with_progress(child, log_file, job["key"], timeout)
         except (subprocess.TimeoutExpired, KeyboardInterrupt) as exc:
