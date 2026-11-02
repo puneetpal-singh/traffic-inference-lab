@@ -12,9 +12,12 @@ no Kaggle credentials are configured here. Its smoke gate is the required enviro
 
 Setup creates an isolated environment with PyTorch 2.6.0+CUDA12.4, torchvision 0.21.0,
 ONNX Runtime GPU 1.20.2 and TensorRT 10.8.0.43, plus the pinned project runtime.
-Kaggle's Python image must be 3.11/3.12 and its driver must support this CUDA stack.
+The notebook kernel can use a newer Python. Bootstrap uses uv to download an independent CPython 3.12
+and create the worker environment, so pinned ML wheels do not depend on Kaggle's kernel version.
+Kaggle's driver must still support the CUDA stack. Python bootstrap/download progress has separate logs.
 The environment lives under `/tmp` so installed libraries are not exported as notebook outputs.
 Resolved dependency constraints are saved with the study and applied when rebuilding a resumed environment.
+Python management follows [uv's documented install workflow](https://docs.astral.sh/uv/guides/install-python/).
 Package installation downloads several GB; TensorRT engine builds also take time. Do not assume a five-minute smoke.
 
 Smoke checks:

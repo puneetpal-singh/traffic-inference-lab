@@ -23,7 +23,8 @@ def cell(kind, source):
 def source_bundle():
     tracked = subprocess.check_output(["git", "ls-files", "src/traffic_lab/*.py"], cwd=REPO, text=True).splitlines()
     paths = tracked + ["pyproject.toml", "README.md", "scripts/kaggle_study.py", "scripts/precision_study.py",
-                       "scripts/prepare_coco_holdout.py", "docs/KAGGLE.md", "src/traffic_lab/progress.py"]
+                       "scripts/prepare_coco_holdout.py", "docs/KAGGLE.md", "src/traffic_lab/progress.py",
+                       "src/traffic_lab/notebook_env.py"]
     stream = io.BytesIO()
     with zipfile.ZipFile(stream, "w", zipfile.ZIP_DEFLATED) as bundle:
         for name in sorted(set(paths)):
@@ -87,8 +88,7 @@ def build():
         WORK = pathlib.Path("/kaggle/working")
         if not WORK.is_dir():
             raise RuntimeError("Run this notebook in a Kaggle GPU notebook, not on the laptop.")
-        if sys.version_info[:2] not in ((3, 11), (3, 12)):
-            raise RuntimeError("This pinned environment supports Python 3.11/3.12. Inspect the Kaggle image before proceeding.")
+        print("Kaggle notebook kernel:", sys.version.split()[0], "— model workers will use a separate Python 3.12.")
         LAB = WORK / "traffic-inference-lab"
         LAB.mkdir(exist_ok=True)
         SOURCE_BUNDLE_SHA256 = "{digest}"
@@ -113,17 +113,15 @@ def build():
     """), cell("code", """
         # All ML imports/work run in subprocesses, so notebook-kernel package state cannot leak into trials.
         # Keep several GB of installed libraries out of Kaggle's saved notebook outputs.
-        ENV = pathlib.Path("/tmp/traffic-inference-venv")
-        PYTHON = ENV / "bin/python"
-        if not PYTHON.exists():
-            subprocess.run([sys.executable, "-m", "venv", str(ENV)], check=True)
+        ENV = pathlib.Path("/tmp/traffic-inference-py312")
         sys.path.insert(0, str(LAB / "src"))
         from traffic_lab.progress import log_event, wait_with_progress
-        def setup_step(arguments, logfile):
+        from traffic_lab.notebook_env import ensure_model_python
+        def setup_step(arguments, logfile, env=None):
             log_event("SETUP " + logfile + ": " + " ".join(str(a) for a in arguments[:6]) + " ...")
             with open(WORK / logfile, "w") as log:
                 status = subprocess.Popen([str(a) for a in arguments], stdout=log, stderr=subprocess.STDOUT,
-                                          start_new_session=True)
+                                          start_new_session=True, env=env)
                 try:
                     code = wait_with_progress(status, WORK / logfile, "SETUP " + logfile, timeout=3600)
                 except (subprocess.TimeoutExpired, KeyboardInterrupt):
@@ -135,6 +133,7 @@ def build():
             if code:
                 print((WORK / logfile).read_text()[-12000:])
                 raise RuntimeError("Setup failed; inspect " + logfile)
+        PYTHON = ensure_model_python(sys.executable, ENV, setup_step)
         if INSTALL_DEPENDENCIES:
             LOCKFILE = LAB / "results" / RUN_ID / "dependency-constraints.txt"
             setup_step([PYTHON, "-m", "pip", "install", "--upgrade", "pip"], "setup-pip.log")
