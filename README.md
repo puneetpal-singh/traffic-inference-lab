@@ -5,6 +5,13 @@
 A computer vision deployment project built around that question: reproducible YOLO runtime comparisons,
 export parity gates, independent vehicle tracking and counting, bounded multi-camera scheduling, and a local results dashboard.
 
+**Latest measured study: Kaggle T4, 320px.** Completed 13 model configurations (130 randomized timing trials,
+4488 calibration-disjoint accuracy images) and 72 repeated serving runs. TensorRT FP16 enabled recorded
+**2.69× paired throughput versus eager PyTorch CUDA FP32**; TensorRT INT8 had similar throughput with a larger
+measured AP loss. Two cameras were the largest timing-passing tested GPU load; counting remains unvalidated.
+See the [verified Kaggle report](results/kaggle-t4-320-2026-11-02/Kaggle_Results_Analysis.md) and
+[scope and evidence](docs/KAGGLE_RESULTS.md). The laptop experiments below are a separate historical study.
+
 Measured on an i7-10750H / GTX 1650 Ti: **28 model configurations and 24 serving experiments**, including CPU/CUDA,
 FP32/FP16/INT8, camera scaling, batching, tracking, rendering, stride and telemetry tuning. See the
 [measured findings](docs/RESULTS.md), [portable report](results/report.html), and [raw evidence](results/full-matrix/).

@@ -1,0 +1,673 @@
+{
+  "kind": "one_checkpoint_precision_study",
+  "reference": "pytorch-cuda-fp32",
+  "rows": [
+    {
+      "case": "pytorch-cpu-fp32",
+      "device": "CPU",
+      "trials": 10,
+      "expected_trials": 10,
+      "fps_median": 32.39953062236958,
+      "fps_min": 29.68696035886159,
+      "fps_max": 34.31106059814831,
+      "trial_p95_median_ms": 33.53027370021664,
+      "map50_95": 0.2842692547970182,
+      "vehicle_ap": 0.3322017659674095,
+      "loss_vs_pytorch_points": 9.753852370786298e-05,
+      "loss_vs_runtime_fp32_points": 0.0,
+      "quality_budget": "point estimate within budget; uncertainty unmeasured",
+      "flagged_trials": 0,
+      "peak_sampled_rss_mib": 1202.57421875,
+      "peak_whole_gpu_mib": 601.1875,
+      "artifact_mib": 5.353702545166016
+    },
+    {
+      "case": "pytorch-cuda-fp32",
+      "device": "CUDA",
+      "trials": 10,
+      "expected_trials": 10,
+      "fps_median": 95.91844767987959,
+      "fps_min": 93.60574235308489,
+      "fps_max": 96.96420445177644,
+      "trial_p95_median_ms": 11.59741892540751,
+      "map50_95": 0.2842702301822553,
+      "vehicle_ap": 0.3322017659674095,
+      "loss_vs_pytorch_points": 0.0,
+      "loss_vs_runtime_fp32_points": 0.0,
+      "quality_budget": "point estimate within budget; uncertainty unmeasured",
+      "flagged_trials": 0,
+      "peak_sampled_rss_mib": 1912.6640625,
+      "peak_whole_gpu_mib": 825.1875,
+      "artifact_mib": 5.353702545166016
+    },
+    {
+      "case": "onnx-cpu-fp32",
+      "device": "CPU",
+      "trials": 10,
+      "expected_trials": 10,
+      "fps_median": 26.680421932945997,
+      "fps_min": 25.27571912541427,
+      "fps_max": 27.6223796142318,
+      "trial_p95_median_ms": 62.081873899955994,
+      "map50_95": 0.284270274890802,
+      "vehicle_ap": 0.3322017659674095,
+      "loss_vs_pytorch_points": -4.470854669813562e-06,
+      "loss_vs_runtime_fp32_points": 0.0,
+      "quality_budget": "point estimate within budget; uncertainty unmeasured",
+      "flagged_trials": 0,
+      "peak_sampled_rss_mib": 1204.12890625,
+      "peak_whole_gpu_mib": 601.1875,
+      "artifact_mib": 10.12352466583252
+    },
+    {
+      "case": "onnx-cpu-fp16",
+      "device": "CPU",
+      "trials": 10,
+      "expected_trials": 10,
+      "fps_median": 20.592061095504526,
+      "fps_min": 19.95102611075097,
+      "fps_max": 21.909699484418567,
+      "trial_p95_median_ms": 74.36040192505968,
+      "map50_95": 0.2842560125890885,
+      "vehicle_ap": 0.3322527615611098,
+      "loss_vs_pytorch_points": 0.001421759316677651,
+      "loss_vs_runtime_fp32_points": 0.0014262301713474645,
+      "quality_budget": "point estimate within budget; uncertainty unmeasured",
+      "flagged_trials": 0,
+      "peak_sampled_rss_mib": 1211.19140625,
+      "peak_whole_gpu_mib": 601.1875,
+      "artifact_mib": 5.113574981689453
+    },
+    {
+      "case": "onnx-cpu-int8",
+      "device": "CPU",
+      "trials": 10,
+      "expected_trials": 10,
+      "fps_median": 19.864996796126746,
+      "fps_min": 17.683915104538556,
+      "fps_max": 20.918463328558293,
+      "trial_p95_median_ms": 77.61680269994709,
+      "map50_95": 0.2503862631726406,
+      "vehicle_ap": 0.2821157936627121,
+      "loss_vs_pytorch_points": 3.388396700961466,
+      "loss_vs_runtime_fp32_points": 3.3884011718161355,
+      "quality_budget": "point estimate exceeds budget; uncertainty unmeasured",
+      "flagged_trials": 0,
+      "peak_sampled_rss_mib": 1210.25390625,
+      "peak_whole_gpu_mib": 601.1875,
+      "artifact_mib": 2.836923599243164
+    },
+    {
+      "case": "onnx-cuda-fp32",
+      "device": "CUDA",
+      "trials": 10,
+      "expected_trials": 10,
+      "fps_median": 194.34416990153665,
+      "fps_min": 188.55429026827483,
+      "fps_max": 197.58735347325228,
+      "trial_p95_median_ms": 5.492554574857421,
+      "map50_95": 0.28427024150787017,
+      "vehicle_ap": 0.3322017659674095,
+      "loss_vs_pytorch_points": -1.132561489036732e-06,
+      "loss_vs_runtime_fp32_points": 0.0,
+      "quality_budget": "point estimate within budget; uncertainty unmeasured",
+      "flagged_trials": 1,
+      "peak_sampled_rss_mib": 2147.7890625,
+      "peak_whole_gpu_mib": 841.1875,
+      "artifact_mib": 10.12352466583252
+    },
+    {
+      "case": "onnx-cuda-fp16",
+      "device": "CUDA",
+      "trials": 10,
+      "expected_trials": 10,
+      "fps_median": 175.24631172127383,
+      "fps_min": 172.03424196048832,
+      "fps_max": 177.05957099623095,
+      "trial_p95_median_ms": 5.994009549999646,
+      "map50_95": 0.28449610134442593,
+      "vehicle_ap": 0.3323434170614161,
+      "loss_vs_pytorch_points": -0.02258711621706544,
+      "loss_vs_runtime_fp32_points": -0.022585983655576403,
+      "quality_budget": "point estimate within budget; uncertainty unmeasured",
+      "flagged_trials": 0,
+      "peak_sampled_rss_mib": 2267.34375,
+      "peak_whole_gpu_mib": 827.1875,
+      "artifact_mib": 5.113574981689453
+    },
+    {
+      "case": "openvino-cpu-fp32",
+      "device": "CPU",
+      "trials": 10,
+      "expected_trials": 10,
+      "fps_median": 65.15414516012613,
+      "fps_min": 60.7738063206232,
+      "fps_max": 67.3650718359674,
+      "trial_p95_median_ms": 16.560714274942256,
+      "map50_95": 0.2842668140965116,
+      "vehicle_ap": 0.33220174415234444,
+      "loss_vs_pytorch_points": 0.0003416085743668251,
+      "loss_vs_runtime_fp32_points": 0.0,
+      "quality_budget": "point estimate within budget; uncertainty unmeasured",
+      "flagged_trials": 0,
+      "peak_sampled_rss_mib": 1318.12890625,
+      "peak_whole_gpu_mib": 601.1875,
+      "artifact_mib": 10.300116539001465
+    },
+    {
+      "case": "openvino-cpu-fp16",
+      "device": "CPU",
+      "trials": 10,
+      "expected_trials": 10,
+      "fps_median": 66.0743265057979,
+      "fps_min": 60.375481227175165,
+      "fps_max": 67.3486007952588,
+      "trial_p95_median_ms": 16.489895274935407,
+      "map50_95": 0.28430793315096736,
+      "vehicle_ap": 0.332251694760868,
+      "loss_vs_pytorch_points": -0.003770296871208334,
+      "loss_vs_runtime_fp32_points": -0.004111905445575159,
+      "quality_budget": "point estimate within budget; uncertainty unmeasured",
+      "flagged_trials": 0,
+      "peak_sampled_rss_mib": 1315.1015625,
+      "peak_whole_gpu_mib": 601.1875,
+      "artifact_mib": 5.400570869445801
+    },
+    {
+      "case": "openvino-cpu-int8",
+      "device": "CPU",
+      "trials": 10,
+      "expected_trials": 10,
+      "fps_median": 74.33141802909688,
+      "fps_min": 68.39155551123221,
+      "fps_max": 77.36872835981164,
+      "trial_p95_median_ms": 14.511721450116966,
+      "map50_95": 0.28259136895600084,
+      "vehicle_ap": 0.3289362769216721,
+      "loss_vs_pytorch_points": 0.16788612262544356,
+      "loss_vs_runtime_fp32_points": 0.16754451405107673,
+      "quality_budget": "point estimate within budget; uncertainty unmeasured",
+      "flagged_trials": 0,
+      "peak_sampled_rss_mib": 1315.671875,
+      "peak_whole_gpu_mib": 601.1875,
+      "artifact_mib": 3.195188522338867
+    },
+    {
+      "case": "tensorrt-cuda-fp32",
+      "device": "CUDA",
+      "trials": 10,
+      "expected_trials": 10,
+      "fps_median": 236.3903256462345,
+      "fps_min": 230.78338081072243,
+      "fps_max": 240.24591023254803,
+      "trial_p95_median_ms": 4.3872989249848615,
+      "map50_95": 0.28426781306425064,
+      "vehicle_ap": 0.3322017659674095,
+      "loss_vs_pytorch_points": 0.00024171180046383967,
+      "loss_vs_runtime_fp32_points": 0.0,
+      "quality_budget": "point estimate within budget; uncertainty unmeasured",
+      "flagged_trials": 0,
+      "peak_sampled_rss_mib": 1967.4609375,
+      "peak_whole_gpu_mib": 815.1875,
+      "artifact_mib": 12.602649688720703
+    },
+    {
+      "case": "tensorrt-cuda-fp16",
+      "device": "CUDA",
+      "trials": 10,
+      "expected_trials": 10,
+      "fps_median": 258.37155595077286,
+      "fps_min": 249.23775413663074,
+      "fps_max": 263.13723185422964,
+      "trial_p95_median_ms": 3.996873974938353,
+      "map50_95": 0.2842344517395785,
+      "vehicle_ap": 0.3322140578647985,
+      "loss_vs_pytorch_points": 0.003577844267677044,
+      "loss_vs_runtime_fp32_points": 0.0033361324672132042,
+      "quality_budget": "point estimate within budget; uncertainty unmeasured",
+      "flagged_trials": 0,
+      "peak_sampled_rss_mib": 1958.3046875,
+      "peak_whole_gpu_mib": 809.1875,
+      "artifact_mib": 8.288616180419922
+    },
+    {
+      "case": "tensorrt-cuda-int8",
+      "device": "CUDA",
+      "trials": 10,
+      "expected_trials": 10,
+      "fps_median": 258.0453545700659,
+      "fps_min": 253.88057988391915,
+      "fps_max": 259.7307870946778,
+      "trial_p95_median_ms": 3.963637349841065,
+      "map50_95": 0.2769176701132029,
+      "vehicle_ap": 0.3223539938976062,
+      "loss_vs_pytorch_points": 0.7352560069052383,
+      "loss_vs_runtime_fp32_points": 0.7350142951047745,
+      "quality_budget": "point estimate within budget; uncertainty unmeasured",
+      "flagged_trials": 0,
+      "peak_sampled_rss_mib": 1986.12109375,
+      "peak_whole_gpu_mib": 775.1875,
+      "artifact_mib": 6.910517692565918
+    }
+  ],
+  "within_runtime_paired_fps_ratios": {
+    "pytorch-cpu-fp32": {
+      "rounds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "ratios": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "geometric_mean": 1.0,
+      "log_t_95_interval": [
+        1.0,
+        1.0
+      ],
+      "caution": "Exploratory single-session interval; independent normal log ratios assumed, drift may violate this."
+    },
+    "pytorch-cuda-fp32": {
+      "rounds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "ratios": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "geometric_mean": 1.0,
+      "log_t_95_interval": [
+        1.0,
+        1.0
+      ],
+      "caution": "Exploratory single-session interval; independent normal log ratios assumed, drift may violate this."
+    },
+    "onnx-cpu-fp32": {
+      "rounds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "ratios": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "geometric_mean": 1.0,
+      "log_t_95_interval": [
+        1.0,
+        1.0
+      ],
+      "caution": "Exploratory single-session interval; independent normal log ratios assumed, drift may violate this."
+    },
+    "onnx-cpu-fp16": {
+      "rounds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "ratios": [
+        0.7915465746119437,
+        0.7623974733961575,
+        0.7931865317327728,
+        0.776772111324882,
+        0.7663202716714295,
+        0.7540415023894915,
+        0.7876373621725616,
+        0.8121118746021321,
+        0.7501465978109461,
+        0.7904003799826766
+      ],
+      "geometric_mean": 0.7782278877146823,
+      "log_t_95_interval": [
+        0.7641474983858564,
+        0.7925677261211668
+      ],
+      "caution": "Exploratory single-session interval; independent normal log ratios assumed, drift may violate this."
+    },
+    "onnx-cpu-int8": {
+      "rounds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "ratios": [
+        0.737998535739929,
+        0.745415663366652,
+        0.7573012760197001,
+        0.7428330585850265,
+        0.768576605634135,
+        0.7249855126069421,
+        0.6742622562497235,
+        0.7150636196544325,
+        0.7106549429090413,
+        0.7592868478100383
+      ],
+      "geometric_mean": 0.7331399078527826,
+      "log_t_95_interval": [
+        0.7129414041311298,
+        0.753910659939069
+      ],
+      "caution": "Exploratory single-session interval; independent normal log ratios assumed, drift may violate this."
+    },
+    "onnx-cuda-fp32": {
+      "rounds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "ratios": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "geometric_mean": 1.0,
+      "log_t_95_interval": [
+        1.0,
+        1.0
+      ],
+      "caution": "Exploratory single-session interval; independent normal log ratios assumed, drift may violate this."
+    },
+    "onnx-cuda-fp16": {
+      "rounds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "ratios": [
+        0.8898307542518648,
+        0.9143525226451759,
+        0.8911338830584544,
+        0.900694668582232,
+        0.8964808162603415,
+        0.9021391519031982,
+        0.9006501439887098,
+        0.9204205499463463,
+        0.9232702751336143,
+        0.8997978537157981
+      ],
+      "geometric_mean": 0.9038102026641115,
+      "log_t_95_interval": [
+        0.8955677630050373,
+        0.9121285023690024
+      ],
+      "caution": "Exploratory single-session interval; independent normal log ratios assumed, drift may violate this."
+    },
+    "openvino-cpu-fp32": {
+      "rounds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "ratios": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "geometric_mean": 1.0,
+      "log_t_95_interval": [
+        1.0,
+        1.0
+      ],
+      "caution": "Exploratory single-session interval; independent normal log ratios assumed, drift may violate this."
+    },
+    "openvino-cpu-fp16": {
+      "rounds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "ratios": [
+        1.016248295667729,
+        1.0041792787902413,
+        1.0016562381084835,
+        0.9898258525337058,
+        0.9997944343931339,
+        1.011972137268311,
+        1.0080094521733922,
+        0.9655913621882439,
+        0.9934457767652959,
+        1.0052744600346954
+      ],
+      "geometric_mean": 0.9995061350481097,
+      "log_t_95_interval": [
+        0.9892137410126862,
+        1.0099056175423653
+      ],
+      "caution": "Exploratory single-session interval; independent normal log ratios assumed, drift may violate this."
+    },
+    "openvino-cpu-int8": {
+      "rounds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "ratios": [
+        1.1538933271258223,
+        1.1466686729713402,
+        1.144874405601999,
+        1.1484991591518368,
+        1.1124129970506773,
+        1.144905668641703,
+        1.0861404939290291,
+        1.145208720481369,
+        1.1770943897175974,
+        1.104740003594356
+      ],
+      "geometric_mean": 1.1361534510910614,
+      "log_t_95_interval": [
+        1.116906556051033,
+        1.1557320148518748
+      ],
+      "caution": "Exploratory single-session interval; independent normal log ratios assumed, drift may violate this."
+    },
+    "tensorrt-cuda-fp32": {
+      "rounds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "ratios": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "geometric_mean": 1.0,
+      "log_t_95_interval": [
+        1.0,
+        1.0
+      ],
+      "caution": "Exploratory single-session interval; independent normal log ratios assumed, drift may violate this."
+    },
+    "tensorrt-cuda-fp16": {
+      "rounds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "ratios": [
+        1.1026992281414398,
+        1.1031427834372225,
+        1.1075187781725133,
+        1.0782964703511113,
+        1.1023757502325875,
+        1.0973698246529136,
+        1.0727559271715303,
+        1.09667494193464,
+        1.0662883422448364,
+        1.0842493338633168
+      ],
+      "geometric_mean": 1.0910492156233023,
+      "log_t_95_interval": [
+        1.0806423918311647,
+        1.1015562594163015
+      ],
+      "caution": "Exploratory single-session interval; independent normal log ratios assumed, drift may violate this."
+    },
+    "tensorrt-cuda-int8": {
+      "rounds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "ratios": [
+        1.0924522791856548,
+        1.098384335959278,
+        1.0931813865710809,
+        1.0766236798124935,
+        1.089647786072084,
+        1.1046147483121151,
+        1.07729717953949,
+        1.1000817259546949,
+        1.0935339371698567,
+        1.0767084512591232
+      ],
+      "geometric_mean": 1.0902097961864978,
+      "log_t_95_interval": [
+        1.0829502739140142,
+        1.0975179824326597
+      ],
+      "caution": "Exploratory single-session interval; independent normal log ratios assumed, drift may violate this."
+    }
+  },
+  "completed_stages": 165,
+  "failed_stages": []
+}

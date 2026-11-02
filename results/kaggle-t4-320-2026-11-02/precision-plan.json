@@ -1,0 +1,305 @@
+{
+  "config": {
+    "output": "/kaggle/working/traffic-inference-lab/results/traffic-kaggle-v1/full/precision-320",
+    "model": "/kaggle/working/traffic-inference-lab/models/yolo11n.pt",
+    "source": "/kaggle/working/traffic-inference-lab/data/traffic.mp4",
+    "data_root": "/kaggle/working/traffic-inference-lab/data/traffic-kaggle-v1-full",
+    "target": "all",
+    "imgsz": 320,
+    "threads": 4,
+    "trials": 10,
+    "seconds": 20.0,
+    "pool_frames": 60,
+    "frame_step": 2,
+    "timing_classes": "vehicles",
+    "calibration_images": 512,
+    "evaluation_limit": 0,
+    "seed": 20261102,
+    "quality_budget_points": 1.0
+  },
+  "bindings": {
+    "model_sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+    "source_sha256": "82d3a2f8a8f02f86906aaed6d097346a66cc924b0ffb591a76f0e7a5bfb4f853",
+    "dataset_sha256": "98f38e77082b0a99374cb3f74088cf17c30483cc5d579f8b0b5de84eb200963b",
+    "runner_sha256": "f9bedc358660b1c6ba3419c98b01e0887812ed9a3393d9a12b39d5de89986750",
+    "helpers_sha256": "ab781bbc0ae5724040833a09938960e126a4ce10ed9c56ee5a6a09c24358dc1f",
+    "runtime_sha256": "2078df74629bd60bb43b523e0b7e6f76c9d0fea10cc65f703a8073b895af9f5c",
+    "environment": {
+      "python": "3.12.16 (main, Oct 26 2026, 14:08:45) [Clang 23.1.3 ]",
+      "platform": "Linux-6.18.55+-x86_64-with-glibc2.39",
+      "processor": "x86_64",
+      "cpu_physical_cores": 2,
+      "cpu_logical_cores": 4,
+      "ram_gib": 31.346603393554688,
+      "gpu": "Tesla T4, 580.178.04, 15360 MiB\nTesla T4, 580.178.04, 15360 MiB",
+      "packages": {
+        "traffic-inference-lab": "0.1.0",
+        "ultralytics": "8.4.193",
+        "torch": "2.6.0+cu124",
+        "torchvision": "0.21.0+cu124",
+        "numpy": "2.4.6",
+        "opencv-python": "4.14.0.94",
+        "onnxruntime": null,
+        "onnxruntime-gpu": "1.20.2",
+        "openvino": "2026.4.1",
+        "onnx": "1.23.2",
+        "nncf": "3.4.0",
+        "tensorrt": null,
+        "tensorrt-cu12": "10.8.0.43",
+        "lap": "0.5.13"
+      }
+    }
+  },
+  "cases": [
+    {
+      "name": "pytorch-cpu-fp32",
+      "backend": "pytorch",
+      "device": "cpu",
+      "precision": 32,
+      "export_key": null
+    },
+    {
+      "name": "pytorch-cuda-fp32",
+      "backend": "pytorch",
+      "device": "0",
+      "precision": 32,
+      "export_key": null
+    },
+    {
+      "name": "onnx-cpu-fp32",
+      "backend": "onnx",
+      "device": "cpu",
+      "precision": 32,
+      "export_key": "onnx-fp32"
+    },
+    {
+      "name": "onnx-cpu-fp16",
+      "backend": "onnx",
+      "device": "cpu",
+      "precision": 16,
+      "export_key": "onnx-fp16"
+    },
+    {
+      "name": "onnx-cpu-int8",
+      "backend": "onnx",
+      "device": "cpu",
+      "precision": 8,
+      "export_key": "onnx-int8"
+    },
+    {
+      "name": "onnx-cuda-fp32",
+      "backend": "onnx",
+      "device": "0",
+      "precision": 32,
+      "export_key": "onnx-fp32"
+    },
+    {
+      "name": "onnx-cuda-fp16",
+      "backend": "onnx",
+      "device": "0",
+      "precision": 16,
+      "export_key": "onnx-fp16"
+    },
+    {
+      "name": "openvino-cpu-fp32",
+      "backend": "openvino",
+      "device": "cpu",
+      "precision": 32,
+      "export_key": "openvino-fp32"
+    },
+    {
+      "name": "openvino-cpu-fp16",
+      "backend": "openvino",
+      "device": "cpu",
+      "precision": 16,
+      "export_key": "openvino-fp16"
+    },
+    {
+      "name": "openvino-cpu-int8",
+      "backend": "openvino",
+      "device": "cpu",
+      "precision": 8,
+      "export_key": "openvino-int8"
+    },
+    {
+      "name": "tensorrt-cuda-fp32",
+      "backend": "tensorrt",
+      "device": "0",
+      "precision": 32,
+      "export_key": "tensorrt-fp32"
+    },
+    {
+      "name": "tensorrt-cuda-fp16",
+      "backend": "tensorrt",
+      "device": "0",
+      "precision": 16,
+      "export_key": "tensorrt-fp16"
+    },
+    {
+      "name": "tensorrt-cuda-int8",
+      "backend": "tensorrt",
+      "device": "0",
+      "precision": 8,
+      "export_key": "tensorrt-int8"
+    }
+  ],
+  "orders": [
+    [
+      "openvino-cpu-fp32",
+      "onnx-cpu-int8",
+      "tensorrt-cuda-int8",
+      "onnx-cpu-fp16",
+      "openvino-cpu-fp16",
+      "onnx-cuda-fp32",
+      "pytorch-cpu-fp32",
+      "tensorrt-cuda-fp32",
+      "tensorrt-cuda-fp16",
+      "onnx-cpu-fp32",
+      "onnx-cuda-fp16",
+      "pytorch-cuda-fp32",
+      "openvino-cpu-int8"
+    ],
+    [
+      "tensorrt-cuda-fp16",
+      "tensorrt-cuda-int8",
+      "onnx-cuda-fp32",
+      "pytorch-cpu-fp32",
+      "pytorch-cuda-fp32",
+      "tensorrt-cuda-fp32",
+      "onnx-cpu-int8",
+      "openvino-cpu-fp32",
+      "onnx-cuda-fp16",
+      "openvino-cpu-fp16",
+      "onnx-cpu-fp32",
+      "openvino-cpu-int8",
+      "onnx-cpu-fp16"
+    ],
+    [
+      "onnx-cpu-int8",
+      "onnx-cuda-fp32",
+      "tensorrt-cuda-fp16",
+      "onnx-cuda-fp16",
+      "onnx-cpu-fp32",
+      "onnx-cpu-fp16",
+      "openvino-cpu-fp32",
+      "pytorch-cpu-fp32",
+      "openvino-cpu-int8",
+      "openvino-cpu-fp16",
+      "tensorrt-cuda-int8",
+      "tensorrt-cuda-fp32",
+      "pytorch-cuda-fp32"
+    ],
+    [
+      "onnx-cpu-fp32",
+      "openvino-cpu-int8",
+      "pytorch-cpu-fp32",
+      "tensorrt-cuda-fp16",
+      "onnx-cuda-fp32",
+      "onnx-cuda-fp16",
+      "openvino-cpu-fp32",
+      "onnx-cpu-int8",
+      "pytorch-cuda-fp32",
+      "openvino-cpu-fp16",
+      "tensorrt-cuda-int8",
+      "onnx-cpu-fp16",
+      "tensorrt-cuda-fp32"
+    ],
+    [
+      "tensorrt-cuda-fp16",
+      "openvino-cpu-fp16",
+      "pytorch-cuda-fp32",
+      "openvino-cpu-fp32",
+      "onnx-cpu-fp16",
+      "pytorch-cpu-fp32",
+      "onnx-cuda-fp16",
+      "onnx-cuda-fp32",
+      "onnx-cpu-int8",
+      "onnx-cpu-fp32",
+      "openvino-cpu-int8",
+      "tensorrt-cuda-int8",
+      "tensorrt-cuda-fp32"
+    ],
+    [
+      "onnx-cpu-int8",
+      "onnx-cpu-fp32",
+      "openvino-cpu-int8",
+      "openvino-cpu-fp32",
+      "pytorch-cpu-fp32",
+      "onnx-cpu-fp16",
+      "pytorch-cuda-fp32",
+      "onnx-cuda-fp16",
+      "openvino-cpu-fp16",
+      "tensorrt-cuda-int8",
+      "onnx-cuda-fp32",
+      "tensorrt-cuda-fp16",
+      "tensorrt-cuda-fp32"
+    ],
+    [
+      "tensorrt-cuda-fp32",
+      "onnx-cpu-fp16",
+      "openvino-cpu-fp16",
+      "onnx-cuda-fp32",
+      "onnx-cuda-fp16",
+      "onnx-cpu-fp32",
+      "openvino-cpu-fp32",
+      "pytorch-cuda-fp32",
+      "openvino-cpu-int8",
+      "tensorrt-cuda-fp16",
+      "pytorch-cpu-fp32",
+      "tensorrt-cuda-int8",
+      "onnx-cpu-int8"
+    ],
+    [
+      "tensorrt-cuda-fp16",
+      "pytorch-cpu-fp32",
+      "onnx-cpu-fp16",
+      "onnx-cpu-int8",
+      "onnx-cuda-fp32",
+      "tensorrt-cuda-int8",
+      "onnx-cuda-fp16",
+      "onnx-cpu-fp32",
+      "openvino-cpu-int8",
+      "tensorrt-cuda-fp32",
+      "pytorch-cuda-fp32",
+      "openvino-cpu-fp32",
+      "openvino-cpu-fp16"
+    ],
+    [
+      "openvino-cpu-fp16",
+      "onnx-cpu-int8",
+      "onnx-cpu-fp16",
+      "openvino-cpu-int8",
+      "pytorch-cuda-fp32",
+      "tensorrt-cuda-fp32",
+      "tensorrt-cuda-int8",
+      "onnx-cuda-fp32",
+      "pytorch-cpu-fp32",
+      "onnx-cuda-fp16",
+      "openvino-cpu-fp32",
+      "tensorrt-cuda-fp16",
+      "onnx-cpu-fp32"
+    ],
+    [
+      "pytorch-cpu-fp32",
+      "onnx-cpu-fp32",
+      "pytorch-cuda-fp32",
+      "tensorrt-cuda-int8",
+      "tensorrt-cuda-fp16",
+      "onnx-cpu-fp16",
+      "tensorrt-cuda-fp32",
+      "onnx-cuda-fp32",
+      "onnx-cuda-fp16",
+      "openvino-cpu-int8",
+      "openvino-cpu-fp32",
+      "onnx-cpu-int8",
+      "openvino-cpu-fp16"
+    ]
+  ],
+  "scope": "One checkpoint; batch one; one resolution; no architecture change or retraining",
+  "limitations": [
+    "Free-running shared laptop clocks, one session; no causal FP16 claim from cross-runtime ratios",
+    "ONNX CUDA INT8 deliberately omitted: no verified CUDA INT8 execution path in this stack",
+    "FP16 graph/storage and TensorRT precision flags do not imply every operation has that precision",
+    "AP point estimates have no CI; near-budget differences cannot establish pass/fail"
+  ]
+}

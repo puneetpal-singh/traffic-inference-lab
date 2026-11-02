@@ -1,0 +1,590 @@
+{
+  "mode": "full",
+  "rows": [
+    {
+      "case": "onnx-cpu-fp32",
+      "streams": 1,
+      "variant": "baseline",
+      "repeats": 3,
+      "min_camera_fps_median": 27.240026509853706,
+      "min_camera_fps_range": [
+        26.687651458509972,
+        28.596502282946282
+      ],
+      "worst_p95_ms_median": 94.98420146646822,
+      "worst_p95_ms_range": [
+        87.6684609656877,
+        97.40273226525457
+      ],
+      "isolated_reference_fps": 26.680421932945997,
+      "all_repeats_timing_passed": true,
+      "all_repeats_counting_passed": false,
+      "counting_status": "unvalidated",
+      "fairness_jain_median": 1.0
+    },
+    {
+      "case": "onnx-cpu-fp32",
+      "streams": 2,
+      "variant": "baseline",
+      "repeats": 3,
+      "min_camera_fps_median": 12.049554560317995,
+      "min_camera_fps_range": [
+        11.459595105235703,
+        12.176070231262909
+      ],
+      "worst_p95_ms_median": 150.1544827326142,
+      "worst_p95_ms_range": [
+        147.5041120658716,
+        195.86407561537263
+      ],
+      "isolated_reference_fps": 26.680421932945997,
+      "all_repeats_timing_passed": false,
+      "all_repeats_counting_passed": false,
+      "counting_status": "unvalidated",
+      "fairness_jain_median": 0.9999328182734298
+    },
+    {
+      "case": "onnx-cpu-fp32",
+      "streams": 4,
+      "variant": "baseline",
+      "repeats": 3,
+      "min_camera_fps_median": 2.5718664231633044,
+      "min_camera_fps_range": [
+        2.4971877247741077,
+        2.6092268715915963
+      ],
+      "worst_p95_ms_median": 5287.748555931648,
+      "worst_p95_ms_range": [
+        4995.213725499161,
+        5765.079340015927
+      ],
+      "isolated_reference_fps": 26.680421932945997,
+      "all_repeats_timing_passed": false,
+      "all_repeats_counting_passed": false,
+      "counting_status": "unvalidated",
+      "fairness_jain_median": 0.9973422150450812
+    },
+    {
+      "case": "onnx-cpu-fp32",
+      "streams": 8,
+      "variant": "baseline",
+      "repeats": 3,
+      "min_camera_fps_median": 0.7177051738134722,
+      "min_camera_fps_range": [
+        0.7156393026257813,
+        0.721182161104805
+      ],
+      "worst_p95_ms_median": 28667.604400999608,
+      "worst_p95_ms_range": [
+        28576.691320031932,
+        29538.37806286556
+      ],
+      "isolated_reference_fps": 26.680421932945997,
+      "all_repeats_timing_passed": false,
+      "all_repeats_counting_passed": false,
+      "counting_status": "unvalidated",
+      "fairness_jain_median": 0.9988665905776426
+    },
+    {
+      "case": "onnx-cuda-fp32",
+      "streams": 1,
+      "variant": "baseline",
+      "repeats": 3,
+      "min_camera_fps_median": 29.97436787592223,
+      "min_camera_fps_range": [
+        29.973355494360895,
+        29.97440272932729
+      ],
+      "worst_p95_ms_median": 43.77091888072755,
+      "worst_p95_ms_range": [
+        43.72790856486972,
+        44.98294661452746
+      ],
+      "isolated_reference_fps": 194.34416990153665,
+      "all_repeats_timing_passed": true,
+      "all_repeats_counting_passed": false,
+      "counting_status": "unvalidated",
+      "fairness_jain_median": 1.0
+    },
+    {
+      "case": "onnx-cuda-fp32",
+      "streams": 2,
+      "variant": "baseline",
+      "repeats": 3,
+      "min_camera_fps_median": 29.625466040249023,
+      "min_camera_fps_range": [
+        29.615676104375126,
+        29.653357536090102
+      ],
+      "worst_p95_ms_median": 61.07642518400097,
+      "worst_p95_ms_range": [
+        60.25941351654183,
+        61.41261983248114
+      ],
+      "isolated_reference_fps": 194.34416990153665,
+      "all_repeats_timing_passed": true,
+      "all_repeats_counting_passed": false,
+      "counting_status": "unvalidated",
+      "fairness_jain_median": 0.9999996847377113
+    },
+    {
+      "case": "onnx-cuda-fp32",
+      "streams": 4,
+      "variant": "baseline",
+      "repeats": 3,
+      "min_camera_fps_median": 13.74544193870054,
+      "min_camera_fps_range": [
+        13.483675892216562,
+        13.842425700342261
+      ],
+      "worst_p95_ms_median": 265.482583099765,
+      "worst_p95_ms_range": [
+        173.61815038311758,
+        337.4708050000663
+      ],
+      "isolated_reference_fps": 194.34416990153665,
+      "all_repeats_timing_passed": false,
+      "all_repeats_counting_passed": false,
+      "counting_status": "unvalidated",
+      "fairness_jain_median": 0.9999095498934699
+    },
+    {
+      "case": "onnx-cuda-fp32",
+      "streams": 8,
+      "variant": "baseline",
+      "repeats": 3,
+      "min_camera_fps_median": 3.514857704570134,
+      "min_camera_fps_range": [
+        3.5004086710185622,
+        3.5617361866678166
+      ],
+      "worst_p95_ms_median": 23148.13869066511,
+      "worst_p95_ms_range": [
+        22671.222593931452,
+        23329.381301982903
+      ],
+      "isolated_reference_fps": 194.34416990153665,
+      "all_repeats_timing_passed": false,
+      "all_repeats_counting_passed": false,
+      "counting_status": "unvalidated",
+      "fairness_jain_median": 0.999560500171634
+    },
+    {
+      "case": "openvino-cpu-int8",
+      "streams": 1,
+      "variant": "baseline",
+      "repeats": 3,
+      "min_camera_fps_median": 29.951191612029415,
+      "min_camera_fps_range": [
+        29.93076241143658,
+        29.95452217475404
+      ],
+      "worst_p95_ms_median": 56.24569633273494,
+      "worst_p95_ms_range": [
+        56.030360115255455,
+        58.95559449918432
+      ],
+      "isolated_reference_fps": 74.33141802909688,
+      "all_repeats_timing_passed": true,
+      "all_repeats_counting_passed": false,
+      "counting_status": "unvalidated",
+      "fairness_jain_median": 1.0
+    },
+    {
+      "case": "openvino-cpu-int8",
+      "streams": 2,
+      "variant": "baseline",
+      "repeats": 3,
+      "min_camera_fps_median": 17.78280793621187,
+      "min_camera_fps_range": [
+        17.0917958966547,
+        17.878082007047194
+      ],
+      "worst_p95_ms_median": 101.81323923352461,
+      "worst_p95_ms_range": [
+        100.55483073301728,
+        104.31808559769703
+      ],
+      "isolated_reference_fps": 74.33141802909688,
+      "all_repeats_timing_passed": false,
+      "all_repeats_counting_passed": false,
+      "counting_status": "unvalidated",
+      "fairness_jain_median": 0.9999965192814406
+    },
+    {
+      "case": "openvino-cpu-int8",
+      "streams": 4,
+      "variant": "baseline",
+      "repeats": 3,
+      "min_camera_fps_median": 3.9053350229711072,
+      "min_camera_fps_range": [
+        3.8754980233998504,
+        3.9488925678923277
+      ],
+      "worst_p95_ms_median": 1397.8137693320605,
+      "worst_p95_ms_range": [
+        1364.8614398325662,
+        2305.462295333564
+      ],
+      "isolated_reference_fps": 74.33141802909688,
+      "all_repeats_timing_passed": false,
+      "all_repeats_counting_passed": false,
+      "counting_status": "unvalidated",
+      "fairness_jain_median": 0.9972964962591521
+    },
+    {
+      "case": "openvino-cpu-int8",
+      "streams": 8,
+      "variant": "baseline",
+      "repeats": 3,
+      "min_camera_fps_median": 0.9349168747207125,
+      "min_camera_fps_range": [
+        0.916109657117362,
+        0.9827522618883445
+      ],
+      "worst_p95_ms_median": 24664.13348699898,
+      "worst_p95_ms_range": [
+        24186.159173582382,
+        26075.197105832558
+      ],
+      "isolated_reference_fps": 74.33141802909688,
+      "all_repeats_timing_passed": false,
+      "all_repeats_counting_passed": false,
+      "counting_status": "unvalidated",
+      "fairness_jain_median": 0.98137141575515
+    },
+    {
+      "case": "pytorch-cpu-fp32",
+      "streams": 1,
+      "variant": "baseline",
+      "repeats": 3,
+      "min_camera_fps_median": 23.304690770187058,
+      "min_camera_fps_range": [
+        22.55480324775959,
+        23.73472525229345
+      ],
+      "worst_p95_ms_median": 112.15368933335412,
+      "worst_p95_ms_range": [
+        109.41696896561554,
+        117.83842323338831
+      ],
+      "isolated_reference_fps": 32.39953062236958,
+      "all_repeats_timing_passed": false,
+      "all_repeats_counting_passed": false,
+      "counting_status": "unvalidated",
+      "fairness_jain_median": 1.0
+    },
+    {
+      "case": "pytorch-cpu-fp32",
+      "streams": 2,
+      "variant": "baseline",
+      "repeats": 3,
+      "min_camera_fps_median": 7.159958700424905,
+      "min_camera_fps_range": [
+        6.476771605939002,
+        7.190880953709214
+      ],
+      "worst_p95_ms_median": 272.0270216668723,
+      "worst_p95_ms_range": [
+        239.95487980027963,
+        293.373166398669
+      ],
+      "isolated_reference_fps": 32.39953062236958,
+      "all_repeats_timing_passed": false,
+      "all_repeats_counting_passed": false,
+      "counting_status": "unvalidated",
+      "fairness_jain_median": 0.999993525412755
+    },
+    {
+      "case": "pytorch-cpu-fp32",
+      "streams": 4,
+      "variant": "baseline",
+      "repeats": 3,
+      "min_camera_fps_median": 0.6872850933173412,
+      "min_camera_fps_range": [
+        0.4861308654418254,
+        0.7740701395476451
+      ],
+      "worst_p95_ms_median": 6561.87797719831,
+      "worst_p95_ms_range": [
+        3686.0828867658693,
+        6681.924165664896
+      ],
+      "isolated_reference_fps": 32.39953062236958,
+      "all_repeats_timing_passed": false,
+      "all_repeats_counting_passed": false,
+      "counting_status": "unvalidated",
+      "fairness_jain_median": 0.9477344100493497
+    },
+    {
+      "case": "pytorch-cpu-fp32",
+      "streams": 8,
+      "variant": "baseline",
+      "repeats": 3,
+      "min_camera_fps_median": 0.1183354644673964,
+      "min_camera_fps_range": [
+        0.08599507007902543,
+        0.11867555110885666
+      ],
+      "worst_p95_ms_median": 29108.30343570051,
+      "worst_p95_ms_range": [
+        28437.151522665772,
+        29375.289034033085
+      ],
+      "isolated_reference_fps": 32.39953062236958,
+      "all_repeats_timing_passed": false,
+      "all_repeats_counting_passed": false,
+      "counting_status": "unvalidated",
+      "fairness_jain_median": 0.9837398373983739
+    },
+    {
+      "case": "pytorch-cuda-fp32",
+      "streams": 1,
+      "variant": "baseline",
+      "repeats": 3,
+      "min_camera_fps_median": 29.97130865105364,
+      "min_camera_fps_range": [
+        29.970141167936102,
+        29.97154938486249
+      ],
+      "worst_p95_ms_median": 46.754981232061255,
+      "worst_p95_ms_range": [
+        46.613173748846734,
+        47.42782214998442
+      ],
+      "isolated_reference_fps": 95.91844767987959,
+      "all_repeats_timing_passed": true,
+      "all_repeats_counting_passed": false,
+      "counting_status": "unvalidated",
+      "fairness_jain_median": 1.0
+    },
+    {
+      "case": "pytorch-cuda-fp32",
+      "streams": 2,
+      "variant": "baseline",
+      "repeats": 3,
+      "min_camera_fps_median": 24.620820969640352,
+      "min_camera_fps_range": [
+        24.425341101501306,
+        25.085579664628078
+      ],
+      "worst_p95_ms_median": 74.97457690087685,
+      "worst_p95_ms_range": [
+        74.27694524858452,
+        77.30560073332526
+      ],
+      "isolated_reference_fps": 95.91844767987959,
+      "all_repeats_timing_passed": true,
+      "all_repeats_counting_passed": false,
+      "counting_status": "unvalidated",
+      "fairness_jain_median": 0.9994878519909975
+    },
+    {
+      "case": "pytorch-cuda-fp32",
+      "streams": 4,
+      "variant": "baseline",
+      "repeats": 3,
+      "min_camera_fps_median": 8.588748740390377,
+      "min_camera_fps_range": [
+        8.432094798889265,
+        9.201708873591542
+      ],
+      "worst_p95_ms_median": 186.1340559989912,
+      "worst_p95_ms_range": [
+        150.5791426166978,
+        192.00844099941605
+      ],
+      "isolated_reference_fps": 95.91844767987959,
+      "all_repeats_timing_passed": false,
+      "all_repeats_counting_passed": false,
+      "counting_status": "unvalidated",
+      "fairness_jain_median": 0.9999771123402631
+    },
+    {
+      "case": "pytorch-cuda-fp32",
+      "streams": 8,
+      "variant": "baseline",
+      "repeats": 3,
+      "min_camera_fps_median": 2.0374281091937765,
+      "min_camera_fps_range": [
+        1.9812143655468388,
+        2.138036728715659
+      ],
+      "worst_p95_ms_median": 22840.27049266624,
+      "worst_p95_ms_range": [
+        21941.137565667304,
+        23168.820424332807
+      ],
+      "isolated_reference_fps": 95.91844767987959,
+      "all_repeats_timing_passed": false,
+      "all_repeats_counting_passed": false,
+      "counting_status": "unvalidated",
+      "fairness_jain_median": 0.997928803241347
+    },
+    {
+      "case": "tensorrt-cuda-int8",
+      "streams": 1,
+      "variant": "baseline",
+      "repeats": 3,
+      "min_camera_fps_median": 29.975645455526248,
+      "min_camera_fps_range": [
+        29.97513577974306,
+        29.975717912913467
+      ],
+      "worst_p95_ms_median": 41.846603214617055,
+      "worst_p95_ms_range": [
+        40.78042156452283,
+        41.85426049925808
+      ],
+      "isolated_reference_fps": 258.0453545700659,
+      "all_repeats_timing_passed": true,
+      "all_repeats_counting_passed": false,
+      "counting_status": "unvalidated",
+      "fairness_jain_median": 1.0
+    },
+    {
+      "case": "tensorrt-cuda-int8",
+      "streams": 2,
+      "variant": "baseline",
+      "repeats": 3,
+      "min_camera_fps_median": 29.927763514999622,
+      "min_camera_fps_range": [
+        29.922503724247367,
+        29.929085971431395
+      ],
+      "worst_p95_ms_median": 53.196479132202484,
+      "worst_p95_ms_range": [
+        51.26696761526546,
+        53.99730758263104
+      ],
+      "isolated_reference_fps": 258.0453545700659,
+      "all_repeats_timing_passed": true,
+      "all_repeats_counting_passed": false,
+      "counting_status": "unvalidated",
+      "fairness_jain_median": 0.9999996910148987
+    },
+    {
+      "case": "tensorrt-cuda-int8",
+      "streams": 4,
+      "variant": "baseline",
+      "repeats": 3,
+      "min_camera_fps_median": 17.015918106064888,
+      "min_camera_fps_range": [
+        16.306223738226407,
+        17.505384059142806
+      ],
+      "worst_p95_ms_median": 283.64137833250425,
+      "worst_p95_ms_range": [
+        159.3687605825835,
+        344.19529983224487
+      ],
+      "isolated_reference_fps": 258.0453545700659,
+      "all_repeats_timing_passed": false,
+      "all_repeats_counting_passed": false,
+      "counting_status": "unvalidated",
+      "fairness_jain_median": 0.9997123389662252
+    },
+    {
+      "case": "tensorrt-cuda-int8",
+      "streams": 8,
+      "variant": "baseline",
+      "repeats": 3,
+      "min_camera_fps_median": 4.448144137370158,
+      "min_camera_fps_range": [
+        4.4377084755055405,
+        4.450981028169315
+      ],
+      "worst_p95_ms_median": 23602.901779082913,
+      "worst_p95_ms_range": [
+        22277.60564066557,
+        23657.129719383738
+      ],
+      "isolated_reference_fps": 258.0453545700659,
+      "all_repeats_timing_passed": false,
+      "all_repeats_counting_passed": false,
+      "counting_status": "unvalidated",
+      "fairness_jain_median": 0.9996535308091066
+    }
+  ],
+  "capacity": [
+    {
+      "case": "onnx-cpu-fp32",
+      "largest_tested_timing_pass": 1,
+      "largest_tested_timing_and_counting_pass": null,
+      "complete_tested_loads": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "scope": "Largest passing tested load, not a production ceiling; model accuracy uses a COCO point-estimate proxy"
+    },
+    {
+      "case": "onnx-cuda-fp32",
+      "largest_tested_timing_pass": 2,
+      "largest_tested_timing_and_counting_pass": null,
+      "complete_tested_loads": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "scope": "Largest passing tested load, not a production ceiling; model accuracy uses a COCO point-estimate proxy"
+    },
+    {
+      "case": "openvino-cpu-int8",
+      "largest_tested_timing_pass": 1,
+      "largest_tested_timing_and_counting_pass": null,
+      "complete_tested_loads": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "scope": "Largest passing tested load, not a production ceiling; model accuracy uses a COCO point-estimate proxy"
+    },
+    {
+      "case": "pytorch-cpu-fp32",
+      "largest_tested_timing_pass": null,
+      "largest_tested_timing_and_counting_pass": null,
+      "complete_tested_loads": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "scope": "Largest passing tested load, not a production ceiling; model accuracy uses a COCO point-estimate proxy"
+    },
+    {
+      "case": "pytorch-cuda-fp32",
+      "largest_tested_timing_pass": 2,
+      "largest_tested_timing_and_counting_pass": null,
+      "complete_tested_loads": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "scope": "Largest passing tested load, not a production ceiling; model accuracy uses a COCO point-estimate proxy"
+    },
+    {
+      "case": "tensorrt-cuda-int8",
+      "largest_tested_timing_pass": 2,
+      "largest_tested_timing_and_counting_pass": null,
+      "complete_tested_loads": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "scope": "Largest passing tested load, not a production ceiling; model accuracy uses a COCO point-estimate proxy"
+    }
+  ],
+  "failed": [],
+  "notes": [
+    "COCO is a detection-quality proxy; traffic-domain detection and occupancy accuracy remain unvalidated.",
+    "Looped clips are compute-load tests. Counting requires reviewed non-looped source labels.",
+    "No production capacity claim; same-session repeated replay on assigned Kaggle hardware.",
+    "Model-only reference excludes decode/tracking, uses the first clip and is not a hard ceiling."
+  ]
+}

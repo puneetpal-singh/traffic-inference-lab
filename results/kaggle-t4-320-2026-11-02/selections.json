@@ -1,0 +1,273 @@
+{
+  "candidates": [
+    {
+      "case": {
+        "name": "pytorch-cpu-fp32",
+        "backend": "pytorch",
+        "device": "cpu",
+        "precision": 32,
+        "export_key": null
+      },
+      "global_loss_points": 9.753852370786298e-05,
+      "vehicle_loss_points": 0.0,
+      "eligible_by_point_estimate": true,
+      "median_p95_ms": 33.53027370021664,
+      "isolated_model_reference_fps": 32.39953062236958
+    },
+    {
+      "case": {
+        "name": "pytorch-cuda-fp32",
+        "backend": "pytorch",
+        "device": "0",
+        "precision": 32,
+        "export_key": null
+      },
+      "global_loss_points": 0.0,
+      "vehicle_loss_points": 0.0,
+      "eligible_by_point_estimate": true,
+      "median_p95_ms": 11.59741892540751,
+      "isolated_model_reference_fps": 95.91844767987959
+    },
+    {
+      "case": {
+        "name": "onnx-cpu-fp32",
+        "backend": "onnx",
+        "device": "cpu",
+        "precision": 32,
+        "export_key": "onnx-fp32"
+      },
+      "global_loss_points": -4.470854669813562e-06,
+      "vehicle_loss_points": 0.0,
+      "eligible_by_point_estimate": true,
+      "median_p95_ms": 62.081873899955994,
+      "isolated_model_reference_fps": 26.680421932945997
+    },
+    {
+      "case": {
+        "name": "onnx-cpu-fp16",
+        "backend": "onnx",
+        "device": "cpu",
+        "precision": 16,
+        "export_key": "onnx-fp16"
+      },
+      "global_loss_points": 0.001421759316677651,
+      "vehicle_loss_points": -0.005099559370025375,
+      "eligible_by_point_estimate": true,
+      "median_p95_ms": 74.36040192505968,
+      "isolated_model_reference_fps": 20.592061095504526
+    },
+    {
+      "case": {
+        "name": "onnx-cpu-int8",
+        "backend": "onnx",
+        "device": "cpu",
+        "precision": 8,
+        "export_key": "onnx-int8"
+      },
+      "global_loss_points": 3.388396700961466,
+      "vehicle_loss_points": 5.008597230469741,
+      "eligible_by_point_estimate": false,
+      "median_p95_ms": 77.61680269994709,
+      "isolated_model_reference_fps": 19.864996796126746
+    },
+    {
+      "case": {
+        "name": "onnx-cuda-fp32",
+        "backend": "onnx",
+        "device": "0",
+        "precision": 32,
+        "export_key": "onnx-fp32"
+      },
+      "global_loss_points": -1.132561489036732e-06,
+      "vehicle_loss_points": 0.0,
+      "eligible_by_point_estimate": true,
+      "median_p95_ms": 5.492554574857421,
+      "isolated_model_reference_fps": 194.34416990153665
+    },
+    {
+      "case": {
+        "name": "onnx-cuda-fp16",
+        "backend": "onnx",
+        "device": "0",
+        "precision": 16,
+        "export_key": "onnx-fp16"
+      },
+      "global_loss_points": -0.02258711621706544,
+      "vehicle_loss_points": -0.01416510940066007,
+      "eligible_by_point_estimate": true,
+      "median_p95_ms": 5.994009549999646,
+      "isolated_model_reference_fps": 175.24631172127383
+    },
+    {
+      "case": {
+        "name": "openvino-cpu-fp32",
+        "backend": "openvino",
+        "device": "cpu",
+        "precision": 32,
+        "export_key": "openvino-fp32"
+      },
+      "global_loss_points": 0.0003416085743668251,
+      "vehicle_loss_points": 2.1815065087693597e-06,
+      "eligible_by_point_estimate": true,
+      "median_p95_ms": 16.560714274942256,
+      "isolated_model_reference_fps": 65.15414516012613
+    },
+    {
+      "case": {
+        "name": "openvino-cpu-fp16",
+        "backend": "openvino",
+        "device": "cpu",
+        "precision": 16,
+        "export_key": "openvino-fp16"
+      },
+      "global_loss_points": -0.003770296871208334,
+      "vehicle_loss_points": -0.004992879345849799,
+      "eligible_by_point_estimate": true,
+      "median_p95_ms": 16.489895274935407,
+      "isolated_model_reference_fps": 66.0743265057979
+    },
+    {
+      "case": {
+        "name": "openvino-cpu-int8",
+        "backend": "openvino",
+        "device": "cpu",
+        "precision": 8,
+        "export_key": "openvino-int8"
+      },
+      "global_loss_points": 0.16788612262544356,
+      "vehicle_loss_points": 0.3265489045737424,
+      "eligible_by_point_estimate": true,
+      "median_p95_ms": 14.511721450116966,
+      "isolated_model_reference_fps": 74.33141802909688
+    },
+    {
+      "case": {
+        "name": "tensorrt-cuda-fp32",
+        "backend": "tensorrt",
+        "device": "0",
+        "precision": 32,
+        "export_key": "tensorrt-fp32"
+      },
+      "global_loss_points": 0.00024171180046383967,
+      "vehicle_loss_points": 0.0,
+      "eligible_by_point_estimate": true,
+      "median_p95_ms": 4.3872989249848615,
+      "isolated_model_reference_fps": 236.3903256462345
+    },
+    {
+      "case": {
+        "name": "tensorrt-cuda-fp16",
+        "backend": "tensorrt",
+        "device": "0",
+        "precision": 16,
+        "export_key": "tensorrt-fp16"
+      },
+      "global_loss_points": 0.003577844267677044,
+      "vehicle_loss_points": -0.0012291897388994055,
+      "eligible_by_point_estimate": true,
+      "median_p95_ms": 3.996873974938353,
+      "isolated_model_reference_fps": 258.37155595077286
+    },
+    {
+      "case": {
+        "name": "tensorrt-cuda-int8",
+        "backend": "tensorrt",
+        "device": "0",
+        "precision": 8,
+        "export_key": "tensorrt-int8"
+      },
+      "global_loss_points": 0.7352560069052383,
+      "vehicle_loss_points": 0.9847772069803307,
+      "eligible_by_point_estimate": true,
+      "median_p95_ms": 3.963637349841065,
+      "isolated_model_reference_fps": 258.0453545700659
+    }
+  ],
+  "selected": [
+    {
+      "case": {
+        "name": "pytorch-cpu-fp32",
+        "backend": "pytorch",
+        "device": "cpu",
+        "precision": 32,
+        "export_key": null
+      },
+      "global_loss_points": 9.753852370786298e-05,
+      "vehicle_loss_points": 0.0,
+      "eligible_by_point_estimate": true,
+      "median_p95_ms": 33.53027370021664,
+      "isolated_model_reference_fps": 32.39953062236958
+    },
+    {
+      "case": {
+        "name": "pytorch-cuda-fp32",
+        "backend": "pytorch",
+        "device": "0",
+        "precision": 32,
+        "export_key": null
+      },
+      "global_loss_points": 0.0,
+      "vehicle_loss_points": 0.0,
+      "eligible_by_point_estimate": true,
+      "median_p95_ms": 11.59741892540751,
+      "isolated_model_reference_fps": 95.91844767987959
+    },
+    {
+      "case": {
+        "name": "onnx-cpu-fp32",
+        "backend": "onnx",
+        "device": "cpu",
+        "precision": 32,
+        "export_key": "onnx-fp32"
+      },
+      "global_loss_points": -4.470854669813562e-06,
+      "vehicle_loss_points": 0.0,
+      "eligible_by_point_estimate": true,
+      "median_p95_ms": 62.081873899955994,
+      "isolated_model_reference_fps": 26.680421932945997
+    },
+    {
+      "case": {
+        "name": "onnx-cuda-fp32",
+        "backend": "onnx",
+        "device": "0",
+        "precision": 32,
+        "export_key": "onnx-fp32"
+      },
+      "global_loss_points": -1.132561489036732e-06,
+      "vehicle_loss_points": 0.0,
+      "eligible_by_point_estimate": true,
+      "median_p95_ms": 5.492554574857421,
+      "isolated_model_reference_fps": 194.34416990153665
+    },
+    {
+      "case": {
+        "name": "openvino-cpu-int8",
+        "backend": "openvino",
+        "device": "cpu",
+        "precision": 8,
+        "export_key": "openvino-int8"
+      },
+      "global_loss_points": 0.16788612262544356,
+      "vehicle_loss_points": 0.3265489045737424,
+      "eligible_by_point_estimate": true,
+      "median_p95_ms": 14.511721450116966,
+      "isolated_model_reference_fps": 74.33141802909688
+    },
+    {
+      "case": {
+        "name": "tensorrt-cuda-int8",
+        "backend": "tensorrt",
+        "device": "0",
+        "precision": 8,
+        "export_key": "tensorrt-int8"
+      },
+      "global_loss_points": 0.7352560069052383,
+      "vehicle_loss_points": 0.9847772069803307,
+      "eligible_by_point_estimate": true,
+      "median_p95_ms": 3.963637349841065,
+      "isolated_model_reference_fps": 258.0453545700659
+    }
+  ],
+  "scope": "Point-estimate COCO proxy gate, no AP CI. First-clip isolated FPS is a reference, not a hard serving ceiling."
+}
